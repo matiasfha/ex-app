@@ -8,7 +8,7 @@ Alzheimer::Application.routes.draw do
   get "users/show"
 
 
-  root :to => 'static#home'
+  root :to => 'sessions#new'
 
   get "log_out" => "sessions#destroy", :as => "log_out"
   get "log_in" => "sessions#new", :as => "log_in"
