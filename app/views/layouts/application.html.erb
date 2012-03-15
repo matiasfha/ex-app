@@ -5,24 +5,37 @@
   <%= stylesheet_link_tag    "application", :media => "all" %>
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
+  <style type="text/css">
+  body
+	{
+		padding: 40px 0px 40px 0px;
+		background-image: url("/assets/420.gif");
+	}
+  
+  form
+  {
+  	width: 350px;
+  	margin: 50px auto 50px auto;
+  }
+  </style>
 </head>
 <body>
-
-<div id="user_nav">
+<section class="container hero-unit">
+<div id="user_nav" class="pull-right">
   <% if current_user %>
-    Ingresado como <%= current_user.email %>.
-    <%= link_to "Cierra Sesión", log_out_path, :class => 'btn btn-primary' %>
+    Ingresado como <b><%= current_user.email %></b>
+    <%= link_to "Cierra Sesión", log_out_path, :class => 'btn btn-info' %>
+  <% elsif false %>
+  	<%= link_to "Regístrate", sign_up_path, :class => 'btn btn-info' %> o
+    <%= link_to "Ingresa", log_in_path, :class => 'btn btn-info' %>
   <% else %>
-    <%= link_to "Regístrate", sign_up_path, :class => 'btn btn-primary' %> o
-    <%= link_to "Ingresa", log_in_path, :class => 'btn btn-primary' %>
+    
   <% end %>
 </div>
 
-<% flash.each do |name, msg| %>
-  <%= content_tag :div, msg, :id => "flash_#{name}" %>
-<% end %>
-
-<%= yield %>
-
+	<div class="row clear">&nbsp;</div>
+	<h1 style="text-align: center">Alzheimer</h1>
+	<%= yield %>
+</section>
 </body>
 </html>

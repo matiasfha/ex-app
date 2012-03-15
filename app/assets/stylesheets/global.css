@@ -69,3 +69,43 @@ img {
 .btn-inverse:active, .btn-inverse.active {
   background-color: #0c0c0c \9;
 }
+
+.signin_facebook{
+  display: inline-block;
+  vertical-align: text-top;
+  background-position: 0px -24px;
+  background-image: url(/assets/signin_facebook.png);
+  width: 150px;
+  height: 24px;
+  background-repeat: no-repeat;
+  margin-top: 5px;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.signin_twitter{
+  display: inline-block;
+  vertical-align: text-top;
+  background-position: 0px -24px;
+  background-image: url(/assets/signin_twitter.png);
+  width: 150px;
+  height: 24px;
+  background-repeat: no-repeat;
+  margin-top: 5px;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.signin_facebook:hover, .signin_twitter:hover{
+  background-position: 0px 0px;
+  text-decoration: none;
+}
+
+.signin_facebook:active, .signin_twitter:active{
+  background-position: 0px -48px;
+  text-decoration: none;
+}
+
+
+
+

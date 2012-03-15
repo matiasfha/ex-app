@@ -18,7 +18,6 @@ gem "heroku"
 gem 'less-rails-bootstrap'
 
 gem "ruby-openid"
-gem "nifty-generators"
 gem "omniauth-facebook"
 gem "gritter", "1.0.1"
 gem "cancan"
@@ -41,9 +40,6 @@ end
 
 gem 'sass-rails',   '~> 3.2.3'
 gem 'jquery-rails'
-gem 'meta_search'
-gem 'devise'
-gem 'activeadmin'
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
