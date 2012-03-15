@@ -6,7 +6,7 @@ class AuthenticationsController < ApplicationController
   end
   
   def create
-    auth = request.env["rack.auth"]
+    auth = request.env["omniauth.auth"]
     abort(auth.to_s)
     current_user.authentications.find_or_create_by_provider_and_uid(auth['provider'], auth['uid'])
     flash[:notice] = "Autenticacion exitosa."
