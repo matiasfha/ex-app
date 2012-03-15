@@ -14,7 +14,7 @@
   
   form
   {
-  	width: 350px;
+  	width: 400px;
   	margin: 50px auto 50px auto;
   }
   </style>
@@ -24,7 +24,7 @@
 <div id="user_nav" class="pull-right">
   <% if current_user %>
     Ingresado como <b><%= current_user.email %></b>
-    <%= link_to "Cierra Sesión", log_out_path, :class => 'btn btn-info' %>
+    <%= link_to "Cierra Sesión", log_out_path, :class => 'btn btn-primary btn-mini' %>
   <% elsif false %>
   	<%= link_to "Regístrate", sign_up_path, :class => 'btn btn-info' %> o
     <%= link_to "Ingresa", log_in_path, :class => 'btn btn-info' %>

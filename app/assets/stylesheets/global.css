@@ -70,6 +70,12 @@ img {
   background-color: #0c0c0c \9;
 }
 
+.btn-mini{
+  padding: 2px 6px;
+  font-size: 11px;
+  line-height: 14px;
+}
+
 .signin_facebook{
   display: inline-block;
   vertical-align: text-top;
@@ -99,11 +105,13 @@ img {
 .signin_facebook:hover, .signin_twitter:hover{
   background-position: 0px 0px;
   text-decoration: none;
+  background-color: #fff;
 }
 
 .signin_facebook:active, .signin_twitter:active{
   background-position: 0px -48px;
   text-decoration: none;
+  background-color: #fff;
 }
 
 

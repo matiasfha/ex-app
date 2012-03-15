@@ -19,6 +19,7 @@ gem 'less-rails-bootstrap'
 
 gem "ruby-openid"
 gem "omniauth-facebook"
+gem 'omniauth-twitter'
 gem "gritter", "1.0.1"
 gem "cancan"
 gem 'kaminari'

@@ -1,7 +1,7 @@
 class User < ActiveRecord::Base
   
   belongs_to :sex
-
+  has_many :authentications
 
   attr_accessible :email, :password, :password_confirmation
   
