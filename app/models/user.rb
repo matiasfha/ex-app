@@ -2,6 +2,7 @@ class User < ActiveRecord::Base
   
   belongs_to :sex
   has_many :authentications
+  has_many :refs
 
   attr_accessible :email, :password, :password_confirmation
   
@@ -28,4 +29,21 @@ class User < ActiveRecord::Base
       self.password_hash = BCrypt::Engine.hash_secret(password, password_salt)
     end
   end
+
+  def self.create_with_omniauth(auth, ref)
+    u = create! do |user|
+      user.name = auth["info"]["name"]
+      user.email = auth["info"]["email"]
+      user.image = auth["info"]["image"]
+      p = (0...10).map{65.+(rand(25)).chr}.join
+      user.password = p
+      user.password_confirmation = p
+      user.random_pass = p
+      user.referal = ref
+      user.active = true
+    end
+    return u.id
+  end
+
+
 end
