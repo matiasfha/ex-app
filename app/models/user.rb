@@ -4,7 +4,7 @@ class User < ActiveRecord::Base
   has_many :authentications
   has_many :refs
 
-  attr_accessible :email, :password, :password_confirmation
+  attr_accessible :name, :image, :email, :password, :password_confirmation
   
   attr_accessor :password
   before_save :encrypt_password
@@ -33,6 +33,7 @@ class User < ActiveRecord::Base
   def self.create_with_omniauth(auth, ref)
     u = create! do |user|
       user.name = auth["info"]["name"]
+      abort(auth["info"].to_s)
       user.email = auth["info"]["email"]
       user.image = auth["info"]["image"]
       p = (0...10).map{65.+(rand(25)).chr}.join

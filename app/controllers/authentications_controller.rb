@@ -33,7 +33,7 @@ class AuthenticationsController < ApplicationController
         user_id = User.create_with_omniauth(auth, ref)
         user = User.find(user_id)
         #creamos la relación
-        user.authentications.create(:provider => auth['provider'], :uid => auth['uid'])
+        Authentication.create(:user_id => user.id,:provider => auth['provider'], :uid => auth['uid'])
         #generamos un ref
         ref = user.generate_ref
         Ref.create(:value => ref, :user_id => user_id)
@@ -52,7 +52,7 @@ class AuthenticationsController < ApplicationController
 
       else
         #creamos la relación
-        user.authentications.create(:provider => auth['provider'], :uid => auth['uid'])
+        Authentication.create(:user_id => user.id,:provider => auth['provider'], :uid => auth['uid'])
         if auth['info']['name']!=nil
           user.name = auth['info']['name']
         end
