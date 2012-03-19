@@ -1,5 +1,7 @@
 Alzheimer::Application.routes.draw do
   
+  resources :auths
+
   resources :authentications
 
   get "static/home"
@@ -19,7 +21,7 @@ Alzheimer::Application.routes.draw do
   resources :users
   resources :sessions
 
-  match '/auth/:provider/callback' => 'authentications#create'
+  match '/auth/:provider/callback' => 'auths#create'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

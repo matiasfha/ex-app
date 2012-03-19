@@ -2,6 +2,7 @@ class User < ActiveRecord::Base
   
   belongs_to :sex
   has_many :authentications
+  has_many :auths
   has_many :refs
 
   attr_accessible :name, :image, :email, :password, :password_confirmation
