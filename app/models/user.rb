@@ -11,8 +11,6 @@ class User < ActiveRecord::Base
   
   validates_confirmation_of :password
   validates_presence_of :password, :on => :create
-  validates_presence_of :email
-  validates_uniqueness_of :email
   
   def self.authenticate(email, password)
     user = find_by_email(email)
@@ -33,7 +31,6 @@ class User < ActiveRecord::Base
   def self.create_with_omniauth(auth, ref)
     u = create! do |user|
       user.name = auth["info"]["name"]
-      abort(auth.to_s)
       user.email = auth["info"]["email"]
       user.image = auth["info"]["image"]
       p = (0...10).map{65.+(rand(25)).chr}.join
