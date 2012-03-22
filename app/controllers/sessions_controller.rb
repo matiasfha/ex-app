@@ -21,8 +21,13 @@ class SessionsController < ApplicationController
         user.password = params[:password]
         user.password_confirmation = params[:password]
         user.save
-        gflash :success => "Tu usuario ha sido creado!"
-        redirect_to edit_user_path(user.id, :password_confirmation => true)
+        if user.id
+          gflash :success => "Tu usuario ha sido creado!"
+          redirect_to edit_user_path(user.id, :password_confirmation => true)
+        else
+          gflash :error => "Email inv&aacute;lido!"
+          redirect_to root_url
+        end
       end
       
     end

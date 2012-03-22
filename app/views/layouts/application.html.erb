@@ -21,6 +21,7 @@
 </head>
 <body>
 <section class="container hero-unit">
+<%= gflash %>
 <div id="user_nav" class="pull-right">
   <% if current_user %>
     Ingresado como <b><%= current_user.first_name.to_s+' '+current_user.last_name.to_s %></b>

@@ -1,0 +1,31 @@
+en:
+  gflash:
+    #
+    # These are the translations for the different titles.
+    #
+    titles:
+      notice: "Aviso"
+      success: "Éxito"
+      warning: "Cuidado"
+      error: "Error"
+      progress: "Progreso"
+    #
+    # Add gflash messages for controller actions:
+    # products:
+    #   create:
+    #     notice: "This is a notification"
+    #     error: "Something went wrong"
+    #
+    # Inside controller: 
+    # gflash :notice, :error
+    #
+  views:
+    pagination:
+      first:
+        "‹‹ Primero"
+      previous:
+        "‹ Anterior"
+      next:
+        "Siguiente ›"
+      last:
+        "Último ››"

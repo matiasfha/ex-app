@@ -11,4 +11,5 @@
  *= require bootstrap
  *= require global
  *= require datepicker
+ += require gritter
 */
