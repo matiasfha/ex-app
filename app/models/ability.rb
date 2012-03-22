@@ -5,7 +5,7 @@ class Ability
 
 
     user ||= User.new # guest user (not logged in)
-    if user.admin?
+    if user.admin==true
       can :manage, :all
     else
       if user.id!=nil

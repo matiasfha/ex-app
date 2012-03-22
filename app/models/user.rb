@@ -9,7 +9,7 @@ class User < ActiveRecord::Base
   has_many :user_interests
   has_many :interests, :through => :user_interests
 
-  attr_accessible :name, :image, :email, :password, :password_confirmation, :first_name, :last_name, :rut, :active, :random_pass, :birthdate, :sex_id, :avatar
+  attr_accessible :name, :image, :email, :password, :password_confirmation, :first_name, :last_name, :rut, :active, :random_pass, :birthdate, :sex_id, :avatar, :avatar_file_name
   
   attr_accessor :password
   before_save :encrypt_password

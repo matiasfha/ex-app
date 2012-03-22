@@ -1,6 +1,9 @@
 class SessionsController < ApplicationController
   
   def new
+    unless !current_user
+      return redirect_to home_path
+    end
 
   end
   

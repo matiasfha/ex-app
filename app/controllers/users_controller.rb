@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
 
-  
+  load_and_authorize_resource :except => [:new, :create]
+
   def edit
     @user = User.find(params[:id])
     if params[:password_confirmation]
@@ -36,11 +37,6 @@ class UsersController < ApplicationController
         return render action: "edit"
       end
     end
-  end
-
-  def show
-
-
   end
 
 
