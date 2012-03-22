@@ -3,7 +3,7 @@ class User < ActiveRecord::Base
   belongs_to :sex
   belongs_to :city
   belongs_to :country
-  has_many :authentications
+  has_many :auths
   has_many :auths
   has_many :refs
   has_many :occupations
