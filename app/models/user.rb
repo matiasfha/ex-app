@@ -42,8 +42,14 @@ class User < ActiveRecord::Base
       user.image = auth["info"]["image"]
       if auth["info"]["location"]!=nil
         loc = auth["info"]["location"].split(', ')
-        user.image = loc[1]
-
+        city = City.find_by_name(loc[0])
+        if city
+          user.city = city
+        end
+        country = Country.find_by_name(loc[1])
+        if city
+          user.country = country
+        end
       end
       p = (0...10).map{65.+(rand(25)).chr}.join
       user.password = p

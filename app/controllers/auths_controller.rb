@@ -20,16 +20,16 @@ class AuthsController < ApplicationController
       #vemos si existe algun usuario con ese email y le agregamos los datos
       user = User.find_by_email(auth['info']['email'])
       if !user
-        ref = nil
-        if session[:ref]!=nil
-          ref = Ref.find_by_value(user.referal)
-          if ref&&ref.user
-            u = ref.user
-            u.sign_ups += 1
-            u.credits += 1
-            u.save
-          end
-        end
+        # ref = nil
+        # if session[:ref]!=nil
+        #   ref = Ref.find_by_value(user.referal)
+        #   if ref&&ref.user
+        #     u = ref.user
+        #     u.sign_ups += 1
+        #     u.credits += 1
+        #     u.save
+        #   end
+        # end
         user_id = User.create_with_omniauth(auth, ref)
         user = User.find(user_id)
         #creamos la relación

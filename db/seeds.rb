@@ -6,6 +6,14 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
+Sex.destroy_all
+MaritalStatus.destroy_all
+City.destroy_all
+Country.destroy_all
+Interest.destroy_all
+User.destroy_all
+Occupation.destroy_all
+
 sexes = Sex.create([{ name: 'Femenino' }, { name: 'Masculino' }, { name: 'No Especificado' }])
 marital_statuses = MaritalStatus.create([{ name: 'Soltero(a)' }, { name: 'Casado(a)' }, { name: 'Viudo(a)' }, { name: 'Otro' }, { name: 'No Especificado' }])
 cities = City.create([{ name: 'Santiago' }])
