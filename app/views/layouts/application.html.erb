@@ -12,7 +12,7 @@
 		background-image: url("/assets/420.gif");
 	}
   
-  form
+  form.center
   {
   	width: 400px;
   	margin: 50px auto 50px auto;
@@ -23,7 +23,7 @@
 <section class="container hero-unit">
 <div id="user_nav" class="pull-right">
   <% if current_user %>
-    Ingresado como <b><%= current_user.name %></b>
+    Ingresado como <b><%= current_user.first_name.to_s+' '+current_user.last_name.to_s %></b>
     <%= link_to "Cierra Sesión", log_out_path, :class => 'btn btn-primary btn-mini' %>
   <% elsif false %>
   	<%= link_to "Regístrate", sign_up_path, :class => 'btn btn-info' %> o

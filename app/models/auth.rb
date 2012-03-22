@@ -8,7 +8,7 @@ class Auth < ActiveRecord::Base
         auth.provider = provider
         auth.uid = uid
       auth.save
-      return u.id
+      return auth.id
 	end
 
 end

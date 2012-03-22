@@ -5,3 +5,18 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+
+sexes = Sex.create([{ name: 'Femenino' }, { name: 'Masculino' }, { name: 'No Especificado' }])
+marital_statuses = MaritalStatus.create([{ name: 'Soltero(a)' }, { name: 'Casado(a)' }, { name: 'Viudo(a)' }, { name: 'Otro' }, { name: 'No Especificado' }])
+cities = City.create([{ name: 'Santiago' }])
+countries = Country.create([{ name: 'Chile' }])
+interests = Interest.create([{ name: 'Animales' }, { name: 'Deporte' }, { name: 'Cine' }, { name: 'Televisi&oacute;n Nacional' }])
+
+users = User.create([{ first_name: 'Max', last_name: 'Findel', email: 'maxfindel@gmail.com', rut: '17.847.216-k', image: 'http://graph.facebook.com/537367691/picture?type=square', active: true, password: 'alzheimer', password_confirmation: 'alzheimer', random_pass: 'alzheimer' }])
+ocupation = Occupation.create([{ name: 'Programador', user: users.first }])
+
+
+
+
+
+

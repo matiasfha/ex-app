@@ -1,11 +1,16 @@
 class User < ActiveRecord::Base
   
   belongs_to :sex
+  belongs_to :city
+  belongs_to :country
   has_many :authentications
   has_many :auths
   has_many :refs
+  has_many :occupations
+  has_many :user_interests
+  has_many :interests, :through => :user_interests
 
-  attr_accessible :name, :image, :email, :password, :password_confirmation
+  attr_accessible :name, :image, :email, :password, :password_confirmation, :first_name, :last_name, :rut, :active, :random_pass
   
   attr_accessor :password
   before_save :encrypt_password
@@ -31,9 +36,15 @@ class User < ActiveRecord::Base
 
   def self.create_with_omniauth(auth, ref)
     u = create! do |user|
-      user.name = auth["info"]["name"]
+      user.first_name = auth["info"]["first_name"]
+      user.last_name = auth["info"]["last_name"]
       user.email = auth["info"]["email"]
       user.image = auth["info"]["image"]
+      if auth["info"]["location"]!=nil
+        loc = auth["info"]["location"].split(', ')
+        user.image = loc[1]
+
+      end
       p = (0...10).map{65.+(rand(25)).chr}.join
       user.password = p
       user.password_confirmation = p

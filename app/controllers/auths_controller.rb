@@ -14,9 +14,8 @@ class AuthsController < ApplicationController
   end
 
   def create
-    @auth = request.env["omniauth.auth"]
-    return render :layout => nil
-    authentication = Authentication.find_by_provider_and_uid(auth["provider"], auth["uid"])
+    auth = request.env["omniauth.auth"]
+    authentication = Auth.find_by_provider_and_uid(auth["provider"], auth["uid"])
     if !authentication
       #vemos si existe algun usuario con ese email y le agregamos los datos
       user = User.find_by_email(auth['info']['email'])
@@ -34,7 +33,7 @@ class AuthsController < ApplicationController
         user_id = User.create_with_omniauth(auth, ref)
         user = User.find(user_id)
         #creamos la relación
-        Authentication.create_with_omniauth(user.id, auth['provider'],auth['uid'])
+        Auth.create_with_omniauth(user.id, auth['provider'],auth['uid'])
         #generamos un ref
         ref = user.generate_ref
         Ref.create(:value => ref, :user_id => user_id)
@@ -48,14 +47,17 @@ class AuthsController < ApplicationController
         if session[:current_page]!=nil
           return redirect_to session[:current_page]
         else
-          return redirect_to root_path
+          return redirect_to user_edit_path
         end
 
       else
         #creamos la relación
-        Authentication.create_with_omniauth(user.id, auth['provider'],auth['uid'])
-        if auth['info']['name']!=nil
-          user.name = auth['info']['name']
+        Auth.create_with_omniauth(user.id, auth['provider'],auth['uid'])
+        if auth['info']['first_name']!=nil
+          user.name = auth['info']['first_name']
+        end
+        if auth['info']['last_name']!=nil
+          user.name = auth['info']['last_name']
         end
         if auth['info']['image']!=nil
           user.image = auth['info']['image']
@@ -67,7 +69,7 @@ class AuthsController < ApplicationController
         if session[:current_page]!=nil
           return redirect_to session[:current_page]
         else
-          return redirect_to root_path
+          return redirect_to user_edit_path
         end
       end
     else
@@ -81,7 +83,7 @@ class AuthsController < ApplicationController
       if session[:current_page]!=nil
         return redirect_to session[:current_page]
       else
-        return redirect_to root_path
+        return redirect_to home_path
       end
     end
   end
