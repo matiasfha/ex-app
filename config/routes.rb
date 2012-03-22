@@ -8,7 +8,7 @@ Alzheimer::Application.routes.draw do
 
   get "sessions/new"
 
-  get "users/new"
+  get "users/new/:id" => 'users#new', :as => 'new_user'
 
   get "users/show"
 

@@ -44,5 +44,15 @@ class User < ActiveRecord::Base
     return u.id
   end
 
+  
+
+  def generate_ref
+    begin
+        key = (0...5).map{97.+(rand(25)).chr}.join
+        key = key.gsub("/","").gsub(".","")
+    end while Ref.exists?(:value => key)||key.length!=5
+    return key
+  end
+
 
 end

@@ -27,6 +27,7 @@ gem 'rails-i18n'
 gem 'gon', '2.1.0'
 gem 'tinymce-rails'
 gem "bcrypt-ruby", :require => "bcrypt"	
+gem 'safe_attributes'
 
 # Gems used only for assets and not required
 # in production environments by default.

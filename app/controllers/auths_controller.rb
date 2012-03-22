@@ -71,11 +71,11 @@ class AuthsController < ApplicationController
       end
     else
       #lo logueamos
-      if auth['info']['name']!=nil&&auth['info']['name']==authentication.user.email
+      if auth['info']['name']!=nil&&authentication.user&&auth['info']['name']==authentication.user.email
         user.name = auth['info']['name']
         user.save
       end
-      session[:user_id] = user.id
+      session[:user_id] = authentication.user.id
       gflash :success => "Has Ingresado!"
       if session[:current_page]!=nil
         return redirect_to session[:current_page]

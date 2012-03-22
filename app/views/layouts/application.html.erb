@@ -23,7 +23,7 @@
 <section class="container hero-unit">
 <div id="user_nav" class="pull-right">
   <% if current_user %>
-    Ingresado como <b><%= current_user.email %></b>
+    Ingresado como <b><%= current_user.name %></b>
     <%= link_to "Cierra Sesión", log_out_path, :class => 'btn btn-primary btn-mini' %>
   <% elsif false %>
   	<%= link_to "Regístrate", sign_up_path, :class => 'btn btn-info' %> o
