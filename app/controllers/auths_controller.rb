@@ -14,7 +14,8 @@ class AuthsController < ApplicationController
   end
 
   def create
-    auth = request.env["omniauth.auth"]
+    @auth = request.env["omniauth.auth"]
+    return render :layout => nil
     authentication = Authentication.find_by_provider_and_uid(auth["provider"], auth["uid"])
     if !authentication
       #vemos si existe algun usuario con ese email y le agregamos los datos

@@ -1,0 +1,32 @@
+
+<%= form_for @user do |f| %>
+<h2>Termina tu regístro</h2>
+  
+  <p>
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+  </p>
+  <p>
+    <%= f.label :email %>
+    <%= f.text_field :email %>
+  </p>
+  <p>
+    <%= f.label :image %>
+    <%= image_tag @user.image %>
+    <%= f.file_field :image %>
+  </p>
+  <p>
+    <%= f.label :birthdate %>
+    <%= f.text_field :birthdate %>
+  </p>
+  <p>
+    <%= f.label :sex_id %>
+    <%= f.text_field :sex_id %>
+  </p>
+  <p>
+    <%= f.label :birthdate %>
+    <%= f.text_field :birthdate %>
+  </p>
+  
+  <p class="button"><%= f.submit "Enviar", :class => 'btn btn-primary' %></p>
+<% end %>
