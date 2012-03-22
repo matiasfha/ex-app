@@ -24,7 +24,7 @@
 <%= gflash %>
 <div id="user_nav" class="pull-right">
   <% if current_user %>
-    Ingresado como <b><%= current_user.first_name.to_s+' '+current_user.last_name.to_s %></b>, 
+    Ingresado como <b><%= current_user.first_name.to_s+' '+current_user.last_name.to_s %></b> - 
     <%= link_to "Edita tu Perfil", edit_user_path(current_user.id) %> o <%= link_to "Cierra Sesión", log_out_path %>
   <% elsif false %>
   	<%= link_to "Regístrate", sign_up_path, :class => 'btn btn-info' %> o
@@ -36,7 +36,7 @@
 
 	<div class="row clear">&nbsp;</div>
   <a href="<%= root_path %>" style=" text-decoration: none">
-	 <h1 style="text-align: center; font: 'arial'">Alzheimer</h1>
+	 <h1 style="text-align: center;">Alzheimer</h1>
   </a>
 	<%= yield %>
   <div class="row">&nbsp;</div>

@@ -31,6 +31,19 @@
 	cursor: pointer;
 }
 
+h1 { 
+font-family: abril-fatface; 
+font-size: 168px; 
+line-height: 181px; 
+font-weight: 550; 
+font-style: normal; 
+letter-spacing: 0px; 
+text-align: center; 
+margin-bottom: 20px; 
+margin-top: 20px; 
+text-transform: none; 
+}
+
 /* debug GMaps */
 img {
   max-width: 100%;

@@ -67,7 +67,7 @@
       <%= f.label :avatar, :class => 'help-block' %>
     </div>
     <div class="controls span3">
-      <%= image_tag (@user.image!='' ? @user.image : @user.avatar.url!='/avatars/original/missing.png' ? @user.avatar.url : 'missing.png' ), :class => 'avatar' %>&nbsp;<%= f.file_field :avatar %>
+      <%= image_tag (@user.avatar.url!='/avatars/original/missing.png' ? @user.avatar.url : @user.image!='' ? @user.image : 'missing.png' ), :class => 'avatar' %>&nbsp;<%= f.file_field :avatar %>
     </div>
     
     <div class="row">&nbsp;</div>
