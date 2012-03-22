@@ -20,7 +20,7 @@ class AuthsController < ApplicationController
       #vemos si existe algun usuario con ese email y le agregamos los datos
       user = User.find_by_email(auth['info']['email'])
       if !user
-        # ref = nil
+        ref = nil
         # if session[:ref]!=nil
         #   ref = Ref.find_by_value(user.referal)
         #   if ref&&ref.user
