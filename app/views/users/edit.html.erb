@@ -28,6 +28,27 @@
     <div class="controls span4">
       <%= f.text_field :email %>
     </div>
+    <% if @password_confirmation %>
+
+      <div class="row">&nbsp;</div>
+  
+      <div class="control-group span2" style="text-align: right; margin-left: -80px" >
+        <%= f.label :password, :class => 'help-block' %>
+      </div>
+      <div class="controls span4">
+        <%= f.password_field :password %>
+      </div>
+
+      <div class="row">&nbsp;</div>
+  
+      <div class="control-group span2" style="text-align: right; margin-left: -80px" >
+        <%= f.label :password_confirmation, :class => 'help-block' %>
+      </div>
+      <div class="controls span4">
+        <%= f.password_field :password_confirmation %>
+      </div>
+
+    <% end %>
     
     <div class="row">&nbsp;</div>
 
@@ -43,10 +64,10 @@
     <div class="row">&nbsp;</div>
 
     <div class="control-group span2" style="text-align: right; margin-left: -80px" >
-      <%= f.label :image, :class => 'help-block' %>
+      <%= f.label :avatar, :class => 'help-block' %>
     </div>
     <div class="controls span3">
-      <%= image_tag @user.image %>&nbsp;<%= f.file_field :image %>
+      <%= image_tag (@user.image!='' ? @user.image : @user.avatar.url!='/avatars/original/missing.png' ? @user.avatar.url : 'missing.png' ), :class => 'avatar' %>&nbsp;<%= f.file_field :avatar %>
     </div>
     
     <div class="row">&nbsp;</div>

@@ -4,15 +4,15 @@ Alzheimer::Application.routes.draw do
 
   devise_for :admin_users, ActiveAdmin::Devise.config
 
-  resources :auths
-
   resources :authentications
+  resources :sessions
+  resources :users
 
   get "static/home"
 
   get "sessions/new"
 
-  get "users/edit/:id" => 'users#edit', :as => 'user_edit'
+  match "users/:id/edit" => 'users#edit', :as => 'user_edit'
 
   get "users/show"
 
@@ -23,8 +23,6 @@ Alzheimer::Application.routes.draw do
   get "log_in" => "sessions#new", :as => "log_in"
   get "sign_up" => "users#new", :as => "sign_up"
   get "home" => "static#home", :as => "home"
-  resources :users
-  resources :sessions
 
   match '/auth/:provider/callback' => 'auths#create'
 

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120322163828) do
+ActiveRecord::Schema.define(:version => 20120322201239) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.string   "resource_id",   :null => false
@@ -106,25 +106,29 @@ ActiveRecord::Schema.define(:version => 20120322163828) do
   end
 
   create_table "users", :force => true do |t|
-    t.string   "first_name",        :default => ""
-    t.string   "last_name",         :default => ""
-    t.string   "email",             :default => ""
-    t.string   "rut",               :default => ""
-    t.string   "address",           :default => ""
-    t.string   "password_hash",     :default => ""
-    t.string   "password_salt",     :default => ""
-    t.integer  "sex_id",            :default => 3
-    t.integer  "city_id",           :default => 1
-    t.integer  "country_id",        :default => 1
-    t.date     "birthdate",         :default => '2012-03-22'
-    t.text     "description",       :default => ""
-    t.string   "random_pass",       :default => ""
-    t.string   "referal",           :default => ""
-    t.string   "image",             :default => ""
-    t.boolean  "active",            :default => false
-    t.integer  "marital_status_id", :default => 5
-    t.datetime "created_at",                                  :null => false
-    t.datetime "updated_at",                                  :null => false
+    t.string   "first_name",          :default => ""
+    t.string   "last_name",           :default => ""
+    t.string   "email",               :default => ""
+    t.string   "rut",                 :default => ""
+    t.string   "address",             :default => ""
+    t.string   "password_hash",       :default => ""
+    t.string   "password_salt",       :default => ""
+    t.integer  "sex_id",              :default => 3
+    t.integer  "city_id",             :default => 1
+    t.integer  "country_id",          :default => 1
+    t.date     "birthdate",           :default => '2012-03-22'
+    t.text     "description",         :default => ""
+    t.string   "random_pass",         :default => ""
+    t.string   "referal",             :default => ""
+    t.string   "image",               :default => ""
+    t.boolean  "active",              :default => false
+    t.integer  "marital_status_id",   :default => 5
+    t.datetime "created_at",                                    :null => false
+    t.datetime "updated_at",                                    :null => false
+    t.string   "avatar_file_name"
+    t.string   "avatar_content_type"
+    t.integer  "avatar_file_size"
+    t.datetime "avatar_updated_at"
   end
 
 end

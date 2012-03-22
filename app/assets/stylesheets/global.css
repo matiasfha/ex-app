@@ -114,6 +114,11 @@ img {
   background-color: #fff;
 }
 
+/* avatar */
 
+.avatar{
+  max-width: 100px;
+  max-height: 100px;
+}
 
 

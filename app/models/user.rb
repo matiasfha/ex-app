@@ -4,19 +4,27 @@ class User < ActiveRecord::Base
   belongs_to :city
   belongs_to :country
   has_many :auths
-  has_many :auths
   has_many :refs
   has_many :occupations
   has_many :user_interests
   has_many :interests, :through => :user_interests
 
-  attr_accessible :name, :image, :email, :password, :password_confirmation, :first_name, :last_name, :rut, :active, :random_pass
+  attr_accessible :name, :image, :email, :password, :password_confirmation, :first_name, :last_name, :rut, :active, :random_pass, :birthdate, :sex_id, :avatar
   
   attr_accessor :password
   before_save :encrypt_password
   
   validates_confirmation_of :password
   validates_presence_of :password, :on => :create
+
+  has_attached_file :avatar,        
+                    :storage => :s3,
+                    :bucket => 'alzheimer',
+                    :s3_credentials => {
+                      :access_key_id => 'AKIAJK5NVAGQBRCX4GQA',
+                      :secret_access_key => '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'
+                    },
+                    :path => ":attachment/:id/:basename.:extension"
   
   def self.authenticate(email, password)
     user = find_by_email(email)
@@ -36,8 +44,18 @@ class User < ActiveRecord::Base
 
   def self.create_with_omniauth(auth, ref)
     u = create! do |user|
-      user.first_name = auth["info"]["first_name"]
-      user.last_name = auth["info"]["last_name"]
+      if auth["info"]["first_name"]!=nil
+        user.first_name = auth["info"]["first_name"]
+        user.last_name = auth["info"]["last_name"]
+      elsif auth["info"]["name"]!=nil
+        nom = auth["info"]["name"].split(' ')
+        if nom[0]!=nil
+          user.first_name = nom[0]
+        end
+        if nom[1]!=nil
+          user.last_name = nom[1]
+        end
+      end
       user.email = auth["info"]["email"]
       user.image = auth["info"]["image"]
       if auth["info"]["location"]!=nil
@@ -49,6 +67,13 @@ class User < ActiveRecord::Base
         country = Country.find_by_name(loc[1])
         if city
           user.country = country
+        end
+      end
+      if auth['raw_info']!=nil&&auth['raw_info']['gender']!=nil
+        if auth['raw_info']['gender']=='male'
+          user.sex_id = 2
+        elsif auth['raw_info']!=nil&&auth['raw_info']['gender']=='male'
+          user.sex_id = 1
         end
       end
       p = (0...10).map{65.+(rand(25)).chr}.join
