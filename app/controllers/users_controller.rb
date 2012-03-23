@@ -67,7 +67,7 @@ class UsersController < ApplicationController
         if !simple_captcha_valid?
           gflash :error => 'No has ingresado el ReCaptcha correctamente'
         end
-        return render action: "edit"
+        return render edit_user_path(@user.id)
       end
     end
   end
