@@ -37,6 +37,7 @@ class UsersController < ApplicationController
   end
 
   def update
+    abort('oli')
     @user = User.find(params[:id])
     if params[:user][:password].blank?
       [:password,:password_confirmation,:current_password].collect{|p| params[:user].delete(p) }
@@ -60,11 +61,11 @@ class UsersController < ApplicationController
     
 
     respond_to do |format|
-      if verify_recaptcha(:private_key => '6LfTU88SAAAAANtC63qyOLNIImwRktmLnb94_QoY') and @user.errors[:base].empty? and @user.update_attributes(params[:user])
+      if verify_recaptcha() and @user.errors[:base].empty? and @user.update_attributes(params[:user])
           gflash :success => 'Has modificado tu perfil!'
           return redirect_to home_path
       else
-        if !verify_recaptcha(:private_key => '6LfTU88SAAAAANtC63qyOLNIImwRktmLnb94_QoY')
+        if !verify_recaptcha()
           gflash :error => 'No has ingresado el ReCaptcha correctamente'
         end
         return render action: "edit"
