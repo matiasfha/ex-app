@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120322211039) do
+ActiveRecord::Schema.define(:version => 20120323203120) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.string   "resource_id",   :null => false
@@ -55,6 +55,12 @@ ActiveRecord::Schema.define(:version => 20120322211039) do
   end
 
   create_table "cities", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "communes", :force => true do |t|
     t.string   "name"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
@@ -130,6 +136,9 @@ ActiveRecord::Schema.define(:version => 20120322211039) do
     t.integer  "avatar_file_size"
     t.datetime "avatar_updated_at"
     t.boolean  "admin",               :default => false
+    t.string   "occupation",          :default => ""
+    t.integer  "commune_id"
+    t.boolean  "terms",               :default => false
   end
 
 end

@@ -5,6 +5,7 @@
   <%= stylesheet_link_tag    "application", :media => "all" %>
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
+  <%= include_gon %>
   <style type="text/css">
   body
 	{
@@ -33,10 +34,8 @@
     <div id="user_nav" class="span5 pull-right">
     <span class="pull-right">
       <% if current_user %>
-        Bienvenido! <b><%= current_user.first_name.to_s+' '+current_user.last_name.to_s %></b> - 
+        ¡ Bienvenido <b><%= current_user.first_name.to_s+' '+current_user.last_name.to_s %></b> ! - 
         <%= link_to "Edita tu Perfil", edit_user_path(current_user.id, :not_new => true) %> o <%= link_to "Cierra Sesión", log_out_path %>
-      <% else %>
-        
       <% end %>
       </span>
     </div>
@@ -48,7 +47,23 @@
     </div>
     <div class="row" >&nbsp;</div>
   <% end %>
-	<%= yield %>
+    <% if current_user&&(controller.controller_name != 'users') %>
+      <div class="well span3" style="padding: 0px 0px 0px 0px; margin: 0px 20px 0px -20px; ">
+      <ul class="nav nav-list">
+        <h2>MENU</h2>
+        <li class="<%= (controller.controller_name == 'static')&&(controller.action_name == 'home') ? 'active':'normal'  %>"><a href="#"><i class="icon-home icon-white"></i> Inicio</a></li>
+        <li class="<%= (controller.controller_name == 'static')&&(controller.action_name == 'accomplishments') ? 'active':'normal'  %>"><a href="#"><i class="icon-book"></i> Mis Logros</a></li>
+        <li class="<%= (controller.controller_name == 'static')&&(controller.action_name == 'videos') ? 'active':'normal'  %>"><a href="#"><i class="icon-play-circle"></i> Mis Videos</a></li>
+        <li class="<%= (controller.controller_name == 'static')&&(controller.action_name == 'contact') ? 'active':'normal'  %>"><a href="#"><i class="icon-envelope"></i> Contáctanos</a></li>
+        <li class="<%= (controller.controller_name == 'static')&&(controller.action_name == 'other') ? 'active':'normal'  %>"><a href="#"><i class="icon-asterisk"></i> Otros</a></li>
+      </ul>
+
+
+       <br><br><br><br><br>
+     </div>
+	  <% end %>
+
+    <%= yield %>
   <div class="row">&nbsp;</div>
   <div class="row">&nbsp;</div>
   <div class="row">&nbsp;</div>

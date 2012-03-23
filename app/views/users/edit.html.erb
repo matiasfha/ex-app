@@ -13,7 +13,7 @@
       <%= f.label :first_name, :class => 'help-block' %>
     </div>
     <div class="controls span4">
-      <%= f.text_field :first_name %>
+      <%= f.text_field :first_name, :placeholder => 'Ej: Juan' %>
     </div>
 
     <div class="row">&nbsp;</div>
@@ -22,7 +22,7 @@
       <%= f.label :last_name, :class => 'help-block' %>
     </div>
     <div class="controls span4">
-      <%= f.text_field :last_name %>
+      <%= f.text_field :last_name, :placeholder => 'Ej: Pérez' %>
     </div>
 
     <div class="row">&nbsp;</div>
@@ -31,7 +31,7 @@
       <%= f.label :email, :class => 'help-block' %>
     </div>
     <div class="controls span4">
-      <%= f.text_field :email %>
+      <%= f.email_field :email, :placeholder => 'Ej: juanperez@ejemplo.cl' %>
     </div>
     <% if @password_confirmation %>
 
@@ -61,7 +61,7 @@
       <%= label_tag :occupation, 'Ocupación' , :class => 'help-block' %>
     </div>
     <div class="controls span3">
-      <%= text_field_tag :occupation, nil, :class => 'typeahead' %>
+      <%= f.text_field :occupation, :class => 'typeahead', :autocomplete => :off, :placeholder => 'Ej: Medicina práctica' %>
     </div>
     
     <div class="row">&nbsp;</div>
@@ -99,14 +99,14 @@
     <div class="controls span3">
       <%= f.select :city_id, City.all.map {|r| [r.name,r.id] } %>
     </div>
-
+    
     <div class="row">&nbsp;</div>
 
     <div class="control-group span2" style="text-align: right; margin-left: -80px" >
-      <%= f.label :address, :class => 'help-block' %>
+      <%= f.label :commune_id, :class => 'help-block' %>
     </div>
-    <div class="controls span4">
-      <%= f.text_field :address %>
+    <div class="controls span3">
+      <%= f.select :commune_id, Commune.all.map {|r| [r.name,r.id] } %>
     </div>
     
     <div class="row">&nbsp;</div>
@@ -115,8 +115,7 @@
       <%= f.label :rut, :class => 'help-block' %>
     </div>
     <div class="controls span5">
-      <%= f.text_field :rut %>
-      <span class="help-block">Ej: 17847214k</span><br>
+      <%= f.text_field :rut, :placeholder => 'Ej: 17847214k' %>
       <span class="error_rut" ></span>
       
     </div>
@@ -138,8 +137,7 @@
       <%= f.label :birthdate, :class => 'help-block' %>
     </div>
     <div class="controls span5">
-      <%= f.text_field :birthdate, :id => 'datepicker' %>
-      <span class="help-block">Ej: 1991-08-15</span>
+      <%= f.text_field :birthdate, :id => 'datepicker', :placeholder => 'Ej: 1991-08-15' %>
     </div>
   </div>
 
@@ -152,11 +150,18 @@
     </div>
 
     <!-- ReCaptcha  -->
-    <%= image_tag 'recaptcha-example.gif', :style => 'padding-left: 20px' %>
-    
+    <div style="padding-left: 20px" >
+    <%= recaptcha_tags :public_key => '6LfTU88SAAAAALtdAyIzsNKeIqW39yRs6igoXCuS' %>
+    </div>
     <div class="row">&nbsp;</div>
     <div class="row">&nbsp;</div>
 
+    <div class="span4 well">
+      <label class="checkbox inline" >
+        <%= f.check_box :terms %>Acepto los términos de servicio. <a href="#">Ver</a>
+      </label>
+    </div>
+    <div class="row">&nbsp;</div>
     <div class="span3">
       <p class="button">
         <%= f.submit "Enviar Datos", :class => 'btn btn-primary btn-large pull-right' %>
@@ -166,9 +171,28 @@
 
   </div>
 
+  <!-- Intereses -->
+  <div class="row">&nbsp;</div>
+  <div class="row">&nbsp;</div>
+  <div class="span8"><h2>Mis Intereses <i style="font-size: 0.6em" > (Marca al menos 2)</i></h2></div>
+
+  <div class="span13" style="margin-left: -20px" >
+    <% j = 0
+    @interests.each do |i| %>
+      <div class="span3" >
+        <label class="checkbox inline" >
+          <%= check_box_tag 'interest['+i.id.to_s+']', 1, (@my_interests.include? i) ? true : false %><%= i.name.html_safe %>
+        </label>
+      </div>
+      <% j += 1 %>
+      <% if j%4==0 %>
+        <div class="row" >&nbsp;</div>
+      <% end %>    
+    <% end %>    
+  </div>
+
 
   <!-- Boton enviar 2 ? -->
-  <div class="row">&nbsp;</div>
   <div class="row">&nbsp;</div>
   <div class="span3">&nbsp;</div>
   
@@ -458,6 +482,7 @@ jQuery.Rut = {
          });
         $( "#datepicker" ).datepicker( "option", "dateFormat", 'yy-mm-dd' );
 
+        $('#datepicker').val(gon.birthdate);
       });
 
 </script>

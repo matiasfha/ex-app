@@ -3,14 +3,14 @@ class User < ActiveRecord::Base
   belongs_to :sex
   belongs_to :city
   belongs_to :country
+  belongs_to :commune
   belongs_to :marital_status
   has_many :auths
   has_many :refs
-  has_many :occupations
   has_many :user_interests
   has_many :interests, :through => :user_interests
 
-  attr_accessible :name, :image, :email, :password, :password_confirmation, :first_name, :last_name, :rut, :active, :random_pass, :birthdate, :sex_id, :avatar, :avatar_file_name, :marital_status_id, :country_id, :city_id, :address
+  attr_accessible :name, :image, :email, :password, :password_confirmation, :first_name, :last_name, :rut, :active, :random_pass, :birthdate, :sex_id, :avatar, :avatar_file_name, :marital_status_id, :country_id, :city_id, :address, :occupation, :commune_id
   
   attr_accessor :password
   before_save :encrypt_password

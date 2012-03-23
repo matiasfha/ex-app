@@ -31,6 +31,7 @@ gem 'safe_attributes'
 gem 'activeadmin'
 gem "paperclip", "~> 2.4.2"
 gem 'aws-s3', :require => 'aws/s3'
+gem "recaptcha", :require => "recaptcha/rails"
 
 # Gems used only for assets and not required
 # in production environments by default.
