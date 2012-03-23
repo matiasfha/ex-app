@@ -27,11 +27,10 @@ gem 'rails-i18n'
 gem 'gon', '2.1.0'
 gem 'tinymce-rails'
 gem "bcrypt-ruby", :require => "bcrypt"	
-gem 'safe_attributes'
 gem 'activeadmin'
 gem "paperclip", "~> 2.4.2"
 gem 'aws-s3', :require => 'aws/s3'
-gem "recaptcha", :require => "recaptcha/rails"
+gem 'galetahub-simple_captcha', :require => 'simple_captcha', :git => 'git://github.com/galetahub/simple-captcha.git'
 
 # Gems used only for assets and not required
 # in production environments by default.

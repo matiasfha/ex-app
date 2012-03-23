@@ -60,11 +60,11 @@ class UsersController < ApplicationController
     
 
     respond_to do |format|
-      if @user.errors[:base].empty? and @user.update_attributes(params[:user])
+      if simple_captcha_valid? and @user.errors[:base].empty? and @user.update_attributes(params[:user])
           gflash :success => 'Has modificado tu perfil!'
           return redirect_to home_path
       else
-        if !true
+        if !simple_captcha_valid?
           gflash :error => 'No has ingresado el ReCaptcha correctamente'
         end
         return render action: "edit"

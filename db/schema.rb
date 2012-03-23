@@ -104,6 +104,15 @@ ActiveRecord::Schema.define(:version => 20120323203120) do
     t.datetime "updated_at", :null => false
   end
 
+  create_table "simple_captcha_data", :force => true do |t|
+    t.string   "key",        :limit => 40
+    t.string   "value",      :limit => 6
+    t.datetime "created_at",               :null => false
+    t.datetime "updated_at",               :null => false
+  end
+
+  add_index "simple_captcha_data", ["key"], :name => "idx_key"
+
   create_table "user_interests", :force => true do |t|
     t.integer  "user_id"
     t.integer  "interest_id"
