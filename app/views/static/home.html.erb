@@ -1,4 +1,43 @@
+<div class="well span8" style="height: 230px" >
+	<div class="span6">
+	<ul id="roundabout">
+    	<li>
+    		<a href="#">
+    		<%= image_tag 'square.png' %>
+			&nbsp;&nbsp;Título 1
+    		</a>
+    	</li> 
+    	<li>
+    		<a href="#">
+    		<%= image_tag 'square.png' %>
+    		&nbsp;&nbsp;Título 3
+    		</a>
+    	</li> 
+    	<li>
+    		<a href="#">
+    		<%= image_tag 'square.png' %>
+    		&nbsp;&nbsp;Título 2
+    		</a>
+    	</li> 
+    </ul>	
+	</div>
+</div>
+<div class="well span8" style="height: 230px" >
+	holi
+</div>
+<script language="javascript" type="text/javascript">
+    
+    $(document).ready(function() {
+      
 
+		$('#roundabout').roundabout({
+         duration: 700,
+         autoplay: true,
+         autoplayDuration: 10000,
+         btnNext: ".next",
+         btnPrev: ".prev"
+      	});
 
+    });
 
-HOME :D
+</script>
