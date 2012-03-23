@@ -1,8 +1,13 @@
 
 <%= form_for @user, :html => {:class => 'form-inline'} do |f| %>
-<h2>Editando tu perfil</h2>
+<% if @not_new %>
+  <h2>Editando tu perfil</h2>
+<% else %>
+  <h2>¡Para comenzar sólo falta un paso!</h2>
+  <h2>Debes rellenar los siguientes datos:</h2><br>
+<% end %>
   <!-- Bloque izq  -->
-  <div class="span5" >
+  <div class="span6" >
     
     <div class="control-group span2" style="text-align: right; margin-left: -80px" >
       <%= f.label :first_name, :class => 'help-block' %>
@@ -53,12 +58,67 @@
     <div class="row">&nbsp;</div>
 
     <div class="control-group span2" style="text-align: right; margin-left: -80px" >
-      <%= f.label :rut, :class => 'help-block' %>
+      <%= label_tag :occupation, 'Ocupación' , :class => 'help-block' %>
     </div>
     <div class="controls span3">
+      <%= text_field_tag :occupation, nil, :class => 'typeahead' %>
+    </div>
+    
+    <div class="row">&nbsp;</div>
+
+    <div class="control-group span2" style="text-align: right; margin-left: -80px" >
+      <%= f.label :sex_id, :class => 'help-block' %>
+    </div>
+    <div class="controls span3 ">
+      <%= f.select :sex_id, Sex.all.map {|r| [r.name,r.id] } %>
+    </div>
+    
+    <div class="row">&nbsp;</div>
+
+    <div class="control-group span2" style="text-align: right; margin-left: -80px" >
+      <%= f.label :marital_status_id, :class => 'help-block' %>
+    </div>
+    <div class="controls span3">
+      <%= f.select :marital_status_id, MaritalStatus.all.map {|r| [r.name,r.id] } %>
+    </div>
+    
+    <div class="row">&nbsp;</div>
+
+    <div class="control-group span2" style="text-align: right; margin-left: -80px" >
+      <%= f.label :country_id, :class => 'help-block' %>
+    </div>
+    <div class="controls span3">
+      <%= f.select :country_id, Country.all.map {|r| [r.name,r.id] } %>
+    </div>
+    
+    <div class="row">&nbsp;</div>
+
+    <div class="control-group span2" style="text-align: right; margin-left: -80px" >
+      <%= f.label :city_id, :class => 'help-block' %>
+    </div>
+    <div class="controls span3">
+      <%= f.select :city_id, City.all.map {|r| [r.name,r.id] } %>
+    </div>
+
+    <div class="row">&nbsp;</div>
+
+    <div class="control-group span2" style="text-align: right; margin-left: -80px" >
+      <%= f.label :address, :class => 'help-block' %>
+    </div>
+    <div class="controls span4">
+      <%= f.text_field :address %>
+    </div>
+    
+    <div class="row">&nbsp;</div>
+
+    <div class="control-group span2" style="text-align: right; margin-left: -80px" >
+      <%= f.label :rut, :class => 'help-block' %>
+    </div>
+    <div class="controls span5">
       <%= f.text_field :rut %>
-      <span class="error_rut" ></span><br>
-      <span class="help-block">Ej: 17847214k</span>
+      <span class="help-block">Ej: 17847214k</span><br>
+      <span class="error_rut" ></span>
+      
     </div>
     
     <div class="row">&nbsp;</div>
@@ -67,7 +127,9 @@
       <%= f.label :avatar, :class => 'help-block' %>
     </div>
     <div class="controls span3">
-      <%= image_tag (@user.avatar.url!='/avatars/original/missing.png' ? @user.avatar.url : @user.image!='' ? @user.image : 'missing.png' ), :class => 'avatar' %>&nbsp;<%= f.file_field :avatar %>
+      <%= image_tag (@user.avatar.url!='/avatars/original/missing.png' ? @user.avatar.url : @user.image!='' ? @user.image : 'missing.png' ), :class => 'avatar pull-left' %>
+      <br>
+      <%= f.file_field :avatar %>
     </div>
     
     <div class="row">&nbsp;</div>
@@ -75,34 +137,44 @@
     <div class="control-group span2" style="text-align: right; margin-left: -80px" >
       <%= f.label :birthdate, :class => 'help-block' %>
     </div>
-    <div class="controls span3">
+    <div class="controls span5">
       <%= f.text_field :birthdate, :id => 'datepicker' %>
       <span class="help-block">Ej: 1991-08-15</span>
     </div>
+  </div>
+
+  <!-- Sección derecha  -->
+  <div class="span5" >
+    <div class="span4 well" >
+      <i>
+        <i class="icon-exclamation-sign" >&nbsp;</i>&nbsp;Ojo: Mientras más datos rellenes, más videos tendrás a tu disposición y podremos elegir los mejores para ti.
+      </i>
+    </div>
+
+    <!-- ReCaptcha  -->
+    <%= image_tag 'recaptcha-example.gif', :style => 'padding-left: 20px' %>
     
     <div class="row">&nbsp;</div>
-
-    <div class="control-group span2" style="text-align: right; margin-left: -80px" >
-      <%= f.label :sex_id, :class => 'help-block' %>
-    </div>
-    <div class="controls span3">
-      <%= f.select :sex_id, Sex.all.map {|r| [r.name,r.id] } %>
-    </div>
-    
     <div class="row">&nbsp;</div>
 
-    <div class="control-group span2" style="text-align: right; margin-left: -80px" >
-      <%= label_tag :occupation, 'Ocupación' , :class => 'help-block' %>
-    </div>
-    <div class="controls span3">
-      <%= text_field_tag :occupation, nil, :class => 'typeahead' %>
+    <div class="span3">
+      <p class="button">
+        <%= f.submit "Enviar Datos", :class => 'btn btn-primary btn-large pull-right' %>
+      </p>
     </div>
 
-    <div class="row">&nbsp;</div>
-    <p class="button"><%= f.submit "Enviar", :class => 'btn btn-primary btn-large pull-right' %></p>
 
   </div>
+
+
+  <!-- Boton enviar 2 ? -->
+  <div class="row">&nbsp;</div>
+  <div class="row">&nbsp;</div>
+  <div class="span3">&nbsp;</div>
   
+  <div class="span3">&nbsp;</div>
+
+
 <% end %>
 
 <script type="text/javascript">
@@ -357,7 +429,7 @@ jQuery.Rut = {
       $(document).ready(function() {
 
         $('.typeahead').typeahead({
-          source: ['Actividades bancarias','Administración gubernamental','Aeronáutica/Aviación','Agricultura','Alimentación y bebidas','Almacenamiento','Animación','Apuestas y casinos','Arquitectura y planificación','Artesanía','Artes interpretativas','Artículos de consumo','Artículos de lujo y joyas','Artículos deportivos','Asuntos internacionales','Atención a la salud mental','Atención sanitaria y hospitalaria','Automación industrial','Banca de inversiones','Bellas Artes','Bibliotecas','Bienes inmobiliarios','Bienes inmobiliarios comerciales','Biotecnología','Capital de riesgo y capital privado','Construcción','Construcción naval','Consultoría de estrategia y operaciones','Contabilidad','Cosmética','Cristal, cerámica y hormigón','Cumplimiento de la ley','Departamento de defensa y del espacio exterior','Deportes','Derecho','Desarrollo de programación','Desarrollo y comercio internacional','Diseño','Diseño gráfico','Dotación y selección de personal','Educación primaria/secundaria','Ejército','E-learning','Electrónica de consumo','Embalaje y contenedores','Energía renovable y medio ambiente','Enseñanza superior','Entretenimiento','Envío de paquetes y carga','Equipo informático','Escritura y edición','Filantropía','Formación profesional y capacitación','Fotografía','Gabinetes estratégicos','Ganadería','Gestión de inversiones','Gestión de organizaciones sin ánimo de lucro','Gestión educativa','Hostelería','Importar y exportar','Imprenta','Industria aeroespacial y aviación','Industria farmacéutica','Industria textil y moda','Ingeniería civil','Ingeniería industrial o mecánica','Instalaciones y servicios de recreo','Instituciones religiosas','Interconexión en red','Internet','Investigación','Investigación de mercado','Judicial','Lácteos','Logística y cadena de suministro','Manufactura eléctrica/electrónica','Manufactura ferroviaria','Maquinaria','Marketing y publicidad','Materiales de construcción','Material y equipo de negocios','Medicina alternativa','Medicina práctica','Medios de comunicación en línea','Medios de difusión','Mercados de capital','Minería y metalurgia','Mobiliario','Museos e instituciones','Música','Nanotecnología','Naval','Ocio, viajes y turismo','Oficina ejecutiva','Oficina legislativa','Organización cívica y social','Organización política','Películas y cine','Periódicos','Petróleo y energía','Piscicultura','Plásticos','Política pública','Producción alimentaria','Producción multimedia','Productos de papel y forestales','Productos químicos','Programas informáticos','Protección civil','Publicaciones','Recaudación de fondos','Recursos humanos','Relaciones gubernamentalesRelaciones públicas y comunicacionesResolución de conflictos por terceras partes','Restaurantes','Sanidad, bienestar y ejercicio','Sector automovilístico','Sector textil','Seguridad del ordenador y de las redes','Seguridad e investigaciones','Seguros','Semiconductores','Servicio al consumidor','Servicio de información','Servicios de eventos','Servicios financieros','Servicios infraestructurales','Servicios jurídicos','Servicios médicos','Servicios medioambientales','Servicios para el individuo y la familia','Servicios públicos','Servicios y tecnología de la información','Subcontrataciones/Offshoring','Supermercados','Tabaco','Tecnología inalámbrica','Telecomunicaciones','Traducción y localización','Transporte por carretera o ferrocarril','Venta al por mayor','Venta al por menor','Veterinaria','Videojuegos','Vino y licor']
+          source: ['Actividades bancarias','Administración gubernamental','Aeronáutica/Aviación','Agricultura','Alimentación y bebidas','Almacenamiento','Animación','Apuestas y casinos','Arquitectura y planificación','Artesanía','Artes interpretativas','Artículos de consumo','Artículos de lujo y joyas','Artículos deportivos','Asuntos internacionales','Atención a la salud mental','Atención sanitaria y hospitalaria','Automación industrial','Banca de inversiones','Bellas Artes','Bibliotecas','Bienes inmobiliarios','Bienes inmobiliarios comerciales','Biotecnología','Capital de riesgo y capital privado','Construcción','Construcción naval','Consultoría de estrategia y operaciones','Contabilidad','Cosmética','Cristal, cerámica y hormigón','Cumplimiento de la ley','Departamento de defensa y del espacio exterior','Deportes','Derecho','Desarrollo de programación','Desarrollo y comercio internacional','Diseño','Diseño gráfico','Dotación y selección de personal','Educación primaria/secundaria','Ejército','E-learning','Electrónica de consumo','Embalaje y contenedores','Energía renovable y medio ambiente','Enseñanza superior','Entretenimiento','Envío de paquetes y carga','Equipo informático','Escritura y edición','Filantropía','Formación profesional y capacitación','Fotografía','Gabinetes estratégicos','Ganadería','Gestión de inversiones','Gestión de organizaciones sin ánimo de lucro','Gestión educativa','Hostelería','Importar y exportar','Imprenta','Industria aeroespacial y aviación','Industria farmacéutica','Industria textil y moda','Ingeniería civil','Ingeniería industrial o mecánica','Instalaciones y servicios de recreo','Instituciones religiosas','Interconexión en red','Internet','Investigación','Investigación de mercado','Judicial','Lácteos','Logística y cadena de suministro','Manufactura eléctrica/electrónica','Manufactura ferroviaria','Maquinaria','Marketing y publicidad','Materiales de construcción','Material y equipo de negocios','Medicina alternativa','Medicina práctica','Medios de comunicación en línea','Medios de difusión','Mercados de capital','Minería y metalurgia','Mobiliario','Museos e instituciones','Música','Nanotecnología','Naval','Ocio, viajes y turismo','Oficina ejecutiva','Oficina legislativa','Organización cívica y social','Organización política','Otro','Películas y cine','Periódicos','Petróleo y energía','Piscicultura','Plásticos','Política pública','Producción alimentaria','Producción multimedia','Productos de papel y forestales','Productos químicos','Programas informáticos','Protección civil','Publicaciones','Recaudación de fondos','Recursos humanos','Relaciones gubernamentalesRelaciones públicas y comunicacionesResolución de conflictos por terceras partes','Restaurantes','Sanidad, bienestar y ejercicio','Sector automovilístico','Sector textil','Seguridad del ordenador y de las redes','Seguridad e investigaciones','Seguros','Semiconductores','Servicio al consumidor','Servicio de información','Servicios de eventos','Servicios financieros','Servicios infraestructurales','Servicios jurídicos','Servicios médicos','Servicios medioambientales','Servicios para el individuo y la familia','Servicios públicos','Servicios y tecnología de la información','Subcontrataciones/Offshoring','Supermercados','Tabaco','Tecnología inalámbrica','Telecomunicaciones','Traducción y localización','Transporte por carretera o ferrocarril','Venta al por mayor','Venta al por menor','Veterinaria','Videojuegos','Vino y licor']
         });
 
         $("#user_rut.text_field").Rut({

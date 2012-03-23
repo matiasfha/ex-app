@@ -9,6 +9,11 @@ class UsersController < ApplicationController
     else
       @password_confirmation = false
     end
+    if params[:not_new]
+      @not_new = true
+    else
+      @not_new = false
+    end
   end
   
   def create
