@@ -11,7 +11,7 @@ ActiveAdmin.register User do
     column :birthdate
     column :occupation
     column "Image" do |user|
-      image_tag (user.avatar.url!='/avatars/original/missing.png' ? user.avatar.url : user.image!='' ? user.image : 'missing.png' ), :class => 'avatar pull-left'
+      image_tag (user.avatar.url!='/avatars/original/missing.png' ? user.avatar.url : user.image!='' ? user.image : 'missing.png' ), :style => 'max-height: 50px'
     end
     column "Provider" do |user|
       user.auths.first ? (user.auths.first.provider=='twitter' ? (image_tag 'twitter_64.png', :style => 'height: 32px') : (image_tag 'facebook_64.png', :style => 'height: 32px')) : '-'

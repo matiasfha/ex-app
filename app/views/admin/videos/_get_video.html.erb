@@ -1,10 +1,8 @@
-
-  <video preload="metadata" height="360" width="480">
-    <source src="/assets/dizzy.mp4" />
-    <source src="/assets/dizzy.ogv" />
-    Could not load
+  <video preload="metadata" height="240" width="360">
+  	<% if Video.find(params[:id]) %>
+  		<source src="<%= Video.find(params[:id]).content!=nil ? Video.find(params[:id]).content.url : '#' %>" />
+  	<% end %>
   </video>
-
   <p>
     <input type="button" id="play" value="Play" class="btn">
     <span id="position">00:00</span> / <span id="duration"></span>
