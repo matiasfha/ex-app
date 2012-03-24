@@ -79,7 +79,7 @@ class AuthsController < ApplicationController
             user.country = country
           end
         end
-        if auth['raw_info']['gender']!=nil&&user.sex_id==3
+        if auth['raw_info']!=nil&&auth['raw_info']['gender']!=nil&&user.sex_id==3
           if auth['raw_info']['gender']=='male'
             user.sex_id = 2
           elsif auth['raw_info']['gender']=='male'
