@@ -9,6 +9,8 @@ class User < ActiveRecord::Base
   has_many :refs
   has_many :user_interests
   has_many :interests, :through => :user_interests
+  has_many :user_videos
+  has_many :videos, :through => :user_videos
 
   attr_accessible :name, :image, :email, :password, :password_confirmation, :first_name, :last_name, :rut, :active, :random_pass, :birthdate, :sex_id, :avatar, :avatar_file_name, :marital_status_id, :country_id, :city_id, :address, :occupation, :commune_id, :terms
   

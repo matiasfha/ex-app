@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120323203120) do
+ActiveRecord::Schema.define(:version => 20120324012315) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.string   "resource_id",   :null => false
@@ -91,6 +91,14 @@ ActiveRecord::Schema.define(:version => 20120323203120) do
     t.datetime "updated_at", :null => false
   end
 
+  create_table "questions", :force => true do |t|
+    t.integer  "user_id"
+    t.string   "name"
+    t.integer  "value"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
   create_table "refs", :force => true do |t|
     t.string   "value"
     t.integer  "user_id"
@@ -118,6 +126,15 @@ ActiveRecord::Schema.define(:version => 20120323203120) do
     t.integer  "interest_id"
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
+  end
+
+  create_table "user_videos", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "video_id"
+    t.boolean  "seen",       :default => false
+    t.integer  "attempts",   :default => 0
+    t.datetime "created_at",                    :null => false
+    t.datetime "updated_at",                    :null => false
   end
 
   create_table "users", :force => true do |t|
@@ -148,6 +165,20 @@ ActiveRecord::Schema.define(:version => 20120323203120) do
     t.string   "occupation",          :default => ""
     t.integer  "commune_id"
     t.boolean  "terms",               :default => false
+  end
+
+  create_table "videos", :force => true do |t|
+    t.string   "name"
+    t.text     "description"
+    t.integer  "character_duration"
+    t.string   "correct_keyword"
+    t.text     "keywords"
+    t.datetime "created_at",           :null => false
+    t.datetime "updated_at",           :null => false
+    t.string   "content_file_name"
+    t.string   "content_content_type"
+    t.integer  "content_file_size"
+    t.datetime "content_updated_at"
   end
 
 end

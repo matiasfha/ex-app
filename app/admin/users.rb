@@ -1,4 +1,5 @@
 ActiveAdmin.register User do
+  
   index do
     column "Email", :sortable => :email do |user|
       link_to user.email, admin_user_path(user)

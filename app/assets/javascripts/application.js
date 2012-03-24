@@ -15,3 +15,4 @@
 //= require_tree .
 //= require roundabout
 //= require gritter
+//= require h5utils

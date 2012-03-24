@@ -1,0 +1,62 @@
+
+  <video preload="metadata" height="360" width="480">
+    <source src="/assets/dizzy.mp4" />
+    <source src="/assets/dizzy.ogv" />
+    Could not load
+  </video>
+
+  <p>
+    <input type="button" id="play" value="Play" class="btn">
+    <span id="position">00:00</span> / <span id="duration"></span>
+  </p>
+<%= javascript_include_tag "application" %>
+<%= stylesheet_link_tag    "buttons" %>
+<script>
+	var video = document.querySelector('video');
+	var togglePlay = document.querySelector('#play');
+	var position = document.querySelector('#position');
+
+	addEvent(togglePlay, 'click', function () {
+	  video.playbackRate = 1;
+	  if (video.paused) {
+	    if (video.ended) video.currentTime = 0;
+	    video.play();
+	    this.value = "Pause";
+	  } else {
+	    video.pause();
+	    this.value = "Play";
+	  }
+	});
+
+addEvent(video, 'timeupdate', function () {
+  position.innerHTML = asTime(this.currentTime);
+});
+
+addEvent(video, 'ended', function () {
+  togglePlay.value = "play";
+});
+
+
+addEvent(video, 'canplay', function () {
+  video.muted = true;
+  document.querySelector('#duration').innerHTML = asTime(this.duration);
+  startCanvas();
+});
+
+function asTime(t) {
+  t = Math.round(t);
+  var s = t % 60;
+  var m = Math.round(t / 60);
+  
+  return two(m) + ':' + two(s);
+}
+
+function two(s) {
+  s += "";
+  if (s.length < 2) s = "0" + s;
+  return s;
+}
+
+</script>
+
+
