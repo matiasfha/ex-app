@@ -1,5 +1,29 @@
 ActiveAdmin::Dashboards.build do
 
+  
+  section "Male vs Female Chart", :width => '100px' do
+    table_for [current_admin_user] do |t|
+      t.column("Status") { render 'get_male_vs_female' }
+    end
+  end
+
+  section "Male vs Female Chart", :width => '100px' do
+    table_for [current_admin_user] do |t|
+      t.column("Status") { render 'get_male_vs_female' }
+    end
+  end
+
+  section "Project Details" do
+    table_for [current_admin_user] do |t|
+      t.column("Users ammount") { User.all.count.to_s }
+      t.column("Videos ammount") { Video.all.count.to_s }
+    end
+    table_for [current_admin_user] do |t|
+      t.column("Experiments ammount") { User.all.count.to_s }
+      #t.column("Videos ammount") { Video.all.count.to_s }
+    end
+  end
+
   # Define your dashboard sections here. Each block will be
   # rendered on the dashboard in the context of the view. So just
   # return the content which you would like to display.

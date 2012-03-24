@@ -2,7 +2,7 @@ ActiveAdmin.register Video do
   
   index do
     column "Name", :sortable => :last_name do |video|
-      video.name.to_s
+      link_to video.name.to_s, admin_video_path(video)
     end
     column :character_duration
     column :correct_keyword

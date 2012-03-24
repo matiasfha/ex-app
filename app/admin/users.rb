@@ -11,7 +11,7 @@ ActiveAdmin.register User do
     column :birthdate
     column :occupation
     column "Image" do |user|
-      image_tag (user.avatar.url!='/avatars/original/missing.png' ? user.avatar.url : user.image!='' ? user.image : 'missing.png' ), :style => 'max-height: 50px'
+      image_tag (user.avatar.url!='/avatars/original/missing.png' ? user.avatar.url : user.image!='' ? user.image : 'missing.png' ), :style => 'max-height: 50px; max-width: 50px'
     end
     column "Provider" do |user|
       user.auths.first ? (user.auths.first.provider=='twitter' ? (image_tag 'twitter_64.png', :style => 'height: 32px') : (image_tag 'facebook_64.png', :style => 'height: 32px')) : '-'
@@ -24,6 +24,10 @@ ActiveAdmin.register User do
     end
     default_actions
   end
+
+  # sidebar "Actions", :only => :index do
+
+  # end
 
   form do |f|
     f.inputs "Admin Details" do
@@ -78,4 +82,5 @@ ActiveAdmin.register User do
   filter :commune_id
   filter :created_at
   filter :updated_at
+  
 end

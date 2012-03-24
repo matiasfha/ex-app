@@ -1,0 +1,4 @@
+<%
+  	@chart = Gchart.pie(:data => [User.where(:sex_id => 2).count, User.where(:sex_id => 1).count, User.where(:sex_id => 3).count], :title => 'Male vs Female', :size => '400x200', :labels => ['Male', 'Female', 'Unespecified'])
+%>
+<%= image_tag @chart %>
