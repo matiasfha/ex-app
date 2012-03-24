@@ -48,12 +48,14 @@ class UsersController < ApplicationController
       UserInterest.delete(d.id)
     end
     #checkamos los intereses
-    params[:interest].each do |i|
-      ii = UserInterest.where(:interest_id => Integer(i.first), :user_id => @user.id)
-      if ii.empty?
-        #creamos
-        if i.last=='1'
-          UserInterest.create(:interest_id => Integer(i.first), :user_id => @user.id)
+    if params[:interest]
+      params[:interest].each do |i|
+        ii = UserInterest.where(:interest_id => Integer(i.first), :user_id => @user.id)
+        if ii.empty?
+          #creamos
+          if i.last=='1'
+            UserInterest.create(:interest_id => Integer(i.first), :user_id => @user.id)
+          end
         end
       end
     end

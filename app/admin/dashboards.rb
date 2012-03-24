@@ -19,7 +19,7 @@ ActiveAdmin::Dashboards.build do
       t.column("Videos ammount") { Video.all.count.to_s }
     end
     table_for [current_admin_user] do |t|
-      t.column("Experiments ammount") { User.all.count.to_s }
+      t.column("Experiments ammount") { Experiment.all.count.to_s }
       #t.column("Videos ammount") { Video.all.count.to_s }
     end
   end
