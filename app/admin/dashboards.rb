@@ -7,7 +7,7 @@ ActiveAdmin::Dashboards.build do
     end
   end
 
-  section "Male vs Female Chart", :width => '100px' do
+  section "Other Chart", :width => '100px' do
     table_for [current_admin_user] do |t|
       t.column("Status") { render 'get_male_vs_female' }
     end
@@ -23,6 +23,18 @@ ActiveAdmin::Dashboards.build do
       #t.column("Videos ammount") { Video.all.count.to_s }
     end
   end
+
+  # == CHARTS 
+  # Gchart.bar(:title => 'My Mojo', :data => [1,2,4,67,100,41,234], :max_value => 300, :bg => 'c3c3c3')
+ 
+  # Gchart.line(:title => 'My Mojo',
+  #           :data => [[1,2,4,67,100,41,234],[41,63,96,17,100,14,423]],
+  #           :bg => '666666',
+  #           :graph_bg => 'cccccc',
+  #           :line_colors => 'ff0000,00ff00',
+  #           :legend => ['morning','evening'])
+  # Gchart.pie(:data => [20,10,15,5,50], :title => 'SDRuby fu', :size => '400x200', :labels => ['matt', 'rob', 'patrick', 'jordan', 'ryan'])
+
 
   # Define your dashboard sections here. Each block will be
   # rendered on the dashboard in the context of the view. So just

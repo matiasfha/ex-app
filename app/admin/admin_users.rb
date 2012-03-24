@@ -33,6 +33,7 @@ ActiveAdmin.register AdminUser do
         row("Updated At") { admin_user.updated_at? ? l(admin_user.updated_at, :format => :long) : '-' }
       end
     end
+    active_admin_comments
   end
 
   filter :email

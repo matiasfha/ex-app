@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120324012315) do
+ActiveRecord::Schema.define(:version => 20120324183659) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.string   "resource_id",   :null => false
@@ -72,6 +72,23 @@ ActiveRecord::Schema.define(:version => 20120324012315) do
     t.datetime "updated_at", :null => false
   end
 
+  create_table "experiment_videos", :force => true do |t|
+    t.integer  "video_id"
+    t.integer  "experiment_id"
+    t.date     "play_date"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
+  end
+
+  create_table "experiments", :force => true do |t|
+    t.string   "name"
+    t.text     "description"
+    t.date     "start_date"
+    t.date     "end_date"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
+
   create_table "interests", :force => true do |t|
     t.string   "name"
     t.datetime "created_at", :null => false
@@ -121,6 +138,23 @@ ActiveRecord::Schema.define(:version => 20120324012315) do
 
   add_index "simple_captcha_data", ["key"], :name => "idx_key"
 
+  create_table "user_experiment_videos", :force => true do |t|
+    t.integer  "experiment_id"
+    t.integer  "user_id"
+    t.integer  "video_id"
+    t.integer  "succeded",      :default => 0
+    t.integer  "attempts",      :default => 0
+    t.datetime "created_at",                   :null => false
+    t.datetime "updated_at",                   :null => false
+  end
+
+  create_table "user_experiments", :force => true do |t|
+    t.integer  "experiment_id"
+    t.integer  "user_id"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
+  end
+
   create_table "user_interests", :force => true do |t|
     t.integer  "user_id"
     t.integer  "interest_id"
@@ -135,6 +169,7 @@ ActiveRecord::Schema.define(:version => 20120324012315) do
     t.integer  "attempts",   :default => 0
     t.datetime "created_at",                    :null => false
     t.datetime "updated_at",                    :null => false
+    t.integer  "succeded",   :default => 0
   end
 
   create_table "users", :force => true do |t|

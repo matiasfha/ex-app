@@ -35,6 +35,7 @@ ActiveAdmin.register Video do
         row("Updated At") { Video.find(params[:id]).updated_at? ? l(Video.find(params[:id]).updated_at, :format => :long) : '-' }
       end
     end
+    active_admin_comments
   end
 
 end

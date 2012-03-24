@@ -68,7 +68,15 @@ ActiveAdmin.register User do
         row("Updated At") { user.updated_at? ? l(user.updated_at, :format => :long) : '-' }
       end
     end
+    active_admin_comments
   end
+
+  sidebar "Other Data From This User", :only => :show do
+  table_for [user] do |t|
+    t.column("Experiments") { |user| user.experiments.count }
+    t.column("Videos Seen") { |user| user.user_experiment_videos.where('attempts > ?', 0).count }
+  end
+end
 
   filter :email
   filter :first_name
