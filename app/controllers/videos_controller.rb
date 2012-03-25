@@ -35,7 +35,7 @@ class VideosController < ApplicationController
     	Question.create(:video_id => @video.id, :name => name)
     end
 
-    return redirect_to admin_video_path(params[:id])
+    return redirect_to admin_video_path(@video.id)
   end
 
   

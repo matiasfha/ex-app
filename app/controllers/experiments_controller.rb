@@ -42,7 +42,7 @@ class ExperimentsController < ApplicationController
 
     end
 
-    return redirect_to admin_experiment_path(params[:id])
+    return redirect_to admin_experiment_path(@experiment.id)
   end
   
   def update_video
