@@ -29,3 +29,40 @@ en:
         "Siguiente ›"
       last:
         "Último ››"
+
+  activerecord:
+      attributes:
+        user:
+          first_name:
+            "Nombres"
+          last_name:
+            "Apellidos"
+          email:
+            "Email"
+          password:
+            "Contraseña"
+          password_confirmation:
+            "Confirma tu contraseña"
+          sex_id:
+            "Género"
+          marital_status_id:
+            "Estado Marital"
+          country_id:
+            "País"
+          city_id:
+            "Ciudad"
+          commune_id:
+            "Comuna"
+          avatar:
+            "Foto de Perfil"
+          birthdate:
+            "Fecha de Nacimiento"
+
+
+      errors:
+        models:
+          user:
+            attributes:
+              password:
+                too_short:
+                  "La contraseña es demasiado corta"

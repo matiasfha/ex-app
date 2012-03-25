@@ -63,6 +63,10 @@ class UsersController < ApplicationController
 
     respond_to do |format|
       if simple_captcha_valid? and @user.errors[:base].empty? and @user.update_attributes(params[:user])
+          if !@user.active&&@user.terms
+            @user.active = true
+            @user.save
+          end
           gflash :success => 'Has modificado tu perfil!'
           return redirect_to home_path
       else
