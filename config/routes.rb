@@ -27,8 +27,10 @@ Alzheimer::Application.routes.draw do
   get "users/show"
 
   #ajax
-  match 'update_question/:index' => 'questions#update_question', :as => 'update_store'
+  match 'update_question/:index' => 'questions#update_question', :as => 'update_question'
   match 'destroy_question/:id' => 'questions#destroy_question', :as => 'destroy_question'
+  match 'update_video/:index' => 'experiments#update_video', :as => 'update_video'
+  match 'destroy_video/:id' => 'experiments#destroy_video', :as => 'destroy_video'
 
   root :to => 'sessions#new'
 

@@ -1,4 +1,5 @@
 class ExperimentsController < ApplicationController
+  
   def create_or_update
 
   	if params[:id]
@@ -24,8 +25,35 @@ class ExperimentsController < ApplicationController
     end
     @experiment.save
     
-    
+    i = 0
+    Integer(params[:videos_ammount]).times do 
+      i += 1
+      video_id = (params['video_'+(i).to_s])
+      str = params['start_video_'+(i).to_s][:year]+'-'+params['start_video_'+(i).to_s][:month]+'-'+params['start_video_'+(i).to_s][:day]
+      d1 = Time.parse(str)
+      str2 = params['end_video_'+(i).to_s][:year]+'-'+params['end_video_'+(i).to_s][:month]+'-'+params['end_video_'+(i).to_s][:day]
+      d2 = Time.parse(str2)
+      j = 0
+      while d1&&d2&&(d1+j.days==d2||d1+j.days<d2)
+        date = d1+j.days
+        ExperimentVideo.create(:experiment_id => @experiment.id, :video_id => video_id, :play_date => date)
+        j += Integer(params['frequency_'+(i).to_s])
+      end
 
-    return redirect_to admin_experiments_path
+    end
+
+    return redirect_to admin_experiment_path(params[:id])
   end
+  
+  def update_video
+    @index = params[:index]
+    return render :layout => nil
+  end
+
+  def destroy_video
+    video = ExperimentVideo.find(params[:id])
+    ExperimentVideo.delete(video)
+  return render :nothing => true
+  end
+
 end

@@ -8,7 +8,7 @@
     		</li>
     		<li class="string optional" id="store_address_input">
 	    		<label for="store_address">Description</label>
-                <%= text_area_tag 'description', @experiment.description ? @experiment.description : "", :rows => 20, :cols => 100 %>
+                <%= text_area_tag 'description', @experiment.description ? @experiment.description : "", :rows => 20 %>
     		</li>
             <li class="string optional" id="store_name_input">
                 <label for="store_name">Start Date</label>
@@ -18,6 +18,35 @@
                 <label for="store_name">End Date</label>
                 <%= select_date  @experiment.end_date ? @experiment.end_date : Time.now , :prefix => 'end_date'   %>
             </li>
+            <li>
+                <%  if !@experiment.experiment_videos.empty? 
+                    str = "<div style='padding-left: 30px'><ul>"
+                      @experiment.experiment_videos.order('play_date ASC').each do |ps|
+                        str = str += "<li>"
+                        str = str += 'Name: '+(ps.video ? ps.video.name.to_s : '-')
+                        str = str += "&nbsp;-&nbsp;"+'Play Date: '+ps.play_date.to_s+''
+                        str = str += "&nbsp;&nbsp;"+'<a class="destroy_video" href="#" id="'+ps.id.to_s+'" >Borrar</a>'
+                        str = str += "</li>"
+                      end
+                      str = str+="</ul>"
+                    else
+                      str =  "<ul><li>-</li></ul>" 
+                    end %>
+                <table>
+                <tr>
+                    <td style="width: 17%">
+                        <label>Videos</label>
+                    </td>
+                    <td>
+                        <%= str.html_safe %>
+                    </td>
+                </tr>
+                <tr>
+                    <td><a id="add_video" class="add_video" href="#">+ Add a video</a></td>
+                </tr>
+                </table>
+            </li>
+            <input type="hidden" name="videos_ammount" id="videos_ammount" value="0" />
     	</ol>
     </fieldset>
     
@@ -38,6 +67,31 @@
             theme_advanced_statusbar_location: "bottom",
             theme_advanced_resizing: true
         });
+
+        $('#add_video').click(function(e){
+            e.preventDefault();
+            index = parseInt($('#videos_ammount').val())+1
+            $('#videos_ammount').val(index)
+            $(this).parent().parent().parent().parent().parent().after('<li id="update_video" ></li>');
+            $.get('/update_video/'+index, null, function(data) {
+                $("#update_video").fadeOut('fast', function() {
+                  $(this).empty().html(data).fadeIn();
+                });
+            });
+
+        });
+
+
+        $('.destroy_video').click(function(e) {
+          e.preventDefault();
+          if(confirm("Estás seguro?")){
+            id = $(this).attr('id')
+            $.get('/destroy_video/'+id, null, null);
+            $(this).parent().html('');
+          }
+          return false;
+        });
+
       });
 
 </script>

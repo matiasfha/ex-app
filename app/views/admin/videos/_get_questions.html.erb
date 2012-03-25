@@ -4,7 +4,6 @@ str = "<div style='padding-left: 30px'><ul>"
   @f_video.questions.each do |ps|
     str = str += "<li>"
     str = str += ps.name.to_s
-    str = str += "&nbsp;&nbsp;"+'<a class="destroy_question" href="#" id="'+ps.id.to_s+'" >Borrar</a>'
     str = str += "</li>"
   end
   str = str+="</ul>"

@@ -20,6 +20,7 @@ ActiveAdmin.register Experiment do
         row("Description") { experiment.description ? experiment.description.html_safe : "-" }
         row :start_date
         row :end_date
+        row("Videos") { render 'get_videos' }
         row("Stadistics") {  }
         row("Created At") { experiment.created_at? ? l(experiment.created_at, :format => :long) : '-' }
         row("Updated At") { experiment.updated_at? ? l(experiment.updated_at, :format => :long) : '-' }

@@ -1,4 +1,5 @@
 class QuestionsController < ApplicationController
+  
   def update_question
   	@index = params[:index]
   	return render :layout => nil
