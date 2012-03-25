@@ -12,5 +12,6 @@
  *= require buttons
  *= require global
  *= require datepicker
+ *= require ical
  *= require gritter
 */

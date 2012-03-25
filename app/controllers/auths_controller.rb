@@ -15,7 +15,7 @@ class AuthsController < ApplicationController
 
   def create
     auth = request.env["omniauth.auth"]
-    abort(auth['raw_info'])
+    abort(auth)
     authentication = Auth.find_by_provider_and_uid(auth["provider"], auth["uid"])
     if !authentication
       #vemos si existe algun usuario con ese email y le agregamos los datos
