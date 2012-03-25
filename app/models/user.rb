@@ -75,10 +75,10 @@ class User < ActiveRecord::Base
           user.country = country
         end
       end
-      if auth['raw_info']!=nil&&auth['raw_info']['gender']!=nil
-        if auth['raw_info']['gender']=='male'
+      if auth['extra']!=nil&&auth['extra']['raw_info']!=nil&&auth['extra']['raw_info']['gender']!=nil
+        if auth['extra']['raw_info']['gender']=='male'
           user.sex_id = 2
-        elsif auth['raw_info']!=nil&&auth['raw_info']['gender']=='male'
+        elsif auth['extra']['raw_info']['gender']=='female'
           user.sex_id = 1
         end
       end

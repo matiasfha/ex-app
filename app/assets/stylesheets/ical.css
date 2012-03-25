@@ -7,54 +7,54 @@ body {
 	font-family: Helvetica;
 	background: white;
 	text-align: center;
-	background: url(../img/body.png) repeat-x;
+	background: url(/assets/body.png) repeat-x;
 }
 body h1 {
 	padding-top: 20px;
 	font-size: 26px;
 	color: #335;
 }
-table {
+table#ical_table {
 	border-collapse: separate;
 	border: 1px solid #9DABCE;
 	border-width: 0px 0px 1px 1px;
 	margin: 10px auto;
 	font-size: 20px;
 }
-td, th {
-	width: 81px;
-	height: 81px;
+table#ical_table td, table#ical_table th {
+	width: 57px;
+	height: 42px !important;
 	text-align: center;
 	vertical-align: middle;
-	background: url(../img/cells.png);
+	background: url(/assets/cells.png);
 	color: #444;
 	position: relative;
 }
-th {
-	height: 30px;
+table#ical_table th {
+	height: 20px !important;
 	font-weight: bold;
 	font-size: 14px;
 }
-td:hover, th:hover {
-	background-position: 0px -81px;
+table#ical_table td:hover, table#ical_table th:hover {
+	background-position: 0px -57px;
 	color: #222;
 }
-td.date_has_event {
-	background-position: 162px 0px;
+table#ical_table td.date_has_event {
+	background-position: 114px 0px;
 	color: white;
 }
-td.date_has_event:hover {
-	background-position: 162px -81px;
+table#ical_table td.date_has_event:hover {
+	background-position: 114px -57px;
 }
-td.padding {
-	background: url(../img/calpad.jpg);
+table#ical_table td.padding {
+	background: url(/assets/calpad.jpg);
 }
-td.today {
-	background-position: 81px 0px;
+table#ical_table td.today {
+	background-position: 57px 0px;
 	color: white;
 }
-td.today:hover {
-	background-position: 81px -81px;
+table#ical_table td.today:hover {
+	background-position: 57px -57px;
 }
 .events {
 	position: relative;
@@ -65,11 +65,11 @@ td.today:hover {
 	display: none;
 	z-index: 1000;
 	padding: 15px;
-	background: #E7ECF2 url(../img/popup.png) no-repeat;
+	background: #E7ECF2 url(/assets/popup.png) no-repeat;
 	color: white;
 	border: 1px solid white;
 	font-size: 15px;
-	width: 200px;
+	width: 100px;
 	-moz-border-radius: 3px;
 	-khtml-border-radius: 3px;
 	-webkit-border-radius: 3px;

@@ -29,5 +29,12 @@ ActiveAdmin.register Experiment do
     active_admin_comments
   end
 
+  sidebar "Calendar", :class => 'holi', :only => :show do
+    table_for [experiment] do |t|
+      t.column("") { render 'get_ical' }
+    end
+  end
+
+
 
 end

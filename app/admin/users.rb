@@ -72,11 +72,11 @@ ActiveAdmin.register User do
   end
 
   sidebar "Other Data From This User", :only => :show do
-  table_for [user] do |t|
-    t.column("Experiments") { |user| user.experiments.count }
-    t.column("Videos Seen") { |user| user.user_experiment_videos.where('attempts > ?', 0).count }
+    table_for [user] do |t|
+      t.column("Experiments") { |user| user.experiments.count }
+      t.column("Videos Seen") { |user| user.user_experiment_videos.where('attempts > ?', 0).count }
+    end
   end
-end
 
   filter :email
   filter :first_name

@@ -1,1 +1,95 @@
-_get_ical.html.erb
+
+<%= javascript_include_tag "application" %>
+<%= stylesheet_link_tag    "ical" %>
+<table cellspacing="0" id="ical_table">
+	<thead>
+		<tr>
+			<th>Mon</th><th>Tue</th><th>Wed</th>
+			<th>Thu</th><th>Fri</th><th>Sat</th>
+			<th>Sun</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td class="padding" colspan="3"></td>
+			<td> 1</td>
+			<td> 2</td>
+			<td> 3</td>
+			<td> 4</td>
+		</tr>
+		<tr>
+			<td> 5</td>
+			<td> 6</td>
+			<td> 7</td>
+			<td> 8</td>
+			<td class="today"> 9</td>
+			<td>10</td>
+			<td>11</td>
+		</tr>
+		<tr>
+			<td>12</td>
+			<td class="date_has_event">
+				13
+				<div class="events">
+					<ul>
+						<li>
+							<span class="title">Video 1</span>
+						</li>
+						<li>
+							<span class="title">Video 2</span>
+						</li>
+					</ul>
+				</div>
+			</td>
+			<td>14</td>
+			<td>15</td>
+			<td>16</td>
+			<td>17</td>
+			<td>18</td>
+		</tr>
+		<tr>
+			<td>19</td>
+			<td>20</td>
+			<td>21</td>
+			<td class="date_has_event">
+				22
+				<div class="events">
+					<ul>
+						<li>
+							<span class="title">Video 1</span>
+						</li>
+						<li>
+							<span class="title">Video 2</span>
+						</li>
+					</ul>
+				</div>
+			</td>
+			<td>23</td>
+			<td>24</td>
+			<td>25</td>
+		</tr>	
+		<tr>
+			<td>26</td>
+			<td>27</td>
+			<td>28</td>
+			<td>29</td>
+			<td>30</td>
+			<td>31</td>
+			<td class="padding"></td>
+		</tr>
+	</tbody>
+	<tfoot>
+		<th>Mon</th><th>Tue</th><th>Wed</th>
+		<th>Thu</th><th>Fri</th><th>Sat</th>
+		<th>Sun</th>
+	</tfoot>
+</table>
+<script type="text/javascript">
+	$(document).ready(function(){
+		$('#calendar_sidebar_section').attr('style', 'width: 400px; height: 420px');
+		$('#ical_table').attr('style', 'width: 350px; height: 150px');
+		$('#main_content_wrapper').attr('style', 'width: 1100px')
+		$('#titlebar_left').attr('style', 'width: 230px')
+	})
+</script>
+

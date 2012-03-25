@@ -7,7 +7,6 @@ class AuthsController < ApplicationController
   
   def create_omniauth
     auth = request.env["omniauth.auth"]
-    abort(auth.to_s)
     current_user.authentications.find_or_create_by_provider_and_uid(auth['provider'], auth['uid'])
     flash[:notice] = "Autenticacion exitosa."
     redirect_to root_path
@@ -15,7 +14,6 @@ class AuthsController < ApplicationController
 
   def create
     auth = request.env["omniauth.auth"]
-    abort(auth)
     authentication = Auth.find_by_provider_and_uid(auth["provider"], auth["uid"])
     if !authentication
       #vemos si existe algun usuario con ese email y le agregamos los datos
@@ -80,10 +78,10 @@ class AuthsController < ApplicationController
             user.country = country
           end
         end
-        if auth['raw_info']!=nil&&auth['raw_info']['gender']!=nil&&user.sex_id==3
-          if auth['raw_info']['gender']=='male'
+        if auth['extra']!=nil&&auth['extra']['raw_info']!=nil&&auth['extra']['raw_info']['gender']!=nil
+          if auth['extra']['raw_info']['gender']=='male'
             user.sex_id = 2
-          elsif auth['raw_info']['gender']=='male'
+          elsif auth['extra']['raw_info']['gender']=='female'
             user.sex_id = 1
           end
         end
