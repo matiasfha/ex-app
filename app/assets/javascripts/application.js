@@ -18,4 +18,3 @@
 //= require h5utils
 //= require tinymce
 //= require tinymce-jquery
-//= require coda

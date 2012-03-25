@@ -30,6 +30,10 @@
                 <%= number_field_tag :character_duration, @f_video.character_duration %>
             </li>
             <li class="string optional" id="store_address_input">
+                <label for="store_address">Keywords Question</label>
+                <%= text_field_tag :keywords_question, @f_video.keywords_question %>
+            </li>
+            <li class="string optional" id="store_address_input">
                 <label for="store_address">Correct Keyword</label>
                 <%= text_field_tag :correct_keyword, @f_video.correct_keyword %>
             </li>

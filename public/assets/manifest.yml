@@ -4,6 +4,11 @@ tinymce/tiny_mce.js: tinymce/tiny_mce-93802cadd0937193604ec1bbf6f4d1dd.js
 tinymce/tiny_mce_jquery.js: tinymce/tiny_mce_jquery-f15bb39a1cc07719b1e5680a329372e9.js
 tinymce/preinit.js: tinymce/preinit-fcb7005a2f92d814734b0c14ab5a0014.js
 420.gif: 420-d3362998494d06ba6c59e48a3044e888.gif
+body.png: body-b1bc6fe297d29446973a0eb952abeae4.png
+calpad copy.jpg: calpad copy-70c853c016e49a340b2a0bf9429d98e4.jpg
+calpad.jpg: calpad-00fd3a0919a34c1f54a3e7e6b6694ee1.jpg
+cells copy.png: cells copy-aec9ccf49c64e1fee004429f873644e3.png
+cells.png: cells-eaae7486f6814547a3902da8e2d724d8.png
 dizzy.mp4: dizzy-f9d182fca3e9b04fea55a79141723375.mp4
 dizzy.ogv: dizzy-44d3daf87bac831b4877ad962cf5b28d.ogv
 facebook_64.png: facebook_64-654f0f2c1ba7e19e730d497947534230.png
@@ -11,6 +16,7 @@ glyphicons-halflings-white.png: glyphicons-halflings-white-4fbb6a0b9b4e61912f486
 glyphicons-halflings.png: glyphicons-halflings-2ed0cba6eca0f44737ab78f1e58bc11e.png
 logo_schof2.png: logo_schof2-41573943691e338b0512421b12b04753.png
 missing.png: missing-c09a821e89a88f613a574f7146f051ef.png
+popup.png: popup-0fea76aaa73d7036f4a6fc8e20acd4c6.png
 rails.png: rails-782b548cc1ba7f898cdad2d9eb8420d2.png
 recaptcha-example.gif: recaptcha-example-95f2487aaf269264c5eb36b60bad4a53.gif
 signin_facebook.png: signin_facebook-fddf067ab4655e14343344a58a56a6bf.png
@@ -34,8 +40,8 @@ ui-icons_f5e175_256x240.png: ui-icons_f5e175_256x240-5c7adb6aca1b8d5184da88d1330
 ui-icons_f7a50d_256x240.png: ui-icons_f7a50d_256x240-933bff2c9dab1d9e77956fc821a4346e.png
 ui-icons_fcd113_256x240.png: ui-icons_fcd113_256x240-1d3efd1ce439d728d43abf3a9b619742.png
 active_admin.js: active_admin-e3e52e72b70b1b200ef3ffd3b47b3f3e.js
-application.js: application-e3b6f1e55112f15177c116f4943169e1.js
-active_admin.css: active_admin-a5418d5663115f44cea78dde0e67048d.css
+application.js: application-8a4c45714e28edaee31e722a1c394c99.js
+active_admin.css: active_admin-74ed3a4ef8d85313e363da47d6abe118.css
 application.css: application-b3afd1232265422fa78539aabf427b9e.css
 active_admin/admin_notes_icon.png: active_admin/admin_notes_icon-6eb45caa96d965a96dd65eba4ba136df.png
 active_admin/datepicker/datepicker-header-bg.png: active_admin/datepicker/datepicker-header-bg-d0905bcf45dbdc6ebd8a0f886465e2d5.png

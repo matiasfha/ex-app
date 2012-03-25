@@ -17,8 +17,11 @@ class VideosController < ApplicationController
   	if params[:character_duration]
   		@video.character_duration = params[:character_duration]
     end
-  	if params[:correct_keyword]
-  		@video.correct_keyword = params[:correct_keyword]
+    if params[:keywords_question]
+      @video.keywords_question = params[:keywords_question]
+    end
+    if params[:correct_keyword]
+      @video.correct_keyword = params[:correct_keyword]
     end
   	if params[:keywords]
   		@video.keywords = params[:keywords]

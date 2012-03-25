@@ -5,6 +5,7 @@ ActiveAdmin.register Video do
       link_to video.name.to_s, admin_video_path(video)
     end
     column :character_duration
+    column :keywords_question
     column :correct_keyword
     default_actions
   end
@@ -18,6 +19,7 @@ ActiveAdmin.register Video do
         row :name
         row("Description") { Video.find(params[:id]).description ? Video.find(params[:id]).description.html_safe : "-" }
         row :character_duration
+        row :keywords_question
         row :correct_keyword
         row :keywords
         row("Questions") { render 'get_questions' }
