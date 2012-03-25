@@ -9,7 +9,7 @@ ActiveAdmin::Dashboards.build do
 
   section "Other Chart", :width => '100px' do
     table_for [current_admin_user] do |t|
-      t.column("Status") { render 'get_male_vs_female' }
+      t.column("Status") { render 'get_age_ranges' }
     end
   end
 

@@ -9,17 +9,7 @@ ActiveAdmin.register Video do
     default_actions
   end
 
-  form do |f|
-    f.inputs "Video Details" do
-      f.input :name
-      f.input :content
-      f.input :description
-      f.input :character_duration
-      f.input :correct_keyword
-      f.input :keywords
-    end
-    f.buttons
-  end
+  form :partial => 'form'
 
   show do
     panel "Video Details" do
@@ -30,6 +20,7 @@ ActiveAdmin.register Video do
         row :character_duration
         row :correct_keyword
         row :keywords
+        row("Questions") { render 'get_questions' }
         row("Content") { render 'get_video' }
         row("Created At") { Video.find(params[:id]).created_at? ? l(Video.find(params[:id]).created_at, :format => :long) : '-' }
         row("Updated At") { Video.find(params[:id]).updated_at? ? l(Video.find(params[:id]).updated_at, :format => :long) : '-' }

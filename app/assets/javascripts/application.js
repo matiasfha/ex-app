@@ -16,3 +16,5 @@
 //= require roundabout
 //= require gritter
 //= require h5utils
+//= require tinymce
+//= require tinymce-jquery

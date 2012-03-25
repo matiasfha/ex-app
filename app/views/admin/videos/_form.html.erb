@@ -1,0 +1,158 @@
+<%= javascript_include_tag "application" %>
+<%= stylesheet_link_tag    "buttons" %>
+<% params[:id] ? (@f_video = Video.find(params[:id])) : (@f_video = Video.new) %>
+<%= form_for(:video, :url => create_or_update_video_path(:id => params[:id])) do |f| %>
+    <fieldset class="inputs">
+    	<ol>
+    		<li class="string optional" id="store_name_input">
+    			<label for="store_name">Name</label>
+	    		<%= text_field_tag :name, @f_video.name %>
+    		</li>
+            <li class="string optional" id="store_address_input">
+                <label for="store_address">Content</label>
+                <video preload="metadata" height="240" width="360">
+                	<% if @f_video %>
+                		<source src="<%= @f_video.content!=nil ? @f_video.content.url : '#' %>" />
+                	<% end %>
+                </video>
+                <p>
+                  <input type="button" id="play" value="Play" class="btn">
+                  <span id="position">00:00</span> / <span id="duration"></span>
+                </p>
+                <%= file_field_tag :content %>
+            </li>
+            <li class="string optional" id="store_address_input">
+                <label for="store_address">Description</label>
+                <%= text_area_tag :description, @f_video.description %>
+            </li>
+            <li class="string optional" id="store_address_input">
+                <label for="store_address">Character Duration (s)</label>
+                <%= number_field_tag :character_duration, @f_video.character_duration %>
+            </li>
+            <li class="string optional" id="store_address_input">
+                <label for="store_address">Correct Keyword</label>
+                <%= text_field_tag :correct_keyword, @f_video.correct_keyword %>
+            </li>
+            <li class="string optional" id="store_address_input">
+                <label for="store_address">Keywords (Comma Sepparated)</label>
+                <%= text_area_tag :keywords, @f_video.keywords %>
+            </li>
+            <li>
+                <%  if !@f_video.questions.empty? 
+                    str = "<div style='padding-left: 30px'><ul>"
+                      @f_video.questions.each do |ps|
+                        str = str += "<li>"
+                        str = str += ps.name.to_s
+                        str = str += "&nbsp;&nbsp;"+'<a class="destroy_question" href="#" id="'+ps.id.to_s+'" >Borrar</a>'
+                        str = str += "</li>"
+                      end
+                      str = str+="</ul>"
+                    else
+                      str =  "<ul><li>-</li></ul>" 
+                    end %>
+                <table>
+                <tr>
+                    <td style="width: 17%">
+                        <label>Questions</label>
+                    </td>
+                    <td>
+                        <%= str.html_safe %>
+                    </td>
+                </tr>
+                <tr>
+                    <td><a id="add_question" class="add_question" href="#">+ Add a question</a></td>
+                </tr>
+                </table>
+            </li>
+            <input type="hidden" name="questions_ammount" id="questions_ammount" value="0" />
+            <input type="hidden" name="admin" value="true" />
+    	</ol>
+    </fieldset>
+    
+    <%= f.submit :commit %>
+<% end %>
+
+<script language="javascript" type="text/javascript">
+          
+      $(document).ready(function() {
+        
+        $('#add_question').click(function(e){
+            e.preventDefault();
+            index = parseInt($('#questions_ammount').val())+1
+            $('#questions_ammount').val(index)
+            $(this).parent().parent().parent().parent().parent().after('<li id="update_question" ></li>');
+            $.get('/update_question/'+index, null, function(data) {
+                $("#update_question").fadeOut('fast', function() {
+                  $(this).empty().html(data).fadeIn();
+                });
+            });
+
+        });
+
+
+        $('.destroy_question').click(function(e) {
+          e.preventDefault();
+          if(confirm("Estás seguro?")){
+            id = $(this).attr('id')
+            $.get('/destroy_question/'+id, null, null);
+            $(this).parent().html('');
+          }
+          return false;
+        });
+
+
+
+      });
+
+</script>
+<script>
+	var video = document.querySelector('video');
+	var togglePlay = document.querySelector('#play');
+	var position = document.querySelector('#position');
+
+	addEvent(togglePlay, 'click', function () {
+	  video.playbackRate = 1;
+	  if (video.paused) {
+	    if (video.ended) video.currentTime = 0;
+	    video.play();
+	    this.value = "Pause";
+	  } else {
+	    video.pause();
+	    this.value = "Play";
+	  }
+	});
+
+addEvent(video, 'timeupdate', function () {
+  position.innerHTML = asTime(this.currentTime);
+});
+
+addEvent(video, 'ended', function () {
+  togglePlay.value = "play";
+  video.currentTime = 0;
+});
+
+
+addEvent(video, 'canplay', function () {
+  video.muted = true;
+  document.querySelector('#duration').innerHTML = asTime(this.duration);
+  startCanvas();
+});
+
+function asTime(t) {
+  t = Math.round(t);
+  var s = t % 60;
+  var m = Math.round(t / 60);
+  
+  return two(m) + ':' + two(s);
+}
+
+function two(s) {
+  s += "";
+  if (s.length < 2) s = "0" + s;
+  return s;
+}
+
+</script>
+
+
+

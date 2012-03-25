@@ -1,5 +1,13 @@
 Alzheimer::Application.routes.draw do
   
+  get "experiments/create_or_update"
+
+  get "questions/update_question"
+
+  get "questions/destroy_question"
+
+  get "videos/create_or_update_video"
+
   ActiveAdmin.routes(self)
 
   devise_for :admin_users, ActiveAdmin::Devise.config
@@ -13,9 +21,14 @@ Alzheimer::Application.routes.draw do
   get "sessions/new"
 
   match "users/:id/edit" => 'users#edit', :as => 'user_edit'
+  match "create_or_update_video" => 'videos#create_or_update_video', :as => 'create_or_update_video'
+  match "create_or_update" => 'experiments#create_or_update', :as => 'create_or_update'
 
   get "users/show"
 
+  #ajax
+  match 'update_question/:index' => 'questions#update_question', :as => 'update_store'
+  match 'destroy_question/:id' => 'questions#destroy_question', :as => 'destroy_question'
 
   root :to => 'sessions#new'
 

@@ -1,4 +1,7 @@
 <%
-  	@chart = Gchart.pie_3d(:data => [5, User.where(:sex_id => 1).count, User.where(:sex_id => 3).count], :bar_colors => ['76A4FB', 'DE85A9', 'A6A6A6'], :title => 'Male vs Female', :size => '400x200', :labels => ['Male', 'Female', 'Unespecified'])
+  	@chart = Gchart.pie_3d(:data => [User.where(:sex_id => 2).count, User.where(:sex_id => 1).count, User.where(:sex_id => 3).count], :bar_colors => ['76A4FB', 'DE85A9', 'A6A6A6'], :title => 'Male vs Female', :size => '400x200', :labels => ['Male', 'Female', 'Unespecified'])
 %>
-<%= image_tag @chart %>
+<div style="width: 400px; height: 200px" >
+	&nbsp;
+	<%= image_tag @chart %>
+</div>

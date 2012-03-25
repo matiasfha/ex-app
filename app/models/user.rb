@@ -15,7 +15,7 @@ class User < ActiveRecord::Base
   has_many :user_experiment_videos
   has_many :videos, :through => :user_experiment_videos
 
-  attr_accessible :name, :image, :email, :password, :password_confirmation, :first_name, :last_name, :rut, :active, :random_pass, :birthdate, :sex_id, :avatar, :avatar_file_name, :marital_status_id, :country_id, :city_id, :address, :occupation, :commune_id, :terms
+  attr_accessible :name, :image, :email, :password, :password_confirmation, :first_name, :last_name, :rut, :active, :random_pass, :birthdate, :sex_id, :avatar, :avatar_file_name, :marital_status_id, :country_id, :city_id, :address, :occupation, :commune_id, :terms, :description
   
   attr_accessor :password
   before_save :encrypt_password

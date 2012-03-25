@@ -12,5 +12,5 @@
  *= require buttons
  *= require global
  *= require datepicker
- += require gritter
+ *= require gritter
 */

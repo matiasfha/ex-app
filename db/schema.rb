@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120324183659) do
+ActiveRecord::Schema.define(:version => 20120325020516) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.string   "resource_id",   :null => false
@@ -83,10 +83,10 @@ ActiveRecord::Schema.define(:version => 20120324183659) do
   create_table "experiments", :force => true do |t|
     t.string   "name"
     t.text     "description"
-    t.date     "start_date"
-    t.date     "end_date"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+    t.datetime "created_at",                            :null => false
+    t.datetime "updated_at",                            :null => false
+    t.date     "start_date",  :default => '2012-03-25'
+    t.date     "end_date",    :default => '2012-03-25'
   end
 
   create_table "interests", :force => true do |t|
@@ -114,6 +114,7 @@ ActiveRecord::Schema.define(:version => 20120324183659) do
     t.integer  "value"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+    t.integer  "video_id"
   end
 
   create_table "refs", :force => true do |t|
@@ -183,15 +184,14 @@ ActiveRecord::Schema.define(:version => 20120324183659) do
     t.integer  "sex_id",              :default => 3
     t.integer  "city_id",             :default => 1
     t.integer  "country_id",          :default => 1
-    t.date     "birthdate",           :default => '2012-03-22'
     t.text     "description",         :default => ""
     t.string   "random_pass",         :default => ""
     t.string   "referal",             :default => ""
     t.string   "image",               :default => ""
     t.boolean  "active",              :default => false
     t.integer  "marital_status_id",   :default => 5
-    t.datetime "created_at",                                    :null => false
-    t.datetime "updated_at",                                    :null => false
+    t.datetime "created_at",                             :null => false
+    t.datetime "updated_at",                             :null => false
     t.string   "avatar_file_name"
     t.string   "avatar_content_type"
     t.integer  "avatar_file_size"
@@ -200,6 +200,7 @@ ActiveRecord::Schema.define(:version => 20120324183659) do
     t.string   "occupation",          :default => ""
     t.integer  "commune_id"
     t.boolean  "terms",               :default => false
+    t.date     "birthdate"
   end
 
   create_table "videos", :force => true do |t|
@@ -214,6 +215,7 @@ ActiveRecord::Schema.define(:version => 20120324183659) do
     t.string   "content_content_type"
     t.integer  "content_file_size"
     t.datetime "content_updated_at"
+    t.string   "keywords_question"
   end
 
 end
