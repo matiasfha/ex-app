@@ -1,0 +1,15 @@
+<label for="store_store_type_id">Video <%= @index %></label>
+<b style="color: #5E6469">Name:</b>&nbsp;&nbsp;
+<%= select_tag 'type_'+@index.to_s, options_for_select([['Name', 1], ['Birthdate', 2], ['Sex', 3], ['Country', 4], ['City', 5], ['Commune', 6]].map {|r| [r[0],r[1]] } ), :class => 'type_select' %>
+&nbsp;&nbsp;
+<b style="color: #5E6469">Value:</b>&nbsp;&nbsp;
+<%= text_field_tag 'frequency_'+@index.to_s, nil, :style => 'width: 300px'    %>
+<script language="javascript" type="text/javascript">
+          
+      $(document).ready(function() {
+      	$('.type_select').change(function(){
+      		alert(this.value);
+      	})
+      });
+
+</script>

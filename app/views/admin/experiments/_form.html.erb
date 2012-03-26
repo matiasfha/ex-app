@@ -47,6 +47,34 @@
                 </table>
             </li>
             <input type="hidden" name="videos_ammount" id="videos_ammount" value="0" />
+            <li>
+                <%  if !@experiment.user_filters.empty? 
+                    str = "<div style='padding-left: 30px'><ul>"
+                      @experiment.user_filters.each do |ps|
+                        str = str += "<li>"
+                        str = str += ps.value.to_s
+                        str = str += "&nbsp;&nbsp;"+'<a class="destroy_filter" href="#" id="'+ps.id.to_s+'" >Borrar</a>'
+                        str = str += "</li>"
+                      end
+                      str = str+="</ul>"
+                    else
+                      str =  "<ul><li>-</li></ul>" 
+                    end %>
+                <table>
+                <tr>
+                    <td style="width: 17%">
+                        <label>Filters</label>
+                    </td>
+                    <td>
+                        <%= str.html_safe %>
+                    </td>
+                </tr>
+                <tr>
+                    <td><a id="add_filter" class="add_filter" href="#">+ Add a filter</a></td>
+                </tr>
+                </table>
+            </li>
+            <input type="hidden" name="filters_ammount" id="filters_ammount" value="0" />
     	</ol>
     </fieldset>
     
@@ -87,6 +115,30 @@
           if(confirm("Estás seguro?")){
             id = $(this).attr('id')
             $.get('/destroy_video/'+id, null, null);
+            $(this).parent().html('');
+          }
+          return false;
+        });
+
+        $('#add_filter').click(function(e){
+            e.preventDefault();
+            index = parseInt($('#filters_ammount').val())+1
+            $('#filters_ammount').val(index)
+            $(this).parent().parent().parent().parent().parent().after('<li id="update_filter" ></li>');
+            $.get('/update_filter/'+index, null, function(data) {
+                $("#update_filter").fadeOut('fast', function() {
+                  $(this).empty().html(data).fadeIn();
+                });
+            });
+
+        });
+
+
+        $('.destroy_filter').click(function(e) {
+          e.preventDefault();
+          if(confirm("Estás seguro?")){
+            id = $(this).attr('id')
+            $.get('/destroy_filter/'+id, null, null);
             $(this).parent().html('');
           }
           return false;

@@ -42,6 +42,10 @@ class ExperimentsController < ApplicationController
 
     end
 
+    abort('oli')
+    i = 0
+    
+
     return redirect_to admin_experiment_path(@experiment.id)
   end
   

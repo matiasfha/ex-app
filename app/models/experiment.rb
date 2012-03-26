@@ -1,5 +1,6 @@
 class Experiment < ActiveRecord::Base
 
+	has_many :user_filters
 	has_many :experiment_videos
     has_many :videos, :through => :experiment_videos
     has_many :user_experiments

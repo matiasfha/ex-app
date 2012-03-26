@@ -1,5 +1,9 @@
 Alzheimer::Application.routes.draw do
   
+  get "user_filters/update_filter"
+
+  get "user_filters/destroy_filter"
+
   get "experiments/create_or_update"
 
   get "questions/update_question"
@@ -31,6 +35,8 @@ Alzheimer::Application.routes.draw do
   match 'destroy_question/:id' => 'questions#destroy_question', :as => 'destroy_question'
   match 'update_video/:index' => 'experiments#update_video', :as => 'update_video'
   match 'destroy_video/:id' => 'experiments#destroy_video', :as => 'destroy_video'
+  match 'update_filter/:index' => 'user_filters#update_filter', :as => 'update_filter'
+  match 'destroy_filter/:id' => 'user_filters#destroy_filter', :as => 'destroy_filter'
 
   root :to => 'sessions#new'
 
