@@ -61,7 +61,7 @@
                         elsif ps.filter_type==3
                             sex = Sex.find_by_id(ps.value)
                             if sex
-                                str = str += 'Belongs to Sex: <b>'+ps.value+'</b>'
+                                str = str += 'Belongs to Sex: <b>'+sex.name+'</b>'
                             else
                                 str = str += 'Belongs to <b>any</b> Sex'
                             end

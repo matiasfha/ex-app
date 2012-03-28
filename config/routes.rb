@@ -38,6 +38,8 @@ Alzheimer::Application.routes.draw do
   match 'update_filter/:index' => 'user_filters#update_filter', :as => 'update_filter'
   match 'destroy_filter/:id' => 'user_filters#destroy_filter', :as => 'destroy_filter'
 
+  #videos
+  match 'show_video/:id' => 'videos#show', :as => 'show_video'
 
   #automated
   match 'start_todays_experiments/:secret' => 'experiments#start_todays_experiments'

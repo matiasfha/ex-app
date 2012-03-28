@@ -47,7 +47,7 @@ class Experiment < ActiveRecord::Base
               if true
                 sex_id = Integer(e)
                 sex = Sex.find_by_id(sex_id)
-                if !sex||u.sex.id==sex.id
+                if !sex||(u.sex&&u.sex.id==sex.id)
                   matches = true
                 end
               end

@@ -5,6 +5,10 @@ class Video < ActiveRecord::Base
   has_many :user_videos
   has_many :user_experiment_videos
   has_many :users, :through => :user_experiment_videos
+  has_many :experiments, :through => :user_experiment_videos
+
+  attr_accessible :name, :content, :description, :character_duration, :keywords_question, :correct_kewword, :keywords, :content, :content_file_name, :preview, :preview_file_name
+
 
   has_attached_file :content,        
                     :storage => :s3,

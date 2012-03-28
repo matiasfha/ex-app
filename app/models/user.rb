@@ -130,9 +130,9 @@ class User < ActiveRecord::Base
     self.experiments.where('start_date < ? AND end_date > ?', Time.now, Time.now).each do |x|
       x.experiment_videos.each do |v|
         if v.play_date.to_s==Time.now.to_date.to_s
-          exists = UserExperimentVideo.find_by_user_id_and_video_id_and_experiment_id(self.id, v.id, x.id)
+          exists = UserExperimentVideo.find_by_user_id_and_video_id_and_experiment_id(self.id, v.video_id, x.id)
           if !exists
-            UserExperimentVideo.create(:experiment_id => x.id, :user_id => self.id, :video_id => v.id)
+            UserExperimentVideo.create(:experiment_id => x.id, :user_id => self.id, :video_id => v.video_id)
           end
         end
       end
