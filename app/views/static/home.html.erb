@@ -36,14 +36,14 @@
         <% if x.video %>
           <div class="span2 well" >
             <a href="<%= show_video_path(x.id) %>">
-            <%= image_tag x.video.preview.url %>
+            <%= image_tag x.video.preview.url, :class => 'preview' %>
             &nbsp;&nbsp;<%= x.video.name %>
           </div>
         <% end %>
   <% end %>
   <% (9-current_user.user_experiment_videos.first(9).count).times do %>
-  <div class="span2 well" >
-    <br><br><br><br><br><br><br>
+  <div class="span2 well" style="height: 200px" >
+    <br><br><br><br><br><br><br><br><br>
   </div>
   <% end %>
   <div class="row" >&nbsp;</div>

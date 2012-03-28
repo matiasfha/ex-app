@@ -44,6 +44,11 @@ margin-top: -34px;
 text-transform: none; 
 }
 
+.preview{
+  max-width: 150px;
+  max-height: 150px;
+}
+
 /* color azuliño
 select {
   border-color: #58c2f0;

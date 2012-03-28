@@ -43,7 +43,7 @@
 			<%= text_field_tag 'captcha_answer', nil, :size => 40 %>
 			<br>
 			<label><%= @video.keywords_question %></label>
-			<%= text_field_tag 'keywords_answer', @mail, :size => 40, :class => 'typeahead', :autocomplete => :off %>
+			<%= text_field_tag 'keywords_answer', nil, :size => 40, :class => 'typeahead', :autocomplete => :off %>
 			<br>
 			<input type="hidden" name="answers_ammount" value="<%= @video.questions.count.to_s %>" />
 			<%
@@ -62,7 +62,6 @@
 	<% end %>
 
 </div>
-<%= @key %>
 <script>
 
 $(document).ready(function() {
