@@ -1,4 +1,6 @@
 class VideosController < ApplicationController
+
+  load_and_authorize_resource :except => [:create_or_update_video]
   
   def create_or_update_video
   	if params[:id]
@@ -39,6 +41,11 @@ class VideosController < ApplicationController
     return redirect_to admin_video_path(@video.id)
   end
 
-  
+  def show
+    @video = Video.find(params[:id])
+    @uev = current_user.user_experiment_videos.where(:video_id => @video.id)
+    
+
+  end
 
 end

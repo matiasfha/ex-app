@@ -1,0 +1,95 @@
+<div class="well span8" style="height: 330px" >
+	<div class="span5">
+		  <video preload="metadata" height="240" width="360">
+          	<% if @video %>
+          		<source src="<%= @video.content!=nil ? @video.content.url : '#' %>" />
+          	<% end %>
+          </video>
+          <p>
+            <input type="button" id="play" value="Play" class="btn">
+            <input type="button" id="waiting" value="Esperando" class="btn disabled">
+            <span id="position">00:00</span> / <span id="duration"></span>
+          </p>
+
+	</div>
+	<div class="span3" style="margin-right: -20px">
+		<b>Acerca de los videos:</b>
+		<br>-Mira el video mientras pones <i>atención</i> a los caracteres que aparecerán al costado.
+		<br>
+		<br>-Al final del video <i>ingresa</i> los caracteres que aperecieron y <i>contesta</i> la pregunta.
+		<br>
+		<br>-Dános tu <i>opinión</i> y apreta en Enviar
+		<br><br>
+	</div>
+	<div class="span3" style="margin-right: -20px">
+		<b>Descripción del video:</b><br>
+		<%= @video.description %>
+
+	</div>
+</div>
+
+<div class="well span8" id="after" style="height: 330px" >
+	Terminó el video...
+</div>
+
+<script>
+	var video = document.querySelector('video');
+	var togglePlay = document.querySelector('#play');
+	var position = document.querySelector('#position');
+	var timer = parseInt('<%= @video.character_duration %>')
+  	
+
+	$(document).ready(function() {
+		$('#play').hide();
+		$('#after').hide();
+	});
+
+	addEvent(togglePlay, 'click', function () {
+	  video.playbackRate = 1;
+	  if (video.paused) {
+	    if (video.ended) video.currentTime = 0;
+	    video.play();
+	    this.value = " --- ";
+	  } else {
+	    this.value = " --- ";
+	  }
+	});
+
+addEvent(video, 'timeupdate', function () {
+  position.innerHTML = asTime(this.currentTime);
+  if(this.currentTime % timer){
+  	alert('cambiando letras');
+  }
+});
+
+addEvent(video, 'ended', function () {
+  togglePlay.value = "play";
+  video.currentTime = 0;
+  $('#after').show();
+});
+
+
+addEvent(video, 'canplay', function () {
+  video.muted = false;
+  document.querySelector('#duration').innerHTML = asTime(this.duration);
+  $('#play').show();
+  $('#waiting').hide();
+});
+
+function asTime(t) {
+  t = Math.round(t);
+  var s = t % 60;
+  var m = Math.round(t / 60);
+  
+  return two(m) + ':' + two(s);
+}
+
+function two(s) {
+  s += "";
+  if (s.length < 2) s = "0" + s;
+  return s;
+}
+
+</script>
+
+
