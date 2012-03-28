@@ -65,7 +65,8 @@
 addEvent(video, 'timeupdate', function () {
   position.innerHTML = asTime(this.currentTime);
   if(Math.round(this.currentTime % timer) == 0){
-  	$('#random_chars').value('<%= @key %>'.substring(i,i+1));
+  	$('#random_chars').val('<%= @key %>'.substring(i,i+1));
+  	alert('<%= @key %>'.substring(i,i+1))
   	i++;
   }
 });
@@ -74,6 +75,7 @@ addEvent(video, 'ended', function () {
   togglePlay.value = "Play";
   togglePlay.attr('class', 'btn')
   video.currentTime = 0;
+  alert('holi');
   $('#after').show();
   $('#after').attr('style','');
   $('#first').hide();
