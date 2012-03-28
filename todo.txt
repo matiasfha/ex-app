@@ -1,0 +1,13 @@
+concentrarse en la parte de realizar un test
+
+about this video, en la seccion de show/video del usuario.
+
+active => video(estadisticas propias del video)
+
+desactivar un usuario cuando no ve videos en una semana.
+
+Calendario de experimentos en el dashboard
+
+cerrar un experimento cuando se llegue a una meta predicha. Ej: a las 1000 reproducciones se termina
+
+en un experimento sería bueno sabes cuantas personas distintas han visto videos en este expermento, de cuantos califica. Cuantas reproducciones potenciales hay para todo el experimento y cuantos se han reproducido. Esto mismo diario. ADHERENCIA AL TRATAMIENTO

@@ -103,4 +103,43 @@ class User < ActiveRecord::Base
   end
 
 
+  def acomplishments
+    total = 0
+    self.user_experiment_videos.each do |x|
+      total += x.succeded
+    end
+    return total
+  end
+
+  def videos_available
+    return self.user_experiment_videos.where(:succeded => 0).count
+  end
+
+  def where_do_i_fit_in?
+    all_active_ex = Experiment.where('start_date < ? AND end_date > ?', Time.now, Time.now)
+    #vemos en que experimentos encaja el usuario
+    UserExperiment.delete(self.user_experiments)
+    all_active_ex.each do |x|
+      fits = x.do_i_fit_in? self
+      if fits
+        self.user_experiments.create(:experiment_id => x.id)
+      end
+    end
+
+    #asignamos los videos que debería comenzar a ver ahora
+    self.experiments.where('start_date < ? AND end_date > ?', Time.now, Time.now).each do |x|
+      x.experiment_videos.each do |v|
+        if v.play_date.to_s==Time.now.to_date.to_s
+          exists = UserExperimentVideo.find_by_user_id_and_video_id_and_experiment_id(self.id, v.id, x.id)
+          if !exists
+            UserExperimentVideo.create(:experiment_id => x.id, :user_id => self.id, :video_id => v.id)
+          end
+        end
+      end
+    end
+  end
+
+
+
 end
+

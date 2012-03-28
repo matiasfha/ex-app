@@ -15,4 +15,13 @@ class Video < ActiveRecord::Base
                     },
                     :path => ":attachment/:id/:basename.:extension"
 
+  has_attached_file :preview,        
+                    :storage => :s3,
+                    :bucket => 'alzheimer-videos-preview',
+                    :s3_credentials => {
+                      :access_key_id => 'AKIAJK5NVAGQBRCX4GQA',
+                      :secret_access_key => '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'
+                    },
+                    :path => ":attachment/:id/:basename.:extension"
+
 end

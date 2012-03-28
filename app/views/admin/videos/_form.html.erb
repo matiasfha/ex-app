@@ -11,15 +11,20 @@
             <li class="string optional" id="store_address_input">
                 <label for="store_address">Content</label>
                 <video preload="metadata" height="240" width="360">
-                	<% if @f_video %>
-                		<source src="<%= @f_video.content!=nil ? @f_video.content.url : '#' %>" />
-                	<% end %>
+                  <% if @f_video %>
+                    <source src="<%= @f_video.content!=nil ? @f_video.content.url : '#' %>" />
+                  <% end %>
                 </video>
                 <p>
                   <input type="button" id="play" value="Play" class="btn">
                   <span id="position">00:00</span> / <span id="duration"></span>
                 </p>
                 <%= file_field_tag :content %>
+            </li>
+            <li class="string optional" id="store_address_input">
+                <label for="store_address">Preview</label>
+                <img src="<%= @f_video.preview!=nil ? @f_video.preview.url : '#' %>" />
+                <%= file_field_tag :preview %>
             </li>
             <li class="string optional" id="store_address_input">
                 <label for="store_address">Description</label>

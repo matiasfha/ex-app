@@ -34,7 +34,7 @@ class ExperimentsController < ApplicationController
       str2 = params['end_video_'+(i).to_s][:year]+'-'+params['end_video_'+(i).to_s][:month]+'-'+params['end_video_'+(i).to_s][:day]
       d2 = Time.parse(str2)
       j = 0
-      while d1&&d2&&(d1+j.days==d2||d1+j.days<d2)
+      while d1&&d2&&(d1+j.days==d2||d1+j.days<d2)&&(d1+j.days>@experiment.start_date)&&(d1+j.days<@experiment.end_date)
         date = d1+j.days
         ExperimentVideo.create(:experiment_id => @experiment.id, :video_id => video_id, :play_date => date)
         j += Integer(params['frequency_'+(i).to_s])
@@ -42,9 +42,40 @@ class ExperimentsController < ApplicationController
 
     end
 
-    abort('oli')
+    #creamos los filtros
     i = 0
-    
+    Integer(params[:filters_ammount]).times do 
+      i += 1
+      type =  params['type_'+(i).to_s]
+      value = params[type+'value_'+(i).to_s]
+      #sin ver mucho qué tipo de filtro es, creamos el filtro
+      if type=='2'
+        value = params['start_age_'+(i).to_s]+','+params['end_age_'+(i).to_s]
+      end
+      UserFilter.create(:filter_type => type, :value => value, :experiment_id => @experiment.id)
+    end
+
+    #filramos a los usuarios
+    UserExperiment.delete(@experiment.user_experiments)
+    all_users = User.all
+    all_users.each do |u|
+      if @experiment.do_i_fit_in? u
+        @experiment.user_experiments.create(:user_id => u.id)
+      end
+    end
+
+    #subscibimos a la gente a los videos
+    @experiment.experiment_videos.each do |v|
+      if v.play_date.to_s==Time.now.to_date.to_s
+        @experiment.users.each do |u|
+          exists = UserExperimentVideo.find_by_user_id_and_video_id_and_experiment_id(u.id, v.id, @experiment.id)
+          if !exists
+            UserExperimentVideo.create(:experiment_id => @experiment.id, :user_id => u.id, :video_id => v.id)
+          end
+        end
+      end
+    end
+
 
     return redirect_to admin_experiment_path(@experiment.id)
   end
@@ -57,7 +88,28 @@ class ExperimentsController < ApplicationController
   def destroy_video
     video = ExperimentVideo.find(params[:id])
     ExperimentVideo.delete(video)
-  return render :nothing => true
+    return render :nothing => true  
   end
+
+  def start_todays_experiments
+    unless params[:secret]=='jjuj3kcx9kdn3ndk23jdmxzn23dm'
+      return render :nothing => true
+    end
+    all_active_ex = Experiment.where('start_date < ? AND end_date > ?', Time.now, Time.now)
+    all_active_ex.each do |x|
+      x.experiment_videos.each do |v|
+        if v.play_date.to_s==Time.now.to_date.to_s
+          x.users.each do |u|
+            exists = UserExperimentVideo.find_by_user_id_and_video_id_and_experiment_id(u.id, v.id, x.id)
+            if !exists
+              UserExperimentVideo.create(:experiment_id => x.id, :user_id => u.id, :video_id => v.id)
+            end
+          end
+        end
+      end
+    end
+    abort('DONE!')
+  end
+
 
 end

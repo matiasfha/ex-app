@@ -1,0 +1,52 @@
+<%  if !@experiment.user_filters.empty? 
+str = "<div style='padding-left: 30px'><ul>"
+  @experiment.user_filters.order('filter_type ASC').each do |ps|
+  	if ps.value
+	    str = str += "<li>"
+	    if ps.filter_type==1
+	    	str = str += 'Name Contains: <b>'+ps.value+'</b>'
+	    elsif ps.filter_type==2
+	    	ages = ps.value.split(',')
+	    	str = str += 'Ages Between: <b>'+ages[0]+'</b> and <b>'+ages[1]+'</b>'
+	    elsif ps.filter_type==3
+	    	sex = Sex.find_by_id(ps.value)
+	    	if sex
+	    		str = str += 'Belongs to Sex: <b>'+ps.value+'</b>'
+	    	else
+	    		str = str += 'Belongs to <b>any</b> Sex'
+	    	end
+	    elsif ps.filter_type==4
+	    	country = Country.find_by_id(ps.value)
+	    	if country
+	    		str = str += 'Lives in Country <b>'+country.name+'</b>'
+	    	else
+	    		str = str += 'Lives in <b>any</b> Country'
+	    	end
+	    elsif ps.filter_type==5
+	    	city = City.find_by_id(ps.value)
+	    	if city
+	    		str = str += 'Lives in City: <b>'+city.name+'</b>'
+	    	else
+	    		str = str += 'Lives in <b>any</b> City'
+	    	end
+	    elsif ps.filter_type==6
+	    	commune = Commune.find_by_id(ps.value)
+	    	if commune
+	    		str = str += 'Lives in Commune: <b>'+commune.name+'</b>'
+	    	else
+	    		str = str += 'Lives in <b>any</b> Commune'
+	    	end
+	    elsif ps.filter_type==7
+
+	    else
+	    	#otros filtros
+	    	
+	    end
+    	str = str += "</li>"
+	end
+  end
+  str = str+="</ul>"
+else
+  str =  "<ul><li>-</li></ul>" 
+end %>
+<%= str.html_safe %>

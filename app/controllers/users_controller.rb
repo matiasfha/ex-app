@@ -59,7 +59,8 @@ class UsersController < ApplicationController
         end
       end
     end
-    
+    #checkamos donde encaja el usuario y lo ingresamos en esos experimentos
+    @user.where_do_i_fit_in?
 
     respond_to do |format|
       if simple_captcha_valid? and @user.errors[:base].empty? and @user.update_attributes(params[:user])
