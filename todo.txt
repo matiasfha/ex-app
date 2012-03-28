@@ -1,6 +1,6 @@
-concentrarse en la parte de realizar un test
+Mostrar un overlay/marco de colores verde o gris dependiendo si lo ha visto ya o no.
 
-about this video, en la seccion de show/video del usuario.
+que no desaparezca el video
 
 active => video(estadisticas propias del video)
 

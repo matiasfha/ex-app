@@ -63,10 +63,12 @@ class VideosController < ApplicationController
       gflash :error => 'No has ingresado correctamente el captcha o la respuesta acerca del video. Int&eacute;ntalo de nuevo.'
       return redirect_to show_video_path(session[:uev])
     end
-    #modificamos los datos
-    uev.attempts += 1
-    uev.succeded += 1
-    uev.save
+    if uev.succeded==0
+      #modificamos los datos
+      uev.attempts += 1
+      uev.succeded += 1
+      uev.save
+    end
 
     gflash :notice => 'Felicitaciones! Has visto un video. Busca otros para ver'
     return redirect_to home_path
