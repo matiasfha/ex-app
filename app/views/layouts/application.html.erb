@@ -51,8 +51,8 @@
       <div class="well span3" style="padding: 0px 0px 0px 0px; margin: 0px 20px 0px -20px; ">
       <ul class="nav nav-list">
         <h2>MENU</h2>
-        <li class="<%= (controller.controller_name == 'static')&&(controller.action_name == 'home') ? 'active':'normal'  %>"><a href="#"><i class="icon-home icon-white"></i> Inicio</a></li>
-        <li class="<%= (controller.controller_name == 'static')&&(controller.action_name == 'videos') ? 'active':'normal'  %>"><a href="#"><i class="icon-play-circle"></i> Videos Disponibles (<%= current_user.videos_available.to_s %>)</a></li>
+        <li class="<%= (controller.controller_name == 'static')&&(controller.action_name == 'home') ? 'active':'normal'  %>"><a href="#"><i class="icon-home"></i> Inicio</a></li>
+        <li class="<%= (controller.controller_name == 'videos')&&(controller.action_name == 'show') ? 'active':'normal'  %>"><a href="#"><i class="icon-play-circle"></i> Videos Disponibles (<%= current_user.videos_available.to_s %>)</a></li>
         <li class="<%= (controller.controller_name == 'static')&&(controller.action_name == 'accomplishments') ? 'active':'normal'  %>"><a href="#"><i class="icon-play"></i> Mis Logros (<%= current_user.acomplishments.to_s %>)</a></li>
         <li class="<%= (controller.controller_name == 'static')&&(controller.action_name == 'contact') ? 'active':'normal'  %>"><a href="#"><i class="icon-book"></i> Encuestas Disponibles (0)</a></li>
         <li class="<%= (controller.controller_name == 'static')&&(controller.action_name == 'contact') ? 'active':'normal'  %>"><a href="#"><i class="icon-envelope"></i> Contáctanos</a></li>

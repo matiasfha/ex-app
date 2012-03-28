@@ -8,12 +8,10 @@
 			&nbsp;&nbsp;Título 1
     		</a>
     	</li> 
-    	<li>
-    		<a href="#">
-    		<%= image_tag 'square.png' %>
-    		&nbsp;&nbsp;Título 3
-    		</a>
-    	</li> 
+      <li>
+      </li> 
+      <li>
+      </li> 
     	<li>
     		<a href="#">
     		<%= image_tag 'square.png' %>
@@ -23,7 +21,7 @@
       <% current_user.user_experiment_videos.where(:succeded => 0).all.each do |x| %>
         <% if x.video %>
           <li>
-            <a href="<%= show_video_path(x.video_id) %>">
+            <a href="<%= show_video_path(x.id) %>">
             <%= image_tag x.video.preview.url %>
             &nbsp;&nbsp;<%= x.video.name %>
           </li>

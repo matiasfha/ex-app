@@ -38,20 +38,20 @@
 <div class="well span8" id="after" style="height: 330px" >
 	<b>Terminó el video ...  ahora responde las siguientes preguntas:</b><br><br>
 
-	<%= form_for :contact, :url => 'holi' do |f| -%>
+	<%= form_for :contact, :url => submit_captcha_path do |f| -%>
 			<label>Ingresa los caracteres que aparecieron</label>
 			<%= text_field_tag 'captcha_answer', nil, :size => 40 %>
 			<br>
 			<label><%= @video.keywords_question %></label>
-			<%= text_field_tag 'email', @mail, :size => 40, :class => 'typeahead', :autocomplete => :off %>
+			<%= text_field_tag 'keywords_answer', @mail, :size => 40, :class => 'typeahead', :autocomplete => :off %>
 			<br>
-			<input type="hidden" name="questions_amount" value="<%= @video.questions.count.to_s %>" />
+			<input type="hidden" name="answers_ammount" value="<%= @video.questions.count.to_s %>" />
 			<%
 				v = 1
 				@video.questions.each do |q| 
 			%>
 			<label><%= q.name %></label>
-			<%= text_field_tag 'answer_'+v.to_s,nil, :size => 40 %>
+			<%= number_field_tag 'answer_'+v.to_s,nil, :size => 40 %>
 			<br>
 			<% 
 				v += 1
@@ -83,7 +83,7 @@ $(document).ready(function() {
   	
 
 	$('#play').hide();
-	$('#after').hide();
+	//$('#after').hide();
 
 	addEvent(togglePlay, 'click', function () {
 	  video.playbackRate = 1;
@@ -112,6 +112,7 @@ addEvent(video, 'ended', function () {
   $('#after').show();
   $('#after').attr('style','');
   $('#first').html('');
+  $('#first').attr('style','visibility: hidden');
   $('#first').attr('class','');
 });
 

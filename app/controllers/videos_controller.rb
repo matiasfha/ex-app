@@ -42,13 +42,34 @@ class VideosController < ApplicationController
   end
 
   def show
-    @video = Video.find(params[:id])
-    @uev = current_user.user_experiment_videos.where(:video_id => @video.id)
+    @uev = UserExperimentVideo.find(params[:uev])
+    @video = @uev.video
+    session[:uev] = params[:uev]
     length = 4
     @key = (0...length).map{97.+(rand(25)).chr}.join
+    session[:random_chars] = @key
     gon.random_chars = @key
     gon.key_options = @video.keywords.split(', ')
 
+  end
+
+  def submit_captcha
+    uev = UserExperimentVideo.find(session[:uev])
+    v = uev.video
+    unless session[:random_chars]==params[:captcha_answer]&&v.correct_keyword==params[:keywords_answer]
+      #modificamos los datos
+      uev.attempts += 1
+      uev.save
+      gflash :error => 'No has ingresado correctamente el captcha o la respuesta acerca del video. Int&eacute;ntalo de nuevo.'
+      return redirect_to show_video_path(session[:uev])
+    end
+    #modificamos los datos
+    uev.attempts += 1
+    uev.succeded += 1
+    uev.save
+
+    gflash :notice => 'Felicitaciones! Has visto un video. Busca otros para ver'
+    return redirect_to home_path
   end
 
 end

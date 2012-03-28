@@ -16,7 +16,7 @@ class Ability
       can [:show, :edit, :update ], User do |u|
         u.id == user.id
       end
-      can [:show ], Video do |v|
+      can [:show, :submit_captcha ], Video do |v|
         !user.user_experiment_videos.where(:video_id => v.id).empty?
       end
 
