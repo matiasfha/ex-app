@@ -39,10 +39,8 @@
 	var timer = parseInt('<%= @video.character_duration %>')
   	
 
-	$(document).ready(function() {
-		$('#play').hide();
-		$('#after').hide();
-	});
+	$('#play').hide();
+	$('#after').hide();
 
 	addEvent(togglePlay, 'click', function () {
 	  video.playbackRate = 1;
@@ -58,6 +56,7 @@
 
 addEvent(video, 'timeupdate', function () {
   position.innerHTML = asTime(this.currentTime);
+  alert(this.currentTime);
   if(this.currentTime % timer == 0){
   	alert('cambiando letras');
   }
