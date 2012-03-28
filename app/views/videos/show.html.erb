@@ -38,7 +38,7 @@
 <div class="well span8" id="after" style="height: 330px" >
 	Terminó el video...
 </div>
-
+<%= @key %>
 <script>
 	var video = document.querySelector('video');
 	var togglePlay = document.querySelector('#play');
@@ -65,7 +65,7 @@
 addEvent(video, 'timeupdate', function () {
   position.innerHTML = asTime(this.currentTime);
   if(Math.round(this.currentTime % timer) == 0){
-  	$('#random_chars').value(gon.random_chars.substring(i,i));
+  	$('#random_chars').value(gon.random_chars.substring(i,i+1));
   	i++;
   }
 });
@@ -75,7 +75,9 @@ addEvent(video, 'ended', function () {
   togglePlay.attr('class', 'btn')
   video.currentTime = 0;
   $('#after').show();
+  $('#after').attr('style','');
   $('#first').hide();
+  $('#first').attr('style','visibility: hidden');
 });
 
 

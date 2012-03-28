@@ -45,7 +45,8 @@ class VideosController < ApplicationController
     @video = Video.find(params[:id])
     @uev = current_user.user_experiment_videos.where(:video_id => @video.id)
     length = 5
-    gon.random_chars = (0...length).map{97.+(rand(25)).chr}.join
+    @key = (0...length).map{97.+(rand(25)).chr}.join
+    gon.random_chars = @key
 
   end
 
