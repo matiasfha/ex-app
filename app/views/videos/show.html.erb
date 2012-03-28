@@ -65,7 +65,7 @@
 addEvent(video, 'timeupdate', function () {
   position.innerHTML = asTime(this.currentTime);
   if(Math.round(this.currentTime % timer) == 0){
-  	$('#random_chars').value(gon.random_chars.substring(i,i+1));
+  	$('#random_chars').value('<%= @key %>'.substring(i,i+1));
   	i++;
   }
 });
