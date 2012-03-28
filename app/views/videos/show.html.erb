@@ -5,11 +5,18 @@
           		<source src="<%= @video.content!=nil ? @video.content.url : '#' %>" />
           	<% end %>
           </video>
-          <p>
+          <div class="span3" >
+          	<p>
             <input type="button" id="play" value="Play" class="btn">
             <input type="button" id="waiting" value="Esperando" class="btn disabled">
             <span id="position">00:00</span> / <span id="duration"></span>
-          </p>
+            </p>
+          </div>
+          <div class="span1" style="background-color: #000; color: #fff; font-size: 150%; text-align: center" >
+          	<br>
+          	&nbsp;<span id="random_chars" ></span>
+          	<br><br>
+          </div>
 
 	</div>
 	<div class="span3" style="margin-right: -20px">
@@ -56,8 +63,7 @@
 
 addEvent(video, 'timeupdate', function () {
   position.innerHTML = asTime(this.currentTime);
-  alert(this.currentTime);
-  if(this.currentTime % timer == 0){
+  if(Math.round(this.currentTime % timer) == 0){
   	alert('cambiando letras');
   }
 });
