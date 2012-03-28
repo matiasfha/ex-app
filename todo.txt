@@ -4,6 +4,8 @@ que no desaparezca el video
 
 active => video(estadisticas propias del video)
 
+datos extre de experimento: rubro, marca, producto, nobre del spot
+
 desactivar un usuario cuando no ve videos en una semana.
 
 Calendario de experimentos en el dashboard

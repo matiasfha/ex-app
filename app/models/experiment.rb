@@ -34,7 +34,7 @@ class Experiment < ActiveRecord::Base
               ages = e.split(',')
               min = Integer(ages[0])
               max = Integer(ages[1])
-              if min.years.ago>u.birthdate&&max.years.ago<u.birthdate
+              if u.birthdate&&min.years.ago>u.birthdate&&max.years.ago<u.birthdate
                 matches = true
               end
             end
