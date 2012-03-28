@@ -36,7 +36,8 @@
 </div>
 
 <div class="well span8" id="after" style="height: 330px" >
-	Terminó el video...
+	<b>Terminó el video... ahora responde las siguientes preguntas:</b>
+
 </div>
 <%= @key %>
 <script>
@@ -65,17 +66,16 @@
 addEvent(video, 'timeupdate', function () {
   position.innerHTML = asTime(this.currentTime);
   if(Math.round(this.currentTime % timer) == 0){
-  	$('#random_chars').val('<%= @key %>'.substring(i,i+1));
-  	alert('<%= @key %>'.substring(i,i+1))
+  	$('#random_chars').innerHTML('<%= @key %>'.substring(i,i+1));
   	i++;
   }
 });
 
 addEvent(video, 'ended', function () {
-  togglePlay.value = "Play";
+  alert('holi');
+  togglePlay.value = "Played";
   togglePlay.attr('class', 'btn')
   video.currentTime = 0;
-  alert('holi');
   $('#after').show();
   $('#after').attr('style','');
   $('#first').hide();
