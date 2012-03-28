@@ -1,4 +1,4 @@
-<div class="well span8" style="height: 330px" >
+<div class="well span8" id="first" style="height: 330px" >
 	<div class="span5">
 		  <video preload="metadata" height="240" width="360">
           	<% if @video %>
@@ -46,10 +46,11 @@
 
 	addEvent(togglePlay, 'click', function () {
 	  video.playbackRate = 1;
-	  if (video.paused) {
+	  if (video.paused&&this.value=="Play") {
 	    if (video.ended) video.currentTime = 0;
 	    video.play();
 	    this.value = " --- ";
+	    this.attr('class', 'btn disabled')
 	  } else {
 	    this.value = " --- ";
 	  }
@@ -57,15 +58,17 @@
 
 addEvent(video, 'timeupdate', function () {
   position.innerHTML = asTime(this.currentTime);
-  if(this.currentTime % timer){
+  if(this.currentTime % timer == 0){
   	alert('cambiando letras');
   }
 });
 
 addEvent(video, 'ended', function () {
-  togglePlay.value = "play";
+  togglePlay.value = "Play";
+  togglePlay.attr('class', 'btn')
   video.currentTime = 0;
   $('#after').show();
+  $('#first').hide();
 });
 
 
