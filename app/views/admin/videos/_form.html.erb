@@ -19,12 +19,12 @@
                   <input type="button" id="play" value="Play" class="btn">
                   <span id="position">00:00</span> / <span id="duration"></span>
                 </p>
-                <%= file_field_tag :content %>
+                <%= f.file_field :video %>
             </li>
             <li class="string optional" id="store_address_input">
                 <label for="store_address">Preview</label>
-                <img src="<%= @f_video.preview!=nil ? @f_video.preview.url : '#' %>" />
-                <%= file_field_tag :preview %>
+                <img src="<%= @f_video.preview.to_s!='/previews/original/missing.png' ? @f_video.preview.url : '/assets/missing.png' %>" />
+                <%= f.file_field :preview %>
             </li>
             <li class="string optional" id="store_address_input">
                 <label for="store_address">Description</label>

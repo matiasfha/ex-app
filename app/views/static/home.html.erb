@@ -21,11 +21,13 @@
     		</a>
     	</li>
       <% current_user.user_experiment_videos.where(:succeded => 0).all.each do |x| %>
-        <li>
-          <a href="<%= show_video_path(x.video_id) %>">
-          <%= image_tag x.video.preview.url %>
-          &nbsp;&nbsp;<%= x.video.name %>
-        </li>
+        <% if x.video %>
+          <li>
+            <a href="<%= show_video_path(x.video_id) %>">
+            <%= image_tag x.video.preview.url %>
+            &nbsp;&nbsp;<%= x.video.name %>
+          </li>
+        <% end %>
       <% end %>
     </ul>	
 	</div>

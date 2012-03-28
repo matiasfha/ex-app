@@ -23,9 +23,10 @@ class VideosController < ApplicationController
     if params[:correct_keyword]
       @video.correct_keyword = params[:correct_keyword]
     end
-  	if params[:keywords]
-  		@video.keywords = params[:keywords]
+    if params[:keywords]
+      @video.keywords = params[:keywords]
     end
+    @video.update_attributes(params[:video])
     @video.save
     #agregamos las preguntas
     i = 0
