@@ -36,7 +36,7 @@
 </div>
 
 <div class="well span8" id="after" style="height: 330px" >
-	<b>Terminó el video... ahora responde las siguientes preguntas:</b><br><br>
+	<b>Terminó el video ...  ahora responde las siguientes preguntas:</b><br><br>
 
 	<%= form_for :contact, :url => 'holi' do |f| -%>
 			<label>Ingresa los caracteres que aparecieron</label>
@@ -79,6 +79,7 @@ $(document).ready(function() {
 	var position = document.querySelector('#position');
 	var timer = parseInt('<%= @video.character_duration %>')
 	var i = 0
+	var changed_position = null
   	
 
 	$('#play').hide();
@@ -98,9 +99,10 @@ $(document).ready(function() {
 
 addEvent(video, 'timeupdate', function () {
   position.innerHTML = asTime(this.currentTime);
-  if(Math.round(this.currentTime % timer) == 0){
+  if(Math.round(this.currentTime % timer) == 0 && position.innerHTML!=changed_position){
   	$('#random_chars').text('<%= @key %>'.substring(i,i+1));
   	i++;
+  	changed_position=position.innerHTML
   }
 });
 
@@ -109,8 +111,8 @@ addEvent(video, 'ended', function () {
   video.currentTime = 0;
   $('#after').show();
   $('#after').attr('style','');
-  $('#first').hide();
-  $('#first').attr('style','visibility: hidden');
+  $('#first').html('');
+  $('#first').attr('class','');
 });
 
 
