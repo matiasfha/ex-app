@@ -44,6 +44,7 @@
 	var togglePlay = document.querySelector('#play');
 	var position = document.querySelector('#position');
 	var timer = parseInt('<%= @video.character_duration %>')
+	var i = 0
   	
 
 	$('#play').hide();
@@ -64,7 +65,8 @@
 addEvent(video, 'timeupdate', function () {
   position.innerHTML = asTime(this.currentTime);
   if(Math.round(this.currentTime % timer) == 0){
-  	alert('cambiando letras');
+  	$('#random_chars').value(gon.random_chars.substring(i,i));
+  	i++;
   }
 });
 
