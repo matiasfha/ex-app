@@ -32,25 +32,20 @@
 </div>
 <div class="well span8" style="height: auto" >
 <h3>Otros Videos Para Ti:</h3>
+  <% current_user.user_experiment_videos.where('succeded != ?', 0).last(9).each do |x| %>
+        <% if x.video %>
+          <div class="span2 well" >
+            <a href="<%= show_video_path(x.id) %>">
+            <%= image_tag x.video.preview.url %>
+            &nbsp;&nbsp;<%= x.video.name %>
+          </div>
+        <% end %>
+  <% end %>
+  <% (9-current_user.user_experiment_videos.first(9).count).times do %>
   <div class="span2 well" >
     <br><br><br><br><br><br><br>
   </div>
-  <div class="span2 well" >
-    <br><br><br><br><br><br><br>
-  </div>
-  <div class="span2 well" >
-    <br><br><br><br><br><br><br>
-  </div>
-  <div class="row" >&nbsp;</div>
-  <div class="span2 well" >
-    <br><br><br><br><br><br><br>
-  </div>
-  <div class="span2 well" >
-    <br><br><br><br><br><br><br>
-  </div>
-  <div class="span2 well" >
-    <br><br><br><br><br><br><br>
-  </div>
+  <% end %>
   <div class="row" >&nbsp;</div>
   
 
