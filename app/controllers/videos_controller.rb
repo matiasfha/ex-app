@@ -47,6 +47,7 @@ class VideosController < ApplicationController
     length = 4
     @key = (0...length).map{97.+(rand(25)).chr}.join
     gon.random_chars = @key
+    gon.key_options = @video.keywords.split(', ')
 
   end
 

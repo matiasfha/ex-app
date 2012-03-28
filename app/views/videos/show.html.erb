@@ -36,11 +36,44 @@
 </div>
 
 <div class="well span8" id="after" style="height: 330px" >
-	<b>Terminó el video... ahora responde las siguientes preguntas:</b>
+	<b>Terminó el video... ahora responde las siguientes preguntas:</b><br><br>
+
+	<%= form_for :contact, :url => 'holi' do |f| -%>
+			<label>Ingresa los caracteres que aparecieron</label>
+			<%= text_field_tag 'captcha_answer', nil, :size => 40 %>
+			<br>
+			<label><%= @video.keywords_question %></label>
+			<%= text_field_tag 'email', @mail, :size => 40, :class => 'typeahead', :autocomplete => :off %>
+			<br>
+			<input type="hidden" name="questions_amount" value="<%= @video.questions.count.to_s %>" />
+			<%
+				v = 1
+				@video.questions.each do |q| 
+			%>
+			<label><%= q.name %></label>
+			<%= text_field_tag 'answer_'+v.to_s,nil, :size => 40 %>
+			<br>
+			<% 
+				v += 1
+				end
+			 %>
+			<input name="commit" type="submit" value="Enviar" class="btn btn-info">
+			
+	<% end %>
 
 </div>
 <%= @key %>
 <script>
+
+$(document).ready(function() {
+
+        $('.typeahead').typeahead({
+          source: gon.key_options
+        });
+     
+      });
+
+
 	var video = document.querySelector('video');
 	var togglePlay = document.querySelector('#play');
 	var position = document.querySelector('#position');
@@ -66,15 +99,13 @@
 addEvent(video, 'timeupdate', function () {
   position.innerHTML = asTime(this.currentTime);
   if(Math.round(this.currentTime % timer) == 0){
-  	$('#random_chars').innerHTML('<%= @key %>'.substring(i,i+1));
+  	$('#random_chars').text('<%= @key %>'.substring(i,i+1));
   	i++;
   }
 });
 
 addEvent(video, 'ended', function () {
-  alert('holi');
   togglePlay.value = "Played";
-  togglePlay.attr('class', 'btn')
   video.currentTime = 0;
   $('#after').show();
   $('#after').attr('style','');
