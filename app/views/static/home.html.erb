@@ -34,10 +34,11 @@
 <h3>Otros Videos Para Ti:</h3>
   <% current_user.user_experiment_videos.where('succeded != ?', 0).last(9).each do |x| %>
         <% if x.video %>
-          <div class="span2 well" >
+          <div class="span2 well" style="height: 200px" >
             <a href="<%= show_video_path(x.id) %>">
-            <%= image_tag x.video.preview.url, :class => 'preview' %>
+            <%= image_tag x.video.preview.url, :class => 'preview'  %>
             &nbsp;&nbsp;<%= x.video.name %>
+            </a>
           </div>
         <% end %>
   <% end %>
