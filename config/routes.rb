@@ -45,7 +45,7 @@ Alzheimer::Application.routes.draw do
   #automated
   match 'start_todays_experiments/:secret' => 'experiments#start_todays_experiments'
 
-  root :to => 'sessions#new'
+  root :to => 'static#prerelease'
 
   get "log_out" => "sessions#destroy", :as => "log_out"
   get "log_in" => "sessions#new", :as => "log_in"

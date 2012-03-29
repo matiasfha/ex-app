@@ -13,3 +13,8 @@ Calendario de experimentos en el dashboard
 cerrar un experimento cuando se llegue a una meta predicha. Ej: a las 1000 reproducciones se termina
 
 en un experimento sería bueno sabes cuantas personas distintas han visto videos en este expermento, de cuantos califica. Cuantas reproducciones potenciales hay para todo el experimento y cuantos se han reproducido. Esto mismo diario. ADHERENCIA AL TRATAMIENTO
+
+
+JMB:
+varias preguntas
+desactivar el autocompletado cuando el usuario es muy bueno.

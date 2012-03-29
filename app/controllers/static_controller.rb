@@ -10,4 +10,10 @@ class StaticController < ApplicationController
   	@key = (0...length).map{97.+(rand(25)).chr}.join
   	
   end
+
+  def prerelease
+  	return render :layout => nil
+  end
+
+
 end

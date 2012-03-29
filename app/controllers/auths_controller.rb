@@ -5,12 +5,6 @@ class AuthsController < ApplicationController
     @authentications = current_user.authentications if current_user
   end
   
-  def create_omniauth
-    auth = request.env["omniauth.auth"]
-    current_user.authentications.find_or_create_by_provider_and_uid(auth['provider'], auth['uid'])
-    flash[:notice] = "Autenticacion exitosa."
-    redirect_to root_path
-  end
 
   def create
     auth = request.env["omniauth.auth"]
@@ -115,6 +109,6 @@ class AuthsController < ApplicationController
     @authentication = current_user.authentications.find(params[:id])
     @authentication.destroy
     flash[:notice] = "Relacion destruida correctamente."
-    redirect_to root_path
+    redirect_to home_path
   end
 end

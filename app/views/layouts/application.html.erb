@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Alzheimer</title>
+  <title>Dandoo - Adverstising</title>
   <%= stylesheet_link_tag    "application", :media => "all" %>
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
@@ -26,8 +26,8 @@
 
   <% if (controller.controller_name == 'sessions')&&(controller.action_name == 'new') %>
     <div class="row clear">&nbsp;</div>
-    <a href="<%= root_path %>" style=" text-decoration: none">
-  	  <h1 style="text-align: center; margin-top: 0px">Alzheimer</h1>
+    <a href="<%= home_path %>" style=" text-decoration: none">
+  	  <h1 style="text-align: center; margin-top: 0px">Dandoo</h1>
     </a>
   <% else %>
     <div class="row">
@@ -40,8 +40,8 @@
       </span>
     </div>
     <div id="user_nav" class="span7 pull-left" style="height: 90%" >
-      <a href="<%= root_path %>" style=" text-decoration: none">
-        <h1>Alzheimer</h1>
+      <a href="<%= home_path %>" style=" text-decoration: none">
+        <h1>Dandoo</h1>
       </a>
     </div>
     </div>
@@ -75,7 +75,7 @@
 </section>
 <section class="container hero-unit" style="height: 0px; ">
     <div class="row top-round-bordered bottom-round-bordered" style="margin-top: -20px;margin-bottom: 20px;padding: -50px;">
-      <pre style="width: 960px; color:#444"> <i style="height: 50px"> ©Todos los derechos reservados <a href="<%= root_path %>">POS</a> <%= Time.now.year.to_s %> </i> <i class="pull-right"> Powered by <a href="http://www.brainshots.cl">Brainshots&nbsp;<img src="/assets/logo_schof2.png" style="height: 20px; margin-bottom: -5px"></a>  </i></pre>    
+      <pre style="width: 960px; color:#444"> <i style="height: 50px"> ©Todos los derechos reservados <a href="<%= home_path %>">POS</a> <%= Time.now.year.to_s %> </i> <i class="pull-right"> Powered by <a href="http://www.brainshots.cl">Brainshots&nbsp;<img src="/assets/logo_schof2.png" style="height: 20px; margin-bottom: -5px"></a>  </i></pre>    
     </div>
 </section>
 
