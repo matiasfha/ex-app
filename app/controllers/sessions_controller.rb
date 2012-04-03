@@ -25,6 +25,7 @@ class SessionsController < ApplicationController
         user.password_confirmation = params[:password]
         user.save
         if user.id
+          session[:user_id] = user.id
           gflash :success => "Tu usuario ha sido creado!"
           redirect_to edit_user_path(user.id, :password_confirmation => true)
         else
@@ -38,7 +39,7 @@ class SessionsController < ApplicationController
   
   def destroy
     session[:user_id] = nil
-    redirect_to root_url, :notice => "Has cerrado sesi&oacute;n!"
+    redirect_to home_url, :notice => "Has cerrado sesi&oacute;n!"
   end
 
 end

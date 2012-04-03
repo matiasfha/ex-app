@@ -91,6 +91,7 @@ class ExperimentsController < ApplicationController
     return render :nothing => true  
   end
 
+
   def start_todays_experiments
     unless params[:secret]=='jjuj3kcx9kdn3ndk23jdmxzn23dm'
       return render :nothing => true
@@ -108,7 +109,7 @@ class ExperimentsController < ApplicationController
         end
       end
     end
-    abort('DONE!')
+    render :layout => nil
   end
 
 
