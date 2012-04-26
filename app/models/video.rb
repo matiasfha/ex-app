@@ -8,7 +8,7 @@ class Video < ActiveRecord::Base
   has_many :experiments, :through => :user_experiment_videos
 
 
-  has_attached_file :content   
+  has_attached_file :content,
                     :storage => :s3,
                     :bucket => 'dandoo-videos',
                     :s3_credentials => {
