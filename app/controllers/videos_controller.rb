@@ -37,7 +37,6 @@ class VideosController < ApplicationController
     	name = (params['value_'+(i).to_s])
     	Question.create(:video_id => @video.id, :name => name)
     end
-    abort(@video.id.to_s)
     return redirect_to admin_video_path(@video.id)
   end
 
