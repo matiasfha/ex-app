@@ -19,8 +19,8 @@
       <% current_user.user_experiment_videos.where(:succeded => 0).all.each do |x| %>
         <% if x.video %>
           <li>
-            <a href="<%= show_video_path(x.id) %>">
-            <%= image_tag x.video.preview.url %>
+            <a href="<%= show_video_path(x.id) %>" class="fancybox" >
+            <%= image_tag x.video.preview(:medium) %>
             &nbsp;&nbsp;<%= x.video.name %>
           </li>
         <% end %>
