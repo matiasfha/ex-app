@@ -9,27 +9,27 @@ class VideosController < ApplicationController
   	else
   		#creamos
   		@video = Video.new
+      if params[:name]
+        @video.name = params[:name]
+      end
+      if params[:description]
+        @video.description = params[:description]
+      end
+      if params[:character_duration]
+        @video.character_duration = params[:character_duration]
+      end
+      if params[:keywords_question]
+        @video.keywords_question = params[:keywords_question]
+      end
+      if params[:correct_keyword]
+        @video.correct_keyword = params[:correct_keyword]
+      end
+      if params[:keywords]
+        @video.keywords = params[:keywords]
+      end
+      @video.save
   	end
-  	if params[:name]
-  		@video.name = params[:name]
-    end
-  	if params[:description]
-  		@video.description = params[:description]
-    end
-  	if params[:character_duration]
-  		@video.character_duration = params[:character_duration]
-    end
-    if params[:keywords_question]
-      @video.keywords_question = params[:keywords_question]
-    end
-    if params[:correct_keyword]
-      @video.correct_keyword = params[:correct_keyword]
-    end
-    if params[:keywords]
-      @video.keywords = params[:keywords]
-    end
     @video.update_attributes(params[:video])
-    @video.save
     #agregamos las preguntas
     i = 0
     Integer(params[:questions_ammount]).times do 
@@ -37,7 +37,6 @@ class VideosController < ApplicationController
     	name = (params['value_'+(i).to_s])
     	Question.create(:video_id => @video.id, :name => name)
     end
-
     return redirect_to admin_video_path(@video.id)
   end
 
