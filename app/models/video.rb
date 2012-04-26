@@ -8,22 +8,22 @@ class Video < ActiveRecord::Base
   has_many :experiments, :through => :user_experiment_videos
 
 
-  has_attached_file :content,        
+  has_attached_file :content, :styles => { :medium => "300x300>", :thumb => "64x64>" },   
                     :storage => :s3,
                     :bucket => 'alzheimer-videos',
                     :s3_credentials => {
                       :access_key_id => 'AKIAJK5NVAGQBRCX4GQA',
                       :secret_access_key => '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'
                     },
-                    :path => ":attachment/:id/:basename.:extension"
+                    :path => ":attachment/:id/:style.:basename.:extension"
 
-  has_attached_file :preview,        
+  has_attached_file :preview, :styles => { :medium => "300x300>", :thumb => "64x64>" },   
                     :storage => :s3,
                     :bucket => 'alzheimer-videos-preview',
                     :s3_credentials => {
                       :access_key_id => 'AKIAJK5NVAGQBRCX4GQA',
                       :secret_access_key => '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'
                     },
-                    :path => ":attachment/:id/:basename.:extension"
+                    :path => ":attachment/:id/:style.:basename.:extension"
 
 end

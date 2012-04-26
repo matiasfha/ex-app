@@ -126,7 +126,7 @@
       <%= f.label :avatar, :class => 'help-block' %>
     </div>
     <div class="controls span3">
-      <%= image_tag (@user.avatar.url!='/avatars/original/missing.png' ? @user.avatar.url : @user.image!='' ? @user.image : 'missing.png' ), :class => 'avatar pull-left' %>
+      <%= image_tag (@user.avatar.url!='/avatars/original/missing.png' ? @user.avatar.url : @user.image!=''&&@user.image!=nil ? @user.image : 'missing.png' ), :class => 'avatar pull-left' %>
       <br>
       <%= f.file_field :avatar %>
     </div>

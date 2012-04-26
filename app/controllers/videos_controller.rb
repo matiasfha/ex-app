@@ -50,7 +50,7 @@ class VideosController < ApplicationController
     session[:random_chars] = @key
     gon.random_chars = @key
     gon.key_options = @video.keywords.split(', ')
-
+    return render :layout => nil
   end
 
   def submit_captcha

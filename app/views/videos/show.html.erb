@@ -1,11 +1,23 @@
-<div class="well span8" id="first" style="height: 330px" >
+<%= stylesheet_link_tag    "application", :media => "all" %>
+<%= javascript_include_tag "application" %>
+<%= include_gon %>
+<%= stylesheet_link_tag    "videojs.css", :media => "all" %>
+<%= gflash %>
+
+<script src="http://vjs.zencdn.net/c/video.js"></script>
+<div class="well span8" id="first" style="height: 330px; margin: 0px 0px 0px 0px" >
 	<div class="span5">
-		  <video preload="metadata" height="240" width="360">
-          	<% if @video %>
-          		<source src="<%= @video.content!=nil ? @video.content.url : '#' %>" />
+
+		  
+          <video id="my_video_1" class="video-js vjs-default-skin" controls
+		    preload="auto" width="580" height="264" 
+		    data-setup="{}">
+		    <source src="<%= false&&@video.content!=nil ? @video.content.url : '/assets/dizzy.mp4' %>" />
+		    <% if true||@video %>
+          		<source src="<%= false&&@video.content!=nil ? @video.content.url : '/assets/dizzy.mp4' %>" type='video/mp4'>
           	<% end %>
-          </video>
-          <div class="span3" >
+		  </video>
+          <div class="span3" style="display: none" >
           	<p>
             <input type="button" id="play" value="Play" class="btn">
             <input type="button" id="waiting" value="Esperando" class="btn disabled">
@@ -19,7 +31,8 @@
           </div>
 
 	</div>
-	<div class="span3" style="margin-right: -20px">
+	<div class='row' >&nbsp;</div>
+	<!--div class="span3" style="margin-right: -20px">
 		<b>Acerca de los videos:</b>
 		<br>-Mira el video mientras pones <i>atención</i> a los caracteres que aparecerán al costado.
 		<br>
@@ -32,7 +45,7 @@
 		<b>Descripción del video:</b><br>
 		<%= @video.description %>
 
-	</div>
+	</div-->
 </div>
 
 <div class="well span8" id="after" style="height: 330px" >
@@ -80,30 +93,39 @@ $(document).ready(function() {
 	var i = 0
 	var changed_position = null
   	
+	$('.vjs-progress-control .vjs-control').click(function(e) {
+		alert('?')
+          e.preventDefault();
+      });
+
+	$('.vjs-progress-holder').click(function(e) {
+		alert('?')
+          e.preventDefault();
+      });
 
 	$('#play').hide();
 	$('#after').hide();
 
-	addEvent(togglePlay, 'click', function () {
-	  video.playbackRate = 1;
-	  if (video.paused&&this.value=="Play") {
-	    if (video.ended) video.currentTime = 0;
-	    video.play();
-	    this.value = " --- ";
-	    this.attr('class', 'btn disabled')
-	  } else {
-	    this.value = " --- ";
-	  }
-	});
+	// addEvent(togglePlay, 'click', function () {
+	//   video.playbackRate = 1;
+	//   if (video.paused&&this.value=="Play") {
+	//     if (video.ended) video.currentTime = 0;
+	//     video.play();
+	//     this.value = " --- ";
+	//     $(this).attr('class', 'btn disabled')
+	//   } else {
+	//     this.value = " --- ";
+	//   }
+	// });
 
-addEvent(video, 'timeupdate', function () {
-  position.innerHTML = asTime(this.currentTime);
-  if(Math.round(this.currentTime % timer) == 0 && position.innerHTML!=changed_position){
-  	$('#random_chars').text('<%= @key %>'.substring(i,i+1));
-  	i++;
-  	changed_position=position.innerHTML
-  }
-});
+ addEvent(video, 'timeupdate', function () {
+   position.innerHTML = asTime(this.currentTime);
+   if(Math.round(this.currentTime % timer) == 0 && position.innerHTML!=changed_position){
+   	$('#random_chars').text('<%= @key %>'.substring(i,i+1));
+   	i++;
+   	changed_position=position.innerHTML
+   }
+ });
 
 addEvent(video, 'ended', function () {
   togglePlay.value = "Played";
@@ -116,12 +138,12 @@ addEvent(video, 'ended', function () {
 });
 
 
-addEvent(video, 'canplay', function () {
-  video.muted = false;
-  document.querySelector('#duration').innerHTML = asTime(this.duration);
-  $('#play').show();
-  $('#waiting').hide();
-});
+ addEvent(video, 'canplay', function () {
+   video.muted = false;
+   document.querySelector('#duration').innerHTML = asTime(this.duration);
+   $('#play').show();
+   $('#waiting').hide();
+ });
 
 function asTime(t) {
   t = Math.round(t);

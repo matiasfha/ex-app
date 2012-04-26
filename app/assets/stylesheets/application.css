@@ -11,6 +11,8 @@
  *= require bootstrap
  *= require buttons
  *= require global
+ *= require demo
  *= require datepicker
+ *= require fancybox
  *= require gritter
 */

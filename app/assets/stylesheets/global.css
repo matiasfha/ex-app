@@ -153,12 +153,13 @@ img {
 .roundabout-holder {
    list-style: none;
    height: 300px;
-   width: 530px;
+   width: 830px;
    margin-top: -50px;
+   margin-bottom: -80px;
 }
 .roundabout-moveable-item {
    height: 200px;
-   width: 200px;
+   width: 400px;
    cursor: pointer;
    background-color: #f5f5f5;
    border: 1px solid #f5f5f5;
