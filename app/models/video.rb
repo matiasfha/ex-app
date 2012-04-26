@@ -10,7 +10,7 @@ class Video < ActiveRecord::Base
 
   has_attached_file :content, :styles => { :medium => "300x300>", :thumb => "64x64>" },   
                     :storage => :s3,
-                    :bucket => 'alzheimer-videos',
+                    :bucket => 'dandoo-videos',
                     :s3_credentials => {
                       :access_key_id => 'AKIAJK5NVAGQBRCX4GQA',
                       :secret_access_key => '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'
@@ -19,7 +19,7 @@ class Video < ActiveRecord::Base
 
   has_attached_file :preview, :styles => { :medium => "300x300>", :thumb => "64x64>" },   
                     :storage => :s3,
-                    :bucket => 'alzheimer-videos-preview',
+                    :bucket => 'dandoo-videos-preview',
                     :s3_credentials => {
                       :access_key_id => 'AKIAJK5NVAGQBRCX4GQA',
                       :secret_access_key => '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'
