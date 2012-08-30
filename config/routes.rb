@@ -1,4 +1,12 @@
 DandooDev::Application.routes.draw do
+
+  match '/auth/:provider/callback'  => 'sessions#create'
+  match '/auth/failure'             => 'sessions#failure'
+  match '/logout'                   => 'sessions#destroy', :as => :logout
+  
+
+  root :to => 'home#index'
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
@@ -48,7 +56,7 @@ DandooDev::Application.routes.draw do
 
   # You can have the root of your site routed with "root"
   # just remember to delete public/index.html.
-  # root :to => 'welcome#index'
+  #
 
   # See how all your routes lay out with "rake routes"
 

@@ -1,13 +1,29 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>DandooDev</title>
+  <title>Dandoo.tv</title>
   <%= stylesheet_link_tag    "application", :media => "all" %>
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
 </head>
 <body>
-
+	<ul>
+		<% if user_loged_in? %>
+			<li>
+				Logeado como <%=current_user.nombre %>
+			</li>
+			<li>
+				<%= link_to('Salir',logout_path) %>
+			</li>
+		<% else %>
+			<li>
+				<%= link_to('Ingresar con Twitter',"/auth/twitter") %>
+			</li>
+			<li>
+				<%= link_to('Ingresar con Facebook',"/auth/facebook") %>
+			</li>
+		<% end %>
+	</ul>
 <%= yield %>
 
 </body>
