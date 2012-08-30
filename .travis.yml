@@ -1,0 +1,16 @@
+#whitelist
+branches:
+	only:
+		- reinit
+notifications:
+	email:
+		- matias@dandoo.tv
+
+language: ruby
+
+rvm:
+	- 1.9.3
+
+before_install:
+	- gem update --system
+	- gem  --version
