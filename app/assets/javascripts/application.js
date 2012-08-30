@@ -12,8 +12,4 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require roundabout
-//= require gritter
-//= require h5utils
-//= require tinymce
-//= require tinymce-jquery
+//= require_tree .
