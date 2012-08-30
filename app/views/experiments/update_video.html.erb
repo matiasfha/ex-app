@@ -1,0 +1,12 @@
+<label for="store_store_type_id">Video <%= @index %></label>
+<b style="color: #5E6469">Name:</b>&nbsp;&nbsp;
+<%= select_tag 'video_'+@index.to_s, options_for_select(Video.order('name ASC').all.map {|r| [r.name,r.id] } ) %>
+&nbsp;&nbsp;
+<b style="color: #5E6469">Start Date:</b>&nbsp;&nbsp;
+<%= select_date  Time.now, :prefix => 'start_video_'+@index.to_s    %>
+&nbsp;&nbsp;
+<b style="color: #5E6469">End Date:</b>&nbsp;&nbsp;
+<%= select_date  Time.now, :prefix => 'end_video_'+@index.to_s    %>
+&nbsp;&nbsp;
+<b style="color: #5E6469">Frequency:</b>&nbsp;&nbsp;
+<%= number_field_tag 'frequency_'+@index.to_s    %>

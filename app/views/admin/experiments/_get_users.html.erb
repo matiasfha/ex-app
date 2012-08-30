@@ -1,0 +1,28 @@
+
+<div id="preview" style="visibility: visible" >
+	<%= experiment.users.count.to_s+' Users' %>&nbsp;<%= link_to("Preview", '#users', :target => 'blank', :id => 'users_preview') %>
+</div>
+
+<div id="users_list" style="visibility: hidden" >
+	<b>Users List: </b><br>
+	<% experiment.users.each do |u| %>
+		<%= u.first_name+' '+ u.last_name %><br>
+	<% end %>
+</div>
+
+
+<script language="javascript" type="text/javascript">
+    
+    $(document).ready(function() {
+
+        $('#users_preview').click(function(e) {
+          e.preventDefault();
+          $('#users_list').attr('style', 'visibility: visible');
+          $('#users_list').show();
+          $('#preview').hide();
+        });
+
+                  
+    });
+
+</script>

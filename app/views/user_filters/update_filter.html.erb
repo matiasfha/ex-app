@@ -1,0 +1,84 @@
+<label for="store_store_type_id">Video <%= @index %></label>
+<b style="color: #5E6469">Name:</b>&nbsp;&nbsp;
+<%= select_tag 'type_'+@index.to_s, options_for_select([['Name', 1], ['Birthdate', 2], ['Sex', 3], ['Country', 4], ['City', 5], ['Commune', 6]].map {|r| [r[0],r[1]] } ), :class => 'type_select' %>
+&nbsp;&nbsp;
+<b style="color: #5E6469" class="label_<%= @index.to_s %>">Value:</b>&nbsp;&nbsp;
+<%= text_field_tag '1value_'+@index.to_s, nil, :style => 'width: 300px', :class => 'hide_me_'+@index.to_s    %>
+<%= select_tag '3value_'+@index.to_s, options_for_select((Sex.order('name ASC').all.map {|r| [r.name,r.id] } )<<["Any", Sex.last.id+1]), :style => 'width: 300px; visibility: hidden', :class => 'hide_me_'+@index.to_s %>
+<%= select_tag '4value_'+@index.to_s, options_for_select((Country.order('name ASC').all.map {|r| [r.name,r.id] })<<["Any", Country.last.id+1]), :style => 'width: 300px; visibility: hidden', :class => 'hide_me_'+@index.to_s %>
+<%= select_tag '5value_'+@index.to_s, options_for_select((City.order('name ASC').all.map {|r| [r.name,r.id] } )<<["Any", City.last.id+1]), :style => 'width: 300px; visibility: hidden', :class => 'hide_me_'+@index.to_s %>
+<%= select_tag '6value_'+@index.to_s, options_for_select((Commune.order('name ASC').all.map {|r| [r.name,r.id] } )<<["Any", Commune.last.id+1]), :style => 'width: 300px; visibility: hidden', :class => 'hide_me_'+@index.to_s %>
+
+<span id="dates_<%= @index.to_s %>" class="hide_me_<%= @index.to_s %> pull-right" style="width: 300px; visibility: hidden" >
+<b style="color: #5E6469">Age between:</b>&nbsp;&nbsp;
+<%
+	ages = []
+	j = 0
+	100.times do 
+		ages.push [j.to_s, j]
+		j += 1
+	end
+%>
+<%= select_tag 'start_age_'+@index.to_s, options_for_select(ages.map {|r| [r[0],r[1]] }, 30 ), :class => 'type_select' %>
+&nbsp;&nbsp;-&nbsp;&nbsp;
+<%= select_tag 'end_age_'+@index.to_s, options_for_select(ages.map {|r| [r[0],r[1]] }, 30 ), :class => 'type_select' %>
+</span>
+
+<script language="javascript" type="text/javascript">
+          
+      $(document).ready(function() {
+      	$('.type_select').change(function(){
+      		index = $(this).attr('name');
+      		index = index.substr(5);
+      		if(this.value==1){
+      			str = '#1value_'+index;
+      			str2 = '.hide_me_'+index;
+      			str3 = '.label_'+index;
+      			$(str2).attr('style', 'width: 0px; visibility: hidden');
+      			$(str3).attr('style', 'width: 0px; visibility: visible; color: #5E6469');
+      			$(str).attr('style', 'width: 300px; visibility: visible');
+      		}
+      		else if(this.value==2){
+      			span = '#dates_'+index;
+      			str2 = '.hide_me_'+index;
+      			str3 = '.label_'+index;
+      			$(str2).attr('style', 'width: 0px; visibility: hidden');
+      			$(str3).attr('style', 'width: 0px; visibility: hidden');
+      			$(span).attr('style', 'width: 300px; margin-left: -75px; visibility: visible');
+      		}
+      		else if(this.value==3){
+      			str = '#3value_'+index;
+      			str2 = '.hide_me_'+index;
+      			str3 = '.label_'+index;
+      			$(str2).attr('style', 'width: 0px; visibility: hidden');
+      			$(str3).attr('style', 'width: 0px; visibility: visible; color: #5E6469');
+      			$(str).attr('style', 'width: 300px; margin-left: -25px; visibility: visible');
+      		}
+      		else if(this.value==4){
+      			str = '#4value_'+index;
+      			str2 = '.hide_me_'+index;
+      			str3 = '.label_'+index;
+      			$(str2).attr('style', 'width: 0px; visibility: hidden');
+      			$(str3).attr('style', 'width: 0px; visibility: visible; color: #5E6469');
+      			$(str).attr('style', 'width: 300px; margin-left: -28px; visibility: visible');
+      		}
+      		else if(this.value==5){
+      			str = '#5value_'+index;
+      			str2 = '.hide_me_'+index;
+      			str3 = '.label_'+index;
+      			$(str2).attr('style', 'width: 0px; visibility: hidden');
+      			$(str3).attr('style', 'width: 0px; visibility: visible; color: #5E6469');
+      			$(str).attr('style', 'width: 300px; margin-left: -31px; visibility: visible');
+      		}
+      		else if(this.value==6){
+      			str = '#6value_'+index;
+      			str2 = '.hide_me_'+index;
+      			str3 = '.label_'+index;
+      			$(str2).attr('style', 'width: 0px; visibility: hidden');
+      			$(str3).attr('style', 'width: 0px; visibility: visible; color: #5E6469');
+      			$(str).attr('style', 'width: 300px; margin-left: -34px; visibility: visible');
+      		}
+      	})
+      });
+
+</script>

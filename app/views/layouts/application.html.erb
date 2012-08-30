@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Dandoo - La Primera Red Social de Publicidad del Mundo</title>
+  <%= stylesheet_link_tag    "application", :media => "all" %>
+  <%= javascript_include_tag "application" %>
+  <%= csrf_meta_tags %>
+  <%= include_gon %>
+  <style type="text/css">
+  body
+	{
+		padding: 40px 0px 40px 0px;
+		background-image: url("/assets/420.gif");
+	}
+  
+  form.center
+  {
+  	width: 400px;
+  	margin: 50px auto 50px auto;
+  }
+  </style>
+
+
+  <meta name="google-site-verification" content="kD2sMFnQ4VfcHlZMKG9u7Glug38BobmH-97IVSUNJx4" />
+
+  <link rel="icon" 
+      type="image/ico" 
+      href="/assets/logo.ico" />
+
+  <meta property="og:title" content="Dandoo.tv - La Primera Red Social de Publicidad del Mundo" /><meta property="og:type" content="company" /><meta property="og:site_name" content="Dandoo.tv" /><meta property="og:url" content="http://dandoo.tv" /><meta property="og:image" content="http://dandoo.tv/assets/logo.png" /><meta property="og:description" content="Dandoo.tv es La Primera Red Social de Publicidad del Mundo. Basados en Neurociencias Perceptivas desarrollamos interfaces capaces de llevar la interacción entre marca y usuario target al siguiente nivel." />
+
+  <script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-30456807-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+ </script>
+
+
+</head>
+<body>
+<section class="container hero-unit">
+<%= gflash %>
+
+  <% if (controller.controller_name == 'sessions')&&(controller.action_name == 'new') %>
+    <div class="row clear">&nbsp;</div>
+    <a href="<%= home_path %>" style=" text-decoration: none">
+  	  <h1 style="text-align: center; margin-top: 0px; margin-bottom: -20px"><%= image_tag '/assets/dandoo.tv.png' %></h1>
+    </a>
+  <% else %>
+    <div class="row">
+    <div id="user_nav" class="span5 pull-right">
+    <span class="pull-right">
+      <% if current_user %>
+        ¡ Bienvenido <b><%= current_user.first_name.to_s+' '+current_user.last_name.to_s %></b> ! - 
+        <%= link_to "Edita tu Perfil", edit_user_path(current_user.id, :not_new => true) %> o <%= link_to "Cierra Sesión", log_out_path %>
+      <% end %>
+      </span>
+    </div>
+    <div id="user_nav" class="span7 pull-left" style="height: 90%" >
+      <a href="<%= home_path %>" style=" text-decoration: none">
+        <%= image_tag '/assets/dandoo.tv.png', :style => 'height: 100px; margin-top: -50px' %>
+      </a>
+    </div>
+    </div>
+    <div class="row" >&nbsp;</div>
+  <% end %>
+    <% if false&&current_user&&(controller.controller_name != 'users') %>
+      <div class="well span3" style="padding: 0px 0px 0px 0px; margin: 0px 20px 0px -20px; ">
+      <ul class="nav nav-list">
+        <h2>MENU</h2>
+        <li class="<%= (controller.controller_name == 'static')&&(controller.action_name == 'home') ? 'active':'normal'  %>"><a href="#"><i class="icon-home"></i> Inicio</a></li>
+        <li class="<%= (controller.controller_name == 'videos')&&(controller.action_name == 'show') ? 'active':'normal'  %>"><a href="#"><i class="icon-play-circle"></i> Videos Disponibles (<%= current_user.videos_available.to_s %>)</a></li>
+        <li class="<%= (controller.controller_name == 'static')&&(controller.action_name == 'accomplishments') ? 'active':'normal'  %>"><a href="#"><i class="icon-play"></i> Mis Logros (<%= current_user.acomplishments.to_s %>)</a></li>
+        <li class="<%= (controller.controller_name == 'static')&&(controller.action_name == 'contact') ? 'active':'normal'  %>"><a href="#"><i class="icon-book"></i> Encuestas Disponibles (0)</a></li>
+        <li class="<%= (controller.controller_name == 'static')&&(controller.action_name == 'contact') ? 'active':'normal'  %>"><a href="#"><i class="icon-envelope"></i> Contáctanos</a></li>
+        <li class="<%= (controller.controller_name == 'static')&&(controller.action_name == 'other') ? 'active':'normal'  %>"><a href="#"><i class="icon-cog"></i> Opciones</a></li>
+      </ul>
+
+
+       <br><br><br><br><br>
+       <br><br><br><br><br>
+       <br><br><br><br><br>
+       <br><br><br><br><br>
+     </div>
+	  <% end %>
+
+    <%= yield %>
+  <div class="row">&nbsp;</div>
+  <div class="row">&nbsp;</div>
+  <div class="row">&nbsp;</div>
+  <div class="row">&nbsp;</div>
+</section>
+<section class="container hero-unit" style="height: 0px; ">
+    <div class="row top-round-bordered bottom-round-bordered" style="margin-top: -20px;margin-bottom: 20px;padding: -50px;">
+      <pre style="width: 960px; color:#444"> <i style="height: 50px"> ©Todos los derechos reservados <a href="<%= home_path %>">P.O.S.</a> <%= Time.now.year.to_s %> </i> <i class="pull-right"> Powered by <a href="http://www.brainshots.cl">Brainshots&nbsp;<img src="/assets/logo_schof2.png" style="height: 20px; margin-bottom: -5px"></a>  </i></pre>    
+    </div>
+</section>
+
+
+</body>
+</html>
