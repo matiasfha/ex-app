@@ -1,0 +1,14 @@
+<%= semantic_form_for [:admin, @user] do |f| %>
+	<%= f.inputs 'Principales',:nombre ,:apellidos, :rut,:nacimiento,:nickname,:email,:avatar,:bio,:ocupacion,:password,:password_confirmation %>
+	<%= f.inputs 'Extras' do %>
+		<%= f.input :gender, :as => :select, :collection => Gender.all.map{|u| [u.descripcion,u.id]} %>
+		<%= f.input :civil_statu, :as => :select, :collection => CivilStatu.all.map{|u| [u.descripcion,u.id]} %>
+		<%= f.input :country, :as => :select, :collection => Country.all.map{|u| [u.nombre,u.id]} %>
+		<%= f.input :state, :as => :select, :collection => (@user.state_id?)? State.all.map{|u| [u.nombre,u.id] } : Hash.new %>
+		<%= f.input :commune, :as => :select, :collection => (@user.commune_id?)? Commune.all.map{|u| [u.nombre,u.id] } : Hash.new %>
+		<%= f.input :city, :as => :select, :collection => (@user.city_id?)? City.all.map{|u| [u.nombre,u.id] } : Hash.new %>
+
+	<% end %>
+	<%= f.actions %>
+
+<% end %>

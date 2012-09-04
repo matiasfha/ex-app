@@ -7,3 +7,13 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
 #CLEAN database
+User.all.destroy
+City.all.destroy
+Commune.all.destroy
+State.all.destroy
+Country.all.destroy
+CivilStatus.all.destroy
+Genero.all.destroy
+Authentication.all.destroy
+
+AdminUser.create :email => 'development@dandoo.tv', :password => 'admin123', :password_confirmation => 'admin123'

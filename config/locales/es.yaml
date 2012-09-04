@@ -1,0 +1,7 @@
+es:
+	signed_in: 'Bienvenido'
+	fail: 'Falló la autenficación'
+	success: 'Autentificación completada!'
+	welcome: 'Bienvenido'
+	signed_out: "Vuelve pronto"
+	

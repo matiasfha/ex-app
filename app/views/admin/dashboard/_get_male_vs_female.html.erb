@@ -1,0 +1,7 @@
+<%
+    @chart = Gchart.pie_3d(:data => [User.where(:gender_id => '5044b9cd2b091ed70a000005').count, User.where(:gender_id => '5044b9d92b091ed70a000006').count, User.where(:gender_id => '5044b9e82b091ed70a000007').count], :bar_colors => ['76A4FB', 'DE85A9', 'A6A6A6'], :title => 'Masculino vs Femenino', :size => '400x200', :labels => ['Masculino', 'Femenino', 'No especificado'])
+%>
+<div style="width: 400px; height: 200px" >
+        &nbsp;
+        <%= image_tag @chart %>
+</div>

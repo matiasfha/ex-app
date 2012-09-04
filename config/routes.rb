@@ -1,11 +1,21 @@
 DandooDev::Application.routes.draw do
 
-  match '/auth/:provider/callback'  => 'sessions#create'
-  match '/auth/failure'             => 'sessions#failure'
-  match '/logout'                   => 'sessions#destroy', :as => :logout
-  
+  ActiveAdmin.routes(self)
 
-  root :to => 'home#index'
+  devise_for :admin_users, ActiveAdmin::Devise.config
+
+  match '/auth/:provider/callback'  => 'authentications#create'
+  
+  match 'metadata/get_states/:id' => 'metadata#get_states'
+  match 'metadata/get_communes/:id' => 'metadata#get_communes'
+  match 'metadata/get_cities/:id' => 'metadata#get_cities'
+
+  authenticated :user do
+    root :to => 'home#index'
+  end
+  root :to => 'home#prelaunch'
+  devise_for :users
+  resources :users, :only => [:show,:index]
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

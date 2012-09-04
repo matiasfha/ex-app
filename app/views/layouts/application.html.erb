@@ -7,15 +7,30 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
+	<% flash.each do |name, msg| %>
+	  <div class="alert alert-<%= name == :notice ? "success" : "error" %>">
+	    <a class="close" data-dismiss="alert">&#215;</a>
+	    <%= content_tag :div, msg, :id => "flash_#{name}" if msg.is_a?(String) %>
+	  </div>
+	<% end %>
 	<ul>
-		<% if user_loged_in? %>
+		<% if user_signed_in? %>
 			<li>
 				Logeado como <%=current_user.nombre %>
 			</li>
 			<li>
-				<%= link_to('Salir',logout_path) %>
+				<%= link_to 'Editar cuenta',edit_user_registration_path %>
+			</li>
+			<li>
+				<%= link_to('Salir',destroy_user_session_path,:method=>'delete') %>
 			</li>
 		<% else %>
+			<li>
+				<%= link_to('Ingresar',new_user_session_path) %>
+			</li>
+			<li>
+				<%= link_to('Registrarse',new_user_registration_path) %>
+			</li>
 			<li>
 				<%= link_to('Ingresar con Twitter',"/auth/twitter") %>
 			</li>

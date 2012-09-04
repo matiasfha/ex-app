@@ -1,20 +1,66 @@
 class User
   include Mongoid::Document
-  field :provider, type: String
-  field :uid, type: String
-  field :nombre, type: String
-  field :email, type: String
+  include Mongoid::Timestamps
+  include Mongoid::Paperclip
+  include Mongoid::Paranoia
+  # Include default devise modules. Others available are:
+  # :token_authenticatable, :confirmable,
+  # :lockable, :timeoutable and 
+  devise :database_authenticatable, :registerable,
+         :recoverable, :rememberable, :trackable, :validatable,:omniauthable
 
-  attr_protected :provider, :uid, :name, :email
+  ## Database authenticatable
+  field :email,              :type => String, :default => ""
+  field :encrypted_password, :type => String, :default => ""
 
-  def self.create_with_omniauth(auth)
-  	create! do |user|
-  		user.provider = auth['provider']
-  		user.uid      = auth['uid']
-  		if auth['info']
-  			user.nombre = auth['info']['name'] || ""
-  			user.email = auth['info']['email'] || ""
-  		end
-  	end
-  end
+  validates_presence_of :email
+  validates_presence_of :encrypted_password
+  
+  ## Recoverable
+  field :reset_password_token,   :type => String
+  field :reset_password_sent_at, :type => Time
+
+  ## Rememberable
+  field :remember_created_at, :type => Time
+
+  ## Trackable
+  field :sign_in_count,      :type => Integer, :default => 0
+  field :current_sign_in_at, :type => Time
+  field :last_sign_in_at,    :type => Time
+  field :current_sign_in_ip, :type => String
+  field :last_sign_in_ip,    :type => String
+
+  #Relaciones
+  has_many :authentications, :dependent => :delete
+  belongs_to  :gender
+  belongs_to  :civil_statu
+  belongs_to  :country
+  belongs_to  :state #Region
+  belongs_to  :commune
+  belongs_to  :city
+  #Atributos
+  field :nombre, :type => String
+  field :apellidos, :type => String
+  field :rut, :type => String
+  field :nickname, :type => String
+  field :bio, :type => String
+  field :ocupacion, :type => String
+  field :nacimiento, :type => Date
+  # field :avatar, :type => String
+  has_mongoid_attached_file :avatar,  
+    :path     => ":attachment/:id/:basename.:extension",
+    :storage  => :s3,
+    :s3_credentials => File.join(Rails.root,'config','s3.yml'),
+    :bucket => 'alzheimer',
+    :styles => {:thumb => ["32x32",:png],:small => ["70x70",:png],:medium => "200x200"}
+
+
+
+  index({ email: 1 }, { unique: true, background: true })
+  index({ nickname: 1 }, { unique: true, background: true })
+
+  attr_accessible :nombre,:email,:password,:password_confirmation, :remember_me, :created_at, :updated_at
+  attr_accessible :apellidos, :nickname, :rut, :avatar, :bio, :ocupacion, :nacimiento
+  attr_accessible :country_id, :state_id, :commune_id, :city_id, :gender_id, :civil_statu_id
+  
 end

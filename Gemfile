@@ -14,25 +14,27 @@ group :assets do
   gem 'coffee-rails', '~> 3.2.1'
 
   # See https://github.com/sstephenson/execjs#readme for more supported runtimes
-  # gem 'therubyracer', :platform => :ruby
+  gem 'therubyracer', :platform => :ruby
 
   gem 'uglifier', '>= 1.0.3'
-  gem 'anjlab-bootstrap-rails', :require => 'bootstrap-rails',
-                              :git => 'git://github.com/anjlab/bootstrap-rails.git'
 end
 
 gem 'jquery-rails'
 gem 'jquery-ui-rails'
+gem 'less-rails-bootstrap'
 gem 'thin'
 gem 'heroku'
 gem 'foreman'
 
-
+gem "activeadmin-mongoid",  git: "git://github.com/elia/activeadmin-mongoid.git"
 gem 'mongoid'
 gem 'devise'
 gem 'omniauth'
 gem 'omniauth-twitter'
 gem 'omniauth-facebook'
+gem "mongoid-paperclip", :require => "mongoid_paperclip"
+gem 'aws-sdk'
+gem "aws-s3",            :require => "aws/s3"
 gem 'galetahub-simple_captcha', :require => 'simple_captcha', :git => 'git://github.com/galetahub/simple-captcha.git'
 gem 'googlecharts'
 
@@ -44,8 +46,7 @@ group :test do
 	gem 'launchy'
 	gem 'factory_girl_rails'
 	gem 'mongoid-rspec'
-	# gem 'guard-rspec'
-	# gem 'rb-fsevent', :require => false if RUBY_PLATFORM =~ &crarr; /darwin/i
+	gem 'faker'
 end
 
 gem 'rspec-rails',:group =>[:development,:test]
