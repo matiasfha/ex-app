@@ -1,45 +1,111 @@
 <!DOCTYPE html>
-<html>
+<html lang="es">
 <head>
   <title>Dandoo.tv</title>
+  <link href='http://fonts.googleapis.com/css?family=Cabin:400,500,700' rel='stylesheet' type='text/css'>
   <%= stylesheet_link_tag    "application", :media => "all" %>
+
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
 </head>
 <body>
-	<% flash.each do |name, msg| %>
-	  <div class="alert alert-<%= name == :notice ? "success" : "error" %>">
-	    <a class="close" data-dismiss="alert">&#215;</a>
-	    <%= content_tag :div, msg, :id => "flash_#{name}" if msg.is_a?(String) %>
-	  </div>
-	<% end %>
-	<ul>
-		<% if user_signed_in? %>
-			<li>
-				Logeado como <%=current_user.nombre %>
-			</li>
-			<li>
-				<%= link_to 'Editar cuenta',edit_user_registration_path %>
-			</li>
-			<li>
-				<%= link_to('Salir',destroy_user_session_path,:method=>'delete') %>
-			</li>
-		<% else %>
-			<li>
-				<%= link_to('Ingresar',new_user_session_path) %>
-			</li>
-			<li>
-				<%= link_to('Registrarse',new_user_registration_path) %>
-			</li>
-			<li>
-				<%= link_to('Ingresar con Twitter',"/auth/twitter") %>
-			</li>
-			<li>
-				<%= link_to('Ingresar con Facebook',"/auth/facebook") %>
-			</li>
-		<% end %>
-	</ul>
-<%= yield %>
+	
+	<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/es_LA/all.js#xfbml=1&appId=487202541299703";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
 
+	<!--NAVBAR 
+		====================================================================== -->
+		<div class="navbar" style="margin:0;">
+			<div class="navbar-inner" style="padding:0px 0;">
+				<div class="container">
+					<button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+					</button>
+					
+							
+					<div class="span3">
+						<a href="/">
+						<div id="logo"></div>	
+						</a>
+					</div>
+					<div class="span2 offset1 botones">
+						<a href="#" class="pull-left">
+							<div class="menu tv active"></div>
+						</a>
+						<a href="#" class="pull-right">
+							<div class="menu store"></div>
+						</a>
+					</div>
+					
+					<div class="nav-collapse collapse pull-right">
+						<ul class="nav">
+							<% if user_signed_in? %>
+							<li>
+								<%= link_to image_tag(current_user.avatar.url(:thumb),:class => 'thumb'), edit_user_registration_path
+								%>
+								</a>
+							</li>
+							
+							<li>
+								<%= link_to('Salir',destroy_user_session_path,:method=>'delete') %>
+							</li>
+							<% else %>
+							<li style="top:25px; position:relative;">
+								Ingresar con
+							</li>
+							<li>
+								<%= link_to( image_tag('cfacebook.png'),"/auth/facebook") %>
+							</li>
+							<li>
+								<%= link_to( image_tag('ctwitter.png'),"/auth/twitter") %>
+							</li>
+							<% end %>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+
+	<div class="container-fluid">
+
+		
+
+		<!-- CONTENIDO
+		====================================================================== -->
+	
+		<div class="span12" id="body" style="width:100%;">
+			<div class="row" id="mensajes-flash">
+				<% flash.each do |type, msg| %>
+				  <div class="alert fade in <%=bootstrap_type(type)%>">
+				    <a class="close" data-dismiss="alert">&#215;</a>
+				    <%= content_tag :div, msg, :id => "flash_#{type}" if msg.is_a?(String) %>
+				  </div>
+				<% end %>
+			</div>
+			<div class="row">
+				<%= yield %>
+			</div>
+
+		</div>
+	</div>
+
+	<script src="https://raw.github.com/GBKS/Wookmark-jQuery/master/jquery.wookmark.min.js"></script>
+	<script type="text/javascript">
+	$(document).ready(function(){
+		$('.imagen').wookmark({
+			container:$('#content'),
+			autoResize:true
+		});
+	});
+	</script>
 </body>
+
 </html>

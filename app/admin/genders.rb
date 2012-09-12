@@ -1,3 +1,4 @@
 ActiveAdmin.register Gender do
-  menu :priority => 7
+  menu :priority => 2,:label => "Genero", :parent => 'Datos Generales'
+  
 end

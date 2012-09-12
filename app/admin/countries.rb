@@ -1,5 +1,4 @@
 ActiveAdmin.register Country do
-  menu :priority => 2
-
+  menu :priority => 3,:label => "Paises", :parent => 'Datos Generales'
   
 end

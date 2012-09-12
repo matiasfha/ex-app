@@ -1,21 +1,52 @@
 <div class="row">
-	<div class="span2">
-		<h2>Sign in</h2>
-	</div>
+  <div class="span12 page-header">
+    
+      <h1>Ingreso de Usuario</h1>
+    
+  </div>
 </div>
 
-<%= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
-  <div><%= f.label :email %><br />
-  <%= f.email_field :email %></div>
+<div class="row">
+  <div class="well span6 offset3">
 
-  <div><%= f.label :password %><br />
-  <%= f.password_field :password %></div>
+    <%= form_for(resource, :as => resource_name, :url => session_path(resource_name), :html => {:class => "form form-horizontal"}) do |f| %>
 
-  <% if devise_mapping.rememberable? -%>
-    <div><%= f.check_box :remember_me %> <%= f.label :remember_me %></div>
-  <% end -%>
+      <div class="control-group">
+        <%= f.label :email, :class=>"control-label"%>
+        <div class="controls">
+          <%= f.email_field :email %>
+        </div>
+      </div>
 
-  <div><%= f.submit "Sign in" %></div>
-<% end %>
+     <div class="control-group">
+        <%= f.label :password,:class=>"control-label" %>
+        <div class="controls">
+          <%= f.password_field :password %>
+        </div>
+      </div>
 
-<%= render "devise/shared/links" %>
+      <% if devise_mapping.rememberable? -%>
+        <div class="control-group">
+          <div class="controls">
+            <label class="checkbox" for="user_remember_me">
+              <input name="user[remember_me]" type="hidden" value="0">
+              <input id="user_remember_me" name="user[remember_me]" type="checkbox" value="1">
+              Recodarme
+            </label>
+          </div>
+          
+          
+        </div>
+      <% end -%>
+
+      <div class="form-actions">
+        <%= f.submit "Ingresar", :class => "btn btn-primary" %>
+        <input type="reset" value="Cancelar" class="btn">
+        <br />
+        <br />
+        <%= render "devise/shared/links" %>
+      </div>
+
+    <% end %>
+  </div>
+</div>

@@ -1,5 +1,6 @@
 ActiveAdmin.register Commune do
-  menu :priority => 4
+  menu :priority => 5, :label => "Comunas",:parent => 'Datos Generales'		
+
   form do |f|
 		f.inputs do
 			f.input :nombre

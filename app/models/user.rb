@@ -1,13 +1,13 @@
 class User
   include Mongoid::Document
   include Mongoid::Timestamps
-  include Mongoid::Paperclip
+  # include Mongoid::Paperclip
   include Mongoid::Paranoia
   # Include default devise modules. Others available are:
   # :token_authenticatable, :confirmable,
   # :lockable, :timeoutable and 
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable,:omniauthable
+         :recoverable, :rememberable, :trackable, :validatable
 
   ## Database authenticatable
   field :email,              :type => String, :default => ""
@@ -38,6 +38,11 @@ class User
   belongs_to  :state #Region
   belongs_to  :commune
   belongs_to  :city
+
+  has_many :pictures
+  embeds_many :comments
+  embeds_many :votos
+
   #Atributos
   field :nombre, :type => String
   field :apellidos, :type => String
@@ -46,21 +51,24 @@ class User
   field :bio, :type => String
   field :ocupacion, :type => String
   field :nacimiento, :type => Date
-  # field :avatar, :type => String
-  has_mongoid_attached_file :avatar,  
-    :path     => ":attachment/:id/:basename.:extension",
-    :storage  => :s3,
-    :s3_credentials => File.join(Rails.root,'config','s3.yml'),
-    :bucket => 'alzheimer',
-    :styles => {:thumb => ["32x32",:png],:small => ["70x70",:png],:medium => "200x200"}
-
+  
+  field :avatar_processing, :type => Boolean
+  field :avatar_tmp, :type => String  
 
 
   index({ email: 1 }, { unique: true, background: true })
   index({ nickname: 1 }, { unique: true, background: true })
 
   attr_accessible :nombre,:email,:password,:password_confirmation, :remember_me, :created_at, :updated_at
-  attr_accessible :apellidos, :nickname, :rut, :avatar, :bio, :ocupacion, :nacimiento
+  attr_accessible :apellidos, :nickname, :rut, :avatar,:avatar_cache, :bio, :ocupacion, :nacimiento
   attr_accessible :country_id, :state_id, :commune_id, :city_id, :gender_id, :civil_statu_id
+
+
+  mount_uploader :avatar, ImagenUploader
+  process_in_background :avatar
+  store_in_background :avatar
   
+
+  
+
 end

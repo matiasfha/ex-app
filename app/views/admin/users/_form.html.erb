@@ -1,5 +1,26 @@
-<%= semantic_form_for [:admin, @user] do |f| %>
-	<%= f.inputs 'Principales',:nombre ,:apellidos, :rut,:nacimiento,:nickname,:email,:avatar,:bio,:ocupacion,:password,:password_confirmation %>
+<%= semantic_form_for [:admin, @user] , :html => { :enctype => "multipart/form-data" } do |f| %>
+	
+	<%= f.inputs 'Principales', :multipart => true do %>
+		<%= f.input :nombre, :required => true  %>
+		<%= f.input :apellidos, :required => true %>
+		<%= f.input  :rut, :required => true %>
+		<%= f.input :nacimiento , :required => true%>
+		<%= f.input :nickname, :required => true %>
+		<%= f.input :email, :required => true %>
+		<%= f.input :avatar, :required => true %>
+		<%= f.input :avatar_cache, :as => :hidden %>
+		<% if @user.avatar? %>
+			<li class="input">
+				<label>&nbsp;</label>
+				<%=image_tag(@user.avatar.medium.url) %>
+			</li>
+		<% end %>
+		<%= f.input :bio, :required => true %>
+		<%= f.input :ocupacion, :required => true %>
+		<%= f.input :password, :required => true %>
+		<%= f.input :password_confirmation, :required => true %>
+	<% end %>
+	
 	<%= f.inputs 'Extras' do %>
 		<%= f.input :gender, :as => :select, :collection => Gender.all.map{|u| [u.descripcion,u.id]} %>
 		<%= f.input :civil_statu, :as => :select, :collection => CivilStatu.all.map{|u| [u.descripcion,u.id]} %>

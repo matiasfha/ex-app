@@ -1,0 +1,106 @@
+ <%= javascript_include_tag "home" %>
+<div class="row" style="border-bottom:1px #DDDDDD solid;margin-top:15px;marign-bottom:10px">
+  <div class="span12">
+    Bienvenido
+  </div>
+</div> 
+
+
+<div class="row" id="content">
+  <% 
+  count = 1
+  @pictures.each do |picture| 
+    if count == 1
+      %>
+      <div class="row" style="margin-left:-3%;">
+      <%
+    end
+  %>
+      <div class="span3 imagen">
+        <div class="well span3" id="<%=picture.id%>">
+          <div class="row titulo">
+            <div class="span3">
+                  <%=picture.titulo%>
+            </div>
+          </div>
+          <div class="img">
+          <%= image_tag(picture.imagen.large.url || picture.imagen.url ,:class => "img-rounded",:align => "center") %>
+          </div>
+          
+          <div class="row">
+            <div class="span1 pull-left">
+            <a href="#">
+              <i class="icon-heart" ></i><%=picture.likers.count%>
+            </a>
+            / 
+            <a href="#" class="comments" data-id="<%=picture.id%>" data-total="<%=picture.comments.count%>">
+              <icon class="icon-comment"></icon><%=picture.comments.count%>
+            </a>
+            </div>
+
+            <div class="span1 pull-right" style="text-align:right">
+            <icon class="icon-star"></icon>3.4
+            </div>
+          </div>
+          <div class="row">
+            <div class="span3 divider"></div>
+          </div>
+          <div class="row">
+            <% if picture.user_id? %>
+              <div class="span1 pull-left">
+                <%=image_tag(User.find(picture.user_id).avatar.url(:thumb),:class => "thumb")%>
+              </div>
+              <div class="span2 pull-right descripcion">
+                <%=picture.descripcion%>
+              </div>
+            <% else %>
+               <div class="span2 descripcion pull-right">
+                <%=picture.descripcion%>
+              </div>
+            <% end %>
+          </div>
+          <div class="row">
+            <div class="span3 divider"></div>
+          </div>
+          <!--- COMENTARIOS -->
+          <div class="row comment-list">
+            <div class="span3">
+              <div class="row" style="border-bottom:1px #DDDDDD solid;font-size:9px;">
+                <div class="span3">
+                  <a href="/comments/<%=picture.id%>" data-id="<%=picture.id%>" class="ver-comentarios" data-remote="true">Ver todos los comentarios</a>
+                </div>
+              </div>
+              <div class="listado">
+              <% picture.comments.limit(2).order_by([[:created_at,:desc]]).reverse.each do |comentario| %>
+                <div class="row comentario">
+                  <div class="span1 user-thumb">
+                    <%=image_tag(User.find(comentario.user_id).avatar.url(:thumb),:class => "thumb")%>
+                  </div>
+                  <div class="span2 user-comment" style="height:auto">
+                    <strong><%=User.find(comentario.user_id).nickname %>:  </strong> <%= comentario.contenido %>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="span3 divider"></div>
+                </div>
+              <% end %>
+              </div>
+              <div class="comment-container"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    <% if count == 4 %>
+    </div> 
+    <% 
+    count = 1
+    else
+      count = count +1
+    end   
+     %>
+      
+  <% end %>   
+</div>
+
+
+  

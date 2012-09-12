@@ -1,22 +1,35 @@
 DandooDev::Application.routes.draw do
+  
 
   ActiveAdmin.routes(self)
-
   devise_for :admin_users, ActiveAdmin::Devise.config
-
-  match '/auth/:provider/callback'  => 'authentications#create'
   
-  match 'metadata/get_states/:id' => 'metadata#get_states'
+  #Para metadatos generales.. retornan JSON
+  match 'metadata/get_states/:id'   => 'metadata#get_states'
   match 'metadata/get_communes/:id' => 'metadata#get_communes'
-  match 'metadata/get_cities/:id' => 'metadata#get_cities'
-
+  match 'metadata/get_cities/:id'   => 'metadata#get_cities'
+  
   authenticated :user do
     root :to => 'home#index'
   end
-  root :to => 'home#prelaunch'
-  devise_for :users
+  root :to => 'home#landpage'
+  devise_for :users, :controllers => { :registrations => "registrations"}
+  devise_scope :user do 
+    get '/register'                 => 'devise/registrations#new'
+    delete '/logout'                => 'devise/session#destroy'
+    get '/user/complete_registration/:id' => 'registrations#completar'
+    put '/user/complete_registration' => 'registrations#finalizar'
+  end
   resources :users, :only => [:show,:index]
+  resources :picture, :only => [:show]
+  
+  match '/picture/add_like' => 'picture#add_like', :via => :post
+  
+  resources :comments, :only => [:create,:show]
 
+  match 'auth/:provider/callback'  => 'authentications#create'
+  resources :authentications, :only => [:index,:create,:destroy]
+   
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

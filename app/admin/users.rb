@@ -37,7 +37,7 @@ ActiveAdmin.register User do
 		div :for => user do 
 			h2 link_to("#{user.nombre} #{user.apellidos}",admin_user_path(user))
 			div do 
-				link_to(image_tag(user.avatar.url(:small)), admin_user_path(user))
+				link_to(image_tag(user.avatar.small.url), admin_user_path(user))
 			end
 			div do 
 				user.email

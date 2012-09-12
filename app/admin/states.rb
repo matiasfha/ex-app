@@ -1,5 +1,6 @@
 ActiveAdmin.register State do
-	menu :priority => 3
+	menu :priority => 4,:label => "Regiones", :parent => 'Datos Generales'
+	
 	form do |f|
 		f.inputs do
 			f.input :nombre

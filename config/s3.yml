@@ -1,2 +1,3 @@
-access_key_id: AKIAJK5NVAGQBRCX4GQA
-secret_access_key: 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
+default:
+  aws_access_key_id: 'AKIAJ3CCTJY54TJGQKRQ'
+  aws_secret_access_key: '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'

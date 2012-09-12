@@ -4,4 +4,6 @@ class Authentication
 
   field :uid, type: String
   field :provider, type: String
+
+  attr_accessible :uid, :provider
 end

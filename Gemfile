@@ -17,25 +17,36 @@ group :assets do
   gem 'therubyracer', :platform => :ruby
 
   gem 'uglifier', '>= 1.0.3'
+  gem 'jquery-rails'
+  gem 'jquery-ui-rails'
+  gem 'less-rails-bootstrap'
+
 end
 
-gem 'jquery-rails'
-gem 'jquery-ui-rails'
-gem 'less-rails-bootstrap'
-gem 'thin'
+gem 'unicorn'
+# gem 'thin', :group => [:development]
 gem 'heroku'
 gem 'foreman'
 
+gem 'i18n'
+gem 'formtastic'
 gem "activeadmin-mongoid",  git: "git://github.com/elia/activeadmin-mongoid.git"
 gem 'mongoid'
+gem 'bson_ext'
 gem 'devise'
+gem 'devise-i18n'
 gem 'omniauth'
 gem 'omniauth-twitter'
 gem 'omniauth-facebook'
-gem "mongoid-paperclip", :require => "mongoid_paperclip"
-gem 'aws-sdk'
-gem "aws-s3",            :require => "aws/s3"
-gem 'galetahub-simple_captcha', :require => 'simple_captcha', :git => 'git://github.com/galetahub/simple-captcha.git'
+
+gem 'delayed_job_mongoid'
+gem 'daemons'
+gem 'carrierwave_backgrounder'
+gem 'fog','~> 1.3.1'
+gem "carrierwave-mongoid", :git => "git://github.com/jnicklas/carrierwave-mongoid.git", :branch => "mongoid-3.0", :require => 'carrierwave/mongoid'
+gem 'mini_magick', :git => 'git://github.com/probablycorey/mini_magick.git'
+
+gem 'recaptcha',			:require => 'recaptcha/rails'
 gem 'googlecharts'
 
 

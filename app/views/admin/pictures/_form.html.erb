@@ -1,0 +1,20 @@
+<%= semantic_form_for [:admin, @picture], :html => { :enctype => "multipart/form-data" } do |f| %>
+	<%= f.inputs "Detalle", :multipart => true do %>
+		<%= f.input :titulo, :required => true%>
+		<%= f.input :descripcion, :input_html => {:class => 'autogrow', :rows => 10, :maxlength => 140}, :required => true %>
+
+		<%= f.input :imagen, :required => true %>
+		<%= f.input :imagen_cache, :as => :hidden %>
+		<% if @picture.imagen?%>
+			<li class="input">
+				<label>&nbsp;</label>
+				<% if @picture.imagen_processing.nil? %>
+					<%= image_tag(@picture.imagen.large.url) %>
+				<% else %>
+					<%= image_tag(@picture.imagen_tmp) %>
+				<% end %>
+			</li>
+		<% end %>
+	<% end %>
+	<%= f.actions %>
+<% end %> 

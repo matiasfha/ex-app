@@ -1,0 +1,13 @@
+<% @comentarios.each do |comment| %>
+	<div class="row comentario">
+		<div class="span1 user-thumb">
+			<%=image_tag(User.find(comment.user_id).avatar.url(:thumb),:class => "thumb")%>
+		</div>
+		<div class="span2 user-comment" style="height:30px">
+			<strong><%=User.find(comment.user_id).nickname %>:  </strong>  <%= comment.contenido %>
+		</div> 
+	</div>
+	<div class="row">
+		<div class="span3 divider"></div>
+	</div>
+<% end %>

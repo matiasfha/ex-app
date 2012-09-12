@@ -1,5 +1,6 @@
 ActiveAdmin.register City do
-	menu :priority => 5
+	menu :priority => 6,:label => "Ciudades",:parent => 'Datos Generales'
+	
 
 	form do |f|
 		f.inputs do
