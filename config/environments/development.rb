@@ -36,8 +36,8 @@ DandooDev::Application.configure do
   # Expands the lines which load the assets
   config.assets.debug = true
 
-  # Paperclip.options[:log] = false
-  # Paperclip.options[:command_path] = "/usr/local/bin/"
+  Paperclip.options[:log] = false
+  Paperclip.options[:command_path] = "/usr/local/bin/"
 
   config.logger = Logger.new(STDOUT)
   config.logger.level = Logger.const_get(ENV['LOG_LEVEL'] ? ENV['LOG_LEVEL'].upcase : 'DEBUG')

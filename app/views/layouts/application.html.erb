@@ -4,105 +4,143 @@
   <title>Dandoo.tv</title>
   <link href='http://fonts.googleapis.com/css?family=Cabin:400,500,700' rel='stylesheet' type='text/css'>
   <%= stylesheet_link_tag    "application", :media => "all" %>
+  <link href="http://pinesframework.org/pnotify/jquery.pnotify.default.css" media="all" rel="stylesheet" type="text/css" />
+<!-- Include this file if you are using Pines Icons. -->
+<link href="http://pinesframework.org/pnotify/jquery.pnotify.default.icons.css" media="all" rel="stylesheet" type="text/css" />
+
 
   <%= javascript_include_tag "application" %>
+  <%= yield(:head) %>
   <%= csrf_meta_tags %>
 </head>
 <body>
-	
-	<div id="fb-root"></div>
-<script>(function(d, s, id) {
-  var js, fjs = d.getElementsByTagName(s)[0];
-  if (d.getElementById(id)) return;
-  js = d.createElement(s); js.id = id;
-  js.src = "//connect.facebook.net/es_LA/all.js#xfbml=1&appId=487202541299703";
-  fjs.parentNode.insertBefore(js, fjs);
-}(document, 'script', 'facebook-jssdk'));</script>
 
+	<div class="span1" id="loading">
+		<%= image_tag "loader.gif" %>
+		Cargando...
+	</div>
+
+	<div id="principal" style="display:none">
 	<!--NAVBAR 
 		====================================================================== -->
-		<div class="navbar" style="margin:0;">
-			<div class="navbar-inner" style="padding:0px 0;">
-				<div class="container">
-					<button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-						<span class="icon-bar"></span>
-						<span class="icon-bar"></span>
-						<span class="icon-bar"></span>
-					</button>
-					
-							
-					<div class="span3">
-						<a href="/">
-						<div id="logo"></div>	
-						</a>
-					</div>
-					<div class="span2 offset1 botones">
-						<a href="#" class="pull-left">
-							<div class="menu tv active"></div>
-						</a>
-						<a href="#" class="pull-right">
-							<div class="menu store"></div>
-						</a>
-					</div>
-					
-					<div class="nav-collapse collapse pull-right">
-						<ul class="nav">
-							<% if user_signed_in? %>
-							<li>
-								<%= link_to image_tag(current_user.avatar.url(:thumb),:class => 'thumb'), edit_user_registration_path
-								%>
-								</a>
-							</li>
-							
-							<li>
-								<%= link_to('Salir',destroy_user_session_path,:method=>'delete') %>
-							</li>
-							<% else %>
-							<li style="top:25px; position:relative;">
-								Ingresar con
-							</li>
-							<li>
-								<%= link_to( image_tag('cfacebook.png'),"/auth/facebook") %>
-							</li>
-							<li>
-								<%= link_to( image_tag('ctwitter.png'),"/auth/twitter") %>
-							</li>
-							<% end %>
-						</ul>
-					</div>
+	<div class="navbar navbar-static-top" >
+		<div class="navbar-inner">
+			<div class="span11">
+				<div class="span3 pull-left">
+					<a href="/">
+					<div id="logo"></div>	
+					</a>
+				</div>
+				<% if !user_signed_in? %>
+				<div class="botones">
+					<ul class="nav">
+						<li>
+							<a href="#" class="pull-left tv active"></a>
+						</li>
+						<li>
+							<a href="#" class="pull-right store"></a>
+						</li>
+				</div>
+				<% end %>
+				
+				<div class="botones" style="float:right;">
+					<ul class="nav">
+						<% if user_signed_in? %>
+						<li>
+							<%= link_to image_tag(current_user.avatar.url,:class => 'thumb'), user_path(current_user)
+							%>
+							</a>
+						</li>
+						
+						<li>
+							<%= link_to('Salir',destroy_user_session_path,:method=>'delete') %>
+						</li>
+						<% else %>
+						<li style="top:15px; position:relative;color:#999999;weight:bold">
+							Ingresar con
+						</li>
+						<li style="position:relative;
+		top:3px;">
+							<%= link_to( image_tag('cfacebook.png'),"/auth/facebook") %>
+						</li>
+						<li style="position:relative;
+		top:3px;">
+							<%= link_to( image_tag('ctwitter.png'),"/auth/twitter") %>
+						</li>
+						<% end %>
+						
+					</ul>
 				</div>
 			</div>
 		</div>
+	</div>
 
+
+	<!-- CONTENEDOR PRINCIPAL 
+	====================================================================== -->
 	<div class="container-fluid">
 
+		<!-- HEADER
+		================================================================	====== -->	
+		<div class="span11" id="header" style="border:1px black solid">
+			asg
+			<div class="span5 offset5 pull-right" id="show">
+				<div class="izq pull-left"></div>
+				<div class="der pull-right"></div>
+				<div class="texto">
+					<strong>1.</strong> Disfruta los mejores videos de la Biblioteca
+				</div>
+			</div>
+		</div>
+		
+		<%= yield(:barra) %>
+		<%= yield(:botonera) %>
 		
 
 		<!-- CONTENIDO
 		====================================================================== -->
 	
-		<div class="span12" id="body" style="width:100%;">
+		<div class="span11" id="body">
 			<div class="row" id="mensajes-flash">
 				<% flash.each do |type, msg| %>
-				  <div class="alert fade in <%=bootstrap_type(type)%>">
-				    <a class="close" data-dismiss="alert">&#215;</a>
-				    <%= content_tag :div, msg, :id => "flash_#{type}" if msg.is_a?(String) %>
-				  </div>
+				  <div class="alerta" data-title="Dandoo.tv" data-text="<%=msg%>" data-type="<%=notify_type(type)%>" style="display:none"></div>
+				    
 				<% end %>
 			</div>
-			<div class="row">
-				<%= yield %>
-			</div>
+
+			
+			<%= yield %>
+			
 
 		</div>
 	</div>
 
-	<script src="https://raw.github.com/GBKS/Wookmark-jQuery/master/jquery.wookmark.min.js"></script>
+</div>
+	<script src="//cdnjs.cloudflare.com/ajax/libs/masonry/2.1.04/jquery.masonry.min.js"></script>
+	<script src="https://raw.github.com/desandro/imagesloaded/master/jquery.imagesloaded.min.js"></script>
+
+	<script type="text/javascript" src="http://pinesframework.org/pnotify/jquery.pnotify.js"></script>
+
 	<script type="text/javascript">
 	$(document).ready(function(){
-		$('.imagen').wookmark({
-			container:$('#content'),
-			autoResize:true
+
+		if ($('.alerta').length > 0){
+			$.pnotify({
+				title:$('.alerta').attr('data-title'),
+				text:$('.alerta').attr('data-text'),
+				opacity: .8
+			});	
+		}
+		$('#user-tabs a').click(function (e) {
+		  e.preventDefault();
+		  $(this).tab('show');
+		})
+
+		
+		
+		$('#principal').imagesLoaded(function(){
+			$('#loading').hide();
+			$('#principal').fadeIn();
 		});
 	});
 	</script>

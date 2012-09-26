@@ -15,9 +15,10 @@
 //= require jquery.ui.core
 //= require jquery.effects.core
 //= require jquery.effects.highlight
-//= require jquery.ui.datepicker
+//= require jquery.effects.slide
+// require jquery.ui.datepicker
 //= require twitter/bootstrap
-//= require jquery.textarea.autogrow
+// require jquery.textarea.autogrow
 // require_tree .
 
 
@@ -61,7 +62,7 @@ $(document).ready(function(){
 	  };
 
 
-	$('input[type="text"].date').datepicker();
+	// $('input[type="text"].date').datepicker();
 
 	
 });

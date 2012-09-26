@@ -26,6 +26,9 @@ DandooDev::Application.routes.draw do
   match '/picture/add_like' => 'picture#add_like', :via => :post
   
   resources :comments, :only => [:create,:show]
+  match '/comments/:pid/:cid' => 'comments#destroy', :via => :delete
+  
+  match '/votos/:pid/:valor' => 'votos#create', :via => :post
 
   match 'auth/:provider/callback'  => 'authentications#create'
   resources :authentications, :only => [:index,:create,:destroy]

@@ -4,15 +4,11 @@
 		<%= f.input :descripcion, :input_html => {:class => 'autogrow', :rows => 10, :maxlength => 140}, :required => true %>
 
 		<%= f.input :imagen, :required => true %>
-		<%= f.input :imagen_cache, :as => :hidden %>
 		<% if @picture.imagen?%>
 			<li class="input">
 				<label>&nbsp;</label>
-				<% if @picture.imagen_processing.nil? %>
-					<%= image_tag(@picture.imagen.large.url) %>
-				<% else %>
-					<%= image_tag(@picture.imagen_tmp) %>
-				<% end %>
+				<%= image_tag(@picture.imagen.url(:original),:style => "width:300px") %>
+				
 			</li>
 		<% end %>
 	<% end %>

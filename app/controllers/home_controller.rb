@@ -1,4 +1,5 @@
 class HomeController < ApplicationController
+  before_filter :authenticate_user!, :only => [:index]
   def index
   	@users = User.all
   	@pictures = Picture.all.order_by.order_by([[:created_at,:desc]])  	

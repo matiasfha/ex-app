@@ -3,8 +3,12 @@ class Voto
   include Mongoid::Timestamps
   include Mongoid::Paranoia
 
-  embedded_in :picture
-  embedded_in :user
+  belongs_to :picture
+  belongs_to :user
 
   field :valor, :type => Integer
+
+  attr_accessible :valor, :user_id, :picture_id
+
+  
 end

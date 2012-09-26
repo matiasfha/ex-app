@@ -1,0 +1,29 @@
+<% 
+  count = 0
+  pictures.each do |picture|
+    style=""
+    if count==0
+      %>
+      <div class="row" style="margin-bottom:15px">
+      <%
+      style="first-child"
+    end
+    if count == 2
+      style="last-child"
+    end
+    %>
+    
+    <%= render :partial => "imagen", :locals => {:picture => picture,:style => style} %>
+
+    <%
+    if count==2
+      %>
+      </div>
+      <%
+    end
+    count = count + 1
+    if count==3
+      count=0
+    end
+  end
+  %>

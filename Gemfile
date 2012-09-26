@@ -24,7 +24,7 @@ group :assets do
 end
 
 gem 'unicorn'
-# gem 'thin', :group => [:development]
+gem 'thin'
 gem 'heroku'
 gem 'foreman'
 
@@ -39,16 +39,20 @@ gem 'omniauth'
 gem 'omniauth-twitter'
 gem 'omniauth-facebook'
 
-gem 'delayed_job_mongoid'
-gem 'daemons'
-gem 'carrierwave_backgrounder'
-gem 'fog','~> 1.3.1'
-gem "carrierwave-mongoid", :git => "git://github.com/jnicklas/carrierwave-mongoid.git", :branch => "mongoid-3.0", :require => 'carrierwave/mongoid'
-gem 'mini_magick', :git => 'git://github.com/probablycorey/mini_magick.git'
+# gem 'delayed_job_mongoid'
+# gem 'daemons'
+# gem 'carrierwave_backgrounder'
+# gem 'fog','~> 1.3.1'
+# gem "carrierwave-mongoid", :git => "git://github.com/jnicklas/carrierwave-mongoid.git", :branch => "mongoid-3.0", :require => 'carrierwave/mongoid'
+# gem 'mini_magick', :git => 'git://github.com/probablycorey/mini_magick.git'
+
+gem "mongoid-paperclip", :require => "mongoid_paperclip", :git => "git://github.com/meskyanichi/mongoid-paperclip.git"
+gem "aws-s3",            :require => "aws/s3"
+gem "aws-sdk"
 
 gem 'recaptcha',			:require => 'recaptcha/rails'
 gem 'googlecharts'
-
+gem 'faker'
 
 group :test do 
 	gem 'capybara'
@@ -57,7 +61,6 @@ group :test do
 	gem 'launchy'
 	gem 'factory_girl_rails'
 	gem 'mongoid-rspec'
-	gem 'faker'
 end
 
 gem 'rspec-rails',:group =>[:development,:test]

@@ -1,3 +1,18 @@
-<p>User: <%= @user.nombre %></p>
-<p>Email: <%= @user.email if @user.email %></p>
-<p>Imagen: <%= image_tag(@user.avatar.url(:medium)) %></p>
+<% css("picture") %>
+<div class="span11 contenido">
+
+	<ul class="nav nav-tabs" id="user-tabs">
+  		<li class="active"><a href="#perfil">Perfil</a></li>
+  		<li><a href="#votadas">Imágenes votadas</a></li>
+  		<li><a href="#subir">Subir Imágenes</a></li>
+	</ul>
+ 
+	<div class="tab-content">
+  		<div class="tab-pane" id="perfil">
+  			<%= render :partial => "perfil",:locals => {:user => @user} %>
+  		</div>
+  		<div class="tab-pane" id="votadas">Mensajes</div>
+  		<div class="tab-pane" id="subir">Preferencias</div>
+	</div>
+</div>
+

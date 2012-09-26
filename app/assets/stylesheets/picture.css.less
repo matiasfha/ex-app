@@ -1,0 +1,110 @@
+// Place all the styles related to the picture controller here.
+// They will automatically be included in application.css.
+
+
+.imagen-show, .comentarios{
+	-webkit-box-shadow: 0 7px 4px -2px rgba(151,151,151, 0.5);   
+	-moz-box-shadow: 0 7px 4px -2px rgba(151,51,151, 0.5);
+	box-shadow: 0 7px 4px -2px rgba(151,151,151, 0.5);
+	/* For IE 8 */
+    -ms-filter: "progid:DXImageTransform.Microsoft.Shadow(Strength=4, Direction=180, Color='#DDDDDD')";
+	/* For IE 5.5 - 7 */
+	filter: progid:DXImageTransform.Microsoft.Shadow(Strength=4, Direction=180, Color='#DDDDDD');	
+}
+	
+.imagen-show{	
+	position:relative;
+	.caption{
+		font-size:14px;
+		margin-top:10px;
+		.botonera{
+	    	img{
+	    		cursor:pointer;
+	    	}
+	    }
+	}
+
+    .img-rounded{
+        width:610px !important;
+        margin:0 auto;
+    }
+
+	.overlay{
+		z-index:2;
+		background: rgb(0,0,0) transparent;
+		background: rgba(0, 0, 0, 0.3);
+		filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#99000000', endColorstr='#99000000');
+		-ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr='#99000000', endColorstr='#99000000')";
+        position:absolute;
+        top:18px;
+    	height:70px;
+        margin-left:0px;
+    	border-radius:4px;
+    	-webkit-border-radius:4px;
+    	-moz-border-radius:4px;
+    	behavior:url('PIE.htc');
+    	div.titulo{
+    		z-index:3;
+    		color:#FFFFFF;
+    		font-size:18px;
+    		font-weight:bold;
+    		margin-top:10px;
+    		margin-bottom:7px;
+    	}
+    	div.autor{
+    		font-size:12px;
+    		margin-bottom:10px;
+    		color:#FFFFFF;
+    	}
+    }
+        
+}
+
+.rating{
+    width:172px;
+    border:1px black solid;
+}
+
+.comentarios{
+	height:472px;
+    position:relative;
+	.list{
+		overflow-y:auto;
+		max-height:365px;
+		height:auto;
+
+	}
+	.new-comment{
+		height:90px;
+		min-height:90px;
+        position:absolute;
+        bottom:0;
+	}
+	.user-thumb{
+    	width:32px;
+    	height:32px;
+    	margin-right:5px;
+    }
+    .user-comment{
+    	margin-left:2px;
+    	margin-right:0;
+    	textarea{
+    		width:218px !important;
+    		height:49px !important;
+    	}
+    }
+    .comentario{
+        position:relative;
+    }
+    .close{
+        position:absolute;
+        top:-5px;
+        right:2px;
+    }
+    .btn{
+    	float:right;
+    	margin-right:0;
+    	margin-top:5px;
+    }
+    
+}

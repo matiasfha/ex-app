@@ -5,14 +5,9 @@ ActiveAdmin.register Picture do
 	index :download_links => false, :as => :block do |picture|
 		div :for => picture do 
 			div do 
-				if picture.imagen_processing.nil?
-					link_to(image_tag(picture.imagen.thumb.url), admin_picture_path(picture))
-				else
-					div do 
-						"Procesando"
-					end
-					
-				end
+				
+				link_to(image_tag(picture.imagen.url(:medium),:style => "width:300px"), admin_picture_path(picture))
+				
 			end
 			div do
 				"Comentarios: #{picture.comments.count}"
@@ -27,14 +22,9 @@ ActiveAdmin.register Picture do
 		div :style=>"float:left" do
 			h3 picture.titulo
 			div do 
-				if picture.imagen_processing.nil?
-					link_to image_tag(picture.imagen.large.url || picture.imagen.url), picture.imagen.url
-				else
-					div do 
-						"Procesando"
-					end
-					
-				end
+				
+				link_to image_tag(picture.imagen.url(:original),:style=>"width:500px;"), picture.imagen.url
+				
 
 			end
 			div do 

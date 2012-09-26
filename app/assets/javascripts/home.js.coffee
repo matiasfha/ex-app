@@ -1,55 +1,73 @@
 $(document).ready () ->
-	$('.comments').click (e) ->
-		target = $(e.currentTarget)
-		picture_id = target.attr('data-id')
-		lista      = $("##{picture_id} .comment-list")
-		$('.comment-list').removeClass('active')
-		lista.toggleClass('active').slideToggle()
-		$('.comment-list:not(.active)').slideUp()
+	handleIn = (e) ->
+		if !$(this).parent().hasClass 'voted'
+			$(this).prevAll().andSelf().addClass('over')
+			.nextAll().removeClass('vote')
+	handleOut = (e) ->
+			if !$(this).parent().hasClass 'voted'
+				$(this).prevAll().andSelf().removeClass 'over'
+
+	$('.rating .star').click (e) ->
+		if !$(e.currentTarget).parent().hasClass 'voted'
+			$(this).parent().addClass 'voted'
+			rating = $(this).siblings().add(this).filter('.over').length
+			pid = $(this).parent().attr('data-id')
+			$.post "/votos/#{pid}/#{rating}",(data) ->
+				if data.result == true
+					html = "#{data.promedio}/#{data.total}"
+					$("##{pid} .votos_result").html(html)
+				else
+					$.pnotify
+						title: "Error"
+						text: "Ya habías votado en esta imagen"
+						opacity:.5
+						type:"error"
+
+	$('.rating .star').hover handleIn, handleOut	
+
+	# Maneja el evento hover sobre la imagen para mostrar
+	# la descripcion, autor y botones sociales
+	$('.imagen').hover (e) ->
+		item = $(e.currentTarget) 
+		item.find('.overlay.up').fadeIn()
+		item.find('.overlay.bottom').show('slide',{direction:"up"},300)
+	, (e) ->
+		item = $(e.currentTarget) 
+		item.find('.overlay.up').fadeOut()
+		item.find('.overlay.bottom').hide('slide',{direction:"down"},300)
+
+
+	# Maneja la interaccion del boton like
+	$('.btn_like').click (e) ->
 		e.preventDefault()
 		e.stopPropagation()
+		target = $(e.currentTarget)
+		parent = target.parent().parent().parent()
+		picture_id = parent.attr('id')
+		$.post '/picture/add_like',{id:picture_id},(data) -> 
+			if data == -1
+				$.pnotify
+					title: "Error"
+					text: "Ya habías marcado que te gusta esta imagen"
+					opacity:.8
+					type:"error"
+			else
+				$.pnotify
+					title:"Te gusta esta imagen"
+					text:""
+					opacity:.8
+					type:'success'
+				html = """<i class="icon-heart" ></i>#{data}"""
+				parent.find('.like-count').html html	
+				
 		false
 
-	$('.ver-comentarios').live 'ajax:success', (e,data) ->
-		target = $(e.currentTarget)
-		picture_id = target.attr('data-id')
-		# $.get '/comments',{picture_id:picture_id},(data) ->
-		$("##{picture_id} .listado").html(data)
-		target.remove()
 
-	$('.imagen .well').hover (e) ->
-		target = $(e.currentTarget)
-		picture_id = target.attr('id')
-		$("##{picture_id} .titulo").toggle();
 	
-	$('textarea').keydown (e) ->
-		if e.which == 13
-			e.preventDefault()
-			e.stopPropagation()
-			$(e.currentTarget).submit()
-	.autoGrow()
 
-	$('form[data-remote]').live 'ajax:success', (e,data) ->
-		form = $(e.currentTarget).serializeObject()
-		picture_id = form.comment.picture_id
-		html = $(data)
-		$("##{picture_id} .comment-list .comment-container").append(html)
-		$("##{picture_id} textarea").val("")
-
-		total = Number($("##{picture_id} .comments").attr('data-total'))+1
-		html = """<icon class="icon-comment"></icon>#{total}"""
-		$("##{picture_id} .comments").attr('data-total',total).html(html)
 		
 
 
 
 
-	$('.likes').click (e) ->
-		e.preventDefault()
-		e.stopPropagation()
-		picture_id = $(e.currentTarget).attr('data-id')
-
-		$.post '/picture/add_like',{id:picture_id},(data) -> 
-			html = """<i class="icon-heart" ></i>#{data}"""
-			$(e.currentTarget).html(html)
-		false
+	

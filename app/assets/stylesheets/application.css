@@ -8,7 +8,8 @@
  * You're free to add application-wide styles to this file and they'll appear at the top of the
  * compiled file, but it's generally better to create a new file per style scope.
  *
- *=require bootstrap_control
+ *require bootstrap_control
+ *=require style
  *=require jquery.ui.base
  *require jquery.ui.core
  *=require jquery.ui.datepicker
@@ -16,20 +17,3 @@
  * require_tree .
 */
 
-#body{
-	/*padding:50px;*/
-	font-family:'Cabin',sans-serif;
-	/*margin-left:2% !important;*/
-}
-.container-fluid{
-	overflow-x:hidden;
-}
-
-a.comments,a.likes{
-	color:#333;
-}
-
-
-a.comments:hover,a.likes:hover{
-	text-decoration: none;
-}

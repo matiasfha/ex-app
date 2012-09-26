@@ -1,0 +1,106 @@
+div.items{
+	width:345px;
+	height:245px;
+	margin-left:8px;
+	margin-right:8px;
+	background-color: #FFFFFF;
+	&.first-child{
+		margin-left:0 !important;
+	}
+
+	&.last-child{
+		margin-right: 0 !important;
+	}
+	.thumbnail{
+		.border-radius(0);
+		padding:0;
+
+	}
+
+	.imagen{
+		position:relative;
+		height:205px;
+		padding:4px 4px 4px 4px;
+		-webkit-box-shadow: 0 7px 4px -2px rgba(151,151,151, 0.5);   
+		-moz-box-shadow: 0 7px 4px -2px rgba(151,51,151, 0.5);
+		box-shadow: 0 7px 4px -2px rgba(151,151,151, 0.5);
+		/* For IE 8 */
+        -ms-filter: "progid:DXImageTransform.Microsoft.Shadow(Strength=4, Direction=180, Color='#DDDDDD')";
+		/* For IE 5.5 - 7 */
+		filter: progid:DXImageTransform.Microsoft.Shadow(Strength=4, Direction=180, Color='#DDDDDD');
+	}
+
+	.overlay{
+		display:none;
+		z-index:2;
+		background: rgb(0,0,0) transparent;
+		background: rgba(0, 0, 0, 0.3);
+		filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#99000000', endColorstr='#99000000');
+		-ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr='#99000000', endColorstr='#99000000')";
+        width:337px;
+        position:absolute;
+
+        &.up{
+        	top:-3px;
+        	height:30px;
+        	margin-left:10px;
+        	background-color:transparent;
+        	.opacity(100);
+        	img{
+        		width:34px !important;
+        		height:25px !important;
+        		cursor:pointer;
+        	}
+        }
+
+        &.bottom{
+        	height:70px;
+        	top:120px;	
+        }
+        
+        &.share{
+
+        }
+        	
+    	div.titulo{
+    		z-index:3;
+    		color:#FFFFFF;
+    		font-size:18px;
+    		font-weight:bold;
+    		margin-top:10px;
+    		margin-bottom:7px;
+    	}
+    	div.autor{
+    		font-size:12px;
+    		margin-bottom:10px;
+    		color:#FFFFFF;
+    	}
+        
+
+	}
+
+	img{
+		height:185px;
+		width:337px;	
+		margin:0 auto;
+		// margin:7px 7px 7px 7px;
+	}
+
+	
+	
+	.comments{
+		width:70px;
+		min-width:50px;
+	}
+	.votos{
+		width:115px;
+		text-align:right;
+	}
+
+	
+
+	.caption{
+		margin:10px 7px 7px 7px;
+	}
+
+}

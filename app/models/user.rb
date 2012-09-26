@@ -1,7 +1,8 @@
+require 'open-uri'
 class User
   include Mongoid::Document
   include Mongoid::Timestamps
-  # include Mongoid::Paperclip
+  include Mongoid::Paperclip
   include Mongoid::Paranoia
   # Include default devise modules. Others available are:
   # :token_authenticatable, :confirmable,
@@ -40,8 +41,8 @@ class User
   belongs_to  :city
 
   has_many :pictures
-  embeds_many :comments
-  embeds_many :votos
+  # embeds_many :comments
+  has_many :votos
 
   #Atributos
   field :nombre, :type => String
@@ -52,23 +53,48 @@ class User
   field :ocupacion, :type => String
   field :nacimiento, :type => Date
   
-  field :avatar_processing, :type => Boolean
-  field :avatar_tmp, :type => String  
 
 
   index({ email: 1 }, { unique: true, background: true })
   index({ nickname: 1 }, { unique: true, background: true })
 
   attr_accessible :nombre,:email,:password,:password_confirmation, :remember_me, :created_at, :updated_at
-  attr_accessible :apellidos, :nickname, :rut, :avatar,:avatar_cache, :bio, :ocupacion, :nacimiento
+  attr_accessible :apellidos, :nickname, :rut,  :bio, :ocupacion, :nacimiento
   attr_accessible :country_id, :state_id, :commune_id, :city_id, :gender_id, :civil_statu_id
+  attr_accessible :avatar
 
 
-  mount_uploader :avatar, ImagenUploader
-  process_in_background :avatar
-  store_in_background :avatar
+  has_mongoid_attached_file :avatar,
+    :path => ':attachment/:id/:style.:extension',
+    :storage => :s3,
+    :bucket => 'dandoo-avatars',
+    :s3_credentials => {
+      :access_key_id =>'AKIAJ3CCTJY54TJGQKRQ',
+      :secret_access_key =>'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'
+      },
+    :styles => {
+      :thumb => '32x32>',
+      :medium => '200x200>',
+      :original => '1920x1680>'
+    }
+
   
-
+  def avatar_remote_url(url_value)
+    # self.avatar = URI.parse(url_value)
+    self.avatar = open(url_value)
+  end
+  
+  
+  def self.imagenes_votadas(user_id)
+    pictures = Array.new
+    Voto.where(:user_id => user_id).each do |voto|
+      p = Picture.find(voto.picture_id)
+      if !p.nil?
+        pictures.push p
+      end
+    end
+    pictures
+  end
   
 
 end
