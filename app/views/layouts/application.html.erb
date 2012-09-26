@@ -116,34 +116,10 @@
 	</div>
 
 </div>
-	<script src="//cdnjs.cloudflare.com/ajax/libs/masonry/2.1.04/jquery.masonry.min.js"></script>
-	<script src="https://raw.github.com/desandro/imagesloaded/master/jquery.imagesloaded.min.js"></script>
+	<script src="//cdnjs.cloudflare.com/ajax/libs/jquery.imagesloaded/2.1.0/jquery.imagesloaded.min.js"></script>
 
 	<script type="text/javascript" src="http://pinesframework.org/pnotify/jquery.pnotify.js"></script>
-
-	<script type="text/javascript">
-	$(document).ready(function(){
-
-		if ($('.alerta').length > 0){
-			$.pnotify({
-				title:$('.alerta').attr('data-title'),
-				text:$('.alerta').attr('data-text'),
-				opacity: .8
-			});	
-		}
-		$('#user-tabs a').click(function (e) {
-		  e.preventDefault();
-		  $(this).tab('show');
-		})
-
-		
-		
-		$('#principal').imagesLoaded(function(){
-			$('#loading').hide();
-			$('#principal').fadeIn();
-		});
-	});
-	</script>
+	
 </body>
 
 </html>

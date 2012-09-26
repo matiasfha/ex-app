@@ -1,0 +1,7 @@
+<div class="span11" style="margin-left:30px;margin-top:10px;">
+	
+	<% pictures = Picture.where(:user_id => current_user.id) %>
+	<%= render :partial => "home/listado_imagenes",:locals => {:pictures => pictures} %>
+
+	
+</div>

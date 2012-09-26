@@ -1,18 +1,24 @@
-<% css("picture") %>
+
 <div class="span11 contenido">
-
-	<ul class="nav nav-tabs" id="user-tabs">
-  		<li class="active"><a href="#perfil">Perfil</a></li>
-  		<li><a href="#votadas">Imágenes votadas</a></li>
-  		<li><a href="#subir">Subir Imágenes</a></li>
-	</ul>
+  <div class="row">
+  	<ul class="nav nav-tabs" id="user-tabs">
+    		<li class="active"><a href="#perfil">Perfil</a></li>
+    		<li><a href="#votadas">Imágenes votadas</a></li>
+    		<li><a href="#subir">Subir Imágenes</a></li>
+  	</ul>
  
-	<div class="tab-content">
+  	<div class="tab-content">
   		<div class="tab-pane" id="perfil">
-  			<%= render :partial => "perfil",:locals => {:user => @user} %>
+  			<%= render :partial => "perfil"%>
   		</div>
-  		<div class="tab-pane" id="votadas">Mensajes</div>
-  		<div class="tab-pane" id="subir">Preferencias</div>
-	</div>
+  		<div class="tab-pane" id="votadas">
+        
+        <%= render :partial => "votadas" %>
+      </div>
+  		<div class="tab-pane" id="subir">
+        <%= render :partial => "subidas" %>  
+      </div>
+	 </div>
+  </div>
 </div>
-
+<% javascript(:home) %>

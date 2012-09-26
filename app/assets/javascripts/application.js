@@ -61,8 +61,18 @@ $(document).ready(function(){
 	    return data;
 	  };
 
+	if ($('.alerta').length > 0){
+		$.pnotify({
+			title:$('.alerta').attr('data-title'),
+			text:$('.alerta').attr('data-text'),
+			opacity: .8
+		});	
+	}
 
-	// $('input[type="text"].date').datepicker();
+	$('#principal').imagesLoaded(function(){
+		$('#loading').hide();
+		$('#principal').fadeIn();
+	});
 
 	
 });
