@@ -12,7 +12,7 @@
 <%
 voto = Voto.where(:picture_id => @picture.id, :user_id => current_user.id).first
 %>
-<div class="span2 <%=(voto.nil?)?"" : "voted" %>" data-id="<%=@picture.id%>">
+<div class="span2 <%=(voto.nil?)? '' : "voted" %>" data-id="<%=@picture.id%>">
 	<%
 	if !voto.nil?
 		for i in 1..voto.valor
