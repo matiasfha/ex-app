@@ -59,7 +59,7 @@ $(document).ready () ->
 					text:""
 					opacity:.8
 					type:'success'
-				html = """<i class="icon-heart" ></i>#{data}"""
+				html = """<i class="heart" ></i>#{data}"""
 				parent.find('.like-count').html html	
 				
 		false

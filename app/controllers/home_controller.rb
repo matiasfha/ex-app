@@ -27,10 +27,6 @@ class HomeController < ApplicationController
   private
 
   def get_pictures(page)
-    # if Picture.count > 6
-     @pictures = Picture.order_by([[:created_at,:desc]]).page(page)
-    # else
-    #   @pictures = Picture.all.order_by([[:created_at,:desc]])
-    # end
+    @pictures = Picture.order_by([[:created_at,:desc]]).page(page)
   end
 end
