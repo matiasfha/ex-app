@@ -13,6 +13,7 @@
  *=require jquery.ui.base
  *require jquery.ui.core
  *=require jquery.ui.datepicker
+ *=require sausage
  *=require_self
  * require_tree .
 */
