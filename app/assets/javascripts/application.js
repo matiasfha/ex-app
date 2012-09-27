@@ -104,7 +104,7 @@ $(document).ready(function(){
 								div.fadeIn('slow');
 							});
 							
-							$(window).sausage('draw');
+							$(window).sausage();
 							loading = false;
 							
 						},250);
