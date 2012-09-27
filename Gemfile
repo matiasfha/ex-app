@@ -40,6 +40,7 @@ gem 'omniauth-twitter'
 gem 'omniauth-facebook'
 gem 'remotipart',"~> 1.0"
 gem 'kaminari'
+gem 'dalli'
 
 gem "mongoid-paperclip", :require => "mongoid_paperclip", :git => "git://github.com/meskyanichi/mongoid-paperclip.git"
 gem "aws-s3",            :require => "aws/s3"
