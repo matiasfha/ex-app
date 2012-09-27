@@ -2,7 +2,7 @@ class PicturesController < ApplicationController
   before_filter :authenticate_user!, :only => [:add_like,:create]
   
   def index
-    pictures = Picture.order_by([[:created_at,:desc]]).page(params[:page]).per(6)    
+    pictures = Picture.order_by([[:created_at,:desc]]).page(params[:page])
     render :partial => "home/listado_imagenes",:locals => {:pictures => pictures}
   end
   def show
@@ -29,7 +29,7 @@ class PicturesController < ApplicationController
   end
 
   def reload_list
-    pictures = Picture.where(:user_id => current_user.id).desc(:created_at).page(params[:page]).per(6)    
+    pictures = Picture.where(:user_id => current_user.id).desc(:created_at).page(params[:page])
     render :partial => "home/listado_imagenes",:locals => {:pictures => pictures}
   end
 end

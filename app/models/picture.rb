@@ -4,6 +4,8 @@ class Picture
   include Mongoid::Paranoia
   include Mongoid::Paperclip
 
+  paginates_per 6
+
   embeds_many :comments
   has_many :votos 
   has_and_belongs_to_many :likers, :class_name => "User", :inverse_of => nil
