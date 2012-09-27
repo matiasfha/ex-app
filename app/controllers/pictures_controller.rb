@@ -2,7 +2,7 @@ class PicturesController < ApplicationController
   before_filter :authenticate_user!, :only => [:add_like,:create]
   
   def index
-    if Picture.all.count > 0
+    if Picture.count > 0
       pictures = Picture.order_by([[:created_at,:desc]]).page(params[:page])
     else
       pictures = Picture.order_by([[:created_at,:desc]])
