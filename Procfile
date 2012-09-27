@@ -1,2 +1,1 @@
-
-web: bundle exec unicorn  -p 8080  
+web: bundle exec unicorn 
