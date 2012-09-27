@@ -1,11 +1,66 @@
+@font-face {
+    font-family: 'FBold';
+    src: url('fonts/liberationsans-bold-webfont.eot');
+    src: url('fonts/liberationsans-bold-webfont.eot?#iefix') format('embedded-opentype'),
+         url('fonts/liberationsans-bold-webfont.woff') format('woff'),
+         url('fonts/liberationsans-bold-webfont.ttf') format('truetype'),
+         url('fonts/liberationsans-bold-webfont.svg#liberation_sansbold') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+
+
+
+@font-face {
+    font-family: 'FBoldItalic';
+    src: url('fonts/liberationsans-bolditalic-webfont.eot');
+    src: url('fonts/liberationsans-bolditalic-webfont.eot?#iefix') format('embedded-opentype'),
+         url('fonts/liberationsans-bolditalic-webfont.woff') format('woff'),
+         url('fonts/liberationsans-bolditalic-webfont.ttf') format('truetype'),
+         url('fonts/liberationsans-bolditalic-webfont.svg#liberation_sansbold_italic') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+
+
+
+@font-face {
+    font-family: 'FItalic';
+    src: url('fonts/liberationsans-italic-webfont.eot');
+    src: url('fonts/liberationsans-italic-webfont.eot?#iefix') format('embedded-opentype'),
+         url('fonts/liberationsans-italic-webfont.woff') format('woff'),
+         url('fonts/liberationsans-italic-webfont.ttf') format('truetype'),
+         url('fonts/liberationsans-italic-webfont.svg#liberation_sansitalic') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+
+
+
+@font-face {
+    font-family: 'FRegular';
+    src: url('fonts/liberationsans-regular-webfont.eot');
+    src: url('fonts/liberationsans-regular-webfont.eot?#iefix') format('embedded-opentype'),
+         url('fonts/liberationsans-regular-webfont.woff') format('woff'),
+         url('fonts/liberationsans-regular-webfont.ttf') format('truetype'),
+         url('fonts/liberationsans-regular-webfont.svg#liberation_sansregular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
 body{
-	font-family:'Cabin',sans-serif;
+	font-family:'FRegular',sans-serif, Helvetica;
 	background:url('pattern.gif');
 }
 .container-fluid{
 	overflow-x:hidden;
-	// margin:0;
-	// padding:0px 0;
 }
 
 
@@ -84,7 +139,7 @@ body{
 #header{
 	height:190px;
 	margin-top:0px;	
-	background: url('a1_15.jpg') no-repeat;
+	background: url('header.jpg') no-repeat;
 	#show{
 		height:170px;
 		margin-top:10px;
@@ -238,13 +293,21 @@ body{
 }
 
 #loading{
-	z-index:10;
-	background: rgb(1,1,1) transparent;
-	background: rgba(1,1,1,0);
-	position:absolute;
-	left:45%;
-	top:20%;
+	height:100%;
+	width:100%;
+	position:fixed;
+	left:0;
+	top:0;
+	z-index:10000 !important;
+	background: rgb(1,1,1);
+	background: rgba(1,1,1,0.3);
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#FFFFFFFF', endColorstr='#FFFFFFFF');
+	-ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr='#FFFFFFFF', endColorstr='#FFFFFFFF')";
 	text-align:center;
+	font-size:20px;
+	font-weight:bold;
+	font-family:'FBold',sans-serif, Helvetica;
+	color:black;
 }
 
 

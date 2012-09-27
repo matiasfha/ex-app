@@ -11,6 +11,8 @@ class PicturesController < ApplicationController
   end
   def show
   	@picture = Picture.find(params[:id])
+    @picture.num_views+=1;
+    @picture.save
     @comentarios = @picture.comments
     @comentario = Comment.new
   end
@@ -19,6 +21,7 @@ class PicturesController < ApplicationController
   	@picture = Picture.find(params[:id])
   	if @picture.likers.where(:id => User.first.id).count == 0
   		@picture.likers << current_user
+      @picture.num_likes+=1;
       @picture.save
       render :json => @picture.likers.count
   	else

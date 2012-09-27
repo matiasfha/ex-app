@@ -13,6 +13,10 @@ DandooDev::Application.routes.draw do
     root :to => 'home#index'
   end
   root :to => 'home#landpage'
+  match 'mas_populares' => 'home#populares', :via => :get
+  match 'mas_vistas' => 'home#vistas', :via => :get
+  match 'mas_votadas' => 'home#votadas', :via => :get
+
   devise_for :users, :controllers => { :registrations => "registrations"}
   devise_scope :user do 
     get '/register'                 => 'devise/registrations#new'

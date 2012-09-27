@@ -7,16 +7,17 @@ $(document).ready () ->
 		$('.pagination').remove()
 
 	$('#new_picture').on 'ajax:beforeSend',(e,x,s) ->
-		$('#formulario_picture').fadeOut 'fast',() ->
-			$('#mensaje_carga').fadeIn()
+		$('#loading').show();
+		$('#formulario_picture').fadeOut 'fast'
+			
 	.on 'ajax:complete',(e,data) ->
-		$('#mensaje_carga').fadeOut()	
 		$.get '/metadata/reload_list', (data) ->
 			$('#listado_imagenes').fadeOut 'fast',() ->
 				$('#listado_imagenes').html data
 				$('#new_picture').reset()
 				$('#formulario_picture').fadeIn 'fast'
-				$('#listado_imagenes').stop().fadeIn()
+				$('#listado_imagenes').stop().fadeIn().imagesLoaded () ->
+					$('#loading').hide();
 							
 		
 

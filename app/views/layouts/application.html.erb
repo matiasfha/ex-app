@@ -15,9 +15,12 @@
 </head>
 <body>
 
-	<div class="span1" id="loading" >
-		<%= image_tag "loader.gif" %>
+	<div id="loading" >
+		<div style="position:relative;top:30%">
+		<%= image_tag "loader.gif",:size =>"100x100" %>
+		<br />
 		Cargando...
+		</div>
 	</div>
 
 	<div id="principal" style="display:none">

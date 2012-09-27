@@ -25,7 +25,6 @@ group :assets do
 end
 
 gem 'unicorn'
-gem 'thin'
 gem 'heroku'
 gem 'foreman'
 

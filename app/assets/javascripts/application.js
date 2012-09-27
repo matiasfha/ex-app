@@ -26,7 +26,10 @@
 $(document).ready(function(){
 
 	$.fn.reset = function(){
-		$(this).each (function(){ this.reset(); });
+		$(this).each (function(){ 
+			this.reset(); 
+			$(this).removeAttr('disabled');
+		});
 	};
 
 	 $.fn.serializeObject = function() {
@@ -94,6 +97,7 @@ $(document).ready(function(){
 			if(nearBottomOfPage()){
 				loading = true;
 				page++;
+				$('#loading').show();
 				$.get('/pictures',{page:page},function(data){
 						
 						setTimeout(function(){
@@ -102,9 +106,8 @@ $(document).ready(function(){
 							div.imagesLoaded(function(){
 								$('div.contenido').append(div);		
 								div.fadeIn('slow');
+								$('#loading').hide();
 							});
-							
-							$(window).sausage();
 							loading = false;
 							
 						},250);
@@ -114,10 +117,6 @@ $(document).ready(function(){
 				
 			}
 		});
-
-		$(window).sausage();
-	}else{
-		console.log('No Sausage');
 	}
 	
 

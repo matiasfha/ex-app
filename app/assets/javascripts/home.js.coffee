@@ -23,7 +23,9 @@ $(document).ready () ->
 						opacity:.5
 						type:"error"
 
-	$('.rating .star').hover handleIn, handleOut	
+	$('.rating .star').live
+		mouseenter: handleIn,
+		mouseleave: handleOut	
 
 	# Maneja el evento hover sobre la imagen para mostrar
 	# la descripcion, autor y botones sociales
