@@ -7,6 +7,7 @@ class Picture
   paginates_per 6
 
   embeds_many :comments
+  accepts_nested_attributes_for :comments
   has_many :votos 
   has_and_belongs_to_many :likers, :class_name => "User", :inverse_of => nil
   belongs_to :user
@@ -34,6 +35,23 @@ class Picture
   
   attr_accessible :imagen,  :descripcion, :titulo, :num_views  
   
+
+  rails_admin do 
+    label 'Imagen'
+    label_plural 'Imagenes'
+
+    list do 
+      field :titulo
+      field :descripcion
+      field :created_at
+      sort_by :id
+      sort_reverse true
+    end
+
+    field :descripcion
+    field :titulo
+    field :imagen
+  end
 
   index "comments.id" => 1
 

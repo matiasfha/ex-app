@@ -30,7 +30,8 @@ gem 'foreman'
 
 gem 'i18n'
 gem 'formtastic'
-gem "activeadmin-mongoid",  git: "git://github.com/elia/activeadmin-mongoid.git"
+# gem "activeadmin-mongoid",  git: "git://github.com/elia/activeadmin-mongoid.git"
+gem 'rails_admin'
 gem 'mongoid'
 gem 'bson_ext'
 gem 'devise'

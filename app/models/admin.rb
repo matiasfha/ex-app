@@ -1,15 +1,9 @@
-class AdminUser
+class Admin
   include Mongoid::Document
   # Include default devise modules. Others available are:
   # :token_authenticatable, :confirmable,
   # :lockable, :timeoutable and :omniauthable
-  devise :database_authenticatable, 
-         :recoverable, :rememberable, :trackable, :validatable
-
-  # Include default devise modules. Others available are:
-  # :token_authenticatable, :confirmable,
-  # :lockable, :timeoutable and :omniauthable
-  devise :database_authenticatable, 
+  devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
   ## Database authenticatable
@@ -46,4 +40,27 @@ class AdminUser
 
   ## Token authenticatable
   # field :authentication_token, :type => String
+
+  rails_admin do 
+    label 'Administrador'
+    label_plural 'Administradores'
+
+    object_label_method :email
+
+    list do 
+      field :email
+      field :sign_in_count
+      field :last_sign_in_at
+      field :last_sign_in_ip
+      sort_by :id
+      sort_reverse true
+    end
+
+    field :email
+    field :password 
+    field :password_confirmation
+    
+    
+
+  end
 end
