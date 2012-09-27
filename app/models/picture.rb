@@ -83,6 +83,9 @@ class Picture
     end
     avg = avg.to_a
     avg = avg[1][1].round
+    if avg == 0
+      avg = 1
+    end
 
     self.where(:num_likes => avg)
     
@@ -91,7 +94,7 @@ class Picture
   def self.mas_votadas
     avg = Voto.avg(:valor).round
     pictures = Array.new
-    Voto.where(:valor.gt => avg).each do |v|
+    Voto.where(:valor.gte => avg).each do |v|
       pictures.push Picture.find(v.picture_id)
     end
     pictures
@@ -100,7 +103,7 @@ class Picture
   #Retorna las mas vistas
   def self.mas_vistas
     avg = self.avg(:num_views).round
-    self.where(:num_views.gt => avg)
+    self.where(:num_views.gte => avg)
   end
 
   #Retorna todos los comentarios existentes
