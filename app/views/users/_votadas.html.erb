@@ -1,7 +1,6 @@
-<div class="span11" style="margin-left:30px;margin-top:10px;">
+
+<div class="span11 imagenes" style="margin-left:30px;margin-top:10px;">
 	
-	<% pictures = User.imagenes_votadas current_user.id %>
+	<% pictures = User.imagenes_votadas(current_user.id) %>
 	<%= render :partial => "home/listado_imagenes",:locals => {:pictures => pictures} %>
-		
-	
 </div>

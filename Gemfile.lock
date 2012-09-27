@@ -259,6 +259,7 @@ GEM
     rdoc (3.12)
       json (~> 1.4)
     recaptcha (0.3.4)
+    remotipart (1.0.2)
     responders (0.9.2)
       railties (~> 3.1)
     rest-client (1.6.7)
@@ -341,6 +342,7 @@ DEPENDENCIES
   i18n
   jquery-rails
   jquery-ui-rails
+  kaminari
   launchy
   less-rails-bootstrap
   mongoid
@@ -351,6 +353,7 @@ DEPENDENCIES
   omniauth-twitter
   rails (= 3.2.8)
   recaptcha
+  remotipart (~> 1.0)
   rspec-rails
   sass-rails (~> 3.2.3)
   therubyracer

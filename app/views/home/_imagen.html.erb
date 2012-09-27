@@ -9,13 +9,16 @@
     </div>
 
     <% end %>
-    <%= link_to image_tag(picture.imagen.url(:medium)), picture_path(picture)%>
+    <%= link_to image_tag(picture.imagen.url), picture_path(picture)%>
     <div class="overlay bottom">
       <div class="titulo"><%=picture.titulo%></div>
       
       <div class="autor">
       <% if picture.user_id %>
-        <%=User.find(picture.user_id).nombre %>
+        <% begin %>
+          <%=User.find(picture.user_id).nombre %>
+        <% rescue %>
+        <% end %>
       <% else %>
         Admin
       <% end %>
@@ -43,13 +46,14 @@
   </div>
   <div class="caption">
     <div class="comments pull-left">
-      <span class="like-count"><i class="icon-heart"></i><%=picture.likers.count%></span>
+      <span class="like-count">
+        <i class="heart"></i><%=picture.likers.count%></span>
       
       / 
       <% if user_signed_in? %>
-      <a href="#" class="comment-count" data-id="<%=picture.id%>" data-total="<%=picture.comments.count%>">
+      <a href="<%=picture_path(picture)%>" class="comment-count" data-id="<%=picture.id%>" data-total="<%=picture.comments.count%>">
       <% end %>
-        <icon class="icon-comment"></icon><%=picture.comments.count%>
+        <i class="comment"></i><%=picture.comments.count%>
       <% if user_signed_in? %>
       </a>
       <% end %>

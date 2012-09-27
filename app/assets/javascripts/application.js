@@ -13,16 +13,21 @@
 //= require jquery
 //= require jquery_ujs
 //= require jquery.ui.core
+//= require jquery.ui.widget
 //= require jquery.effects.core
 //= require jquery.effects.highlight
 //= require jquery.effects.slide
-// require jquery.ui.datepicker
+//= require jquery.remotipart
+//= require jquery.sausage.min
 //= require twitter/bootstrap
-// require jquery.textarea.autogrow
 // require_tree .
 
 
 $(document).ready(function(){
+
+	$.fn.reset = function(){
+		$(this).each (function(){ this.reset(); });
+	};
 
 	 $.fn.serializeObject = function() {
 		if ( this.length < 1) { 
@@ -73,6 +78,48 @@ $(document).ready(function(){
 		$('#loading').hide();
 		$('#principal').fadeIn();
 	});
+
+	//PAGINATION
+	var contenedor = $('.imagenes');
+	if(contenedor.length > 0){
+		var page = 1,loading = false;
+		function nearBottomOfPage(){
+			return $(window).scrollTop() > $(document).height() - $(window).height() - 200;
+		}
+
+		$(window).scroll(function(){
+			if(loading){
+				return;
+			}
+			if(nearBottomOfPage()){
+				loading = true;
+				page++;
+				$.get('/pictures',{page:page},function(data){
+						
+						setTimeout(function(){
+							div = $('<div class="pagination" style="display:none"></div>')
+							div.append(data);
+							div.imagesLoaded(function(){
+								$('div.contenido').append(div);		
+								div.fadeIn('slow');
+							});
+							
+							$(window).sausage('draw');
+							loading = false;
+							
+						},250);
+						
+						
+				},'html');
+				
+			}
+		});
+
+		$(window).sausage();
+	}else{
+		console.log('No Sausage');
+	}
+	
 
 	
 });

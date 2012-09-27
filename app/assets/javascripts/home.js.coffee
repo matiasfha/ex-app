@@ -44,7 +44,7 @@ $(document).ready () ->
 		target = $(e.currentTarget)
 		parent = target.parent().parent().parent()
 		picture_id = parent.attr('id')
-		$.post '/picture/add_like',{id:picture_id},(data) -> 
+		$.post '/pictures/add_like',{id:picture_id},(data) -> 
 			if data == -1
 				$.pnotify
 					title: "Error"

@@ -1,7 +1,24 @@
 <div class="span11" style="margin-left:30px;margin-top:10px;">
-	
-	<% pictures = Picture.where(:user_id => current_user.id) %>
+	<div class="row">
+		<div class="span11" id="formulario_picture">
+			<% picture = Picture.new %>
+			<%= form_for picture , :html => {:multipart => true, :class => "form-inline"}, :remote => true do |f| %>
+			<%= f.text_field :titulo, :required => true, :class => 'input-small',:placeholder => "Titulo"%>
+			<%= f.text_field :descripcion, :class => 'span5', :placeholder => "Descripcion", :maxlength => 140,:required => true %>
+
+			<%= f.file_field :imagen, :required => true %>
+			<%= f.submit "Subir", :class => "btn btn-inverse", :id => 'subir_imagen' %>
+		<% end %> 
+		</div>
+		<div class="span1" id="mensaje_carga" class="loading" style="display:none">
+		<%= image_tag "loader.gif",:height => "48px" %>
+		Subiendo....
+		</div>
+	</div>
+	<div id="listado_imagenes" class="imagenes">
+	<% pictures = Picture.where(:user_id => current_user.id).desc(:created_at).page(params[:page]).per(6) %>
 	<%= render :partial => "home/listado_imagenes",:locals => {:pictures => pictures} %>
+	</div>
 
 	
 </div>

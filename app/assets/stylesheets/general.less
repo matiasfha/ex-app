@@ -3,8 +3,8 @@ body{
 }
 .container-fluid{
 	overflow-x:hidden;
-	margin:0;
-	padding:0px 0;
+	// margin:0;
+	// padding:0px 0;
 }
 
 
@@ -20,16 +20,15 @@ body{
 
 .navbar {
 	margin:0;
+	height:40px;
 	.navbar-inner{
-		background:url('BARRA1.png') repeat-x;
+		background:url('a_pattern_top.jpg') repeat-x;
 		padding:0px 0;
 		border:0;
 	} 
-	.span11{
-		margin-top:5px;
-	}
+	
 	#logo{
-		background:url('logo.png') no-repeat;
+		background:url('a__01.jpg') no-repeat;
 		background-position:left;
 		height:40px;
 		margin-left:0px;
@@ -38,7 +37,7 @@ body{
 	.botones{
 		position:relative;
 		.nav{
-			margin-right:0px;
+			margin-right:60px;
 		}
 		.nav li{
 			margin:0;
@@ -64,19 +63,26 @@ body{
 	}
 
 	.tv{
-		.menu('botonTV.png','botonTV2.png');
+		.menu('a__02b.jpg','a__02.jpg');
 		
 	}
 	
 	.store{
-		.menu('botonSTORE.png','botonSTORE2.png');
+		.menu('a__04b.jpg','a__04.jpg');
 		
+	}
+	.ingresar{
+		background:url('a__06.jpg') no-repeat;
+		width:80px;
+		height:38px;
+		background-position: top;
+
 	}
 }
 
 #header{
 	height:190px;
-	margin-top:0;	
+	margin-top:0px;	
 	#show{
 		height:170px;
 		margin-top:10px;
@@ -138,9 +144,9 @@ body{
 		height:18px;
 		position:relative;
 		top:0px;
-		&.active,&:hover{
-			background:url(@activo) no-repeat !important;
-		}
+		// &.active,&:hover{
+		// 	background:url(@activo) no-repeat !important;
+		// }
 	}
 
 	input{
@@ -149,15 +155,15 @@ body{
 	}
 
 	#b_buscar{
-		width:50px;
+		width:30px;
 		float:left;
-		.botones('bbuscar2.png','bbuscar1.png');
+		.botones('a1_27.jpg','a1_27.jpg');
 	}
 
 	#b_buscarmas{
-		width:49px;
+		width:30px;
 		float:right;
-		.botones('bbuscarmas1.png','bbuscarmas2.png');
+		.botones('a1_28.jpg','a1_28.jpg');
 	}
 
 	.span4{
@@ -165,38 +171,27 @@ body{
 		margin-left:30px;
 	}
 
-	.secciones(@imagen){
+	.secciones(@imagen,@imagen_activa){
 		background: url(@imagen) no-repeat;
 		background-position: top left;
-		width:93px;
-		height:27px;
-		margin-right:30px;
-		top:-3px;
-		cursor:pointer;
-		span{
-			color:#aca59a;
-			font-size:12px;
-			text-align:right;
-			position:relative;
-			top:5px;
-			float:right;
-			width:60px;
-			text-shadow: 1px 1px 0px #bad3ed;
-			filter: dropshadow(color=#bad3ed, offx=1, offy=1);
+		width:111px;
+		height:30px;
+		&:hover,&.active{
+			background: url(@imagen_activa) no-repeat;
 		}
+		
 	}
 
 	#b_populares{
-		.secciones('bmaspopulares1.png');
+		.secciones('a1_17.jpg','a1_18.jpg');
 	}
 
 	#b_valorados{
-		.secciones('bmasvalorados.png');	
+		.secciones('a1_19.jpg','a1_20.jpg');
 	}
 
 	#b_vistos{
-		.secciones('bmasvistos.png');
-		width:85px !important;
+		.secciones('a1_21.jpg','a1_22.jpg');
 	}
 }
 
@@ -206,36 +201,33 @@ body{
 		background:url(@inactivo) no-repeat;
 		padding:0;
 		margin:0;
-		height:33px;
+		height:27px;
 		position:relative;
 		top:0px;
+		width:42px;
 		&.active,&:hover{
 			background:url(@activo) no-repeat !important;
 		}
 	}
 
 	.imagenes{
-		width:52px;
 		float:left;
-		.botones('bimagenes1.png','bimagenes2.png');
+		.botones('a1_37.jpg','a1_36.jpg');
 	}
 
 	.videos{
-		width:50px;
 		float:right;
-		.botones('bvideos1.png','bvideos2.png');	
+		.botones('a1_38.jpg','a1_39.jpg');
 	}
 
 	.vista_circular{
-		width:50px;
 		float:right;
-		.botones('bvistacircular1.png','bvistacircular2.png');
+		.botones('a1_41.jpg','a1_40.jpg');
 	}
 
 	.vista_muro{
-		width:50px;
 		float:left;
-		.botones('bvistamuro1.png','bvistamuro2.png');
+		.botones('a1_43.jpg','a1_42.jpg');
 	}
 }
 
@@ -260,28 +252,48 @@ body{
 
 .rating{
 	.center-block();
-	width:105px;
-	height:20px;
+	width:120px;
+	height:29px;
 	position:relative;
 }
 
 .star{
-	background:url('star.png') no-repeat;
-	width:21px;
-	height:20px;
+	background:url('a1_55.jpg') no-repeat;
+	width:24px;
+	height:29px;
 	float:left;
 	&.over,&.vote{
-		background:url('star2.png') no-repeat;
+		background:url('a1_56.jpg') no-repeat;
 	}
 }
 
 .mini-star{
-	background: url('mini-star.png') no-repeat;
-	.size(13px,13px);
+	background: url('a1_64.jpg') no-repeat;
+	.size(15px,15px);
 	float:left;
 }
 .mini-star2{
-	background: url('mini-star2.png') no-repeat;
-	.size(13px,13px);
+	background: url('a1_66.jpg') no-repeat;
+	.size(15px,15px);
 	float:left;
+}
+
+i.heart{
+	background:url('a1_68.jpg') no-repeat;
+	width:15px;
+	height:12px;
+	display:inline-block;
+	line-height:15px;
+	vertical-align: text-top;
+	margin-top:1px;
+}
+
+i.comment{
+	background:url('a1_70.jpg') no-repeat;
+	width:22px;
+	height:15px;
+	display:inline-block;
+	line-height:22px;
+	vertical-align: text-top;
+	margin-top:1px;
 }

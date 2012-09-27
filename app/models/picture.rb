@@ -33,6 +33,8 @@ class Picture
 
   index "comments.id" => 1
 
+
+  
   #Retorna todos los comentarios existentes
   def self.comentarios
     all.collect { |p| p.comments }.flatten

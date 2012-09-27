@@ -39,13 +39,8 @@ gem 'devise-i18n'
 gem 'omniauth'
 gem 'omniauth-twitter'
 gem 'omniauth-facebook'
-
-# gem 'delayed_job_mongoid'
-# gem 'daemons'
-# gem 'carrierwave_backgrounder'
-# gem 'fog','~> 1.3.1'
-# gem "carrierwave-mongoid", :git => "git://github.com/jnicklas/carrierwave-mongoid.git", :branch => "mongoid-3.0", :require => 'carrierwave/mongoid'
-# gem 'mini_magick', :git => 'git://github.com/probablycorey/mini_magick.git'
+gem 'remotipart',"~> 1.0"
+gem 'kaminari'
 
 gem "mongoid-paperclip", :require => "mongoid_paperclip", :git => "git://github.com/meskyanichi/mongoid-paperclip.git"
 gem "aws-s3",            :require => "aws/s3"

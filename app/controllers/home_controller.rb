@@ -1,8 +1,7 @@
 class HomeController < ApplicationController
   before_filter :authenticate_user!, :only => [:index]
   def index
-  	@users = User.all
-  	@pictures = Picture.all.order_by.order_by([[:created_at,:desc]])  	
+  	@pictures = Picture.order_by([[:created_at,:desc]]).page(params[:page]).per(6)  	
   end
 
   def prelaunch
@@ -10,6 +9,6 @@ class HomeController < ApplicationController
   end
 
   def landpage
-  	@pictures = Picture.all.order_by.order_by([[:created_at,:desc]])   
+  	@pictures = Picture.order_by([[:created_at,:desc]]).page(params[:page]).per(12)    
   end
 end

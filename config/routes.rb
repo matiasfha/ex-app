@@ -8,7 +8,7 @@ DandooDev::Application.routes.draw do
   match 'metadata/get_states/:id'   => 'metadata#get_states'
   match 'metadata/get_communes/:id' => 'metadata#get_communes'
   match 'metadata/get_cities/:id'   => 'metadata#get_cities'
-  
+  match 'metadata/reload_list' => 'pictures#reload_list', :via => :get
   authenticated :user do
     root :to => 'home#index'
   end
@@ -21,9 +21,9 @@ DandooDev::Application.routes.draw do
     put '/user/complete_registration' => 'registrations#finalizar'
   end
   resources :users, :only => [:show,:index]
-  resources :picture, :only => [:show]
+  resources :pictures, :only => [:create,:show,:index]
   
-  match '/picture/add_like' => 'picture#add_like', :via => :post
+  match '/pictures/add_like' => 'pictures#add_like', :via => :post
   
   resources :comments, :only => [:create,:show]
   match '/comments/:pid/:cid' => 'comments#destroy', :via => :delete
