@@ -4,7 +4,7 @@ class Picture
   include Mongoid::Paranoia
   include Mongoid::Paperclip
 
-  paginates_per 6
+  paginates_per 8
 
   embeds_many :comments
   accepts_nested_attributes_for :comments
@@ -26,7 +26,7 @@ class Picture
       },
     :styles => {
       :thumb => '32x32>',
-      :medium => '500x500>',
+      :medium => '247x245>',
       :original => '1920x1680>'
     }
 

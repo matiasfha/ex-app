@@ -1,32 +1,49 @@
-<div class="items span3 <%=style%>" id="<%=picture.id%>">
-  <div class="imagen">
-    <% if user_signed_in? %>
-    <div class="overlay up">
-      <%= image_tag 'like.png', :class => "btn_like"%>
-      <%= link_to image_tag('comentar.png', :class => "btn_comment"), picture_path(picture) %>
-      <%= image_tag 'ctwitter.png', :class => "btn_twitter"%>
-      <%= image_tag 'cfacebook.png', :class => "btn_facebook"%>
-    </div>
 
-    <% end %>
-    <%= link_to image_tag(picture.imagen.url), picture_path(picture)%>
-    <div class="overlay bottom">
-      <div class="titulo"><%=picture.titulo%></div>
-      
-      <div class="autor">
-      <% if picture.user_id %>
-        <% begin %>
-          <%=User.find(picture.user_id).nombre %>
-        <% rescue %>
-        <% end %>
-      <% else %>
-        Admin
-      <% end %>
+<%
+comentarios = picture.comments
+count = comentarios.count
+if count == 2
+  style = "height:460px !important"
+elsif count == 1
+  style = "height:400px !important"
+else
+  style="height:355px !important"
+end
+%>
+<div class="item" style="<%=style%>" id="<%=picture.id%>">
+  <div class="holder">
+
+    <div class="overlay">
+      <div class="up">
+        <%= image_tag 'like.png', :class => "btn_like",:data_id => picture.id %>
+        <%= link_to image_tag('comentar.png', :class => "btn_comment"), picture_path(picture) %>
+      <%= image_tag 'a__08.jpg', :class => "btn_twitter"%>
+      <%= image_tag 'a__09.jpg', :class => "btn_facebook"%>
+    
+      </div>
+
+      <div class="bottom">
+        <div class="titulo"><%=picture.titulo%></div>
+        <div class="autor">
+          por 
+          <% begin %>
+          <%= User.find(picture.user_id).nombre %>
+          <% rescue %>
+          Admin
+          <% end %>
+        </div>
       </div>
     </div>
-    <% if user_signed_in? %>
-      <% voto = Voto.where(:picture_id => picture.id, :user_id => current_user.id).first%>
-      <div class="rating <%=(voto.nil?)? "" : "voted" %>" data-id="<%=picture.id%>">
+    <%= link_to image_tag(picture.imagen.url(:medium),:class => "picture"), picture_path(picture)%>
+
+
+    <!-- Rating Container
+    ================================-->
+    <% if user_signed_in? 
+      voto = Voto.where(:picture_id => picture.id, :user_id => current_user.id).first
+      style=(voto.nil?)? "" : "voted"
+      %>
+      <div class="rating <%= style %>" data-id="<%=picture.id%>">
         <%
         if !voto.nil?
           for i in 1..voto.valor
@@ -42,24 +59,39 @@
         end
         %>
       </div>
+    <% else %>
+      <div class="rating">
+      </div>
     <% end %>
+
+  </div>  
+
+  <div class="descripcion">
+    <div class="thumb">
+      <% begin 
+        user = User.find(picture.user_id)
+        %>
+        <%= image_tag user.avatar.url(:thumb), :class => 'thumb' %>
+      <% rescue %>
+        <%= image_tag 'default_user.png',:class => 'thumb' %>
+      <% end %>
+    </div>
+    <div class="desc">
+      <%=picture.descripcion %>
+    </div>
   </div>
+
   <div class="caption">
     <div class="comments pull-left">
       <span class="like-count">
-        <i class="heart"></i><%=picture.likers.count%></span>
-      
-      / 
-      <% if user_signed_in? %>
-      <a href="<%=picture_path(picture)%>" class="comment-count" data-id="<%=picture.id%>" data-total="<%=picture.comments.count%>">
-      <% end %>
+        <i class="heart"></i><%=picture.likers.count%>
+      </span>
+      <span class="comment-count">
         <i class="comment"></i><%=picture.comments.count%>
-      <% if user_signed_in? %>
-      </a>
-      <% end %>
+      </class>
     </div>
     <div class="votos pull-right">
-     <% total = picture.votos.count
+      <% total = picture.votos.count
       promedio = Picture.promedio_votos(picture.id)
       nota = promedio.round
       for i in 1..nota
@@ -68,14 +100,30 @@
       for i in nota...5
         %><div class="mini-star2"></div><%
       end
-        %>
-        
-        <div class="votos_result">
-        
+      %>
+      <div class="votos_result">
         <%= promedio %> 
         / 
         <%= total %>
-        </div>
+      </div>
     </div>
   </div>
+
+ <div class="comentarios">
+    <% comentarios.each do |comentario| %>
+    <div class="fila" style="clear:both;border-bottom:1px black solid">
+      <div class="thumb">
+        <%= image_tag 'default_user.png',:class => 'thumb' %>
+      </div>
+      <div class="desc">
+        Este es el comentario 
+      </div>
+    </div>
+    <% end %>
+
+  </div>
+
 </div>
+
+
+

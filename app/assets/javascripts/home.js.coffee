@@ -29,23 +29,28 @@ $(document).ready () ->
 
 	# Maneja el evento hover sobre la imagen para mostrar
 	# la descripcion, autor y botones sociales
-	$('.imagen').hover (e) ->
+	$('.item').hover (e) ->
 		item = $(e.currentTarget) 
-		item.find('.overlay.up').fadeIn()
-		item.find('.overlay.bottom').show('slide',{direction:"up"},300)
+		item.find('.overlay').slideDown('slow') #fadeIn()
+		
 	, (e) ->
 		item = $(e.currentTarget) 
-		item.find('.overlay.up').fadeOut()
-		item.find('.overlay.bottom').hide('slide',{direction:"down"},300)
+		# item.find('.overlay').slideUp() #fadeOut()
+		item.find('.overlay').hide('slide',{direction:"down"},600)
 
+	$('.item .overlay').click (e) ->
+		item = $(e.currentTarget)
+		href = item.parent().find('img.picture').parent().attr('href')
+		window.location.href = href
 
 	# Maneja la interaccion del boton like
 	$('.btn_like').click (e) ->
 		e.preventDefault()
 		e.stopPropagation()
 		target = $(e.currentTarget)
-		parent = target.parent().parent().parent()
-		picture_id = parent.attr('id')
+		picture_id = target.attr('data_id')
+		parent =  target.parent().parent().parent().parent()
+		
 		$.post '/pictures/add_like',{id:picture_id},(data) -> 
 			if data == -1
 				$.pnotify
@@ -60,7 +65,7 @@ $(document).ready () ->
 					opacity:.8
 					type:'success'
 				html = """<i class="heart" ></i>#{data}"""
-				parent.find('.like-count').html html	
+				parent.find('div.caption span.like-count').html html	
 				
 		false
 

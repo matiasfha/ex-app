@@ -104,7 +104,7 @@
 			<!-- CONTENIDO
 			====================================================================== -->
 		
-			<div class="span11" id="body">
+			<div id="body">
 				<div class="row" id="mensajes-flash">
 					<% flash.each do |type, msg| %>
 					  <div class="alerta" data-title="Dandoo.tv" data-text="<%=msg%>" data-type="<%=notify_type(type)%>" style="display:none"></div>
@@ -112,8 +112,9 @@
 					<% end %>
 				</div>
 
-				
 				<%= yield %>
+				
+
 				
 
 			</div>
@@ -123,7 +124,6 @@
 	<script src="//cdnjs.cloudflare.com/ajax/libs/jquery.imagesloaded/2.1.0/jquery.imagesloaded.min.js"></script>
 
 	<script type="text/javascript" src="http://pinesframework.org/pnotify/jquery.pnotify.js"></script>
-	
 </body>
 
 </html>
