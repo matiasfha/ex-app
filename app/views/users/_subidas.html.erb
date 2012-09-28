@@ -15,9 +15,9 @@
 		Subiendo....
 		</div>
 	</div>
-	<div id="listado_imagenes" class="imagenes">
-	<% pictures = Picture.where(:user_id => current_user.id).desc(:created_at).page(params[:page]).per(6) %>
-	<%= render :partial => "home/listado_imagenes",:locals => {:pictures => pictures} %>
+	<div id="listado_container">
+	<% @pictures = Picture.where(:user_id => current_user.id).desc(:created_at).page(params[:page]).per(6) %>
+	<%= render :partial => "home/listado_imagenes"%>
 	</div>
 
 	

@@ -15,22 +15,14 @@
 </head>
 <body>
 
-	<div id="loading" >
-		<div style="position:relative;top:30%">
-		<%= image_tag "loader.gif",:size =>"100x100" %>
-		<br />
-		Cargando...
-		</div>
-	</div>
-
-	<div id="principal" style="display:none">
+	<div id="principal">
 		<!--NAVBAR 
 			====================================================================== -->
 		<div class="container" >	
 			<div class="navbar navbar-fixed-top" >
 				<div class="navbar-inner">
 					
-						<div class="span3 pull-left">
+						<div class="span3 pull-left" style="margin-left:6.533864542%;">
 							<a href="/">
 								<div id="logo"></div>	
 							</a>
@@ -48,7 +40,7 @@
 						</div>
 						<% end %>
 						
-						<div class="botones" style="float:right;">
+						<div class="botones" style="float:right;margin-right:4.6%;">
 							<ul class="nav">
 								<% if user_signed_in? %>
 								<li>
@@ -63,10 +55,10 @@
 								<li>
 									<div class="ingresar"></div>
 								</li>
-								<li >
+								<li style="position:relative;top:-2px">
 									<%= link_to( image_tag('a__09.jpg'),"/auth/facebook") %>
 								</li>
-								<li >
+								<li style="position:relative;top:-2px">
 									<%= link_to( image_tag('a__08.jpg'),"/auth/twitter") %>
 								</li>
 								<% end %>
@@ -113,6 +105,8 @@
 				</div>
 
 				<%= yield %>
+
+				
 				
 
 				
@@ -124,6 +118,7 @@
 	<script src="//cdnjs.cloudflare.com/ajax/libs/jquery.imagesloaded/2.1.0/jquery.imagesloaded.min.js"></script>
 
 	<script type="text/javascript" src="http://pinesframework.org/pnotify/jquery.pnotify.js"></script>
+	<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/masonry/2.1.04/jquery.masonry.min.js"></script>
 </body>
 
 </html>

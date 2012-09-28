@@ -18,10 +18,7 @@
 //= require jquery.effects.highlight
 //= require jquery.effects.slide
 //= require jquery.remotipart
-//= require jquery.sausage.min
 //= require twitter/bootstrap
-//= require jquery.isotope.min
-//= require masonry
 // require_tree .
 
 
@@ -81,51 +78,18 @@ $(document).ready(function(){
 
 	
 
-
-	$('#principal').imagesLoaded(function(){
-		$('div.imagenes .item .holder').masonry();
-		$('#loading').hide();
-		$('#principal').fadeIn();
+	var $image_container = $('#listado_container');
+	$image_container.masonry({
+		itemSelector:'.item',
+		isAnimated:true,
+		gutterWidth:2
 	});
-
-	// //PAGINATION
-	// var contenedor = $('.imagenes');
-	// var items = $('.item')
-	// if(contenedor.length > 0 && items.length >= 8){
-	// 	var page = 1,loading = false;
-	// 	function nearBottomOfPage(){
-	// 		return $(window).scrollTop() > $(document).height() - $(window).height() - 200;
-	// 	}
-
-	// 	$(window).scroll(function(){
-	// 		if(loading){
-	// 			return;
-	// 		}
-	// 		if(nearBottomOfPage()){
-	// 			loading = true;
-	// 			page++;
-	// 			$('#loading').show();
-	// 			$.get('/pictures',{page:page},function(data){
-						
-	// 					setTimeout(function(){
-	// 						div = $('<div class="pagination" style="display:none"></div>')
-	// 						div.append(data);
-	// 						div.imagesLoaded(function(){
-	// 							$('div.contenido').append(div);		
-	// 							div.fadeIn('slow');
-	// 							$('#loading').hide();
-	// 						});
-	// 						loading = false;
-							
-	// 					},250);
-						
-						
-	// 			},'html');
-				
-	// 		}
-	// 	});
-	// }
-	
+	$image_container.imagesLoaded(function(){
+		
+		$image_container.fadeIn();
+		$image_container.masonry('reload');
+		
+	});
 
 	
 });

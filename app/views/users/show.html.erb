@@ -2,24 +2,24 @@
 <div class="span11 contenido">
   <div class="row">
   	<ul class="nav nav-tabs" id="user-tabs">
-      <li class="active"><a href="#perfil">Perfil</a></li>
+      <li class="active"><a href="#perfil" id="a_perfil">Perfil</a></li>
       
-      <li><a href="#votadas">Imágenes Votadas</a></li>
-      <li><a href="#settings">Subir Imágenes</a></li>
+      <li><a href="#votadas" id="a_votadas">Imágenes Votadas</a></li>
+      <li><a href="#subidas" data-remote="true" id="a_subidas">Subir Imágenes</a></li>
     </ul>
      
     <div class="tab-content">
       <div class="tab-pane active" id="perfil">
         <%= render :partial => "perfil" %>
       </div>
-      <div class="tab-pane" id="settings">
+      <div class="tab-pane" id="votadas">
         
-        <%= render :partial => "subidas" %>
+        <div class="span11" id="listado_container"></div>
 
       </div>
 
-      <div class="tab-pane" id="votadas">
-        <%= render :partial => "votadas" %>
+      <div class="tab-pane" id="subidas">
+        <div class="span11" id="listado_container"></div>
 
       </div>
 

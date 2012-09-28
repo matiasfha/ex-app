@@ -13,7 +13,8 @@ DandooDev::Application.routes.draw do
   match 'metadata/get_states/:id'   => 'metadata#get_states'
   match 'metadata/get_communes/:id' => 'metadata#get_communes'
   match 'metadata/get_cities/:id'   => 'metadata#get_cities'
-  match 'metadata/reload_list' => 'pictures#reload_list', :via => :get
+  match 'metadata/mas_votadas' => 'pictures#mas_votadas', :via => :get
+  match 'metadata/subidas' => 'pictures#subidas', :via => :get
   authenticated :user do
     root :to => 'home#index'
   end
@@ -33,6 +34,7 @@ DandooDev::Application.routes.draw do
   resources :pictures, :only => [:create,:show,:index]
   
   match '/pictures/add_like' => 'pictures#add_like', :via => :post
+
   
   resources :comments, :only => [:create,:show]
   match '/comments/:pid/:cid' => 'comments#destroy', :via => :delete

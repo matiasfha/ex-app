@@ -70,7 +70,17 @@ $(document).ready () ->
 		false
 
 
-	
+	location = window.location.href.split('/')[3]
+	switch location
+		when "mas_populares"
+			$('#b_populares').addClass 'active'
+			$('#b_vistos,#b_valorados').removeClass 'active'
+		when "mas_vistas"
+			$('#b_vistos').addClass 'active'
+			$('#b_populares,#b_valorados').removeClass 'active'
+		else
+			$('#b_valorados').addClass 'active'
+			$('#b_vistos,#b_populares').removeClass 'active'
 
 		
 

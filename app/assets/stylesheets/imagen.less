@@ -1,18 +1,19 @@
 div.item{
-	height:355px; //355,400,460
-	width:255px;
-	min-width:255px;
-	margin:0 0 10px 0;
+	// height:auto;
+	width:250px;
+	min-width:250px;
+	margin:0 2.5px 10px 2.5px;
 
-
+	padding:5px 5px 5px 5px;
 	background-color: #FFFFFF;
-	box-shadow: 0 1px 3px rgba(34, 25, 25, 0.4);
-	-moz-box-shadow: 0 1px 2px rgba(34,25,25,0.4);
-	-webkit-box-shadow: 0 1px 3px rgba(34, 25, 25, 0.4);
-	
+	box-shadow: 0 3px 5px rgba(34, 25, 25, 0.4);
+	-moz-box-shadow: 0 3px 4px rgba(34,25,25,0.4);
+	-webkit-box-shadow: 0 3px 5px rgba(34, 25, 25, 0.4);
+	float:left;
+
 	.holder{
-		height:261px;
-		padding:4px 4px 15px 4px;
+		// height:auto;
+		padding:4px 4px 10px 4px;
 		-webkit-box-shadow: 0 7px 4px -2px rgba(151,151,151, 0.5);   
 		-moz-box-shadow: 0 7px 4px -2px rgba(151,51,151, 0.5);
 		box-shadow: 0 7px 4px -2px rgba(151,151,151, 0.5);
@@ -21,8 +22,14 @@ div.item{
 		/* For IE 5.5 - 7 */
 		filter: progid:DXImageTransform.Microsoft.Shadow(Strength=4, Direction=180, Color='#DDDDDD');
 		position:relative;
+		
+		.image_holder{
+			// height:auto;
+			width:240px;
+			position:relative;
+		}
 
-		.picture, .overlay{
+		.image_holder, .overlay{
 			cursor: -webkit-zoom-in;
 			cursor: -moz-zoom-in;
 			cursor: zoom-in;
@@ -30,8 +37,8 @@ div.item{
 		.overlay{
 			display:none;
 			z-index:10;
-			width:247px;
-			height:245px;
+			width:240px;
+			// height:100%;
 			float:left;
 			background: rgb(1,1,1) transparent;
 			background: rgba(1, 1, 1, 0.5);
@@ -77,32 +84,41 @@ div.item{
 		min-width:50px;
 	}
 	.votos{
-		width:115px;
+		width:125px;
 		text-align:right;
 	}
-	.caption{
-		margin:50px 4px 4px 4px;
-		clear:both;
+	.botonera,.comentarios{
+		margin:4px 4px 4px 4px;
+		display:inline-block;
+		position:relative;
+		width:96%;
+		font-family:'FBold',sans-serif, Helvetica;
 	}
-	.descripcion,.comentarios{
+	.descripcion{
 		font-family:'FBold',sans-serif, Helvetica;
 		font-size:10px;
 		margin:10px 4px 4px 4px;
-		.thumb{
-			width:32px;
-			height:32px;
-			float:left;
-		}
-		.desc{
-			float:right;
-			width:85%;
-		}
+		position:relative;
 	}
 
-	.comentarios{
-		background-color:#FFFFFF;
-		margin-top:80px;
+	.thumb{
+		width:32px;
+		height:32px;
+		float:left;
 	}
+	.desc{
+		float:right;
+		width:85%;
+		font-size:10px;
+	}
+
+	.fila{
+		border-bottom:2px #DDDDDD solid;
+		padding:2px 2px 4px 2px;
+		position:relative;
+		display:inline-block;
+	}
+
 }
 
 

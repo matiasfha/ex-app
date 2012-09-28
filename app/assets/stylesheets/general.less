@@ -58,6 +58,7 @@
 body{
 	font-family:'FRegular',sans-serif, Helvetica;
 	background:url('pattern.gif');
+	padding-top:40px;
 }
 .container-fluid{
 	overflow-x:hidden;
@@ -74,6 +75,9 @@ body{
 	}
 }
 
+//48px => 3,824701195
+//82 de 1255 => 6.533864542
+
 .navbar {
 	margin:0;
 	height:40px;
@@ -87,7 +91,7 @@ body{
 		background:url('a__01.jpg') no-repeat;
 		background-position:left;
 		height:40px;
-		margin-left:0px;
+		margin-left:-1px;
 	}
 
 	.botones{
@@ -220,7 +224,7 @@ body{
 	#b_buscarmas{
 		width:30px;
 		float:right;
-		.botones('a1_29.jpg','a1_2.jpg');
+		.botones('a1_29.jpg','a1_29.jpg');
 	}
 
 	.span4{
@@ -248,7 +252,7 @@ body{
 	}
 
 	#b_vistos{
-		.secciones('a1_20.jpg','a1_21.jpg');
+		.secciones('a1_22.jpg','a1_21.jpg');
 	}
 }
 
@@ -292,8 +296,8 @@ body{
 	margin-top:10px;
 }
 
-.imagenes{
-	position:relative;
+#listado_container{
+	display:none;
 }
 
 #loading{

@@ -1,0 +1,20 @@
+<div class="overlay">
+  <div class="up">
+    <%= image_tag 'like.png', :class => "btn_like",:data_id => picture.id %>
+    <%= link_to image_tag('comentar.png', :class => "btn_comment"), picture_path(picture) %>
+    <%= image_tag 'a__08.jpg', :class => "btn_twitter"%>
+    <%= image_tag 'a__09.jpg', :class => "btn_facebook"%>
+  </div>
+
+  <div class="bottom">
+    <div class="titulo"><%=picture.titulo%></div>
+    <div class="autor">
+        por 
+        <% begin %>
+        <%= User.find(picture.user_id).nombre %>
+        <% rescue %>
+        Admin
+        <% end %>
+    </div>
+  </div>
+</div>

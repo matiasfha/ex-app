@@ -26,7 +26,7 @@ class Picture
       },
     :styles => {
       :thumb => '32x32>',
-      :medium => '247x245>',
+      :medium => '250x',
       :original => '1920x1680>'
     }
 

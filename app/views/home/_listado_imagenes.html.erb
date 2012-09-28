@@ -1,19 +1,84 @@
 <% 
-  count = 0
-  top = 0
-  left = 0
-  pictures.each do |picture|
+@pictures.each do |picture|
     %>
     
-    <%= render :partial => "home/imagen", :locals => {:picture => picture} %>
+	<div class="item" id="<%=picture.id%>">
+  		<div class="holder">
+          	<div class="image_holder">
+				<%= render :partial => 'picture/image_overlay',:locals => {:picture => picture} %>
+                
+                <%= link_to image_tag(picture.imagen.url(:medium),:class => "picture"), picture_path(picture)%>
+			</div>
+
+
+			<%= render :partial => 'picture/rating_container',:locals => {:picture => picture} %>
+
+        </div><!--holder -->
+
+
+
+        <div class="descripcion">
+          <div class="thumb">
+            <% begin 
+		        user = User.find(picture.user_id)
+		        %>
+		        <%= image_tag user.avatar.url(:thumb), :class => 'thumb' %>
+		    <% rescue %>
+		        <%= image_tag 'default_user.png',:class => 'thumb' %>
+		    <% end %>
+          </div>
+
+          <div class="desc">
+            <%=picture.descripcion %>
+          </div>
+        </div> 
+
+        <div class="botonera">
+          <div class="comments pull-left">
+            <span class="like-count">
+              <i class="heart"></i><%=picture.likers.count%>
+            </span>
+            <span class="comment-count">
+              <i class="comment"></i><%=picture.comments.count%>
+            </class>
+          </div>
+
+          <div class="votos pull-right">
+            <% total = picture.votos.count
+		      promedio = Picture.promedio_votos(picture.id)
+		      nota = promedio.round
+		      for i in 1..nota
+		        %><div class="mini-star"></div><%
+		      end
+		      for i in nota...5
+		        %><div class="mini-star2"></div><%
+		      end
+		      %>
+            <div class="votos_result">
+               <%= promedio %> 
+		        / 
+		        <%= total %>
+            </div>
+          </div>
+        </div>
+    	
+    	<% if picture.comments.count > 0 %>
+    	<div class="comentarios">
+    		<% picture.comments.each do |comentario| %>
+    		<div class="fila">
+    			<div class="thumb">
+    				 <%= image_tag 'default_user.png',:class => 'thumb' %>
+    			</div>
+    			<div class="desc">
+    				<%= Faker::Lorem.sentence(20) %>
+    			</div>
+    		</div>
+    		<% end %>
+    	</div>    
+    	<% end %>
+
+    </div>    
 
     <%
-    count = count + 1
-    left+=273
-    if count==4
-      count=0
-      left=0
-      top = 366
-    end
-  end
-  %>
+end
+%>

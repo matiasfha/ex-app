@@ -31,8 +31,15 @@ class PicturesController < ApplicationController
     render :json => {:result => current_user.save, :picture => current_user.pictures.last}
   end
 
-  def reload_list
-    pictures = Picture.where(:user_id => current_user.id).desc(:created_at).page(params[:page])
-    render :partial => "home/listado_imagenes",:locals => {:pictures => pictures}
+  
+
+  def mas_votadas
+    @pictures = User.imagenes_votadas(current_user.id)
+    render :partial => "home/listado_imagenes"
+  end
+
+  def subidas
+    @pictures = Picture.where(:user_id => current_user.id).desc(:created_at)
+    render :partial => "home/listado_imagenes"
   end
 end
