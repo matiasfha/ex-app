@@ -121,7 +121,7 @@ class Picture
       picture.votos.each do |v|
         suma+=v.valor
       end
-      return suma
+      return suma/total
     else
       return total
     end
