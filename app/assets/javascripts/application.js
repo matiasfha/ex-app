@@ -91,5 +91,27 @@ $(document).ready(function(){
 		
 	});
 
+	$image_container.infinitescroll({
+			navSelector:'#page-nav',
+			nextSelector:'#page-nav a',
+			itemSelector:'.item',
+			debug:false,
+			loadingText:'Cargando nuevos posts',
+			animate:true,
+			loadingImg:'http://i.imgur.com/6RMhx.gif',
+			doneText:'No hay mas contenido para cargar.',
+		},
+
+		function(data){
+			var $elems = $(data).css({opacity:0});
+			$elems.imagesLoaded(function(){
+				$elems.animate({opacity:1});
+				$image_container.masonry('appended',$elems,true);
+			});
+		}
+	);
+
+
+
 	
 });

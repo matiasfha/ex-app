@@ -10,5 +10,5 @@ class Voto
 
   attr_accessible :valor, :user_id, :picture_id
 
-  
+  paginates_per 8
 end

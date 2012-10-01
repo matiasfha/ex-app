@@ -34,12 +34,17 @@ class PicturesController < ApplicationController
   
 
   def mas_votadas
-    @pictures = User.imagenes_votadas(current_user.id)
+    @pictures = User.imagenes_votadas(current_user.id,params[:page])
     render :partial => "home/listado_imagenes"
   end
 
   def subidas
-    @pictures = Picture.where(:user_id => current_user.id).desc(:created_at)
+    @pictures = current_user.pictures.desc(:created_at).page(params[:page])
     render :partial => "home/listado_imagenes"
+  end
+
+  def last_picture
+    @picture = current.user.pictures.last
+    render :partial => "pictures/picture"
   end
 end

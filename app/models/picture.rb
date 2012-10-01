@@ -56,54 +56,25 @@ class Picture
   index "comments.id" => 1
 
   #Retorna las mas populares respecto al numero de likes
-  def self.mas_populares
-    map = %Q{
-      function(){ 
-        var total = this.liker_ids.length;
-        emit(this.id,{likes:total}); 
-      }
-    }
-
-    reduce = %Q{
-      function(key,values){
-        var result = 0;
-        var likes = 0;
-        var pictures = 0;
-        values.forEach(function(value){
-          likes += value.likes;
-          pictures += 1;
-        });
-        result = likes/pictures;
-        return result;
-      }
-    }
-    avg = 0
-    self.map_reduce(map,reduce).out(replace:"likers_avg").each do |d|
-      avg = d
-    end
-    avg = avg.to_a
-    avg = avg[1][1].round
-    if avg == 0
-      avg = 1
-    end
-
-    self.where(:num_likes => avg)
+  def self.mas_populares(pagina)
+    avg = Picture.avg(:num_likes).round()
+    self.where(:num_likes.gt => avg).page(pagina)
     
   end
   #Retorna las mas votadas respecto al rating de votos
-  def self.mas_votadas
+  def self.mas_votadas(pagina)
     avg = Voto.avg(:valor).round
     pictures = Array.new
-    Voto.where(:valor.gte => avg).each do |v|
+    Voto.where(:valor.gte => avg).page(pagina).each do |v|
       pictures.push Picture.find(v.picture_id)
     end
     pictures
   end
   
   #Retorna las mas vistas
-  def self.mas_vistas
+  def self.mas_vistas(pagina)
     avg = self.avg(:num_views).round
-    self.where(:num_views.gte => avg)
+    self.where(:num_views.gte => avg).page(pagina)
   end
 
   #Retorna todos los comentarios existentes

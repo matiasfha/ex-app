@@ -3,15 +3,15 @@
     %>
     
 	<div class="item" id="<%=picture.id%>">
-  		<div class="holder">
-          	<div class="image_holder">
-				<%= render :partial => 'picture/image_overlay',:locals => {:picture => picture} %>
-                
-                <%= link_to image_tag(picture.imagen.url(:medium),:class => "picture"), picture_path(picture)%>
-			</div>
+    	<div class="holder">
+      	<div class="image_holder">
+		    <%= render :partial => 'pictures/image_overlay',:locals => {:picture => picture} %>
+            
+        <%= link_to image_tag(picture.imagen.url(:medium),:class => "picture"), picture_path(picture)%>
+	       </div>
 
 
-			<%= render :partial => 'picture/rating_container',:locals => {:picture => picture} %>
+			<%= render :partial => 'pictures/rating_container',:locals => {:picture => picture} %>
 
         </div><!--holder -->
 

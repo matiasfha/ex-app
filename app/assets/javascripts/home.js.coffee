@@ -7,7 +7,7 @@ $(document).ready () ->
 			if !$(this).parent().hasClass 'voted'
 				$(this).prevAll().andSelf().removeClass 'over'
 
-	$('.rating .star').click (e) ->
+	$('.rating .star').live 'click', (e) ->
 		if !$(e.currentTarget).parent().hasClass 'voted'
 			$(this).parent().addClass 'voted'
 			rating = $(this).siblings().add(this).filter('.over').length
@@ -29,14 +29,14 @@ $(document).ready () ->
 
 	# Maneja el evento hover sobre la imagen para mostrar
 	# la descripcion, autor y botones sociales
-	$('.item').hover (e) ->
-		item = $(e.currentTarget) 
-		item.find('.overlay').slideDown('slow') #fadeIn()
-		
-	, (e) ->
-		item = $(e.currentTarget) 
-		# item.find('.overlay').slideUp() #fadeOut()
-		item.find('.overlay').hide('slide',{direction:"down"},600)
+	$('.item').live 
+		mouseenter: (e) ->
+			item = $(e.currentTarget) 
+			item.find('.overlay').slideDown('slow') #fadeIn()
+		,mouseleave:(e) ->
+			item = $(e.currentTarget) 
+			# item.find('.overlay').slideUp() #fadeOut()
+			item.find('.overlay').hide('slide',{direction:"down"},600)
 
 	$('.item .overlay').click (e) ->
 		item = $(e.currentTarget)

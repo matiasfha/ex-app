@@ -13,15 +13,21 @@ DandooDev::Application.routes.draw do
   match 'metadata/get_states/:id'   => 'metadata#get_states'
   match 'metadata/get_communes/:id' => 'metadata#get_communes'
   match 'metadata/get_cities/:id'   => 'metadata#get_cities'
-  match 'metadata/mas_votadas' => 'pictures#mas_votadas', :via => :get
-  match 'metadata/subidas' => 'pictures#subidas', :via => :get
+  match 'metadata/mas_votadas(/:page)' => 'pictures#mas_votadas', :via => :get
+  match 'metadata/subidas(/:page)' => 'pictures#subidas', :via => :get
+  match 'metadata/last_picture' => 'pictures#last_picture', :via => :get
   authenticated :user do
     root :to => 'home#index'
   end
   root :to => 'home#landpage'
-  match 'mas_populares' => 'home#populares', :via => :get
-  match 'mas_vistas' => 'home#vistas', :via => :get
-  match 'mas_votadas' => 'home#votadas', :via => :get
+  #Rutas para secciones
+  match 'mas_populares(/:page)' => 'home#populares', :via => :get
+  match 'mas_vistas(/:page)' => 'home#vistas', :via => :get
+  match 'mas_votadas(/:page)' => 'home#index', :via => :get
+  #Paginacion resultados para el home y secciones
+  
+  # match 'mas_populares/:page' => 'home#populares', :via => :get
+  # match 'mas_vistas/:page' => 'home#vistas', :via => :get
 
   devise_for :users, :controllers => { :registrations => "registrations"}
   devise_scope :user do 

@@ -85,9 +85,9 @@ class User
   end
   
   
-  def self.imagenes_votadas(user_id)
+  def self.imagenes_votadas(user_id,pagina)
     pictures = Array.new
-    Voto.where(:user_id => user_id).each do |voto|
+    Voto.where(:user_id => user_id).page(pagina).each do |voto|
       p = Picture.find(voto.picture_id)
       if !p.nil?
         pictures.push p
