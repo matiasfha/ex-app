@@ -96,7 +96,7 @@ class Resource
 		if type.nil?
 	    	avg = Voto.avg(:valor)
 	    else
-	    	avg = Voto.where(:type => type).:avg(:valor)
+	    	avg = Voto.where(:type => type).avg(:valor)
 	    end
 	    avg = (avg.nil?)? 0 : avg.round
 	    resources = Array.new

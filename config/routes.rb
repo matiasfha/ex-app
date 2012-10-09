@@ -25,7 +25,7 @@ DandooDev::Application.routes.draw do
   match 'imagenes_vistos(/:page)' => 'home#imagenes_vistas', :via => :get
   match 'videos_vistos(/:page)' => 'home#videos_vistos', :via => :get
 
-  match 'index(/:page)' => 'home#index', :via => :get
+  match 'todos_index(/:page)' => 'home#todos_index', :via => :get
   match 'imagenes_index(/:page)' => 'home#imagenes_index', :via => :get
   match 'videos_index(/:page)' => 'home#videos_index', :via => :get
 

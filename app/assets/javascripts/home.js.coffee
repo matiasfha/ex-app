@@ -130,33 +130,45 @@ $(document).ready () ->
 
 
 	#Maneja el actuar de los botones de seccio
-	$('#botonera div.imagenes').click (e) ->
-		$(this).toggleClass('active')
+	$('#botonera div.imagenes,#botonera div.videos').click (e) ->
+		target = $(e.currentTarget)
+		target.toggleClass('active')
+		if target.siblings('.active').length == 0
+			target.siblings().addClass('active')
+		
+		url = $('#secciones div.active').attr('data-url')
+		loadSeccionData url
 
-	$('#botonera div.videos').click (e) ->
-		$(this).toggleClass('active')
+	
 
 	#Maneja la seccion a cargar via ajax
 
 	loadSeccionData = (url) ->
 		container = $('#listado_container')
 		items = $('#listado_container .item')
-		container.masonry 'remove',items
-		container.fadeOut()
+		container.empty()
+		# container.masonry 'remove',items
+		# container.fadeOut()
 		imgs = $('div.imagenes')
 		vids = $('div.videos')
 		if imgs.hasClass('active') && !vids.hasClass('active')
 			url = "/imagenes_#{url}"
 		else if !imgs.hasClass('active') && vids.hasClass('active')
 			url = "/videos_#{url}"
-		console.log url
+		if url == 'index'
+			url = 'todos_index'
+		
 		$.get url,(data) ->
 			$('#page-nav a').attr('href',"#{url}/2")
-			$data = $(data)
-			
-			container.prepend(data).imagesLoaded () ->
-				container.fadeIn() 
-				container.masonry('reload')
+			data = $(data)
+			data.hide()
+			container.append(data)
+			container.imagesLoaded () ->
+				container.fadeIn 'fast',() ->
+					container.masonry('reload')
+					data.fadeIn()
+
+				
 		
 	$('#secciones div').click (e) ->
 		$(this).siblings().removeClass('active')

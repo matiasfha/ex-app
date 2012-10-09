@@ -23,8 +23,19 @@ class HomeController < ApplicationController
     render :partial => "resources/listado"
   end
 
+  def todos_index
+    @resources = Resource.mas_votadas(params[:page])
+    render :partial => "resources/listado"
+  end
+
 
   #Popularidad 
+
+  def populares
+    @resources = Resource.mas_populares(params[:page])
+    render :partial => "resources/listado"
+  end
+
   def imagenes_populares
     @resources = Resource.mas_populares(params[:page],'imagen')
     render :partial => "resources/listado"
@@ -46,6 +57,11 @@ class HomeController < ApplicationController
     render :partial => "resources/listado"
   end
 
+  def vistos
+    @resources = Resource.mas_vistas(params[:page])
+    render :partial => "resources/listado"
+  end
+
 
   #Nuevos
   def imagenes_nuevas
@@ -55,6 +71,11 @@ class HomeController < ApplicationController
   
   def videos_nuevos
     @resources = Resource.where(:type => 'video').order_by([[:created_at,:desc]]).page(params[:page])
+    render :partial => "resources/listado"
+  end
+
+  def nuevos
+    @resources = Resource.all.order_by([[:created_at,:desc]]).page(params[:page])
     render :partial => "resources/listado"
   end
 end

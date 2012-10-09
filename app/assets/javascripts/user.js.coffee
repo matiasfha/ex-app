@@ -54,11 +54,12 @@ $(document).ready () ->
 		$.get '/metadata/mas_votadas',(data) ->
 			$container = $('#votadas #listado_container1');
 			data = $(data)
+			data.hide()
 			$container.append(data)
-			
 			$container.imagesLoaded () ->
-				$container.fadeIn()
-				$container.masonry('reload')
+				$container.fadeIn 'fast', () ->
+					$container.masonry('reload')
+					data.fadeIn()
 				
 			
 
@@ -96,22 +97,7 @@ $(document).ready () ->
 		image_container.masonry('reload')
 		
 
-	# image_container.infinitescroll
-	# 	navSelector:'#page-nav1'
-	# 	nextSelector:'#page-nav1 a'
-	# 	itemSelector:'.item'
-	# 	debug:false
-	# 	loadingText:'Cargando nuevos items'
-	# 	animate:true
-	# 	loadingImg:'http://i.imgur.com/6RMhx.gif'
-	# 	doneText:'No hay mas contenido para cargar.'
-	# ,(data) ->
-	# 	elems = $(data).css {opacity:0} 
-	# 	elems.imagesLoaded () ->
-	# 		elems.animate {opacity:1}
-	# 		image_container.masonry 'appended',elems,true
-
-	#Infinite scrolling mas_subidas		
+		
 	image_container = $('#listado_container2')
 	image_container.masonry
 		itemSelector:'.item'
@@ -123,20 +109,7 @@ $(document).ready () ->
 		image_container.masonry('reload')
 		
 
-	# image_container.infinitescroll
-	# 	navSelector:'#page-nav2'
-	# 	nextSelector:'#page-nav2 a'
-	# 	itemSelector:'.item'
-	# 	debug:false
-	# 	loadingText:'Cargando nuevos items'
-	# 	animate:true
-	# 	loadingImg:'http://i.imgur.com/6RMhx.gif'
-	# 	doneText:'No hay mas contenido para cargar.'
-	# ,(data) ->
-	# 	elems = $(data).css {opacity:0} 
-	# 	elems.imagesLoaded () ->
-	# 		elems.animate {opacity:1}
-	# 		image_container.masonry 'appended',elems,true
+	
 	
 		
 		
