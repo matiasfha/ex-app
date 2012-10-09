@@ -1,0 +1,228 @@
+div.item{
+	width:333px;
+	min-width:333px;
+	margin:0 2px 10px 2px;
+
+	padding:5px 5px 0px 5px;
+	background-color: #FFFFFF;
+	box-shadow: 0 3px 5px rgba(34, 25, 25, 0.4);
+	-moz-box-shadow: 0 3px 4px rgba(34,25,25,0.4);
+	-webkit-box-shadow: 0 3px 5px rgba(34, 25, 25, 0.4);
+	float:left;
+
+
+	.holder{
+		padding:0px 0px 7px 0px;
+		// -webkit-box-shadow: 0 7px 4px -2px rgba(151,151,151, 0.5);   
+		// -moz-box-shadow: 0 7px 4px -2px rgba(151,51,151, 0.5);
+		// box-shadow: 0 7px 4px -2px rgba(151,151,151, 0.5);
+		// /* For IE 8 */
+  //       -ms-filter: "progid:DXImageTransform.Microsoft.Shadow(Strength=4, Direction=180, Color='#DDDDDD')";
+		// /* For IE 5.5 - 7 */
+		// filter: progid:DXImageTransform.Microsoft.Shadow(Strength=4, Direction=180, Color='#DDDDDD');
+		position:relative;
+		margin:0 auto;
+
+		.image_holder{
+			width:100%;
+			position:relative;
+			cursor: -webkit-zoom-in;
+			cursor: -moz-zoom-in;
+			cursor: zoom-in;
+			img{
+				cursor: -webkit-zoom-in;
+				cursor: -moz-zoom-in;
+				cursor: zoom-in;
+				margin:0 auto;
+			}
+		}
+
+		a.video_overlay{
+			position:absolute;
+			cursor:zoom-in;
+			cursor:-webkit-zoom-in;
+			cursor: -moz-zoom-in;
+			width:330px;
+			height:255px;
+			top:0;
+			left:0;
+			background:rgba(1,1,1,0);
+			z-index:50;
+		}
+
+		.overlay{
+			display:none;
+			z-index:1000;
+			width:333px;
+			height:100%;
+			float:left;
+			background: rgb(255,255,255) transparent;
+			background: rgba(255, 255, 255, 0.4);
+			filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#99000000', endColorstr='#99000000');
+			-ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr='#99000000', endColorstr='#99000000')";
+	        position:absolute;
+	        cursor:normal;
+	        .up{
+	        	top:-10px;
+	        	right:10px;
+	        	position:relative;
+	        	z-index:100;
+	        	width:100%;
+	        	div{
+	        		z-index:1000;
+	        		cursor:pointer;
+	        	}
+	        }
+
+	  
+	    }
+	}
+
+	.play_button{
+		position:absolute;
+		z-index:400;
+		top:30%;
+		left:40%;
+		width:64px;
+		height:64px;
+	}
+
+	.rating{
+		margin-top:2px;
+	}
+
+	.comments{
+		width:70px;
+		min-width:50px;
+	}
+	.votos{
+		width:105px;
+		text-align:right;
+	}
+
+	.separador{
+		background-color:#d4d4d6;
+		height:2px;
+		width:100%;
+		margin:0;
+		padding:0;
+	}
+
+	.botonera{
+		
+		margin-top:-10px;
+		margin-bottom:-5px;
+		display:inline-block;
+		position:relative;
+		width:99%;
+		font-family:'FBold',sans-serif, Helvetica;
+	}
+	
+
+	div.extra{
+		padding-right:8px;
+		width:100%;
+		position:relative;
+		background:#FFFFFF;
+		float:left;
+		margin-left:-5px;
+		margin-right:0;
+		display:none;
+	}
+
+	.descripcion{
+		font-family:'FRegular',sans-serif, Helvetica;
+		width:100%;
+		font-size:12px;
+		margin:4px -8px 4px 8px;
+		position:relative;
+		background-color:#FFFFFF;
+		position:relative;
+		div.thumb{
+			width:55px;
+			height:32px;
+			float:left;
+			background:url('bflechaderecha.png') no-repeat;
+			background-position:right;
+		}
+		.desc{
+			float:right;
+			text-align:justify;
+			width:270px;
+			.autor{
+				font-family:'FBold',sans-serif, Helvetica;
+				font-weight:bold;
+			}
+		}
+	}
+
+
+
+	.flecha_desplegar{
+		background:url('_DOWN.jpg') no-repeat;
+		background-position:center;
+		width:100%;
+		height:15px;
+		cursor:pointer;
+		&.active{
+			background:url('_UP.jpg') no-repeat !important;
+			background-position:center !important;
+		}
+	}
+	
+	img.thumb{
+		width:32px;
+		height:32px;
+		float:left;
+	}
+	
+
+	.comentarios{
+		background:#efeff1 !important;
+		position:relative;
+		display:inline-block;
+		font-family:'FRegular',sans-serif, Helvetica;
+		font-size:12px;
+		margin:10px -8px -10px 0px;
+		padding-bottom:0px;
+		width:342px;
+
+		.fila{
+			background:#efeff1 !important;
+			padding-bottom:7px;
+			display:inline-block;
+		}
+		div.thumb{
+			width:32px;
+			height:32px;
+			float:left;
+			background:#efeff1 !important;
+			margin-left:10px;
+		}
+		.desc{
+			background:#efeff1 !important;
+			float:right;
+			text-align:justify;
+			width:283px;
+			margin-right:0;
+			margin-left:10px;
+			color:#3a3a3a;
+			.autor{
+				font-family:'FBold',sans-serif, Helvetica;
+				font-weight:bold;
+				float:left;
+			}
+			.fecha{
+				float:right;
+				color:#b0b0b0 !important;
+				font-size:10px;
+			}
+
+		}
+	}
+
+	
+
+}
+
+
