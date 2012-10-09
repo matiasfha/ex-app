@@ -36,7 +36,7 @@ $(document).ready(function(){
 		});
 	};
 
-	 $.fn.serializeObject = function() {
+	$.fn.serializeObject = function() {
 		if ( this.length < 1) { 
 	      return false; 
 	    }
@@ -71,7 +71,7 @@ $(document).ready(function(){
 	    });
 
 	    return data;
-	  };
+	};
 
 	if ($('.alerta').length > 0){
 		$.pnotify({

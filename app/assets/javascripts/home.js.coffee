@@ -129,6 +129,13 @@ $(document).ready () ->
 		false
 
 
+	#Maneja el actuar de los botones de seccio
+	$('#botonera div.imagenes').click (e) ->
+		$(this).toggleClass('active')
+
+	$('#botonera div.videos').click (e) ->
+		$(this).toggleClass('active')
+
 	#Maneja la seccion a cargar via ajax
 
 	loadSeccionData = (url) ->
@@ -136,11 +143,13 @@ $(document).ready () ->
 		items = $('#listado_container .item')
 		container.masonry 'remove',items
 		container.fadeOut()
-		imgs = $('a.imagenes')
-		if imgs.hasClass('active')
+		imgs = $('div.imagenes')
+		vids = $('div.videos')
+		if imgs.hasClass('active') && !vids.hasClass('active')
 			url = "/imagenes_#{url}"
-		else
+		else if !imgs.hasClass('active') && vids.hasClass('active')
 			url = "/videos_#{url}"
+		console.log url
 		$.get url,(data) ->
 			$('#page-nav a').attr('href',"#{url}/2")
 			$data = $(data)

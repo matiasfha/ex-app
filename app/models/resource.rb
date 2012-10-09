@@ -81,26 +81,46 @@ class Resource
 	index "comments.id" => 1
 
 	#Retorna las mas populares respecto al numero de likes
-	def self.mas_populares(pagina)
-		avg = self.avg(:num_likes).round()
-		self.where(:num_likes.gt => avg).page(pagina)
+	def self.mas_populares(pagina,type=nil)
+		if type.nil?
+			avg = self.avg(:num_likes).round()
+			self.where(:num_likes.gte => avg).page(pagina)
+		else
+			avg = self.where(:type => type).avg(:num_likes).round()
+			self.where(:num_likes.gte => avg, :type => type).page(pagina)
+		end
 	end
 	 
 	#Retorna las mas votadas respecto al rating de votos
-	def self.mas_votadas(pagina)
-	    avg = Voto.avg(:valor)
+	def self.mas_votadas(pagina,type=nil)
+		if type.nil?
+	    	avg = Voto.avg(:valor)
+	    else
+	    	avg = Voto.where(:type => type).:avg(:valor)
+	    end
 	    avg = (avg.nil?)? 0 : avg.round
 	    resources = Array.new
-	    Voto.where(:valor.gte => avg).page(pagina).each do |v|
-	      resources.push self.find(v.resource_id)
-	    end
+	    if type.nil?
+		    Voto.where(:valor.gte => avg).page(pagina).each do |v|
+		      resources.push self.find(v.resource_id)
+		    end
+		else
+			Voto.where(:valor.gte => avg,:type => type).page(pagina).each do |v|
+		      resources.push self.find(v.resource_id)
+		    end
+		end
 	    resources
 	end
 	  
 	#Retorna las mas vistas
-	def self.mas_vistas(pagina)
-	    avg = self.avg(:num_views).round
-	    self.where(:num_views.gte => avg).page(pagina)
+	def self.mas_vistas(pagina,type=nil)
+		if type.nil?
+	    	avg = self.avg(:num_views).round
+	    	self.where(:num_views.gte => avg).page(pagina)
+	    else
+	    	avg = self.where(:type => type).avg(:num_views).round
+	    	self.where(:num_views.gte => avg,:type => type).page(pagina)
+		end
 	end
 
 	#Retorna todos los comentarios existentes

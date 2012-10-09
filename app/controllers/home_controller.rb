@@ -12,28 +12,49 @@ class HomeController < ApplicationController
     @resources = Resource.mas_votadas(params[:page])
   end
 
+  #Index 
   def videos_index
+    @resources = Resource.mas_votadas(params[:page],'video')
+    render :partial => "resources/listado"
   end
 
   def imagenes_index
-    @resources = Resource.mas_votadas(params[:page])
+    @resources = Resource.mas_votadas(params[:page],'imagen')
     render :partial => "resources/listado"
   end
 
+
+  #Popularidad 
   def imagenes_populares
-    @resources = Resource.mas_populares(params[:page])
+    @resources = Resource.mas_populares(params[:page],'imagen')
     render :partial => "resources/listado"
   end
 
+  def videos_populares
+    @resources = Resource.mas_populares(params[:page],'video')
+    render :partial => "resources/listado"
+  end
 
+  #Vistas
   def imagenes_vistas
-    @resources = Resource.mas_vistas(params[:page])
+    @resources = Resource.mas_vistas(params[:page],'imagen')
     render :partial => "resources/listado"
   end
 
+  def videos_vistos
+    @resources = Resource.mas_vistas(params[:page],'video')
+    render :partial => "resources/listado"
+  end
+
+
+  #Nuevos
   def imagenes_nuevas
-    @resources = Resource.all.order_by([[:created_at,:desc]]).page(params[:page])
+    @resources = Resource.where(:type => 'imagen').order_by([[:created_at,:desc]]).page(params[:page])
     render :partial => "resources/listado"
   end
   
+  def videos_nuevos
+    @resources = Resource.where(:type => 'video').order_by([[:created_at,:desc]]).page(params[:page])
+    render :partial => "resources/listado"
+  end
 end
