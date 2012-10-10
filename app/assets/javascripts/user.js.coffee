@@ -1,5 +1,9 @@
 $(document).ready () ->
 	
+	$('#header').addClass('perfil')
+	if $('#header #show').is(':visible')
+		$('#header #show').hide();
+	
 
 	$('#user-tabs a').click (e) ->
 		e.preventDefault();

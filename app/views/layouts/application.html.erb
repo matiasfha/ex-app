@@ -50,17 +50,31 @@
 						</div>
 						<% end %>
 						
-						<div class="botones" style="float:right;margin-right:4.6%;">
+						<div class="botones" style="float:right;margin-right:5.6%;">
 							<ul class="nav">
 								<% if user_signed_in? %>
+								<li>
+									<div class="config"></div>
+								</li>
+								<li class="dropdown">
+									<a class="mi_cuenta dropdown-toggle" id="menu" data-toggle="dropdown">
+									</a>
+									<ul id="menu1" class="dropdown-menu" role="menu" aria-labelledby="menu">
+	                  					<li><a tabindex="-1" href="#" class="perfil">Perfil</a></li>
+	                  					<li><a tabindex="-1" href="#">Temas</a></li>
+					                    <li><a tabindex="-1" href="#">Valorados</a></li>
+					                    <li><a tabindex="-1" href="#">Favoritos</a></li>
+					                    <li><%= link_to('Salir',destroy_user_session_path,:method=>'delete') %></li>
+                					</ul>
+								</li>
+								<li>
+									<div class="mini_logo"></div>
+								</li>
 								<li>
 									<%= link_to image_tag(current_user.avatar.url,:class => 'thumb',:size => "32x32"), user_path(current_user)
 									%>
 								</li>
 								
-								<li>
-									<%= link_to('Salir',destroy_user_session_path,:method=>'delete') %>
-								</li>
 								<% else %>
 								<li>
 									<div class="ingresar"></div>

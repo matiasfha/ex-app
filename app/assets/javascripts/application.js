@@ -25,6 +25,10 @@
 
 $(document).ready(function(){
 
+	$('#header').removeClass('perfil')
+	if($('#header #show').is(':visible')){
+		$('#header #show').show();
+	}
 
 
     _V_.options.flash.swf = "video-js.swf";
