@@ -62,11 +62,19 @@ class ResourcesController < ApplicationController
 
   
 
-  def mas_votadas
-    @resources = User.resource_votados(current_user.id,params[:page])
+  def populares
+    avg = current_user.resources.avg(:num_likes).round()
+    @resources = current_user.resources.where(:num_likes.gte => avg).page(params[:page])
     render :partial => "resources/listado"
   end
 
+  def valorados
+    @resources = Array.new
+    Voto.where(:user_id => current_user.id).page(params[:page]).each do |v|
+      @resources.push Resource.find(v.resouce_id)
+    end
+    render :partial => "resources/listado"
+  end
 
   def subidas
     @resources = current_user.resources.desc(:created_at).page(params[:page])
