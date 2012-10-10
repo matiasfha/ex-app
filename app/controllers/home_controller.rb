@@ -1,7 +1,8 @@
 class HomeController < ApplicationController
   before_filter :authenticate_user!, :only => [:index,:videos_index]
   def index
-  	@resources = Resource.mas_votadas(params[:page])
+  	# @resources = Resource.mas_votadas(params[:page])
+    @resources = Resource.where(:valor.gte => 100)
   end
 
   def prelaunch

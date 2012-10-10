@@ -147,8 +147,7 @@ $(document).ready () ->
 		container = $('#listado_container')
 		items = $('#listado_container .item')
 		container.empty()
-		# container.masonry 'remove',items
-		# container.fadeOut()
+		
 		imgs = $('div.imagenes')
 		vids = $('div.videos')
 		if imgs.hasClass('active') && !vids.hasClass('active')
@@ -162,14 +161,14 @@ $(document).ready () ->
 			$('#page-nav a').attr('href',"#{url}/2")
 			data = $(data)
 			data.hide()
+
+			
 			container.append(data)
 			container.imagesLoaded () ->
 				container.fadeIn 'fast',() ->
 					container.masonry('reload')
 					data.fadeIn()
 
-				
-		
 	$('#secciones div').click (e) ->
 		$(this).siblings().removeClass('active')
 		$(this).addClass('active')
@@ -179,8 +178,13 @@ $(document).ready () ->
 		false		
 
 
-	# Maneja la creación de comentarios
+	onLoadIndex = () ->
+		if $('.item').length == 0
+			$('#b_nuevos').trigger 'click'
+				
+	onLoadIndex()
 
+	# Maneja la creación de comentarios
 	$('input.comentar').live 'keydown', (e) ->
 		if e.which == 13
 			e.preventDefault()
