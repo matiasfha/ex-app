@@ -87,7 +87,7 @@ class Resource
 			self.where(:num_likes.gte => avg).page(pagina)
 		else
 			avg = self.where(:type => type).avg(:num_likes).round()
-			self.where(:num_likes.gte => avg, :type => type).page(pagina)
+			self.where(:num_likes.gt => avg, :type => type).page(pagina)
 		end
 	end
 	 
