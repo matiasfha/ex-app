@@ -1,5 +1,12 @@
+<%
+begin
+	clase = section
+rescue
+	clase = ""
+end
+%>
 <div class="row">
-	<div class="span11" id="botonera">
+	<div class="span11 <%= clase %>" id="botonera">
 		<div class="span3" style="width:92px;">
 			<div class="imagenes active"></div>
 			<div class="videos active"></div>

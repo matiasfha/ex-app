@@ -131,13 +131,14 @@ $(document).ready () ->
 
 	#Maneja el actuar de los botones de seccio
 	$('#botonera div.imagenes,#botonera div.videos').click (e) ->
-		target = $(e.currentTarget)
-		target.toggleClass('active')
-		if target.siblings('.active').length == 0
-			target.siblings().addClass('active')
-		
-		url = $('#secciones div.active').attr('data-url')
-		loadSeccionData url
+		if !$('#botonera').hassClass('perfil')
+			target = $(e.currentTarget)
+			target.toggleClass('active')
+			if target.siblings('.active').length == 0
+				target.siblings().addClass('active')
+			
+			url = $('#secciones div.active').attr('data-url')
+			loadSeccionData url
 
 	
 
@@ -145,7 +146,6 @@ $(document).ready () ->
 
 	loadSeccionData = (url) ->
 		container = $('#listado_container')
-		items = $('#listado_container .item')
 		container.empty()
 		
 		imgs = $('div.imagenes')
@@ -161,8 +161,6 @@ $(document).ready () ->
 			$('#page-nav a').attr('href',"#{url}/2")
 			data = $(data)
 			data.hide()
-
-			
 			container.append(data)
 			container.imagesLoaded () ->
 				container.fadeIn 'fast',() ->

@@ -275,6 +275,9 @@ ul.dropdown-menu{
 
 #barra{
 	height:24px;
+	&.perfil{
+		height:42px !important;
+	}
 	margin-top:0;
 	background-color:#f8f8f8;
 	padding-top:5px;
@@ -352,6 +355,66 @@ ul.dropdown-menu{
 	#b_nuevos{
 		width:106px;
 		.secciones('btn_OFFnuevos.png','btn_ONnuevos.png');
+	}
+
+	#perfil{
+		width:68px;
+		.secciones('btn_perfilOFF.jpg','btn_perfilON.jpg');
+		height:44px;
+		top:0;
+
+	}
+
+	#temas{
+		width:67px;
+		.secciones('btn_temasOFF.jpg','btn_temasON.jpg');
+		height:44px;
+		top:0;
+	}
+
+	#valorados{
+		width:67px;
+		.secciones('btn_valoOFF.jpg','btn_valON.jpg');
+		height:44px;
+		top:0;
+	}
+	#favoritos{
+		width:68px;
+		.secciones('btn_favOFF.jpg','btn_favON.jpg');
+		height:44px;
+		top:0;
+	}
+
+	#logout{
+		width:73px;
+		.secciones('btn_logoutOFF.jpg','btn_logoutON.jpg');
+		height:44px;
+		top:0;
+	}
+
+	.user-name{
+		font-family:'FBold',sans-serif, Helvetica;
+		font-weight: bold;
+		font-size:20px;
+		// float:right;
+		left:10px;
+		top:2px;
+		position:relative;
+	}
+
+	.user-image{
+		float:left;
+		width:120px;
+		height:120px;
+		position: relative;
+		top:-80px;
+	}
+
+	img.perfil{
+		-webkit-box-shadow: 0px 3px 3px rgba(42, 42, 42, 0.88);
+        -moz-box-shadow:    0px 3px 3px rgba(42, 42, 42, 0.88);
+		box-shadow:         0px 3px 3px rgba(42, 42, 42, 0.88);behavior:url(PIE.htc);
+		z-index:10;
 	}
 }
 

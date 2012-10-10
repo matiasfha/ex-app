@@ -1,18 +1,26 @@
+<% content_for :barra do 
+    render :partial => "users/barra"
+  end
 
-<div class="span11 contenido">
-  <div class="row">
-  	<ul class="nav nav-tabs" id="user-tabs">
-      <li class="active"><a href="#perfil" id="a_perfil">Perfil</a></li>
-      
-      <li><a href="#votadas" id="a_votadas">Imágenes Votadas</a></li>
-      <li><a href="#subidas" data-remote="true" id="a_subidas">Subir Imágenes</a></li>
-    </ul>
-     
-    <div class="tab-content">
-      <div class="tab-pane active" id="perfil">
-        <%= render :partial => "perfil" %>
-      </div>
-      <div class="tab-pane" id="votadas">
+  content_for :botonera do 
+    render :partial => "layouts/botonera", :locals => {:section => "perfil"}
+  end
+%>
+
+<div class="span11 contenido" id="perfil-data">
+  <div class="" >
+    <%= render :partial => "perfil" %>
+  </div>
+</div>
+
+<div class="span11 contenido" id="listado_container" style="display:none">
+  
+</div>
+<div id="page-nav" style="display:none">
+  <a href="/imagenes_index/2"></a>
+</div>
+
+      <!-- <div class="tab-pane" id="votadas">
         
         <div class="span11" id="listado_container1"></div>
         <div id="page-nav1" style="display:none">
@@ -44,14 +52,10 @@
           </div>
           </div>
 
-      </div>
+      </div> -->
 
-
-    </div>
-  </div>
-</div>
 <%= css(:visor) %>
-<%= javascript(:user) %>
 <%= javascript(:home) %>
+<%= javascript(:user) %>
 <%= javascript(:visor) %>
 

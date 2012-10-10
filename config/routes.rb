@@ -9,7 +9,6 @@ DandooDev::Application.routes.draw do
   match 'metadata/get_states/:id'   => 'metadata#get_states'
   match 'metadata/get_communes/:id' => 'metadata#get_communes'
   match 'metadata/get_cities/:id'   => 'metadata#get_cities'
-  match 'metadata/mas_votadas(/:page)' => 'resources#mas_votadas', :via => :get
   match 'metadata/subidas(/:page)' => 'resources#subidas', :via => :get
   match 'metadata/last_resource' => 'resources#last_resource', :via => :get
   authenticated :user do

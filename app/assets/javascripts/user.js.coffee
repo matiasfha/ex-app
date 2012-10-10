@@ -43,27 +43,45 @@ $(document).ready () ->
 			type:"error"
 
 
-	#Metodos para manejar los tabs
-	$('#a_perfil').on 'click',(e) ->
-		$('#votadas #listado_container').empty()
-		$('#subidas #listado_container').empty()
-
-
-	$('#a_votadas').on 'click',(e) ->
-		e.stopPropagation()
-		e.preventDefault()
-		$('#subidas #listado_container1').empty()
+	loadSeccionData = (url) ->
+		$('#perfil-data').fadeOut('fast')
+		container = $('#listado_container')
+		container.empty()
+		imgs = $('div.imagenes')
+		vids = $('div.videos')
+		if imgs.hasClass('active') && !vids.hasClass('active')
+			url = "imagenes_#{url}"
+		else if !imgs.hasClass('active') && vids.hasClass('active')
+			url = "videos_#{url}"
+		if url == 'index'
+			url = 'todos_index'
 		
-		
-		$.get '/metadata/mas_votadas',(data) ->
-			$container = $('#votadas #listado_container1');
+		$.get "/#{url}",(data) ->
+			$('#page-nav a').attr('href',"#{url}/2")
 			data = $(data)
 			data.hide()
-			$container.append(data)
-			$container.imagesLoaded () ->
-				$container.fadeIn 'fast', () ->
-					$container.masonry('reload')
+			container.append(data)
+			container.imagesLoaded () ->
+				container.fadeIn 'fast',() ->
+					container.masonry('reload')
 					data.fadeIn()
+
+	$('#secciones2 div').click (e) ->
+		$(this).siblings().removeClass 'active'
+		$(this).addClass('active')
+		url = $(this).attr('data-url')
+		if url?
+			loadSeccionData url
+		else
+			id = $(this).attr('id')
+			switch id 
+				when 'perfil'
+					$('#listado_container').fadeOut('fast')
+					$('#perfil-data').fadeIn('fast')
+				when 'logout'
+					$('#salir').trigger 'click'
+
+		false
 				
 			
 
@@ -89,28 +107,7 @@ $(document).ready () ->
 				$container.masonry('reload')
 			
 	
-	#Infinite scrolling mas_votadas
-	image_container = $('#listado_container1')
-	image_container.masonry
-		itemSelector:'.item'
-		isAnimated:true
-		gutterWidth:2
 	
-	image_container.imagesLoaded () ->
-		image_container.fadeIn()
-		image_container.masonry('reload')
-		
-
-		
-	image_container = $('#listado_container2')
-	image_container.masonry
-		itemSelector:'.item'
-		isAnimated:true
-		gutterWidth:2
-	
-	image_container.imagesLoaded () ->
-		image_container.fadeIn()
-		image_container.masonry('reload')
 		
 
 	
