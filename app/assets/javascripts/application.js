@@ -159,7 +159,7 @@ $(document).ready(function(){
 	$image_container.masonry({
 		itemSelector:'.item',
 		isAnimated:true,
-		gutterWidth:12
+		gutterWidth:11
 	});
 	$image_container.imagesLoaded(function(){
 		$image_container.fadeIn();
