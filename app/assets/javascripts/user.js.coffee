@@ -56,7 +56,7 @@ $(document).ready () ->
 		if url == 'index'
 			url = 'todos_index'
 		
-		$.get "/#{url}",(data) ->
+		$.get "/metadata/#{url}",(data) ->
 			$('#page-nav a').attr('href',"#{url}/2")
 			data = $(data)
 			data.hide()
@@ -65,14 +65,6 @@ $(document).ready () ->
 				container.fadeIn 'fast',() ->
 					container.masonry('reload')
 					data.fadeIn()
-
-
-	location = window.location.href.split('#')[1]
-	switch location
-		when 'valorados'
-			$('#secciones2 #valorados').trigger 'click'
-		when 'favoritos'
-			$('#secciones2 #favoritos').trigger 'click'
 
 	$('#secciones2 div').click (e) ->
 		$(this).siblings().removeClass 'active'
@@ -91,7 +83,13 @@ $(document).ready () ->
 
 		false
 				
-			
+	location = window.location.href.split('#')[1]
+	switch location
+		when 'valorados'
+			$('#secciones2 div#valorados').trigger('click')
+		when 'favoritos'
+			$('#secciones2 #favoritos').trigger('click')
+
 
 	$('#a_subidas').on 'ajax:beforeSend',(e,x,s) ->
 		e.stopPropagation()

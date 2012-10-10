@@ -130,8 +130,8 @@ $(document).ready () ->
 
 
 	#Maneja el actuar de los botones de seccio
-	$('#botonera div.imagenes,#botonera div.videos').click (e) ->
-		if !$('#botonera').hassClass('perfil')
+	$('#botonera a.imagenes,#botonera a.videos').click (e) ->
+		if !$('#botonera').hasClass('perfil')
 			target = $(e.currentTarget)
 			target.toggleClass('active')
 			if target.siblings('.active').length == 0
@@ -148,8 +148,8 @@ $(document).ready () ->
 		container = $('#listado_container')
 		container.empty()
 		
-		imgs = $('div.imagenes')
-		vids = $('div.videos')
+		imgs = $('a.imagenes')
+		vids = $('a.videos')
 		if imgs.hasClass('active') && !vids.hasClass('active')
 			url = "/imagenes_#{url}"
 		else if !imgs.hasClass('active') && vids.hasClass('active')

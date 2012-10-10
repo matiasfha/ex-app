@@ -62,8 +62,8 @@
 									<ul id="menu1" class="dropdown-menu" role="menu" aria-labelledby="menu">
 	                  					<li><a tabindex="-1" href="<%=user_path(current_user)%>" class="perfil">Perfil</a></li>
 	                  					<li><a tabindex="-1" href="#">Temas</a></li>
-					                    <li><a tabindex="-1" href="#valorados">Valorados</a></li>
-					                    <li><a tabindex="-1" href="#favoritos">Favoritos</a></li>
+					                    <li><a tabindex="-1" href="<%=user_path(current_user)%>#valorados">Valorados</a></li>
+					                    <li><a tabindex="-1" href="<%=user_path(current_user)%>#favoritos">Favoritos</a></li>
 					                    <li><%= link_to('Salir',destroy_user_session_path,:method=>'delete',:id => 'salir') %></li>
                 					</ul>
 								</li>

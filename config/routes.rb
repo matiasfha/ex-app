@@ -11,7 +11,7 @@ DandooDev::Application.routes.draw do
   match 'metadata/get_cities/:id'   => 'metadata#get_cities'
   
   match 'metadata/populares(/:page)' => 'resources#populares', :via => :get 
-  match 'metadata/valorados(/:page)' => 'resources#favoritos', :via => :get 
+  match 'metadata/valorados(/:page)' => 'resources#valorados', :via => :get 
 
   match 'metadata/subidas(/:page)' => 'resources#subidas', :via => :get
   match 'metadata/last_resource' => 'resources#last_resource', :via => :get
