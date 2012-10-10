@@ -60,10 +60,10 @@
 									<a class="mi_cuenta dropdown-toggle" id="menu" data-toggle="dropdown">
 									</a>
 									<ul id="menu1" class="dropdown-menu" role="menu" aria-labelledby="menu">
-	                  					<li><a tabindex="-1" href="#" class="perfil">Perfil</a></li>
+	                  					<li><a tabindex="-1" href="<%=user_path(current_user)%>" class="perfil">Perfil</a></li>
 	                  					<li><a tabindex="-1" href="#">Temas</a></li>
-					                    <li><a tabindex="-1" href="#">Valorados</a></li>
-					                    <li><a tabindex="-1" href="#">Favoritos</a></li>
+					                    <li><a tabindex="-1" href="#valorados">Valorados</a></li>
+					                    <li><a tabindex="-1" href="#favoritos">Favoritos</a></li>
 					                    <li><%= link_to('Salir',destroy_user_session_path,:method=>'delete',:id => 'salir') %></li>
                 					</ul>
 								</li>
@@ -71,7 +71,7 @@
 									<div class="mini_logo"></div>
 								</li>
 								<li>
-									<%= link_to image_tag(current_user.avatar.url,:class => 'thumb img-rounded',:size => "32x32"), user_path(current_user)
+									<%= image_tag(current_user.avatar.url,:class => 'thumb img-rounded',:size => "32x32")
 									%>
 								</li>
 								

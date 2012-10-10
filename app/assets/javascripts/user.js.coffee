@@ -66,6 +66,14 @@ $(document).ready () ->
 					container.masonry('reload')
 					data.fadeIn()
 
+
+	location = window.location.href.split('#')[1]
+	switch location
+		case 'valorados'
+			$('#secciones2 #valorados').trigger 'click'
+		case 'favoritos'
+			$('#secciones2 #favoritos').trigger 'click'
+
 	$('#secciones2 div').click (e) ->
 		$(this).siblings().removeClass 'active'
 		$(this).addClass('active')

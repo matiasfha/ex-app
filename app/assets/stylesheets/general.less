@@ -420,7 +420,7 @@ ul.dropdown-menu{
 
 #botonera{
 	margin-top:7px;
-	.botones(@activo,@inactivo){
+	.botones(@activo,@inactivo,@click){
 		background:url(@inactivo) no-repeat;
 		padding:0;
 		margin:0;
@@ -432,26 +432,31 @@ ul.dropdown-menu{
 		&.active,&:hover{
 			background:url(@activo) no-repeat !important;
 		}
+		&:active{
+			background:url(@click) no-repeat !important;
+		}
+
 	}
 
 	.imagenes{
 		float:left;
-		.botones('btnON_img.jpg','btnOFF_img.jpg');		
+		.botones('btnON_img.jpg','btnOFF_img.jpg','btn_IMG_onnn.png');		
+
 	}
 
 	.videos{
 		float:right;
-		.botones('btnON_video.jpg','btnOFF_video.jpg');
+		.botones('btnON_video.jpg','btnOFF_video.jpg','btn_VIDEO_onnn.png');
 	}
 
 	.vista_circular{
 		float:right;
-		.botones('btnON_vistaA.jpg','btnOFF_vistaA.jpg');
+		.botones('btnON_vistaA.jpg','btnOFF_vistaA.jpg','btn_horiz_onnn.png');
 	}
 
 	.vista_muro{
 		float:left;
-		.botones('btnON_vistaB.jpg','btnOFF_vistaB.jpg');
+		.botones('btnON_vistaB.jpg','btnOFF_vistaB.jpg','btn_VERTICAL_onnn.png');
 	}
 }
 

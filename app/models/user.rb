@@ -74,7 +74,7 @@ class User
       },
     :styles => {
       :thumb => '32x32>',
-      :medium => '200x200>',
+      :medium => '200x200',
       :original => '1920x1680>'
     }
 
