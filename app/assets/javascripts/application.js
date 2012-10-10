@@ -104,7 +104,7 @@ $(document).ready(function(){
 					iv_load_policy: 3,
 					color: 'white',
 					theme: 'light',
-					origin: 'http://127.0.0.1:8080',
+					origin: 'http://dandoodev.herokuapp.com',
 					autohide: 1,
 					disablekb: 1,
 					modestbranding: 1,

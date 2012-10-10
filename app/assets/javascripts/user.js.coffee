@@ -69,9 +69,9 @@ $(document).ready () ->
 
 	location = window.location.href.split('#')[1]
 	switch location
-		case 'valorados'
+		when 'valorados'
 			$('#secciones2 #valorados').trigger 'click'
-		case 'favoritos'
+		when 'favoritos'
 			$('#secciones2 #favoritos').trigger 'click'
 
 	$('#secciones2 div').click (e) ->
