@@ -84,7 +84,7 @@ class Resource
 	def self.mas_populares(pagina,type=nil)
 		if type.nil?
 			avg = self.avg(:num_likes).round()
-			self.where(:num_likes.gte => avg).page(pagina)
+			self.where(:num_likes.gt => avg).page(pagina)
 		else
 			avg = self.where(:type => type).avg(:num_likes).round()
 			self.where(:num_likes.gt => avg, :type => type).page(pagina)
