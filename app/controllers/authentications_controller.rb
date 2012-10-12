@@ -4,90 +4,137 @@ class AuthenticationsController < ApplicationController
   	@authentications = current_user.authentications if current_user
   end
 
-  def crear_usuario(nickname,name,apellidos,email,avatar,bio,provider,uid)
-    password = Devise.friendly_token.first(7)
-    user = User.new(:email => email, :password => password,
-      :password_confirmation => password,:nombre => name,
-      :apellidos => apellidos,:nickname => nickname,
-      :bio => bio)
-    user.avatar_remote_url avatar
-    user.save
-    user.authentications << Authentication.new(:provider => provider, :uid => uid)
-    user.save
-    flash[:notice] = t "mensajes.ingreso.success"
-    sign_in :user, user 
-    redirect_to "/user/complete_registration/#{user.id}"
-  end
 
   def create
-    auth = request.env['omniauth.auth']
-    
-
-    provider = auth['provider'] || ""
-    uid      = auth['uid'] || ""
-    if provider == 'twitter'
-      nickname = auth['info']['nickname'] || ""
-      name     = auth['info']['name'].split(' ',2).first || ""
-      apellidos= auth['info']['name'].split(' ',2).last || ""
-      email    = Faker::Internet.free_email
-      avatar   = auth['info']['image'] || ""
-      bio      = auth['info']['description'] || ""
-    elsif provider == 'facebook'
-      nickname = auth['info']['nickname'] || ""
-      name     = auth['extra']['raw_info']['first_name']+" "+auth['extra']['raw_info']['middle_name'] || ""
-      email    = auth['info']['email'] || Faker::Internet.free_email
-      apellidos= auth['info']['last_name'] || ""
-      avatar   = auth['info']['image'] || ""
-      bio      = ''
-    else
-      flash[:notice]=t 'mensajes.ingreso.provider_fail'
+    avatar = params[:user][:avatar_tmp]
+    if avatar.index('facebook')
+      avatar_tmp = avatar.split('?')
+      avatar = avatar_tmp[0]+'?type=large'
     end
+    params[:user][:avatar_tmp] = avatar
+    #Check por el email
+    u = User.where(:email => params[:user][:email]).first
+    if !u.nil?
+      #Ya existe el usuario, asociar con la nueva authentificacion
+      u.authentications << Authentication.new(:provider => params[:user][:provider], :uid => params[:user][:uid])
+      u.save
+      sign_in_and_redirect :user, u
+    else
+      @user = User.new params[:user]
+      
+      vacios = params[:user].reject {|k,v| !v.blank? }
+      if vacios.size > 0 #Hay datos vacios generar el mensaje de error
+        @error_messages = Hash.new
+        vacios.each do |k,v|
+          @error_messages[k] = "#{k} No puede estar vacio"
+        end
+        respond_to do |format|
+          flash.now[:error] = 'Hay campos vacios por completar'
+          format.html { render :action => 'new' }
+        end
 
-    if provider && uid 
-      if !user_signed_in? #Si no esta logeado ya
-        #Buscar Authentication
-        authentication = Authentication.where(:provider => provider, :uid => uid).first 
-        if authentication #Existe la Authentication
-          #Logeo exitoso
-          flash[:notice] = t 'mensajes.ingreso.success',:provider=> provider.capitalize
-          sign_in_and_redirect(:user,authentication.user)
-        else #No existe la authentication
-          
-          #Si tiene email, buscar dicho email para saber si el user ya existe
-          if email!=""
-            user = User.where(:email => email).first 
-            if user #EL usuario existe.. agrego la autentificacion y login
-              user.authentications << Authentication.new(:provider => provider, :uid => uid)
-              user.save
-              flash[:notice] = t "mensajes.ingreso.success"
-              sign_in :user, user 
-              redirect_to root_path
-            else
-              #Se debe crear el usuario
-              crear_usuario(nickname,name,apellidos,email,avatar,bio,provider,uid)
-            end
-          else
-            #Crear el usuario
-            crear_usuario(nickname,name,apellidos,email,avatar,bio,provider,uid)
+      else
+        @user.avatar_remote_url(params[:user][:avatar_tmp])
+        password = Devise.friendly_token.first(10)
+        @user.password = password
+        @user.password_confirmation = password
+        if @user.save
+          flash[:notice] = t(:welcome)
+          sign_in_and_redirect :user, @user
+        else
+          respond_to do |format|
+            flash.now[:error] = 'Ocurrio un error creando el usuario'
+            format.html { render :action => 'new' }
           end
         end
-      else
-        #Asignar Authentication ya que esta logrado
-        authentication = Authentication.where(:provider => provider, :uid => uid).first 
-        if !authentication
-          current_user.authentications << Authentication.new(:provider => provider, :uid => uid)
-          flash[:notice] = t 'mensajes.ingreso.auth_success', :provider => provider.capitalize
-          redirect_to root_path
+        
+      end
+    end
+  end
+
+  def crear_usuario(nickname,name,apellidos,email,avatar,bio,nacimiento,provider,uid)
+    password = Devise.friendly_token.first(10)
+    if provider=='facebook'
+      avatar_tmp = avatar.split('?')
+      avatar_tmp = avatar_tmp[0]+'?type=normal'
+    else
+      avatar_tmp = avatar.split("_normal")
+      avatar_tmp = avatar_tmp[0]+"_bigger.png"
+    end
+    @user = User.new(:nombre => name, :apellidos => apellidos,
+      :nickname => nickname, :bio => bio,:avatar_tmp => avatar_tmp,
+      :nacimiento => nacimiento, :email => email,
+      :password => password, :password_confirmation => password)
+    
+    @user.avatar_remote_url(avatar)
+    @authentication = Authentication.new :uid => uid, :provider => provider
+    @user.authentications << @authentication
+    @user
+  end
+
+  def new
+    auth         = request.env['omniauth.auth']
+    @provider     = auth['provider'] || ""
+    @uid          = auth['uid'] || ""
+    nickname     = auth['info']['nickname'] || ""
+    avatar       = auth['info']['image'] || ""
+    bio          = ''
+    nacimiento   = ''
+    if @provider == 'twitter'
+      name       = auth['info']['name'].split(' ',2).first || ""
+      apellidos  = auth['info']['name'].split(' ',2).last || ""
+      email      = ""
+      bio        = auth['info']['description']
+      
+    elsif @provider == 'facebook'
+      name       = auth['extra']['raw_info']['first_name']+" "+auth['extra']['raw_info']['middle_name'] || ""
+      email      = auth['info']['email'] || ""
+      apellidos  = auth['info']['last_name'] || ""
+      nacimiento = auth['extra']['raw_info']['birthday']
+    else
+      flash[:error]=t 'mensajes.ingreso.provider_fail'
+    end
+    
+    if @provider && @uid 
+      @authentication = Authentication.where(:uid => @uid, :provider => @provider).first
+      if @authentication.nil?
+        #Buscar un usuario por el email
+        @user = User.where(:email => email).first
+        if @user.nil?
+          #Crear un nuevo usuario
+          @user = crear_usuario(nickname,name,apellidos,email,avatar,bio,nacimiento,@provider,@uid)
+          respond_to do |format|
+            format.html { render :action => 'new' }
+          end 
         else
-          flash[:error] = t "mensajes.ingreso.provider_exists",:provider => provider.capitalize
-          redirect_to root_path
+          #Asociar al usuario ya existente el provider
+          auth = Authentication.new(:provider => @provider, :uid => @uid)
+          #Chequear si el usuario ya esta logeado
+          if !current_user.nil?
+            if current_user.id == @user.id 
+              current_user.authentications << auth
+              current_user.save 
+            else
+             #Logear al usuario
+             @user.authentications << auth 
+             @user.save
+             sign_in_and_redirect :user, @user 
+            end
+          end
         end
+        
+      else
+        #La autenticacion ya existe, logear al usuario
+        sign_in_and_redirect :user, @user 
       end
     else
       flash[:error] = t "mensajes.ingreso.no_provider"
       redirect_to root_path
     end
   end
+  #/////
+
+  
 
   def destroy
   	@authentication = current_user.authentications.find(params[:id])

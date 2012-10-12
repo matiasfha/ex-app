@@ -29,7 +29,7 @@
 
       <div class="votos pull-right">
         <% total = @resource.votos.count
-      promedio = @resource.promedio_votos(@resource.id)
+      promedio = Resource.promedio_votos(@resource.id)
       nota = promedio.round
       for i in 1..nota
         %><div class="mini-star"></div><%
@@ -126,4 +126,4 @@
   </div>
      
 
-</div>    
+</div>   

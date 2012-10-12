@@ -1,7 +1,7 @@
 <div class="overlay">
   <div class="up">
     
-    <a href="https://www.facebook.com/dialog/feed?app_id=487202541299703&link=<%="#{request.protocol}#{request.host_with_port}#{request.fullpath}resources/#{resource.id}"%>&resource=<%=resource.imagen.url(:medium)%>&name=<%=resource.titulo%>&caption=Dandoo.tv&description=<%=resource.descripcion%>&redirect_uri=<%="#{request.protocol}#{request.host_with_port}#{request.fullpath}"%>">
+    <a href="https://www.facebook.com/dialog/feed?app_id=<%=ENV['FACEBOOK_KEY']%>&link=<%="#{request.protocol}#{request.host_with_port}#{request.fullpath}resources/#{resource.id}"%>&resource=<%=resource.imagen.url(:medium)%>&name=<%=resource.titulo%>&caption=Dandoo.tv&description=<%=resource.descripcion%>&redirect_uri=<%="#{request.protocol}#{request.host_with_port}#{request.fullpath}"%>">
     <div class="btn-facebook"></div></a>
 
     <a href="https://twitter.com/share?url=<%="#{request.protocol}#{request.host_with_port}#{request.fullpath}resources/#{resource.id}"%>&text=<%=resource.titulo%>&via=Dandootv&lang=es&related=Dandootv&count=none&hashtags=#Dandoo" target="_blank"><div class="btn-twitter"></div></a>

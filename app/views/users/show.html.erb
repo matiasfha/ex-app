@@ -8,51 +8,31 @@
 %>
 
 <div class="span11 contenido" id="perfil-data">
-  <div class="" >
-    <%= render :partial => "perfil" %>
+  <div class="row">
+    <div class="span11">
+    <%= semantic_form_for(@resource,:html => {:multipart => true,:class=>'form form-inline',:remote => true}) do |f| %>
+      <%=f.text_field :titulo, :placeholder => 'Titulo' %>
+      <%=f.text_field :descripcion, :placeholder => 'Descripcion' %>
+      <%=f.hidden_field :type %>
+      <%=f.text_field :url, :placeholder => 'URL del video con http://' %>
+      <%=f.file_field :imagen %>
+      <%= f.submit "Agregar", :class => "btn" %>
+    <% end %>
+  </div>
+  </div>
+  <div id="listado_subidas">
+  <%= render :partial => "resources/listado" %>
   </div>
 </div>
 
-<div class="span11 contenido" id="listado_container" style="display:none">
+<div class="span11 contenido" id="listado_container" >
   
 </div>
 <div id="page-nav" style="display:none">
   <a href="/imagenes_index/2"></a>
 </div>
 
-      <!-- <div class="tab-pane" id="votadas">
-        
-        <div class="span11" id="listado_container1"></div>
-        <div id="page-nav1" style="display:none">
-            <a href="/metadata/mas_votadas/2"></a>
-        </div>  
-      </div>
-
-      <div class="tab-pane" id="subidas">
-
-        <div class="span11" style="margin-left:30px;margin-top:10px;">
-            <div class="row">
-              <div class="span11" id="formulario_resource">
-                <% resource = Resource.new %>
-                <%= form_for resource , :html => {:multipart => true, :class => "form-inline"}, :remote => true do |f| %>
-                <%= f.text_field :titulo, :required => true, :class => 'input-small',:placeholder => "Titulo"%>
-                <%= f.text_field :descripcion, :class => 'span3', :placeholder => "Descripcion", :maxlength => 140,:required => true %>
-                <%= f.text_field :url, :class => 'span2', :placeholder => "URL del video" %>
-                <%= f.hidden_field :type %>
-                <%= f.file_field :imagen %>
-                <%= f.submit "Agregar", :class => "btn btn-inverse", :id => 'subir_imagen' %>
-              <% end %> 
-              </div>
-            </div>
-            <div class="row>"
-            <div class="span11" id="listado_container2"></div>
-            <div id="page-nav2" style="display:none">
-              <a href="/metadata/subidas/2"></a>
-            </div>
-          </div>
-          </div>
-
-      </div> -->
+     
 
 <%= css(:visor) %>
 <%= javascript(:home) %>

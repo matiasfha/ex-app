@@ -1,0 +1,156 @@
+<%= javascript "registrations" %>
+<style>
+    .ui-combobox {
+        position: relative;
+        display: inline-block;
+    }
+    .ui-combobox-toggle {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        margin-left: -1px;
+        padding: 0;
+        /* adjust styles for IE 6/7 */
+        *height: 1.7em;
+        *top: 0.1em;
+    }
+    .ui-combobox-input {
+        margin: 0;
+        padding: 0.3em;
+        width:185px !important;
+    }
+
+
+    </style>
+
+
+<br />
+<%= semantic_form_for(@user, :url => "/authentications", :html => { :class=>"form", :method => :post }) do |f| %>
+<% if @error_messages %>
+  <% @error_messages.each do |v, msg| %>
+   <div class="alerta" data-title="Dandoo.tv" data-text="<%=msg%>" data-type="error" style="display:none"></div>
+  <% end %>
+<% end %>
+
+<div class="span11" style="background-color:white;border-radius:10px">
+  <div class="row">
+    <div class="span1 offset1" style="height:43px;width:211px;">
+      <%=image_tag 'LOGIN_03.png' ,:style => 'float:left;position:relative;'%>
+    </div>
+    <div class="span1" style="margin-left:0;height:43px;width:148px;">
+      <%=image_tag 'LOGIN_04.png' ,:style => 'float:left;position:relative;height:43px;width:148px;'%>
+    </div>
+  </div>
+  <br />
+    <br />
+  <div class="row">
+    
+    <div class="span3 offset1">
+      <div class="img-rounded avatar" style="background-image: url('<%=@user.avatar_tmp%>');">
+      
+      </div>
+      <%=f.hidden_field :avatar_tmp %>
+      <input type="hidden" name="user[provider]" id="user_provider" value="<%=@provider%>" />
+      <input type="hidden" name="user[uid]" id="user_uid" value="<%=@uid%>" />
+      <div class="control-group">
+        <label>Género</label>
+        <div class="controls">
+          <%= f.select :gender, Gender.all.map{|u| [u.descripcion,u.id]},{:include_blank => true},{:required => true} %>
+        </div>
+      </div>
+
+      <div class="control-group">
+        <label>Estado Civil</label>
+        <div class="controls">
+          <%= f.select :civil_statu, CivilStatu.all.map{|u| [u.descripcion, u.id]},{:include_blank => true},{:required => true} %>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="span3" style="margin-left:70px !important">
+      <div class="control-group">
+        <div class="controls">
+          <%= f.email_field :email, :required => true, :placeholder => "Email"%>
+        </div>
+      </div>
+      
+      
+
+      <div class="control-group">
+        <div class="controls">
+          <%= f.text_field :nombre, :required => true, :placeholder => "Nombre"%>
+        </div>
+      </div>
+
+      <div class="control-group">
+        <div class="controls">
+          <%= f.text_field :apellidos, :required => true, :placeholder => "Apellidos"%>
+        </div>
+      </div>
+
+      <div class="control-group">
+        <div class="controls">
+          <%= f.text_field :nacimiento, :required => true, :placeholder => "Fecha de nacimiento", :class => "date"%>
+          <span class="help-block">Este campo es privado y no será publicado </span>
+        </div>
+      </div>
+
+      <div class="control-group">
+        <div class="controls">
+          <%= f.text_field :bio, :required => true, :placeholder => "Biografía en 140 carácteres"%>
+        </div>
+      </div>
+      
+      <div class="control-group">
+        <div class="controls">
+          <%= f.text_field :ocupacion, :placeholder => 'Ocupación' %>
+        </div>
+      </div>
+    </div>
+
+    <div class="span3" style="position:relative;top:-20px;">
+      <div class="control-group">
+        <label>País</label>
+        <div class="controls">
+          <%= f.select :country, Country.all.map{ |u| [u.nombre,u.id] }, {:include_blank => true},{:class => "span2", :required => true} %>
+          <span class="help-block">
+            <br />Conocer tu ubicación permite hacer entrega de premios </span>
+        </div>
+      </div>
+
+      <div class="control-group">
+        <label>Región</label>
+        <div class="controls">
+          <%= f.select :state, (@user.state_id?) ? State.all.map{|u| [u.nombre,u.id]} : Hash.new, {:include_blank => true},{:class => "span2", :required => true} %>
+        </div>
+      </div>
+
+      <div class="control-group">
+        <label>Comuna</label>
+        <div class="controls">
+          <%= f.select :commune, (@user.commune_id?) ? Commune.all.map{|u| [u.nombre,u.id]} : Hash.new, {:include_blank => true},{:class => "span2", :required => true} %>
+        </div>
+      </div>
+
+      <div class="control-group">
+        <label>Ciudad</label>
+        <div class="controls">
+          <%= f.text_field :city, :placeholder => 'Ciudad' %>
+        </div>
+      </div>
+      <div class="control-group">
+      </div>
+      <div class="control-group">
+      </div>
+      <div class="control-group">
+        <%= f.submit "Finalizar", :class => "btn" %>
+        <input type="reset" class="btn btn-inverse" value="Cancelar" />
+      </div>
+    </div>
+    
+  </div>
+  <br />
+    <br />
+</div>
+<% end %>

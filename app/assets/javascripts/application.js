@@ -20,6 +20,9 @@
 //= require video.min
 //= require jquery.pnotify
 //= require froogaloop2.min
+//= require jquery.ui.all
+//= require combobox
+
 // require_tree .
 
 

@@ -5,5 +5,8 @@ class Authentication
   field :uid, type: String
   field :provider, type: String
 
-  attr_accessible :uid, :provider
+  attr_accessible :uid, :provider,:user_id
+
+  validates_presence_of :user_id, :uid, :provider
+  validates_uniqueness_of :uid, :scope => :provider
 end

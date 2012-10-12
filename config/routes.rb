@@ -19,6 +19,7 @@ DandooDev::Application.routes.draw do
     root :to => 'home#index'
   end
   root :to => 'home#landpage'
+
   #Rutas para secciones
   match 'populares(/:page)' => 'home#populares', :via => :get 
   match 'imagenes_populares(/:page)' => 'home#imagenes_populares', :via => :get
@@ -40,7 +41,7 @@ DandooDev::Application.routes.draw do
   devise_scope :user do 
     get '/register'                 => 'devise/registrations#new'
     delete '/logout'                => 'devise/session#destroy'
-    get '/user/complete_registration/:id' => 'registrations#completar'
+    get '/user/complete_registration/:user' => 'registrations#completar'
     put '/user/complete_registration' => 'registrations#finalizar'
   end
   resources :users, :only => [:show,:index]
@@ -55,7 +56,8 @@ DandooDev::Application.routes.draw do
   
   match '/votos/:pid/:valor' => 'votos#create', :via => :post
 
-  match 'auth/:provider/callback'  => 'authentications#create'
+  match 'auth/:provider/callback'  => 'authentications#new'
+  
   resources :authentications, :only => [:index,:create,:destroy]
    
   

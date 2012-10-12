@@ -1,6 +1,6 @@
 <div class="span11 perfil" id="barra">
 	<div class="row">
-		<div class="span3" style="position:relative;left:10px;">
+		<div class="span6" style="position:relative;left:10px;">
 			
 			<div class="user-image">
 				<%= image_tag current_user.avatar.url(:medium),:size => "120x120",:class => "perfil" %>
@@ -8,10 +8,10 @@
 			</div>
 			<div class="user-name">
 				
-				<%= current_user.nombre%>
+				<%= current_user.nombre%> <%=current_user.apellidos %>
 			</div>
 		</div>
-		<div class="span6 pull-right" id="secciones2">
+		<div class="span5 pull-right" id="secciones2">
 
 			<div id="logout" class="pull-right">
 			</div>

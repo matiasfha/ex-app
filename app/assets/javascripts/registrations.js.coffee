@@ -1,5 +1,17 @@
 $(document).ready () ->
 
+	$('select').combobox()
+
+
+	$('.date').datepicker
+		firstDay:1
+		monthNames:['Enero','Febrero','Marzo','Abril','Mayo','Junio','Agosto','Septiembre','Octubre','Noviembre','Diciembre']
+		monthNamesShort:['Ene','Feb','Mar','Abr','May','Jun','Jul','Ago','Sep','Oct','Nov','Dic']
+		dayNames:['Domingo','Lunes','Martes','Miércoles','Jueves','Viernes','Sabado']
+		dayNamesMin:['Do','Lu','Ma','Mi','Ju','Vi','Sa']
+		dayNamesShort:['Dom','Lun','Mar','Mie','Jue','Vie','Sab']
+		dateFormat:'dd/mm/yy'
+
 	populate_select = (url,element) ->
 		$.getJSON url, (data) ->
 			options = '<option>Seleccione</option>'
@@ -26,4 +38,5 @@ $(document).ready () ->
 		if commune?
 			populate_select "/metadata/get_cities/#{commune}",$('#user_city')
  	
+
 

@@ -5,12 +5,6 @@ $(document).ready () ->
 		$('#header #show').hide();
 	
 
-	$('#user-tabs a').click (e) ->
-		e.preventDefault();
-		$(this).tab('show')
-		$('.pagination').remove()
-
-
 	$('input:file').change () ->
 		$('#resource_url').attr('disabled','disabled').val('')
 		$('#resource_type').val('imagen')
@@ -32,7 +26,7 @@ $(document).ready () ->
 			$('#new_resource').reset()
 			$('#subir_imagen').removeAttr('disabled')
 			$('body').toggleClass('wait')
-			$container = $('#subidas #listado_container2')
+			$container = $('#listado_subidas')
 			data = $(data)
 			$container.append(data).masonry('appended',data)
 	.on 'ajax:aborted:required', () ->
@@ -91,26 +85,14 @@ $(document).ready () ->
 			$('#secciones2 #favoritos').trigger('click')
 
 
-	$('#a_subidas').on 'ajax:beforeSend',(e,x,s) ->
-		e.stopPropagation()
-		e.preventDefault()
-		$('#votadas #listado_container2').empty()
+	
+	$container = $('#listado_subidas')
+	$container.imagesLoaded () ->
+		$container.masonry
+			itemSelector:'.item',
+			isAnimated:true,
+			gutterWidth:2
 		
-
-		$.get '/metadata/subidas',(data) ->
-			$container = $('#subidas #listado_container2')
-			
-			data = $(data)
-			$container.append(data)
-			
-			
-			$container.imagesLoaded () ->
-				$container.masonry
-					itemSelector:'.item',
-					isAnimated:true,
-					gutterWidth:2
-				$container.fadeIn()
-				$container.masonry('reload')
 			
 	
 	

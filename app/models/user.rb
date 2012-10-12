@@ -10,11 +10,12 @@ class User
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
+
   ## Database authenticatable
   field :email,              :type => String, :default => ""
   field :encrypted_password, :type => String, :default => ""
 
-  validates_presence_of :email
+  #validates_presence_of :email
   validates_presence_of :encrypted_password
   
   ## Recoverable
@@ -41,7 +42,6 @@ class User
   belongs_to  :city
 
   has_many :resources
-  # embeds_many :comments
   has_many :votos
 
   #Atributos
@@ -52,16 +52,16 @@ class User
   field :bio, :type => String
   field :ocupacion, :type => String
   field :nacimiento, :type => Date
-  
+  field :avatar_tmp, :type => String
 
 
-  index({ email: 1 }, { unique: true, background: true })
+  #index({ email: 1 }, { unique: true, background: true })
   index({ nickname: 1 }, { unique: true, background: true })
 
   attr_accessible :nombre,:email,:password,:password_confirmation, :remember_me, :created_at, :updated_at
   attr_accessible :apellidos, :nickname, :rut,  :bio, :ocupacion, :nacimiento
   attr_accessible :country_id, :state_id, :commune_id, :city_id, :gender_id, :civil_statu_id
-  attr_accessible :avatar
+  attr_accessible :avatar, :avatar_tmp
 
 
   has_mongoid_attached_file :avatar,
@@ -73,8 +73,8 @@ class User
       :secret_access_key =>ENV['S3_ACCESS_KEY']
       },
     :styles => {
-      :thumb => '32x32>',
-      :medium => '200x200',
+      :thumb => '32x32#',
+      :medium => '200x200#',
       :original => '1920x1680>'
     }
 

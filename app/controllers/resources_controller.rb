@@ -54,9 +54,13 @@ class ResourcesController < ApplicationController
       params[:resource][:url] = res.request_url
       params[:resource][:type] = 'video'
       params[:resource][:html] = res.html
-      params[:resource][:provider] = res.provider_url.split(".")[1]
+      provider = res.provider_url.split(".")[1]
+      res = Resource.new(params[:resource])
+      res.provider = provider
+    else
+      res = Resource.new(params[:resource])
     end
-    current_user.resources << Resource.new(params[:resource])
+    current_user.resources << res
     render :json => {:result => current_user.save, :resource => current_user.resources.last}
   end
 
