@@ -72,6 +72,9 @@ $(document).ready () ->
 				when 'perfil'
 					$('#listado_container').fadeOut('fast')
 					$('#perfil-data').fadeIn('fast')
+					location = window.location.href.split('#')
+					if location.length > 1
+						window.location.href = location[0]
 				when 'logout'
 					$('#salir').trigger 'click'
 

@@ -21,6 +21,7 @@
 //= require jquery.pnotify
 //= require froogaloop2.min
 //= require jquery.ui.all
+//= jquery.html5form
 //= require combobox
 
 // require_tree .
