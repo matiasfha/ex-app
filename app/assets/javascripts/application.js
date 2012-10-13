@@ -20,8 +20,12 @@
 //= require video.min
 //= require jquery.pnotify
 //= require froogaloop2.min
-//= require jquery.ui.all
 //= require jquery.html5form
+//= require jquery.ui.core
+//= require jquery.ui.widget
+//= require jquery.ui.autocomplete
+//= require jquery.ui.button
+//= require jquery.ui.datepicker
 //= require combobox
 
 // require_tree .

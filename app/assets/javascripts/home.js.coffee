@@ -85,9 +85,12 @@ $(document).ready () ->
 	$('.item .btn-comentar').live 'click', (e) ->
 		parent = $(this).parent().parent().parent().parent().parent()
 		slideImageExtraInfo parent
-		parent.find('input.comentar').focus()			
+		parent.find('input.comentar').focus()	
+		false		
 			
-		
+	$('.item .btn-twitter, .item .btn-facebook').live 'click', (e) ->
+		window.open $(this).parent().attr('href')
+		false
 
 	# Maneja la interaccion del boton like
 	$('.item .overlay .btn-like').live 'click', (e) ->
