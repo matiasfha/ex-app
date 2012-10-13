@@ -188,7 +188,7 @@ $(document).ready(function(){
 	$(window).scroll(function(){
 
 		$container = $('#listado_container');
-		if($container.length > 1{
+		if($container.length > 1){
 
 			$loader = $('#loading');
 			var wintop = $(window).scrollTop();
