@@ -125,6 +125,7 @@ class AuthenticationsController < ApplicationController
         
       else
         #La autenticacion ya existe, logear al usuario
+        @user = User.find(@authentication.user_id)
         sign_in_and_redirect :user, @user 
       end
     else

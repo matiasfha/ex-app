@@ -15,11 +15,11 @@ DandooDev::Application.routes.draw do
 
   match 'metadata/subidas(/:page)' => 'resources#subidas', :via => :get
   match 'metadata/last_resource' => 'resources#last_resource', :via => :get
-  authenticated :user do
-    root :to => 'home#index'
-  end
-  root :to => 'home#landpage'
-
+  # authenticated :user do
+  #   root :to => 'home#index'
+  # end
+  # root :to => 'home#landpage'
+  root :to => 'home#prelaunch'
   #Rutas para secciones
   match 'populares(/:page)' => 'home#populares', :via => :get 
   match 'imagenes_populares(/:page)' => 'home#imagenes_populares', :via => :get
@@ -57,7 +57,7 @@ DandooDev::Application.routes.draw do
   match '/votos/:pid/:valor' => 'votos#create', :via => :post
 
   match 'auth/:provider/callback'  => 'authentications#new'
-  
+
   resources :authentications, :only => [:index,:create,:destroy]
    
   

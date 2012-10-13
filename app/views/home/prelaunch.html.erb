@@ -7,30 +7,71 @@
 
     <meta name="google-site-verification" content="kD2sMFnQ4VfcHlZMKG9u7Glug38BobmH-97IVSUNJx4" />
 
-    <script type="text/javascript">
-
-      var _gaq = _gaq || [];
-      _gaq.push(['_setAccount', 'UA-30456807-1']);
-      _gaq.push(['_trackPageview']);
-    
-      (function() {
-        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-      })();
-    
+    <script>
+    var _gaq=[['_setAccount','UA-35427461-2'],['_trackPageview']];
+    (function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
+    g.src=('https:'==location.protocol?'//ssl':'//www')+'.google-analytics.com/ga.js';
+    s.parentNode.insertBefore(g,s)}(document,'script'));
     </script>
 
     <link rel="icon" 
       type="image/ico" 
-      href="/assets/logo.ico" />
+      href="/assets/favicon.ico" />
 
-    <meta property="og:title" content="Dandoo.tv - La primera red social de publicidad" /><meta property="og:type" content="company" /><meta property="og:site_name" content="Dandoo.tv" /><meta property="og:url" content="http://dandoo.tv" /><meta property="og:image" content="http://dandoo.tv/assets/logo.png" /><meta property="og:description" content="Dandoo.tv es la primera red social de Publicidad. Basados en Neurociencias Perceptivas desarrollamos interfaces capaces de llevar la interacción entre marca y usuario target al siguiente nivel." />
+    <meta property="og:title" content="Dandoo.tv - La primera red social de publicidad" />
+    <meta property="og:type" content="company" />
+    <meta property="og:site_name" content="Dandoo.tv" />
+    <meta property="og:url" content="http://dandoo.tv" />
+    <meta property="og:image" content="http://dandoo.tv/assets/logo.png" />
+    <meta property="og:description" content="Dandoo.tv es la primera red social de Publicidad. Basados en Neurociencias Perceptivas desarrollamos interfaces capaces de llevar la interacción entre marca y usuario target al siguiente nivel." />
 
+    <style type="text/css">
+    html, body {
+      height: 100%;
+      width: 100%;
+      padding: 0;
+      margin: 0;
+    }
+
+    #full-screen-background-image {
+      z-index: -999;
+      min-height: 100%;
+      min-width: 1024px;
+      width: 100%;
+      height: auto;
+      position: fixed;
+      top: 0;
+      left: 0;
+    }
+
+    #wrapper {
+      position: relative;
+      width: 300px;
+      min-height: 600px;
+      height: 90%;
+      margin: 50px 60px;
+      color: white;
+      float:right;
+      background-color:rgba(0,0,0,0.6);
+      behavior:'PIE.htc';
+    }
+    body {
+      background: black url('/assets/landings/landing2.jpg') top!important;
+      background-size: contain;
+    }
+    </style>
   </head>
   <body>
+    <%
+    num = rand(1..5)
+    %>
+    <%=image_tag "landings/landing1.jpg", :id => 'full-screen-background-image' %>
+    
+    <div id="wrapper">
+      <p>Content goes here...</p>
+    </div>
 
-        <div rel="7VDEJTYE" class="lrdiscoverwidget" data-logo="on" data-background="on" data-share-url="dandoo.tv" data-css=""></div><script type="text/javascript" src="http://launchrock-ignition.s3.amazonaws.com/ignition.1.1.js"></script>
 
+        
   </body>
 </html>
