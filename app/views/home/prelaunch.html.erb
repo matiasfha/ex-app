@@ -26,6 +26,29 @@
     <meta property="og:description" content="Dandoo.tv es la primera red social de Publicidad. Basados en Neurociencias Perceptivas desarrollamos interfaces capaces de llevar la interacción entre marca y usuario target al siguiente nivel." />
 
     <style type="text/css">
+    @font-face {
+        font-family: 'FBold';
+        src: url('fonts/liberationsans-bold-webfont.eot');
+        src: url('fonts/liberationsans-bold-webfont.eot?#iefix') format('embedded-opentype'),
+             url('fonts/liberationsans-bold-webfont.woff') format('woff'),
+             url('fonts/liberationsans-bold-webfont.ttf') format('truetype'),
+             url('fonts/liberationsans-bold-webfont.svg#liberation_sansbold') format('svg');
+        font-weight: normal;
+        font-style: normal;
+
+    }
+
+    @font-face {
+        font-family: 'FRegular';
+        src: url('fonts/liberationsans-regular-webfont.eot');
+        src: url('fonts/liberationsans-regular-webfont.eot?#iefix') format('embedded-opentype'),
+             url('fonts/liberationsans-regular-webfont.woff') format('woff'),
+             url('fonts/liberationsans-regular-webfont.ttf') format('truetype'),
+             url('fonts/liberationsans-regular-webfont.svg#liberation_sansregular') format('svg');
+        font-weight: normal;
+        font-style: normal;
+
+    }
     html, body {
       height: 100%;
       width: 100%;
@@ -46,14 +69,33 @@
 
     #wrapper {
       position: relative;
-      width: 300px;
+      width: 200px;
       min-height: 600px;
       height: 90%;
-      margin: 50px 60px;
+      margin: 20px 60px;
       color: white;
       float:right;
       background-color:rgba(0,0,0,0.6);
       behavior:'PIE.htc';
+      padding:10px;
+    }
+
+    .up{
+      font-size:35px;
+      font-family: 'FBold',sans-serif, Helvetica;
+      font-weight: bold;
+      text-align: center;
+    }
+    .titulo{
+      font-size:25px;
+      font-family: 'FBold',sans-serif, Helvetica;
+      font-weight: bold; 
+      text-align: justify;
+    }
+    #wrapper .body{
+      font-size:12px;
+      text-align: justify;
+      font-family: 'FRegular',sans-serif, Helvetica;
     }
     body {
       background: black url('/assets/landings/landing2.jpg') top!important;
@@ -68,7 +110,14 @@
     <%=image_tag "landings/landing1.jpg", :id => 'full-screen-background-image' %>
     
     <div id="wrapper">
-      <p>Content goes here...</p>
+      <span class="titulo">
+        <span class="up">¡SÚMATE</span><br />
+        a la Primera RED SOCIAL de Publicidad DEL MUNDO!
+      </span>
+      <br/>
+      <span class="body">
+        Acá podrás ver, comentar y compartir los mejores videos publicitarios de miles de marcas alrededor del planeta. Los usuarios podrán puntuar cada video y así elegir en conjunto los videos más divertidos, sorprendentes y magistrales de la historia. Evaluar y comentar los recursos en HD y subtitulados. Disfrutar del arte de la publicidad de todos los rincones del mundo, desde Chile a Kazakhastan.
+      </span>
     </div>
 
 
