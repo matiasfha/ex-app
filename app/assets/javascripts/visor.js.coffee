@@ -3,7 +3,6 @@ $(document).ready () ->
 	$('.item .image_holder .overlay').live 'click', (e) ->
 		e.stopPropagation()
 		e.preventDefault()
-		console.log $(e.currentTarget)
 		href = $(this).siblings('a').attr('href')
 		$.get href, (data) ->
 			if data!=false

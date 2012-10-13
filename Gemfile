@@ -29,6 +29,7 @@ gem 'heroku'
 gem 'foreman'
 
 gem 'i18n'
+gem 'localeapp'
 gem 'formtastic'
 gem 'rails_admin'
 gem 'mongoid'
