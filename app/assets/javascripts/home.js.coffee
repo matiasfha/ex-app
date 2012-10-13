@@ -158,7 +158,7 @@ $(document).ready () ->
 			url = 'todos_index'
 		
 		$.get url,(data) ->
-			$('#page-nav a').attr('href',"#{url}/2")
+			$('#page-nav a').attr('href',"/#{url}/2")
 			data = $(data)
 			data.hide()
 			container.append(data)

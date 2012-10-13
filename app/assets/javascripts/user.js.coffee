@@ -28,7 +28,10 @@ $(document).ready () ->
 			$('body').toggleClass('wait')
 			$container = $('#listado_subidas')
 			data = $(data)
-			$container.append(data).masonry('appended',data)
+			data.show().css({ opacity: 0 });
+			$container.append(data).imagesLoaded ()->
+				data.animate({ opacity: 1 });
+				$container.masonry('appended',data)
 	.on 'ajax:aborted:required', () ->
 		$.pnotify
 			title: "Error"
@@ -94,7 +97,9 @@ $(document).ready () ->
 		$container.masonry
 			itemSelector:'.item',
 			isAnimated:true,
-			gutterWidth:2
+			gutterWidth:11
+
+
 		
 			
 	

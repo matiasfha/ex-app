@@ -21,7 +21,7 @@
 //= require jquery.pnotify
 //= require froogaloop2.min
 //= require jquery.ui.all
-//= jquery.html5form
+//= require jquery.html5form
 //= require combobox
 
 // require_tree .
@@ -175,6 +175,8 @@ $(document).ready(function(){
 
 	//Permite realizar el scroll infinito
 
+
+
 	var loader = function(fin){
 		if(fin==true){
 			html = '<div id="loading"><div><em>Todos los elementos han sido cargados</em></div></div>';
@@ -184,9 +186,14 @@ $(document).ready(function(){
 		
 		$(body).append(html)
 		$('#loading').fadeIn('fast');
-	}
+	};
+	
+	var loading = false;
+	
 	$(window).scroll(function(){
-
+		if(loading){
+			return;
+		}
 		$container = $('#listado_container');
 		if($container.length > 0){
 
@@ -195,10 +202,11 @@ $(document).ready(function(){
 			var docheight = $(document).height();
 			var winheight = $(window).height();
 			var scrolltrigger = 0.95;
-
 			if ((wintop/(docheight-winheight)) > scrolltrigger){
-				loader(false);
+				loading = true;
+				
 				var nextPage = $('#page-nav a');
+				
 				$.get(nextPage.attr('href'), function(data){
 					if($(data).length > 0 ){
 						var $elems = $(data).css({opacitu:0});
@@ -206,20 +214,16 @@ $(document).ready(function(){
 							$elems.animate({opacity:1});
 							$container.append($elems).masonry('appended',$elems,true);
 
-							$loader.delay(800).fadeOut().remove();
-							
+							loading = false;
 							var newHref = nextPage.attr('href').split('/')
 							var page = parseInt(newHref[2]) + 1;
 							newHref = "/"+newHref[1]+"/"+page;
 							nextPage.attr('href',newHref);
+							
 						});	
-					}else{
-						$loader.delay(400).remove();
-						loader(true);
-						$loader.delay(1000).fadeOut().delay(400).remove();
 					}
 					
-				})	
+				});	
 			}
 		}
 
