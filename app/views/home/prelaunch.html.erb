@@ -25,14 +25,15 @@
     <meta property="og:image" content="http://dandoo.tv/assets/logo.png" />
     <meta property="og:description" content="Dandoo.tv es la primera red social de Publicidad. Basados en Neurociencias Perceptivas desarrollamos interfaces capaces de llevar la interacción entre marca y usuario target al siguiente nivel." />
 
+    <%= stylesheet_link_tag    "application", :media => "all" %>
     <style type="text/css">
     @font-face {
         font-family: 'FBold';
-        src: url('fonts/liberationsans-bold-webfont.eot');
-        src: url('fonts/liberationsans-bold-webfont.eot?#iefix') format('embedded-opentype'),
-             url('fonts/liberationsans-bold-webfont.woff') format('woff'),
-             url('fonts/liberationsans-bold-webfont.ttf') format('truetype'),
-             url('fonts/liberationsans-bold-webfont.svg#liberation_sansbold') format('svg');
+        src: url('assets/fonts/liberationsans-bold-webfont.eot');
+        src: url('assets/fonts/liberationsans-bold-webfont.eot?#iefix') format('embedded-opentype'),
+             url('assets/fonts/liberationsans-bold-webfont.woff') format('woff'),
+             url('assets/fonts/liberationsans-bold-webfont.ttf') format('truetype'),
+             url('assets/fonts/liberationsans-bold-webfont.svg#liberation_sansbold') format('svg');
         font-weight: normal;
         font-style: normal;
 
@@ -40,11 +41,11 @@
 
     @font-face {
         font-family: 'FRegular';
-        src: url('fonts/liberationsans-regular-webfont.eot');
-        src: url('fonts/liberationsans-regular-webfont.eot?#iefix') format('embedded-opentype'),
-             url('fonts/liberationsans-regular-webfont.woff') format('woff'),
-             url('fonts/liberationsans-regular-webfont.ttf') format('truetype'),
-             url('fonts/liberationsans-regular-webfont.svg#liberation_sansregular') format('svg');
+        src: url('assets/fonts/liberationsans-regular-webfont.eot');
+        src: url('assets/fonts/liberationsans-regular-webfont.eot?#iefix') format('embedded-opentype'),
+             url('assets/fonts/liberationsans-regular-webfont.woff') format('woff'),
+             url('assets/fonts/liberationsans-regular-webfont.ttf') format('truetype'),
+             url('assets/fonts/liberationsans-regular-webfont.svg#liberation_sansregular') format('svg');
         font-weight: normal;
         font-style: normal;
 
@@ -56,16 +57,7 @@
       margin: 0;
     }
 
-    #full-screen-background-image {
-      z-index: -999;
-      min-height: 100%;
-      min-width: 1024px;
-      width: 100%;
-      height: auto;
-      position: fixed;
-      top: 0;
-      left: 0;
-    }
+    
 
     #wrapper {
       position: relative;
@@ -75,9 +67,10 @@
       margin: 20px 60px;
       color: white;
       float:right;
-      background-color:rgba(0,0,0,0.6);
+      background-color:rgba(0,0,0,0.68);
       behavior:'PIE.htc';
-      padding:10px;
+      padding:30px 10px 10px 10px;
+      z-index:99;
     }
 
     .up{
@@ -101,14 +94,53 @@
       background: black url('/assets/landings/landing2.jpg') top!important;
       background-size: contain;
     }
+    #slideshow, img.full-screen-background-image {
+        min-height: 100%;
+        min-width: 1024px;
+        width: 100%;
+        /*height: auto;*/
+        position: fixed;
+        top: 0;
+        left: 0;
+        z-index:-9999;
+    }
+
+    #slideshow img { display: none }
+    /*#slideshow img.first, #slideshow:first-child { display: block }*/
+
+    #footer{
+      font-size:8px;
+      color:white;
+      position:absolute;
+      bottom:2px;
+      left:2px;
+      z-index:90;
+    }
+
+    div.mail, div.invitacion{
+      height:63px !important;
+      position: relative;
+    }
+
     </style>
   </head>
   <body>
+    <div id="slideshow">
     <%
-    num = rand(1..5)
-    %>
-    <%=image_tag "landings/landing1.jpg", :id => 'full-screen-background-image' %>
     
+    landings = Array.new
+    landings[0] = {:imagen => "landings/landing1.jpg",:alt => "Revista Cañamo by B&L Comunicaciones ® Chile",:color => 'white'}
+    landings[1] = {:imagen => "landings/landing2.jpg",:alt => "©Ô Fiô Bier Bar by Dim'canzian'facci ® Sao Paulo",:color => '#333333'}
+    landings[2] = {:imagen => "landings/landing3.jpg",:alt => "©Odis by Ogilvy&Mather ® Chile",:color => 'white'}
+    landings[3] = {:imagen => "landings/landing4.jpg",:alt => "Prudence NEon Condoms by Z+ Comunicação ® São Paulo",:color => 'white'}
+    landings[4] = {:imagen => "landings/landing6.jpg",:alt => "©VTR by Grey ® Chile",:color => 'white'}
+    landings    = landings.shuffle
+    landings.each do |land| %>
+      <%=image_tag land[:imagen],:alt => land[:alt],:data_color => land[:color], :class => 'full-screen-background- image' %>
+    <%
+    end
+    %>
+    </div>
     <div id="wrapper">
       <span class="titulo">
         <span class="up">¡SÚMATE</span><br />
@@ -118,9 +150,126 @@
       <span class="body">
         Acá podrás ver, comentar y compartir los mejores videos publicitarios de miles de marcas alrededor del planeta. Los usuarios podrán puntuar cada video y así elegir en conjunto los videos más divertidos, sorprendentes y magistrales de la historia. Evaluar y comentar los recursos en HD y subtitulados. Disfrutar del arte de la publicidad de todos los rincones del mundo, desde Chile a Kazakhastan.
       </span>
+      <br />
+      <br />
+      <div class="mail">
+      <span style="font-size:14px;">Ingresa tu dirección de e-mail:</span>
+      <%=semantic_form_for(@email,:remote => true,:html =>{:class=>'form'}) do |f| %>
+      <%=f.email_field :email, :style => "width:185px !important" %>
+      <%=f.hidden_field :ip %>
+      <% end %>
+      </div>
+      <div class="invitacion" style="display:none">
+        <span style="font-size:14px;"></span>
+      </div>
+      
+
+      <a href="https://twitter.com/share?url=http://www.dandoo.tv&text=Participa junto a mi de la primera red social de publicidad en el mundo&via=Dandootv&lang=es&related=Dandootv&count=none&hashtags=#Dandoo" target="_blank">
+      <%=image_tag "landings/comparte_tw.png" ,:style => 'cursor:pointer'%>
+      </a>
+      <a href="https://www.facebook.com/dialog/feed?app_id=<%=ENV['FACEBOOK_KEY']%>&link=http://www.dandoo.tv&resource=http://www.dandoo.tv/assets/landings/logo.png&name=Dandoo.tv&caption=Dandoo.tv&description=Participa junto a mi de la primera red social de publicidad en el mundo&redirect_uri=http://www.dandoo.tv" target="_blank">
+      <%=image_tag "landings/comparte_fb.png" ,:style => 'cursor:pointer'%>
+      </a>
+      <%=image_tag "landings/logo.png" %>
+      <br />
+      <div style="position:relative;left:20px">
+        <%=image_tag "landings/1.png",:style => 'position:absolute;top:3px;left:0px;'%>
+        <%=image_tag "landings/2.png",:style => 'position:absolute;top:3px;left:52px;'%>
+        <%=image_tag "landings/3.png",:style => 'position:absolute;top:3px;left:104px;'%>
+      </div>
+      <div style="position:absolute;bottom:10px;left:15px;">
+        Dudas? <a href="mailto:soporte@dandoo.tv">soporte@dandoo.tv</a>
+      </div>
+    </div>
+    <div id="footer">
     </div>
 
 
-        
+   <%= javascript_include_tag "jquery"%>     
+   <script type="text/javascript" src="http://malsup.github.com/jquery.cycle.all.js"></script>
+   <script type="text/javascript">
+   $(document).ready(function(){
+    $.fn.serializeObject = function() {
+      if ( this.length < 1) { 
+          return false; 
+        }
+
+        var $el = this;
+        var data = {};
+        var lookup = data; //current reference of data
+
+        $el.find( ':input[type!="checkbox"][type!="radio"], input:checked' ).each( function() {
+          // data[a][b] becomes [ data, a, b ]
+          var named = this.name.replace(/\[([^\]]+)?\]/g, ',$1').split(',');
+          var cap = named.length - 1;
+
+          // Ensure that only elements with valid `name` properties will be serialized
+          if ( named[ 0 ] ) {
+            for ( var i = 0; i < cap; i++ ) {
+                // move down the tree - create objects or array if necessary
+                lookup = lookup[ named[i] ] = lookup[ named[i] ] ||
+                    ( named[ i + 1 ] === "" ? [] : {} );
+            }
+
+            // at the end, push or assign the value
+            if ( lookup.length !==  undefined ) {
+                 lookup.push( $( this ).val() );
+            }else {
+                  lookup[ named[ cap ] ]  = $( this ).val();
+            }
+
+            // assign the reference back to root
+            lookup = data;
+          }
+        });
+
+        return data;
+    };
+
+
+    $('#slideshow img:first').fadeIn('fast',function(){
+        $('#slideshow').cycle({
+          fx: 'fade',
+          pager: '#smallnav', 
+          pause:   1, 
+          speed: 1800,
+          timeout:  3000,
+          after:function(){
+
+            $('#footer').css({'color':$(this).attr('data_color')})
+            .html(this.alt);
+          }
+        }); 
+    });
+    
+
+      $('input').keydown(function(e){
+        if(e.which == 13){
+          e.preventDefault()
+          e.stopPropagation()
+          action = $('form').attr('action')
+          data   = $('form').serializeObject()
+          $.post(action,data,function(resp){
+            var html = ''
+            if(resp.success === 'repeat'){
+              html = "Ya estabas registrado para recibir invitaciones.. Ya estamos en camino!";
+            }else if(resp.success === true){
+              html = "Pronto recibiras una invitación para participar... Ya estamos en camino!";
+            }else{
+              html = "Ocurrió un error registrando tu email. Intenta nuevamente..!"
+            }
+            $('.invitacion span').html(html);
+            $('div.mail').fadeOut('fast',function(){
+              $('.invitacion').fadeIn('slow',function(){
+                $('div.mail').remove();
+              });
+            });
+          });
+        }
+      });
+      
+   });   
+   
+   </script>
   </body>
 </html>

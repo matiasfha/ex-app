@@ -5,6 +5,8 @@ class HomeController < ApplicationController
   end
 
   def prelaunch
+    @email = Email.new
+    @email.ip = request.remote_ip
   	render :layout => nil
   end
 
