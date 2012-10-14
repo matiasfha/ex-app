@@ -122,6 +122,30 @@
       position: relative;
     }
 
+    #modal{
+      opacity:0;
+      position:fixed;
+      top:0;
+      left:34%;
+      width:400px;
+      height:200px;
+      background: rgba(55,255,255);
+      background:rgba(155,155,155,0.8);
+      -webkit-border-radius: 10px; /* Safari 3-4, iOS 1-3.2, Android ≤1.6 */
+      border-radius: 10px; /* Opera 10.5, IE9+, Safari 5, Chrome,  Firefox 4+, iOS 4, Android 2.1+ */
+      -moz-border-radius: 10px;
+      -webkit-box-shadow: 0px 3px 6px -2px rgba(68, 68, 68, 0.5);
+      -moz-box-shadow:    0px 3px 6px -2px rgba(68, 68, 68, 0.5);
+      box-shadow:         0px 3px 6px -2px rgba(68, 68, 68, 0.5);
+      behavior:url(PIE.htc);
+    }
+
+    #recaptcha_area{
+        margin: 0 auto !important;
+        position: relative !important;
+        top: 30px !important; 
+        left: 0 !important;
+    }
     </style>
   </head>
   <body>
@@ -157,6 +181,9 @@
       <%=semantic_form_for(@email,:remote => true,:html =>{:class=>'form'}) do |f| %>
       <%=f.email_field :email, :style => "width:185px !important" %>
       <%=f.hidden_field :ip %>
+      <div id="modal">
+        <div id="#recaptcha"></div>
+      </div>
       <% end %>
       </div>
       <div class="invitacion" style="display:none">
@@ -184,11 +211,22 @@
     <div id="footer">
     </div>
 
+    
 
    <%= javascript_include_tag "jquery"%>     
    <script type="text/javascript" src="http://malsup.github.com/jquery.cycle.all.js"></script>
+   <script type="text/javascript" src="http://www.google.com/recaptcha/api/js/recaptcha_ajax.js"></script>
    <script type="text/javascript">
    $(document).ready(function(){
+
+    Recaptcha.create("<%=ENV['RECAPTCHA_PUBLIC']%>",
+      "#recaptcha",
+      {
+        theme: "red",
+        callback: Recaptcha.focus_response_field
+      }
+    );
+
     $.fn.serializeObject = function() {
       if ( this.length < 1) { 
           return false; 
@@ -242,29 +280,62 @@
         }); 
     });
     
-
-      $('input').keydown(function(e){
+      $('#recaptcha_response_field').live('keydown',function(e){
         if(e.which == 13){
           e.preventDefault()
           e.stopPropagation()
           action = $('form').attr('action')
           data   = $('form').serializeObject()
+
           $.post(action,data,function(resp){
-            var html = ''
+            var html = '', repetir=false;
             if(resp.success === 'repeat'){
               html = "Ya estabas registrado para recibir invitaciones.. Ya estamos en camino!";
             }else if(resp.success === true){
               html = "Pronto recibiras una invitación para participar... Ya estamos en camino!";
+            }else if(resp.success === 'recaptcha'){
+              html = "Comprueba tu humanidad completando correctamente el código proporcionado.";
+              repetir = true;
             }else{
-              html = "Ocurrió un error registrando tu email. Intenta nuevamente..!"
+              html = "El email ingresado parece no ser válido. Intenta nuevamente.!"
+              repetir = true;
             }
             $('.invitacion span').html(html);
             $('div.mail').fadeOut('fast',function(){
               $('.invitacion').fadeIn('slow',function(){
-                $('div.mail').remove();
+                if(repetir === true){
+                  setTimeout(function(){
+                    $('.invitacion').fadeOut('fast',function(){
+                      $('#modal').css({'opacity':'0'});
+                      $('div.mail').fadeIn('fast',function(){
+                        $('#email_email').removeAttr('disabled').focus()
+                        Recaptcha.reload();
+                      });
+                    })
+                  },2400);
+                }else{
+                  $('div.mail').remove();  
+                }
+                
               });
             });
           });
+        }
+      });
+
+      $('input').keydown(function(e){
+        if(e.which == 13){
+          e.preventDefault()
+          e.stopPropagation()
+          
+          $('#modal').animate({'top':'40%','opacity':1},function(){
+            $('#email_email').attr('disabled','disabled');
+            $('#recaptcha_response_field').focus();
+          });
+
+
+
+          
         }
       });
       
