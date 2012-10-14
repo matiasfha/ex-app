@@ -1,0 +1,20 @@
+<% if user_signed_in? 
+	voto = Voto.where(:resource_id => resource.id, :user_id => current_user.id).first
+    style=(voto.nil?)? "" : "voted"
+    %>
+    <div class="rating <%= style %>" data-id="<%=resource.id%>">
+	<%
+	if !voto.nil?
+		for i in 1..voto.valor%>
+			<div class="star vote" data-value="<%=i%>"></div>
+        <% end
+        for i in voto.valor...5 %>
+            <div class="star" data-value="<%=i%>"></div>
+        <% end
+    else
+    	for i in 1..5 %>
+        	<div class="star" data-value="<%=i%>"></div>
+     	<%end
+    end%>
+    </div>
+<% end %>

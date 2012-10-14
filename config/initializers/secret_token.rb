@@ -4,4 +4,4 @@
 # If you change this key, all old signed cookies will become invalid!
 # Make sure the secret is at least 30 characters and all random,
 # no regular words or you'll be exposed to dictionary attacks.
-Alzheimer::Application.config.secret_token = '3ca7d9880a95064030777a501b7902dcff4caa26bb4177c917c119d99f39a69044244e5a7eac0bf4699846ab589c2038f7db6d8fe855e224abac37faa27cc15a'
+DandooDev::Application.config.secret_token = '14f610085adce9bd486909c6abb2ec8ac5b07f0a965cc935e80d672f762e85e821c2935205e97f3828921f1b044ce1919d2a611d89f5e5c0fcc469815d450855'

@@ -1,109 +1,164 @@
 <!DOCTYPE html>
-<html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
 <head>
-  <title>Dandoo - La Primera Red Social de Publicidad del Mundo</title>
-  <%= stylesheet_link_tag    "application", :media => "all" %>
-  <%= javascript_include_tag "application" %>
-  <%= csrf_meta_tags %>
-  <%= include_gon %>
-  <style type="text/css">
-  body
-	{
-		padding: 40px 0px 40px 0px;
-		background-image: url("/assets/420.gif");
-	}
-  
-  form.center
-  {
-  	width: 400px;
-  	margin: 50px auto 50px auto;
-  }
-  </style>
-
-
-  <meta name="google-site-verification" content="kD2sMFnQ4VfcHlZMKG9u7Glug38BobmH-97IVSUNJx4" />
-
-  <link rel="icon" 
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="description" content="Dandoo.tv La primera red social de publicidad en el mundo">
+    <meta name="viewport" content="width=device-width">
+    <link rel="icon" 
       type="image/ico" 
-      href="/assets/logo.ico" />
+      href="/assets/favicon.ico" />
+    <meta property="og:title" content="Dandoo.tv - La primera red social de publicidad" />
+    <meta property="og:type" content="company" />
+    <meta property="og:site_name" content="Dandoo.tv" />
+    <meta property="og:url" content="http://devdandoo.tv" />
+    <meta property="og:image" content="http://devdandoo.tv/assets/logo.png" />
+    <meta property="og:description" content="Dandoo.tv es la primera red social de Publicidad. Basados en Neurociencias Perceptivas desarrollamos interfaces capaces de llevar la interacción entre marca y usuario target al siguiente nivel." />
 
-  <meta property="og:title" content="Dandoo.tv - La Primera Red Social de Publicidad del Mundo" /><meta property="og:type" content="company" /><meta property="og:site_name" content="Dandoo.tv" /><meta property="og:url" content="http://dandoo.tv" /><meta property="og:image" content="http://dandoo.tv/assets/logo.png" /><meta property="og:description" content="Dandoo.tv es La Primera Red Social de Publicidad del Mundo. Basados en Neurociencias Perceptivas desarrollamos interfaces capaces de llevar la interacción entre marca y usuario target al siguiente nivel." />
+  	<title>Dandoo.tv</title>
+  	<%= stylesheet_link_tag    "application", :media => "all" %>
 
-  <script type="text/javascript">
-
-  var _gaq = _gaq || [];
-  _gaq.push(['_setAccount', 'UA-30456807-1']);
-  _gaq.push(['_trackPageview']);
-
-  (function() {
-    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-  })();
-
- </script>
-
-
+	<script type="text/javascript">
+	if (!window['YT']) {var YT = {};}if (!YT.Player) {(function(){var s = 'http:' + '//s.ytimg.com/yt/jsbin/www-widgetapi-vflU5wlSl.js';var a = document.createElement('script');a.src = s;a.async = true;var b = document.getElementsByTagName('script')[0];b.parentNode.insertBefore(a, b);YT.embed_template = "\u003ciframe width=\"425\" height=\"344\" src=\"\" frameborder=\"0\" allowfullscreen\u003e\u003c\/iframe\u003e";})();}
+	</script>
+	
+  	<%= javascript_include_tag "application"%>
+  	<%= yield(:head) %>
+  	<%= csrf_meta_tags %>
 </head>
 <body>
-<section class="container hero-unit">
-<%= gflash %>
 
-  <% if (controller.controller_name == 'sessions')&&(controller.action_name == 'new') %>
-    <div class="row clear">&nbsp;</div>
-    <a href="<%= home_path %>" style=" text-decoration: none">
-  	  <h1 style="text-align: center; margin-top: 0px; margin-bottom: -20px"><%= image_tag '/assets/dandoo.tv.png' %></h1>
-    </a>
-  <% else %>
-    <div class="row">
-    <div id="user_nav" class="span5 pull-right">
-    <span class="pull-right">
-      <% if current_user %>
-        ¡ Bienvenido <b><%= current_user.first_name.to_s+' '+current_user.last_name.to_s %></b> ! - 
-        <%= link_to "Edita tu Perfil", edit_user_path(current_user.id, :not_new => true) %> o <%= link_to "Cierra Sesión", log_out_path %>
-      <% end %>
-      </span>
-    </div>
-    <div id="user_nav" class="span7 pull-left" style="height: 90%" >
-      <a href="<%= home_path %>" style=" text-decoration: none">
-        <%= image_tag '/assets/dandoo.tv.png', :style => 'height: 100px; margin-top: -50px' %>
-      </a>
-    </div>
-    </div>
-    <div class="row" >&nbsp;</div>
-  <% end %>
-    <% if false&&current_user&&(controller.controller_name != 'users') %>
-      <div class="well span3" style="padding: 0px 0px 0px 0px; margin: 0px 20px 0px -20px; ">
-      <ul class="nav nav-list">
-        <h2>MENU</h2>
-        <li class="<%= (controller.controller_name == 'static')&&(controller.action_name == 'home') ? 'active':'normal'  %>"><a href="#"><i class="icon-home"></i> Inicio</a></li>
-        <li class="<%= (controller.controller_name == 'videos')&&(controller.action_name == 'show') ? 'active':'normal'  %>"><a href="#"><i class="icon-play-circle"></i> Videos Disponibles (<%= current_user.videos_available.to_s %>)</a></li>
-        <li class="<%= (controller.controller_name == 'static')&&(controller.action_name == 'accomplishments') ? 'active':'normal'  %>"><a href="#"><i class="icon-play"></i> Mis Logros (<%= current_user.acomplishments.to_s %>)</a></li>
-        <li class="<%= (controller.controller_name == 'static')&&(controller.action_name == 'contact') ? 'active':'normal'  %>"><a href="#"><i class="icon-book"></i> Encuestas Disponibles (0)</a></li>
-        <li class="<%= (controller.controller_name == 'static')&&(controller.action_name == 'contact') ? 'active':'normal'  %>"><a href="#"><i class="icon-envelope"></i> Contáctanos</a></li>
-        <li class="<%= (controller.controller_name == 'static')&&(controller.action_name == 'other') ? 'active':'normal'  %>"><a href="#"><i class="icon-cog"></i> Opciones</a></li>
-      </ul>
+	<!--[if lt IE 7]>
+        <p class="chromeframe">Estas usando un navegador muy antiguo. Te proponemos <a href="http://browsehappy.com/">Actualizar tu navegador hoy</a> o <a href="http://www.google.com/chromeframe/?redirect=true">instalar Google Chrome Frame</a> Para mejorar la experiencia en este sitio.</p>
+    <![endif]-->
+
+	<div id="principal">
+		<!--NAVBAR 
+			====================================================================== -->
+		<div class="container" >	
+			<div class="navbar navbar-fixed-top" >
+				<div class="navbar-inner">
+					
+						<div class="span3 pull-left" style="margin-left:6.533864542%;">
+							<a href="/">
+								<div id="logo"></div>	
+							</a>
+						</div>
+						<% if user_signed_in? %>
+						<div class="botones">
+							<ul class="nav">
+								<li>
+									<a href="#" class="pull-left tv active"></a>
+								</li>
+								<li>
+									<a href="#" class="pull-right store"></a>
+								</li>
+							</ul>
+						</div>
+						<% end %>
+						
+						<div class="botones" style="float:right;margin-right:5.6%;">
+							<ul class="nav">
+								<% if user_signed_in? %>
+								<li>
+									<div class="config"></div>
+								</li>
+								<li class="dropdown">
+									<a class="mi_cuenta dropdown-toggle" id="menu" data-toggle="dropdown">
+									</a>
+									<ul id="menu1" class="dropdown-menu" role="menu" aria-labelledby="menu">
+	                  					<li><a tabindex="-1" href="<%=user_path(current_user)%>" class="perfil">Perfil</a></li>
+	                  					<li><a tabindex="-1" href="#">Temas</a></li>
+					                    <li><a tabindex="-1" href="<%=user_path(current_user)%>#valorados">Valorados</a></li>
+					                    <li><a tabindex="-1" href="<%=user_path(current_user)%>#favoritos">Favoritos</a></li>
+					                    <li><%= link_to('Salir',destroy_user_session_path,:method=>'delete',:id => 'salir') %></li>
+                					</ul>
+								</li>
+								<li>
+									<div class="mini_logo"></div>
+								</li>
+								<li>
+									<%= image_tag(current_user.avatar.url(:thumb),:class => 'thumb img-rounded',:size => "32x32")
+									%>
+								</li>
+								
+								<% else %>
+								<li>
+									<div class="ingresar"></div>
+								</li>
+								<li style="position:relative;top:-2px">
+									<%= link_to( image_tag('top_FB.jpg'),"/auth/facebook") %>
+								</li>
+								<li style="position:relative;top:-2px">
+									<%= link_to( image_tag('top_TW.jpg'),"/auth/twitter") %>
+								</li>
+								<% end %>
+								
+							</ul>
+						</div>
+					
+				</div>
+			</div>
 
 
-       <br><br><br><br><br>
-       <br><br><br><br><br>
-       <br><br><br><br><br>
-       <br><br><br><br><br>
-     </div>
-	  <% end %>
+		<!-- CONTENEDOR PRINCIPAL 
+		====================================================================== -->
+		
 
-    <%= yield %>
-  <div class="row">&nbsp;</div>
-  <div class="row">&nbsp;</div>
-  <div class="row">&nbsp;</div>
-  <div class="row">&nbsp;</div>
-</section>
-<section class="container hero-unit" style="height: 0px; ">
-    <div class="row top-round-bordered bottom-round-bordered" style="margin-top: -20px;margin-bottom: 20px;padding: -50px;">
-      <pre style="width: 960px; color:#444"> <i style="height: 50px"> ©Todos los derechos reservados <a href="<%= home_path %>">P.O.S.</a> <%= Time.now.year.to_s %> </i> <i class="pull-right"> Powered by <a href="http://www.brainshots.cl">Brainshots&nbsp;<img src="/assets/logo_schof2.png" style="height: 20px; margin-bottom: -5px"></a>  </i></pre>    
-    </div>
-</section>
+			<!-- HEADER
+			================================================================	====== -->	
+			
+				<div class="span11" id="header">
+					<div class="span5 offset5 pull-right" id="show">
+						<div class="izq pull-left"></div>
+						<div class="der pull-right"></div>
+						<div class="texto">
+							<strong>1.</strong> Disfruta los mejores videos de la Biblioteca
+						</div>
+					</div>
+				</div>
+			
+			
+			<%= yield(:barra) %>
+			<%= yield(:botonera) %>
+			
 
+			<!-- CONTENIDO
+			====================================================================== -->
+		
+			<div id="body">
+				<div class="row" id="mensajes-flash">
+					<% flash.each do |type, msg| %>
+					  <div class="alerta" data-title="Dandoo.tv" data-text="<%=msg%>" data-type="<%=notify_type(type)%>" style="display:none"></div>
+					    
+					<% end %>
+				</div>
 
+				<%= yield %>
+				
+
+				
+				
+
+				
+
+			</div>
+		</div>	
+
+	</div>
+
+	<div id="mask"></div>
+
+	<script>
+            var _gaq=[['_setAccount','UA-35427461-2'],['_trackPageview']];
+            (function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
+            g.src=('https:'==location.protocol?'//ssl':'//www')+'.google-analytics.com/ga.js';
+            s.parentNode.insertBefore(g,s)}(document,'script'));
+        </script>
+	
 </body>
+
 </html>

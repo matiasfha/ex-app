@@ -1,113 +1,64 @@
-Alzheimer::Application.routes.draw do
+DandooDev::Application.routes.draw do
   
-  get "user_filters/update_filter"
 
-  get "user_filters/destroy_filter"
+  devise_for :admins
+  mount RailsAdmin::Engine => '/admin', :as => 'rails_admin'
 
-  get "experiments/create_or_update"
+  
+  #Para metadatos generales.. retornan JSON
+  match 'metadata/get_states/:id'   => 'metadata#get_states'
+  match 'metadata/get_communes/:id' => 'metadata#get_communes'
+  match 'metadata/get_cities/:id'   => 'metadata#get_cities'
+  
+  match 'metadata/populares(/:page)' => 'resources#populares', :via => :get 
+  match 'metadata/valorados(/:page)' => 'resources#valorados', :via => :get 
 
-  get "questions/update_question"
+  match 'metadata/subidas(/:page)' => 'resources#subidas', :via => :get
+  match 'metadata/last_resource' => 'resources#last_resource', :via => :get
+  # authenticated :user do
+  #   root :to => 'home#index'
+  # end
+  # root :to => 'home#landpage'
+  root :to => 'home#prelaunch'
+  #Rutas para secciones
+  match 'populares(/:page)' => 'home#populares', :via => :get 
+  match 'imagenes_populares(/:page)' => 'home#imagenes_populares', :via => :get
+  match 'videos_populares(/:page)' => 'home#videos_populares', :via => :get
 
-  get "questions/destroy_question"
+  match 'vistos(/:page)' => 'home#vistos', :via => :get
+  match 'imagenes_vistos(/:page)' => 'home#imagenes_vistas', :via => :get
+  match 'videos_vistos(/:page)' => 'home#videos_vistos', :via => :get
 
-  get "videos/create_or_update_video"
+  match 'todos_index(/:page)' => 'home#todos_index', :via => :get
+  match 'imagenes_index(/:page)' => 'home#imagenes_index', :via => :get
+  match 'videos_index(/:page)' => 'home#videos_index', :via => :get
 
-  ActiveAdmin.routes(self)
+  match 'nuevos(/:page)' => 'home#nuevos', :via => :get
+  match 'imagenes_nuevos(/:page)' => 'home#imagenes_nuevas', :via => :get
+  match 'videos_nuevos(/:page)' => 'home#videos_nuevos', :via => :get
+  
+  devise_for :users, :controllers => { :registrations => "registrations"}
+  devise_scope :user do 
+    get '/register'                 => 'devise/registrations#new'
+    delete '/logout'                => 'devise/session#destroy'
+    get '/user/complete_registration/:user' => 'registrations#completar'
+    put '/user/complete_registration' => 'registrations#finalizar'
+  end
+  resources :users, :only => [:show,:index]
+  resources :resources, :only => [:create,:show,:index]
+  
+  match '/resources/add_like' => 'resources#add_like', :via => :post
+  match '/resources/remove_like' => 'resources#remove_like', :via => :post
+  match '/resources/visor/:id' => 'resources#visor', :via => :get
+  
+  resources :comments, :only => [:create,:show]
+  match '/comments/:pid/:cid' => 'comments#destroy', :via => :delete
+  
+  match '/votos/:pid/:valor' => 'votos#create', :via => :post
 
-  devise_for :admin_users, ActiveAdmin::Devise.config
+  match 'auth/:provider/callback'  => 'authentications#new'
 
-  resources :authentications
-  resources :sessions
-  resources :users
-
-  get "static/home"
-
-  get "sessions/new"
-
-  match "users/:id/edit" => 'users#edit', :as => 'user_edit'
-  match "create_or_update_video" => 'videos#create_or_update_video', :as => 'create_or_update_video'
-  match "create_or_update" => 'experiments#create_or_update', :as => 'create_or_update'
-
-  get "users/show"
-
-  #ajax
-  match 'update_question/:index' => 'questions#update_question', :as => 'update_question'
-  match 'destroy_question/:id' => 'questions#destroy_question', :as => 'destroy_question'
-  match 'update_video/:index' => 'experiments#update_video', :as => 'update_video'
-  match 'destroy_video/:id' => 'experiments#destroy_video', :as => 'destroy_video'
-  match 'update_filter/:index' => 'user_filters#update_filter', :as => 'update_filter'
-  match 'destroy_filter/:id' => 'user_filters#destroy_filter', :as => 'destroy_filter'
-
-  #videos
-  match 'show_video/:uev' => 'videos#show', :as => 'show_video'
-  match 'submit_captcha' => 'videos#submit_captcha', :as => 'submit_captcha'
-
-  #automated
-  match 'start_todays_experiments/:secret' => 'experiments#start_todays_experiments'
-
-  root :to => 'static#prerelease'
-
-  get "log_out" => "sessions#destroy", :as => "log_out"
-  get "log_in" => "sessions#new", :as => "log_in"
-  get "sign_up" => "users#new", :as => "sign_up"
-  get "home" => "static#home", :as => "home"
-
-  match '/auth/:provider/callback' => 'auths#create'
-
-  # The priority is based upon order of creation:
-  # first created -> highest priority.
-
-  # Sample of regular route:
-  #   match 'products/:id' => 'catalog#view'
-  # Keep in mind you can assign values other than :controller and :action
-
-  # Sample of named route:
-  #   match 'products/:id/purchase' => 'catalog#purchase', :as => :purchase
-  # This route can be invoked with purchase_url(:id => product.id)
-
-  # Sample resource route (maps HTTP verbs to controller actions automatically):
-  #   resources :products
-
-  # Sample resource route with options:
-  #   resources :products do
-  #     member do
-  #       get 'short'
-  #       post 'toggle'
-  #     end
-  #
-  #     collection do
-  #       get 'sold'
-  #     end
-  #   end
-
-  # Sample resource route with sub-resources:
-  #   resources :products do
-  #     resources :comments, :sales
-  #     resource :seller
-  #   end
-
-  # Sample resource route with more complex sub-resources
-  #   resources :products do
-  #     resources :comments
-  #     resources :sales do
-  #       get 'recent', :on => :collection
-  #     end
-  #   end
-
-  # Sample resource route within a namespace:
-  #   namespace :admin do
-  #     # Directs /admin/products/* to Admin::ProductsController
-  #     # (app/controllers/admin/products_controller.rb)
-  #     resources :products
-  #   end
-
-  # You can have the root of your site routed with "root"
-  # just remember to delete public/index.html.
-  # root :to => 'welcome#index'
-
-  # See how all your routes lay out with "rake routes"
-
-  # This is a legacy wild controller route that's not recommended for RESTful applications.
-  # Note: This route will make all actions in every controller accessible via GET requests.
-  # match ':controller(/:action(/:id))(.:format)'
+  resources :authentications, :only => [:index,:create,:destroy]
+  resources :emails, :only => [:create] 
+  
 end

@@ -4,4 +4,4 @@
 
 require File.expand_path('../config/application', __FILE__)
 
-Alzheimer::Application.load_tasks
+DandooDev::Application.load_tasks

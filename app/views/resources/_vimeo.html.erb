@@ -1,0 +1,41 @@
+<%
+video_id = @resource.url.split("/")[3]
+%>
+
+<div id="endplayer" style="width:700px;height:525px;position:relative;border:1px black solid;display:none">
+	
+	¿Te gustó el video?
+	Vota por el <br />
+	<button id="replay">Replay</button>
+
+</div>
+<iframe src="http://player.vimeo.com/video/<%=video_id%>?title=0&byline=0&portrait=0&api=1&player_id=vmplayer" id="vmplayer" width="700" height="525" frameborder="0"  webkitAllowFullScreen mozallowfullscreen allowFullScreen ></iframe>
+
+<script type="text/javascript">
+$(document).ready(function(){
+	var player = $f($('#vmplayer')[0]);
+	var done = false;
+	player.addEvent('ready',function(player_id){
+		player.addEvent('finish', onFinish);
+	});
+
+	function onFinish(id) {
+	    $('#vmplayer').fadeOut('slow', function() {
+  			return $('#endplayer').fadeIn();
+		});
+    	done = true;
+    	return done;
+	};
+
+	$('#replay').live('click', function() {
+    	if (done) {
+      		return $('#endplayer').fadeOut('slow', function() {
+        		return $('#vmplayer').fadeIn('slow', function() {
+          			player.api('play');
+          			return done = false;
+        		});
+      		});
+    	}
+  	});
+});
+</script>

@@ -1,0 +1,12 @@
+<div class="row comentario new" id="<%=@comment.id%>"> 
+	<% if @comment.user_id.to_s.eql?(current_user.id.to_s) %>
+		<a href="/comments/<%=picture_id%>/<%=@comment.id%>" data-method="delete" data-remote="true" class="close">×</a>
+	<% end %>
+	<div class="span1 user-thumb">
+		<%=image_tag(User.find(@comment.user_id).avatar.url(:thumb),:class => "thumb")%>
+	</div>
+	<div class="span2 user-comment" style="height:auto">
+		<strong><%=User.find(@comment.user_id).nickname %>:  </strong>  <%= @comment.contenido %>
+	</div> 
+	<hr />
+</div>

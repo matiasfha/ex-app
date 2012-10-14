@@ -1,63 +1,64 @@
 source 'https://rubygems.org'
-
-gem 'rails', '3.2.1'
+ruby '1.9.3'
+gem 'rails', '3.2.8'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
-group :development, :test do
-  gem 'sqlite3'
-end
-group :production do
-  gem 'pg'
-end
 
-gem "thin"
-gem "heroku"
-
-gem 'less-rails-bootstrap'
-
-gem "ruby-openid"
-gem "omniauth-facebook"
-gem 'omniauth-twitter'
-gem "gritter", "1.0.1"
-gem "cancan"
-gem 'kaminari'
-gem 'rails-i18n'
-gem 'gon', '2.1.0'
-gem 'tinymce-rails'
-gem "bcrypt-ruby", :require => "bcrypt"	
-gem 'activeadmin'
-gem "paperclip", "~> 2.4.2"
-gem 'aws-s3', :require => 'aws/s3'
-gem 'galetahub-simple_captcha', :require => 'simple_captcha', :git => 'git://github.com/galetahub/simple-captcha.git'
-gem 'googlecharts'
 
 # Gems used only for assets and not required
-# in production environments by default.
+# in production environments	 by default.
 group :assets do
+  gem 'sass-rails',   '~> 3.2.3'
   gem 'coffee-rails', '~> 3.2.1'
 
   # See https://github.com/sstephenson/execjs#readme for more supported runtimes
-  # gem 'therubyracer'
+  gem 'therubyracer', :platform => :ruby
 
   gem 'uglifier', '>= 1.0.3'
+  gem 'yui-compressor'
+  gem 'jquery-rails'
+  gem 'jquery-ui-rails'
+  gem 'less-rails-bootstrap'
+
 end
 
-gem 'sass-rails',   '~> 3.2.3'
-gem 'jquery-rails'
+gem 'unicorn'
+gem 'heroku'
+gem 'foreman'
 
-# To use ActiveModel has_secure_password
-# gem 'bcrypt-ruby', '~> 3.0.0'
+gem 'i18n'
+#TODO gem 'localeapp'
+gem 'formtastic'
+gem 'rails_admin'
+gem 'mongoid'
+gem 'bson_ext'
+gem 'devise'
+gem 'devise-i18n'
+gem 'omniauth'
+gem 'omniauth-twitter'
+gem 'omniauth-facebook'
+gem 'remotipart',"~> 1.0"
+gem 'kaminari'
+gem 'ruby-oembed'
 
-# To use Jbuilder templates for JSON
-# gem 'jbuilder'
+gem "mongoid-paperclip", :require => "mongoid_paperclip", :git => "git://github.com/meskyanichi/mongoid-paperclip.git"
+gem "aws-s3",            :require => "aws/s3"
+gem "aws-sdk"
 
-# Use unicorn as the web server
-# gem 'unicorn'
+gem 'recaptcha',			:require => 'recaptcha/rails'
+gem 'googlecharts'
+gem 'faker'
 
-# Deploy with Capistrano
-# gem 'capistrano'
+group :test do 
+	gem 'capybara'
+	gem 'database_cleaner'
+	gem 'mongoid-rspec'
+	gem 'launchy'
+	gem 'factory_girl_rails'
+	gem 'mongoid-rspec'
+end
 
-# To use debugger
-# gem 'ruby-debug19', :require => 'ruby-debug'
+gem 'rspec-rails',:group =>[:development,:test]
+

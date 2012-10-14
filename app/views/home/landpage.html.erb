@@ -1,0 +1,19 @@
+<%
+  content_for :barra do 
+    render :partial => "layouts/barra"
+  end
+  content_for :botonera do
+    render :partial => "layouts/botonera"
+  end
+%>
+<div class="span11 contenido" id="listado_container">
+  <%= render :partial => "resources/listado" %>
+</div>
+<div id="page-nav" style="display:none">
+	<a href="/todos_index/2"></a>
+</div>
+
+
+<% css "visor" %>
+<% javascript "home" %>
+<% javascript "visor" %>
