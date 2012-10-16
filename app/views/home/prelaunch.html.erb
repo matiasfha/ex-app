@@ -143,7 +143,6 @@
   </head>
   <body>
     <div id="slideshow">
-      <%=image_tag 'landings/landing0.jpeg' %>
 
     </div> 
     <div class="container-fluid" id="sidebar">
@@ -222,7 +221,6 @@
 
     $.fn.preload = function() {
         this.each(function(k,img){
-            // $('<img/>')[0].src = this;
             $.get(img);
         });
     }
@@ -231,6 +229,9 @@
       for(var j, x, i = o.length; i; j = parseInt(Math.random() * i), x = o[--i], o[i] = o[j], o[j] = x);
       return o;
     };
+
+    
+
     var imagenes = [
         "/assets/landings/landing0.jpeg",
         "/assets/landings/landing1.jpeg",
@@ -242,14 +243,14 @@
         "/assets/landings/landing7.jpeg",
         "/assets/landings/landing8.jpeg",
         "/assets/landings/landing9.jpeg",
-         "/assets/landings/landing10.jpeg"
+         "/assets/landings/landing10.jpeg",
     ];
     imagenes = shuffle(imagenes);
     $(imagenes).preload();
-    $('#slideshow img').fadeOut('fast')
-    $('#slideshow').empty()
-    .backstretch(imagenes, {duration: 5000, fade: 750});
-
+    
+    $('body').backstretch(imagenes, {duration: 9000, fade: 750});
+    
+    
 
     var copyrights = [];
     copyrights[0] = {texto:"© Bosch Electric Screwdriver by Jung von Matt:Elbe Werbeagentur GmbH ® Hamburg, Germany",color:"black"};
@@ -264,8 +265,8 @@
     copyrights[9] = {texto:"© Penalty T-shirt by Z ® Brazil",color:"white"};
     copyrights[10] = {texto:"© GoodYear by Y&R ® Sao Paulo, Brazil",color:"white"};
     
-    $('#slideshow').on('backstretch.show',function(){
-      var img = $('#slideshow .backstretch img')
+    $('body').on('backstretch.show',function(){
+      var img = $('body .backstretch img')
       var src = img.attr('src');
       src     = src.split('.')[0].split('/')[3].split('landing')[1];
       $('#footer').html(copyrights[src].texto).css({color:copyrights[src].color});
