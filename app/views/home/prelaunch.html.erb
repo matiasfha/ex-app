@@ -142,7 +142,10 @@
     </style>
   </head>
   <body>
-    <div id="slideshow"></div> 
+    <div id="slideshow">
+      <%=image_tag 'landings/landing0.jpeg' %>
+
+    </div> 
     <div class="container-fluid" id="sidebar">
       <div class="row-fluid">
         <div class="span3">
@@ -213,6 +216,13 @@
       }
     );
 
+    $.fn.preload = function() {
+        this.each(function(k,img){
+            // $('<img/>')[0].src = this;
+            $.get(img);
+        });
+    }
+ 
     shuffle = function(o){ //v1.0
       for(var j, x, i = o.length; i; j = parseInt(Math.random() * i), x = o[--i], o[i] = o[j], o[j] = x);
       return o;
@@ -231,7 +241,10 @@
          "/assets/landings/landing10.jpeg"
     ];
     imagenes = shuffle(imagenes);
-    $('#slideshow').backstretch(imagenes, {duration: 5000, fade: 750});
+    $(imagenes).preload();
+    $('#slideshow img').fadeOut('fast')
+    $('#slideshow').empty()
+    .backstretch(imagenes, {duration: 5000, fade: 750});
 
 
     var copyrights = [];
