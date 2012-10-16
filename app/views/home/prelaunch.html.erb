@@ -84,25 +84,23 @@
       overflow:hidden;
     }
 
-    #sidebar{
-      position:absolute;
-      top:0;
-      left:0;
-      height:100% !important;
-    }
 
     #sidebar .span3{
+      top:0;
+      left:0;
+      position:fixed;
+      height:100%;
+    }
+    #contenido{
+      position: relative;
+      height:100% !important;
+      color:white;
+      margin-top:0px;
+      padding: 30px 10px 0 5px;
+      width:200px !important;
       background:rgba(0,0,0);
       background:rgba(0,0,0,0.8);
       behavior:url(PIE.htc);
-    }
-    #contenido{
-      margin-top:20px;
-      margin-left:5px;
-      position: relative;
-      height:100% !important;
-
-     
     }
 
     input{
@@ -134,14 +132,9 @@
       font-size:13px;
       text-align: left;
     }
-
-    .span3{
-      width:235px !important;
-    }
-
     #footer{
       position: absolute;
-      bottom:40px;
+      bottom:20px;
       left:250px;
       color:white;
       font-size:14px;
@@ -150,9 +143,9 @@
   </head>
   <body>
     <div id="slideshow"></div> 
-    <div class="container" id="sidebar">
-      <div class="row" style="height:100% !important;">
-        <div class="span3" style="height:100% !important;">
+    <div class="container-fluid" id="sidebar">
+      <div class="row-fluid">
+        <div class="span3">
           <div id="contenido">
             <%= image_tag "landings/logo.png" %>
             <%= image_tag "landings/bajada.png" %>
@@ -190,6 +183,7 @@
             <p class="texto2">
               Queremos publicidad que busque encantarnos y no invadirnos
             </p>
+            Dudas..? <a href="mailto:soporte@dandoo.tv">soporte@dandoo.tv</a>
           </div>
         </div>
       </div>
@@ -219,7 +213,11 @@
       }
     );
 
-     $('#slideshow').backstretch([
+    shuffle = function(o){ //v1.0
+      for(var j, x, i = o.length; i; j = parseInt(Math.random() * i), x = o[--i], o[i] = o[j], o[j] = x);
+      return o;
+    };
+    var imagenes = [
         "/assets/landings/landing0.jpeg",
         "/assets/landings/landing1.jpeg",
         "/assets/landings/landing2.jpeg",
@@ -231,27 +229,30 @@
         "/assets/landings/landing8.jpeg",
         "/assets/landings/landing9.jpeg",
          "/assets/landings/landing10.jpeg"
-    ], {duration: 5000, fade: 750});
+    ];
+    imagenes = shuffle(imagenes);
+    $('#slideshow').backstretch(imagenes, {duration: 5000, fade: 750});
 
 
     var copyrights = [];
-    copyrights[0] = "© Bosch Electric Screwdriver by Jung von Matt:Elbe Werbeagentur GmbH ® Hamburg, Germany";
-    copyrights[1] = "© CNN Obama by Ddb&co ® Istanbul, Turke";
-    copyrights[2] = "© Hotels B&B by Publicis ® Frankfurt, Germany";
-    copyrights[3] = "© Mr Curtains by Ogilvy & Mather ® Bangkok, Thailand";
-    copyrights[4] = "© OlympusFocus by Diamond Ogilvy ® Seoul, Korea";
-    copyrights[5] = "© Prudence Neon Condoms by Z+ Comunicação ® São Paulo, Brazil";
-    copyrights[6] = "© Softwares-sli.com by Bates141 ® International";
-    copyrights[7] = "© Sony Micro Vault by Promoseven ® Dubai";
-    copyrights[8] = "© Confort Santher by Talent ® Sao Paulo, Brazil";
-    copyrights[9] = "© Penalty T-shirt by Z ® Brazil";
-    copyrights[10] = "© GoodYear by Y&R ® Sao Paulo, Brazil";
+    copyrights[0] = {texto:"© Bosch Electric Screwdriver by Jung von Matt:Elbe Werbeagentur GmbH ® Hamburg, Germany",color:"black"};
+    copyrights[1] = {texto:"© CNN Obama by Ddb&co ® Istanbul, Turke",color:"white"};
+    copyrights[2] = {texto:"© Hotels B&B by Publicis ® Frankfurt, Germany",color:"black"};
+    copyrights[3] = {texto:"© Mr Curtains by Ogilvy & Mather ® Bangkok, Thailand",color:"white"};
+    copyrights[4] = {texto:"© OlympusFocus by Diamond Ogilvy ® Seoul, Korea",color:"black"};
+    copyrights[5] = {texto:"© Prudence Neon Condoms by Z+ Comunicação ® São Paulo, Brazil",color:"white"};
+    copyrights[6] = {texto:"© Softwares-sli.com by Bates141 ® International",color:"black"};
+    copyrights[7] = {texto:"© Sony Micro Vault by Promoseven ® Dubai",color:"black"};
+    copyrights[8] = {texto:"© Confort Santher by Talent ® Sao Paulo, Brazil",color:"white"};
+    copyrights[9] = {texto:"© Penalty T-shirt by Z ® Brazil",color:"white"};
+    copyrights[10] = {texto:"© GoodYear by Y&R ® Sao Paulo, Brazil",color:"white"};
     
     $('#slideshow').on('backstretch.show',function(){
       var img = $('#slideshow .backstretch img')
       var src = img.attr('src');
       src     = src.split('.')[0].split('/')[3].split('landing')[1];
-      $('#footer').html(copyrights[src]);
+      $('#footer').html(copyrights[src].texto).css({color:copyrights[src].color});
+      
     });
 
     $.fn.serializeObject = function() {
