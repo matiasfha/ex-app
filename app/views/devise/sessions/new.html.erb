@@ -1,52 +1,22 @@
-<div class="row">
-  <div class="span12 page-header">
-    
-      <h1>Ingreso de Usuario</h1>
-    
-  </div>
-</div>
+<div class="span11" style="background-color:white;border-radius:0 0 10px 10px">
+ <br />
+  <div class="row">
+    <div class="span4 offset3" style="height:43px;">
+      <span style="float:left;position:relative;font-size:24px;font-weight:bold;font-family:'FBold',sans-serif, Helvetica;top:10px;">Selecciona tu cuenta para Ingresar a</span>
+    </div>
+    <div class="span1" style="margin-left:0;height:43px;width:148px;">
+      <%=image_tag 'LOGIN_04.png' ,:style => 'float:left;position:relative;height:43px;width:148px;'%>
+    </div>
+  </div><!-- ROW -->
 
-<div class="row">
-  <div class="well span6 offset3">
-
-    <%= form_for(resource, :as => resource_name, :url => session_path(resource_name), :html => {:class => "form form-horizontal"}) do |f| %>
-
-      <div class="control-group">
-        <%= f.label :email, :class=>"control-label"%>
-        <div class="controls">
-          <%= f.email_field :email %>
-        </div>
-      </div>
-
-     <div class="control-group">
-        <%= f.label :password,:class=>"control-label" %>
-        <div class="controls">
-          <%= f.password_field :password %>
-        </div>
-      </div>
-
-      <% if devise_mapping.rememberable? -%>
-        <div class="control-group">
-          <div class="controls">
-            <label class="checkbox" for="user_remember_me">
-              <input name="user[remember_me]" type="hidden" value="0">
-              <input id="user_remember_me" name="user[remember_me]" type="checkbox" value="1">
-              Recodarme
-            </label>
-          </div>
-          
-          
-        </div>
-      <% end -%>
-
-      <div class="form-actions">
-        <%= f.submit "Ingresar", :class => "btn btn-primary" %>
-        <input type="reset" value="Cancelar" class="btn">
-        <br />
-        <br />
-        <%= render "devise/shared/links" %>
-      </div>
-
-    <% end %>
+  <br />
+  <br />
+  <div class="row" style="height:200px;position:relative;">
+    <div class="span3 offset3">
+      <%=link_to image_tag('conectar_tw.png'),'/auth/twitter' %>
+    </div>
+    <div class="span3">
+      <%=link_to image_tag('conectar_fb.png'),'/auth/facebook' %>
+    </div>
   </div>
 </div>
