@@ -91,10 +91,13 @@ class AuthenticationsController < ApplicationController
       email      = auth['info']['email'] || ""
       apellidos  = auth['info']['last_name'] || ""
       nacimiento = auth['extra']['raw_info']['birthday']
+      if nacimiento.split('/')[1].to_i > 12
+        nacimiento = nacimiento.split('/')
+        nacimiento = "#{nacimiento[1]}/#{nacimiento[0]}/#{nacimiento[2]}"
+      end
     else
       flash[:error]=t 'mensajes.ingreso.provider_fail'
     end
-    
     if @provider && @uid 
       @authentication = Authentication.where(:uid => @uid, :provider => @provider).first
       if @authentication.nil?
@@ -102,6 +105,7 @@ class AuthenticationsController < ApplicationController
         @user = User.where(:email => email).first
         if @user.nil?
           #Crear un nuevo usuario
+          
           @user = crear_usuario(nickname,name,apellidos,email,avatar,bio,nacimiento,@provider,@uid)
           respond_to do |format|
             format.html { render :action => 'new' }
@@ -120,6 +124,10 @@ class AuthenticationsController < ApplicationController
              @user.save
              sign_in_and_redirect :user, @user 
             end
+          else
+            @user.authentications << auth 
+            @user.save
+            sign_in_and_redirect :user, @user
           end
         end
         
