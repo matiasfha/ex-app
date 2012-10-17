@@ -34,7 +34,7 @@ $(document).ready () ->
 				$container.masonry('appended',data)
 	.on 'ajax:aborted:required', () ->
 		$.pnotify
-			title: "Error"
+			title: "Dandoo.tv"
 			text: "Debes completar todos los campos del formulario"
 			opacity:.5
 			type:"error"

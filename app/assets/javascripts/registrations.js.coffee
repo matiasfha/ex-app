@@ -39,5 +39,26 @@ $(document).ready () ->
 			populate_select "/metadata/get_cities/#{commune}",$('#user_city')
  	
 	$('input#commit').live 'click',(e) ->
-		$('form').submit()
+		data = $('form').serializeObject()
+		$.post '/authentications',data,(response) ->
+			if response.success == true
+				window.location.href = '/'
+			else
+				if response.mensaje == 'vacios'
+					$.pnotify
+						title:'Dandoo.tv',
+						text:'Hay campos requeridos sin completar',
+						opacity: .8
+						type:'error'
+					
+					for campo,value of response.campos
+						console.log $("#user_#{campo}").parent().parent().addClass('error')
+				else
+					$.pnotify
+						title:'Dandoo.tv',
+						text:'Ocurrió un error inesperado. Intente nuevamente',
+						opacity: .8
+						type:'error'
+
+		
 

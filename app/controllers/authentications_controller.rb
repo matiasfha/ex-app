@@ -18,7 +18,9 @@ class AuthenticationsController < ApplicationController
       #Ya existe el usuario, asociar con la nueva authentificacion
       u.authentications << Authentication.new(:provider => params[:user][:provider], :uid => params[:user][:uid])
       u.save
-      sign_in_and_redirect :user, u
+      # sign_in_and_redirect :user, u
+      sign_in :user, u
+      render :json => {:success=>true}
     else
       @user = User.new params[:user]
       
@@ -28,24 +30,27 @@ class AuthenticationsController < ApplicationController
         vacios.each do |k,v|
           @error_messages[k] = "#{k} No puede estar vacio"
         end
-        respond_to do |format|
-          flash.now[:error] = 'Hay campos vacios por completar'
-          format.html { render :action => 'new' }
-        end
-
+        # respond_to do |format|
+        #   flash.now[:error] = 'Hay campos vacios por completar'
+        #   format.html { render :action => 'new' }
+        # end
+        render :json => {:success=>false,:mensaje => 'vacios',:campos =>vacios}
       else
         @user.avatar_remote_url(params[:user][:avatar_tmp])
         password = Devise.friendly_token.first(10)
         @user.password = password
         @user.password_confirmation = password
         if @user.save
-          flash[:notice] = t(:welcome)
-          sign_in_and_redirect :user, @user
+          # flash[:notice] = t(:welcome)
+          # sign_in_and_redirect :user, @user
+          sign_in :user,@user 
+          render :json => {:success=>true}
         else
-          respond_to do |format|
-            flash.now[:error] = 'Ocurrio un error creando el usuario'
-            format.html { render :action => 'new' }
-          end
+          # respond_to do |format|
+          #   flash.now[:error] = 'Ocurrio un error creando el usuario'
+          #   format.html { render :action => 'new' }
+          # end
+          render :json => {:success=>false,:mensaje => 'Ocurrio un error creando el usuario'}
         end
         
       end
