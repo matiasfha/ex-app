@@ -152,5 +152,9 @@ class AuthenticationsController < ApplicationController
   	redirect_to root_url
   end
 
+  def failure
+    redirect_to root_path, alert: "Autentificacion fallida. Intente nuevamente."
+  end
+
   
 end
