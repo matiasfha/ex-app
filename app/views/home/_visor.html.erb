@@ -97,8 +97,9 @@
 
           <div class="desc">
             <div class="autor">
-              <% begin %>
-                <%=User.find(@resource.user_id).nombre%>
+              <% begin 
+                user = User.find(@resource.user_id) %>
+                <%= link_to user.nickname,"users/#{user.id}"%>
               <% rescue %>
                 Dandoo.tv
               <% end %>
@@ -128,7 +129,7 @@
             <div class="desc">
               <div class="autor">
               <% begin %>
-                <%=User.find(comentario.user_id).nombre%>
+                <%=link_to user.nickname,"users/#{user.id}"%>
               <% rescue %>
                 
               <% end %>
@@ -153,7 +154,7 @@
             </div>
             <div class="desc">
               <div class="autor">
-                <%=current_user.nombre%>
+                <%=current_user.nickname%>
               </div>
               <br />  
               <input type="text" class="span6 comentar_modal" data-id="<%=@resource.id%>" placeholder="Ingresa tu comentario" maxlength="140" style="width:62 0px !important">

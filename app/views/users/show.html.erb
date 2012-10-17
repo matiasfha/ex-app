@@ -8,6 +8,7 @@
 %>
 
 <div class="span11 contenido" id="perfil-data">
+  <% if current_user.id == @user.id %>
   <div class="row">
     <div class="span11">
     <%= semantic_form_for(@resource,:html => {:multipart => true,:class=>'form form-inline',:remote => true}) do |f| %>
@@ -18,8 +19,9 @@
       <%=f.file_field :imagen %>
       <%= f.submit "Agregar", :class => "btn" %>
     <% end %>
+    </div>
   </div>
-  </div>
+  <% end %>
   <div id="listado_subidas">
   <%= render :partial => "resources/listado" %>
   </div>

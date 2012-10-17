@@ -89,6 +89,12 @@
 
       <div class="control-group">
         <div class="controls">
+          <%= f.text_field :nickname, :required => true, :placeholder => "Nickname"%>
+        </div>
+      </div>
+
+      <div class="control-group">
+        <div class="controls">
           <%= f.text_field :nacimiento, :required => true, :placeholder => "Fecha de nacimiento", :class => "date"%>
           <span class="help-block">Este campo es privado y no será publicado </span>
         </div>

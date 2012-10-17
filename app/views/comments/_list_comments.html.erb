@@ -4,8 +4,11 @@
 		<a href="/comments/<%=picture_id%>/<%=comment.id%>" data-method="delete" data-remote="true" class="close">×</a>
 		<% end %>
 		<div class="span1 user-thumb">
-			<% begin %>
-				<%=image_tag(User.find(comment.user_id).avatar.url(:thumb),:class => "thumb")%>
+			<% begin 
+				user = User.find(comment.user_id)%>
+				<%=
+				link_to image_tag(user.avatar.url(:thumb),:class => "thumb"), "/users/#{user.id}"
+				%>
 			<% rescue %>
 				<%=image_tag('default_user.png',:class => "thumb")%>
 			<% end %>
@@ -13,7 +16,7 @@
 		<div class="span2 user-comment" style="height:30px">
 			<strong>
 				<% begin %>
-					<%=User.find(comment.user_id).nickname %>:  
+					<%=link_to user.nombre+" "+user.apellidos,"/users/#{user.id}" %>:  
 				<% rescue %>
 					Default user
 				<% end %>

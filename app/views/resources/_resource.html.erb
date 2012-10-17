@@ -59,7 +59,7 @@
         <% begin 
         user = User.find(@resource.user_id)
         %>
-        <%= image_tag user.avatar.url(:thumb), :size => "32x32",:class => 'img-rounded thumb' %>
+        <%= link_to image_tag(user.avatar.url(:thumb), :size => "32x32",:class => 'img-rounded thumb'),"/users/#{user.id}" %>
          <% rescue %>
         <%= image_tag 'default_user.png',:size => "32x32",:class => 'thumb img-rounded'%>
         <% end %>
@@ -68,7 +68,7 @@
       <div class="desc">
         <div class="autor">
           <% begin %>
-            <%=User.find(@resource.user_id).nombre%>
+            <%=link_to user.nombre+" "+user.apellidos, "/users/#{user.id}"%>
           <% rescue %>
             Dandoo.tv
           <% end %>
@@ -85,7 +85,7 @@
           <% begin 
             user = User.find(comentario.user_id) 
           %>
-            <%= image_tag user.avatar.url(:thumb),:size => "32x32", :class => "thumb img-rounded" %>
+            <%= link_to image_tag(user.avatar.url(:thumb),:size => "32x32", :class => "thumb img-rounded"),"/users/#{user.id}" %>
           <% rescue %>
             <%=image_tag 'default_user.png',:class => "thumb img-rounded", :size => "32x32" %>
           <% end %>
@@ -93,7 +93,7 @@
         <div class="desc">
           <div class="autor">
           <% begin %>
-            <%=User.find(comentario.user_id).nombre%>
+            <%=link_to user.nombre+" "+user.apellidos,"/users/#{user.id}"%>
           <% rescue %>
             
           <% end %>
@@ -116,7 +116,7 @@
         </div>
         <div class="desc">
           <div class="autor">
-            <%=current_user.nombre%>
+            <%=current_user.nombre+" "+current_user.apellidos%>
           </div>
           <input type="text" class="span3 comentar" data-id="<%=@resource.id%>" placeholder="Ingresa tu comentario" maxlength="140">
         </div>
