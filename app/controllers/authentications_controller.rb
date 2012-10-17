@@ -87,7 +87,8 @@ class AuthenticationsController < ApplicationController
       bio        = auth['info']['description']
       
     elsif @provider == 'facebook'
-      name       = auth['extra']['raw_info']['first_name']+" "+auth['extra']['raw_info']['middle_name'] || ""
+      middle_name = auth['extra']['raw_info']['middle_name'] || ""
+      name       = auth['extra']['raw_info']['first_name']+" "+ middle_name
       email      = auth['info']['email'] || ""
       apellidos  = auth['info']['last_name'] || ""
       nacimiento = auth['extra']['raw_info']['birthday']

@@ -38,5 +38,6 @@ $(document).ready () ->
 		if commune?
 			populate_select "/metadata/get_cities/#{commune}",$('#user_city')
  	
-
+	$('input#commit').live 'click',(e) ->
+		$('form').submit()
 
