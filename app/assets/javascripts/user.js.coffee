@@ -4,7 +4,8 @@ $(document).ready () ->
 	if $('#header #show').is(':visible')
 		$('#header #show').hide();
 	
-
+	$('#nuevo_recurso').live 'click',(e) ->
+		$('#modal-form').modal({keyboard:false},'show')
 	$('input:file').change () ->
 		$('#resource_url').attr('disabled','disabled').val('')
 		$('#resource_type').val('imagen')
@@ -14,36 +15,62 @@ $(document).ready () ->
 			$('input:file').attr('disabled','disabled').val('')
 			$('#resource_type').val('video')
 			
-
+	
 	#Metodos para manejar la subida de imagenes
 	$('#new_resource').on 'ajax:beforeSend',(e,x,s) ->
+
+		e.stopPropagation()
+		data = $('#new_resource').serializeObject()
+		if data.resource.titulo=="" || data.resource.descripcion==""
+			e.preventDefault()
+			$.pnotify
+				title: "Dandoo.tv"
+				text: "Debes completar los campos requeridos"
+				opacity:.8
+				type:"error"
+			if data.resource.titulo==""
+				$('#resource_titulo').parent().parent().addClass('error')
+			if data.resource.descripcion==""
+				$('#resource_descripcion').parent().parent().addClass('error')
+			false
 		$('body').toggleClass('wait')
-		$('#subir_imagen').attr('disabled','disabled');
+		$('#subir_recurso').attr('disabled','disabled');
+		$('#cancelar').attr('disabled','disabled');
+	.on 'ajax:afterSend',(e) ->
+		$('#resource_descripcion').attr('disabled','disabled');
+		$('#resource_titulo').attr('disabled','disabled');
+		$('#resource_url').attr('disabled','disabled');
+		$('#resource_imagen').attr('disabled','disabled');	
 		
-			
 	.on 'ajax:complete',(e,data) ->
-		$.get '/metadata/last_resource',(data) ->
-			$('#new_resource').reset()
-			$('#subir_imagen').removeAttr('disabled')
-			$('body').toggleClass('wait')
-			$container = $('#listado_subidas')
-			data = $(data)
-			data.show().css({ opacity: 0 });
-			$container.append(data).imagesLoaded ()->
-				data.animate({ opacity: 1 });
-				$container.masonry('appended',data)
+		if data.result == true
+			$.get '/metadata/last_resource',(data) ->
+				$('#new_resource').reset()
+				$('#new_resource input').removeAttr('disabled')
+				$('#cancelar, #subir_recurso').removeAttr('disabled');
+				$('body').toggleClass('wait')
+				$('#modal-form').modal('hide')
+				$container = $('#listado_subidas')
+				data = $(data)
+				data.show().css({ opacity: 0 });
+				
+				$container.prepend(data).imagesLoaded () ->
+					data.animate({opacity:1})
+					$container.masonry('reload')
+		else
+			console.log data
 	.on 'ajax:aborted:required', () ->
 		$.pnotify
 			title: "Dandoo.tv"
 			text: "Debes completar todos los campos del formulario"
-			opacity:.5
+			opacity:.8
 			type:"error"
 
 
 	loadSeccionData = (url) ->
 		$('#perfil-data').fadeOut('fast')
 		container = $('#listado_container')
-		container.empty()
+		container.empty().toggleClass('disabled')
 		imgs = $('div.imagenes')
 		vids = $('div.videos')
 		if imgs.hasClass('active') && !vids.hasClass('active')
@@ -68,12 +95,14 @@ $(document).ready () ->
 		$(this).addClass('active')
 		url = $(this).attr('data-url')
 		if url?
+			$('#upload').hide()
 			loadSeccionData url
 		else
 			id = $(this).attr('id')
 			switch id 
 				when 'perfil'
-					$('#listado_container').fadeOut('fast')
+					$('#upload').show()
+					$('#listado_container').fadeOut('fast').toggleClass('disabled')
 					$('#perfil-data').fadeIn('fast')
 					location = window.location.href.split('#')
 					if location.length > 1
@@ -100,7 +129,38 @@ $(document).ready () ->
 			gutterWidth:11
 
 
+	loading = false
+	
+	$(window).scroll () ->
+		if(loading)
+			return;
 		
+		$container = $('#listado_subidas');
+		if($container.length > 0)
+
+			$loader = $('#loading');
+			wintop = $(window).scrollTop();
+			docheight = $(document).height();
+			winheight = $(window).height();
+			scrolltrigger = 0.95;
+			if ((wintop/(docheight-winheight)) > scrolltrigger)
+				loading = true;
+				
+				nextPage = $('#page2-nav a');
+				
+				$.get nextPage.attr('href'), (data) ->
+					if($(data).length > 0 )
+						$elems = $(data).css({opacitu:0});
+						$elems.imagesLoaded () ->
+							$elems.animate({opacity:1});
+							$container.append($elems).masonry('appended',$elems,true);
+
+							loading = false;
+							newHref = nextPage.attr('href').split('/')
+							page = parseInt(newHref[2]) + 1;
+							newHref = "/"+newHref[1]+"/"+page;
+							nextPage.attr('href',newHref);
+							
 			
 	
 	

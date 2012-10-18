@@ -20,7 +20,7 @@
 //= require video.min
 //= require jquery.pnotify
 //= require froogaloop2.min
-//= require jquery.html5form
+// require jquery.html5form
 //= require jquery.ui.core
 //= require jquery.ui.widget
 //= require jquery.ui.autocomplete
@@ -44,7 +44,6 @@ $(document).ready(function(){
 	$.fn.reset = function(){
 		$(this).each (function(){ 
 			this.reset(); 
-			$(this).removeAttr('disabled');
 		});
 	};
 
@@ -199,7 +198,7 @@ $(document).ready(function(){
 			return;
 		}
 		$container = $('#listado_container');
-		if($container.length > 0){
+		if($container.length > 0 && !$container.hasClass('disabled')){
 
 			$loader = $('#loading');
 			var wintop = $(window).scrollTop();

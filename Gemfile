@@ -50,7 +50,15 @@ gem "aws-sdk"
 
 gem 'recaptcha',			:require => 'recaptcha/rails'
 gem 'googlecharts'
-gem 'faker'
+
+
+group :development do
+  gem 'rb-fsevent'
+  gem 'guard-livereload'
+  gem 'faker'
+  gem 'terminal-notifier-guard'
+  gem 'yajl-ruby'
+end
 
 group :test do 
 	gem 'capybara'

@@ -1,10 +1,10 @@
 $(document).ready () ->
+
+
 	handleIn = (e) ->
-		# if !$(this).parent().hasClass 'voted'
 		$(this).prevAll().andSelf().addClass('over')
 		.nextAll().removeClass('vote')
 	handleOut = (e) ->
-			# if !$(this).parent().hasClass 'voted'
 			$(this).prevAll().andSelf().removeClass 'over'
 
 	$('.rating .star').live 'click', (e) ->

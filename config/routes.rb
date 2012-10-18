@@ -44,7 +44,8 @@ DandooDev::Application.routes.draw do
     get '/user/complete_registration/:user' => 'registrations#completar'
     put '/user/complete_registration' => 'registrations#finalizar'
   end
-  resources :users, :only => [:show,:index]
+  resources :users, :only => [:show]
+  match '/user_subidas/:id/:page' => 'users#user_subidas'
   resources :resources, :only => [:create,:show,:index]
   
   match '/resources/add_like' => 'resources#add_like', :via => :post

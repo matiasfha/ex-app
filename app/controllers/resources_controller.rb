@@ -49,19 +49,30 @@ class ResourcesController < ApplicationController
 
   def create
     if params[:resource][:url]
-      res = OEmbed::Providers.get(params[:resource][:url])
+      u = URI.parse(params[:resource][:url])
+      url = params[:resource][:url]
+      if !u.scheme
+        url = "http://#{url}"
+      end
+
+      res = OEmbed::Providers.get(url)
       params[:resource][:thumbnail] = res.thumbnail_url
-      params[:resource][:url] = res.request_url
+      url = res.request_url
+      if not url !~/&/i
+        url = url.split('&')
+        url = url[0]
+      end
+      params[:resource][:url] = url
       params[:resource][:type] = 'video'
       params[:resource][:html] = res.html
-      provider = res.provider_url.split(".")[1]
+      provider  = res.provider_name.downcase
       res = Resource.new(params[:resource])
       res.provider = provider
     else
       res = Resource.new(params[:resource])
     end
     current_user.resources << res
-    render :json => {:result => current_user.save, :resource => current_user.resources.last}
+    render :json => {:result => current_user.save, :resource => current_user.resources.last,:params =>params[:resource]}
   end
 
   
