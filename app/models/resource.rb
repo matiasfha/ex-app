@@ -84,10 +84,10 @@ class Resource
 	def self.mas_populares(pagina,type=nil)
 		if type.nil?
 			avg = self.avg(:num_likes).round()
-			self.where(:num_likes.gt => avg).page(pagina)
+			self.where(:num_likes.gt => avg).order_by([[:created_at,:desc],[:num_likes,:desc]]).page(pagina)
 		else
 			avg = self.where(:type => type).avg(:num_likes).round()
-			self.where(:num_likes.gt => avg, :type => type).page(pagina)
+			self.where(:num_likes.gt => avg, :type => type).order_by([[:created_at,:desc],[:num_likes,:desc]]).page(pagina)
 		end
 	end
 	 
@@ -101,11 +101,11 @@ class Resource
 	    avg = (avg.nil?)? 0 : avg.round
 	    resources = Array.new
 	    if type.nil?
-		    Voto.where(:valor.gte => avg).page(pagina).each do |v|
+		    Voto.where(:valor.gte => avg).order_by([[:created_at,:desc],[:valor,:desc]]).page(pagina).each do |v|
 		      resources.push self.find(v.resource_id)
 		    end
 		else
-			Voto.where(:valor.gte => avg,:type => type).page(pagina).each do |v|
+			Voto.where(:valor.gte => avg,:type => type).order_by([[:created_at,:desc],[:valor,:desc]]).page(pagina).each do |v|
 		      resources.push self.find(v.resource_id)
 		    end
 		end
@@ -116,10 +116,10 @@ class Resource
 	def self.mas_vistas(pagina,type=nil)
 		if type.nil?
 	    	avg = self.avg(:num_views).round
-	    	self.where(:num_views.gte => avg).page(pagina)
+	    	self.where(:num_views.gte => avg).order_by([[:created_at,:desc],[:num_views,:desc]]).page(pagina)
 	    else
 	    	avg = self.where(:type => type).avg(:num_views).round
-	    	self.where(:num_views.gte => avg,:type => type).page(pagina)
+	    	self.where(:num_views.gte => avg,:type => type).order_by([[:created_at,:desc],[:num_views,:desc]]).page(pagina)
 		end
 	end
 

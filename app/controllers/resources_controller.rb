@@ -84,7 +84,7 @@ class ResourcesController < ApplicationController
 
   def valorados
     @resources = Array.new
-    Voto.where(:user_id => current_user.id).order_by[[:valor,:desc],[:created_at,:desc]].page(params[:page]).each do |v|
+    Voto.where(:user_id => current_user.id).order_by([[:created_at,:desc]]).page(params[:page]).each do |v|
       @resources.push Resource.find(v.resource_id)
     end
     render :partial => "resources/listado"
