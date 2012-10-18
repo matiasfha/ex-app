@@ -1,5 +1,5 @@
 $(document).ready () ->
-	
+	window.loading = false; #A falso el loader para el scroll infinito
 	$('#header').addClass('perfil')
 	if $('#header #show').is(':visible')
 		$('#header #show').hide();
@@ -70,7 +70,7 @@ $(document).ready () ->
 	loadSeccionData = (url) ->
 		$('#perfil-data').fadeOut('fast')
 		container = $('#listado_container')
-		container.empty().toggleClass('disabled')
+		container.empty().removeClass('disabled')
 		imgs = $('div.imagenes')
 		vids = $('div.videos')
 		if imgs.hasClass('active') && !vids.hasClass('active')
@@ -81,7 +81,7 @@ $(document).ready () ->
 			url = 'todos_index'
 		
 		$.get "/metadata/#{url}",(data) ->
-			$('#page-nav a').attr('href',"#{url}/2")
+			$('#page-nav a').attr('href',"/metadata/#{url}/2")
 			data = $(data)
 			data.hide()
 			container.append(data)
@@ -94,6 +94,7 @@ $(document).ready () ->
 		$(this).siblings().removeClass 'active'
 		$(this).addClass('active')
 		url = $(this).attr('data-url')
+		window.loading = false;
 		if url?
 			$('#upload').hide()
 			loadSeccionData url
@@ -102,7 +103,7 @@ $(document).ready () ->
 			switch id 
 				when 'perfil'
 					$('#upload').show()
-					$('#listado_container').fadeOut('fast').toggleClass('disabled')
+					$('#listado_container').fadeOut('fast').addClass('disabled')
 					$('#perfil-data').fadeIn('fast')
 					location = window.location.href.split('#')
 					if location.length > 1
@@ -129,40 +130,7 @@ $(document).ready () ->
 			gutterWidth:11
 
 
-	loading = false
-	
-	$(window).scroll () ->
-		if(loading)
-			return;
-		
-		$container = $('#listado_subidas');
-		if($container.length > 0)
-
-			$loader = $('#loading');
-			wintop = $(window).scrollTop();
-			docheight = $(document).height();
-			winheight = $(window).height();
-			scrolltrigger = 0.95;
-			if ((wintop/(docheight-winheight)) > scrolltrigger)
-				loading = true;
-				
-				nextPage = $('#page2-nav a');
-				
-				$.get nextPage.attr('href'), (data) ->
-					if($(data).length > 0 )
-						$elems = $(data).css({opacitu:0});
-						$elems.imagesLoaded () ->
-							$elems.animate({opacity:1});
-							$container.append($elems).masonry('appended',$elems,true);
-
-							loading = false;
-							newHref = nextPage.attr('href').split('/')
-							page = parseInt(newHref[2]) + 1;
-							newHref = "/"+newHref[1]+"/"+page;
-							nextPage.attr('href',newHref);
-							
-			
-	
+	      	
 	
 		
 

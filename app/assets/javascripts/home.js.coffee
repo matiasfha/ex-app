@@ -150,13 +150,13 @@ $(document).ready () ->
 	loadSeccionData = (url) ->
 		container = $('#listado_container')
 		container.empty()
-		
+		window.loading = false;
 		imgs = $('a.imagenes')
 		vids = $('a.videos')
 		if imgs.hasClass('active') && !vids.hasClass('active')
-			url = "/imagenes_#{url}"
+			url = "imagenes_#{url}"
 		else if !imgs.hasClass('active') && vids.hasClass('active')
-			url = "/videos_#{url}"
+			url = "videos_#{url}"
 		if url == 'index'
 			url = 'todos_index'
 		
