@@ -84,7 +84,7 @@
 
         <div class="comentarios">
           <% resource.comments.order_by([[:created_at, :asc]]).limit(2).each do |comentario| %>
-          <div class="fila">
+          <div class="fila" id="comentario-<%=comentario.id%>">
             <div class="thumb">
               <% begin 
                 user = User.find(comentario.user_id) 
@@ -104,7 +104,10 @@
               </div>
               <div class="fecha">
                 <%=comentario.created_at.strftime("%d-%m-%Y / %I:%M:%S %p") %>
-
+                
+                <%if current_user.id == user.id %>
+                  <a href="/comments/<%=resource.id%>/<%=comentario.id%>" data-method="delete" rel="nofollow" data-remote="true" class="delete_comment" data-confirm="¿Estás Seguro?"><i class="icon-trash"></i></a>
+                <% end %>
               </div>
               <div style="clear:both;width:100%">
                 <%= comentario.contenido %>

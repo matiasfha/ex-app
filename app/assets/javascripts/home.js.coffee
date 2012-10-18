@@ -222,7 +222,10 @@ $(document).ready () ->
 					parent.find('div.botonera span.comment-count span').html(total)
 				input.removeAttr 'disabled'
 
-	
+	$('a[data-method="delete"].delete_comment').on 'ajax:success',(data,textStatus,x) ->
+		if textStatus!=false
+			$("#comentario-#{textStatus.cid}").fadeOut 'slow',() ->
+				$("#comentario-#{textStatus.cid}").remove()
 
 
 

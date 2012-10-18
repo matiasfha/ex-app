@@ -27,7 +27,7 @@ class CommentsController < ApplicationController
   end
 
   def destroy
-    resource = resource.find(params[:pid])
+    resource = Resource.find(params[:pid])
     if !resource.nil?
       comentario = resource.comments.find(params[:cid])
       if !comentario.nil?
