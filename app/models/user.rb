@@ -41,8 +41,8 @@ class User
   belongs_to  :commune
   belongs_to  :city
 
-  has_many :resources
-  has_many :votos
+  has_many :resources,:dependent => :delete
+  has_many :votos,:dependent => :delete
 
   #Atributos
   field :nombre, :type => String

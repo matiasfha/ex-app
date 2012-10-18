@@ -9,7 +9,7 @@ class Resource
 
   embeds_many :comments
   accepts_nested_attributes_for :comments
-  has_many :votos 
+  has_many :votos, :dependent => :delete
   has_and_belongs_to_many :likers, :class_name => "User", :inverse_of => nil
   belongs_to :user
 

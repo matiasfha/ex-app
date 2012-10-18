@@ -130,8 +130,23 @@ $(document).ready () ->
 			gutterWidth:11
 
 
-	      	
-	
+	#Permite elminar o editar elementos
+	$('a[data-method="delete"]').live 'ajax:success', (data, textStatus, jqXHR) ->
+		if textStatus.result == true
+			$.pnotify
+				title: "Dandoo.tv"
+				text: "Recurso eliminado exitosamente"
+				opacity:.8
+				type:"success"
+			$("##{textStatus.id}").fadeOut 'slow', () ->
+				$("##{textStatus.id}").remove()
+				$('#listado_subidas').masonry('reload')
+		else
+			$.pnotify
+				title: "Dandoo.tv"
+				text: "El recurso seleccionado no se puede eliminar"
+				opacity:.8
+				type:"error"	
 		
 
 	

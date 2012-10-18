@@ -1,4 +1,23 @@
 <div class="overlay">
+  <% if !@user.nil?
+    if @user.id == current_user.id && resource.user_id == current_user.id %>
+      <div class="left">
+        <div class="delete">
+          
+          <a href="<%=resource_path(resource)%>" data-method="delete" rel="nofollow" data-remote="true" id="delete_resource" data-confirm="¿Estás Seguro?">
+            <i class="icon-trash"></i>
+
+          </a>
+
+
+          
+        </div>
+        <div class="edit">
+          <i class="icon-edit" data-id="<%=resource.id%>"></i>
+        </div>
+      </div>
+    <% end 
+  end %>
   <div class="up">
     
     <a href="https://www.facebook.com/dialog/feed?app_id=<%=ENV['FACEBOOK_KEY']%>&link=http://dandoodev.herokuapp.com/resources/<%=resource.id%>&resource=<%=resource.imagen.url(:medium)%>&name=<%=resource.titulo%>&caption=Dandoo.tv&description=<%=resource.descripcion%>&redirect_uri=http://dandoodev.herokuapp.com/" style="z-index:2000" target="_blank">

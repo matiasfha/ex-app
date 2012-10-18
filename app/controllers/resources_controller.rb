@@ -99,4 +99,13 @@ class ResourcesController < ApplicationController
     @resource = current_user.resources.last
     render :partial => "resources/resource"
   end
+
+  def destroy
+    @resource = Resource.find(params[:id])
+    if current_user.id == @resource.user_id
+      render :json => {:result => @resource.destroy,:id => params[:id]}
+    else
+      render :json => {:result => false,:id => params[:id]}
+    end
+  end
 end

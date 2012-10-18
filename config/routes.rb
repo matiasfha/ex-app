@@ -46,7 +46,7 @@ DandooDev::Application.routes.draw do
   end
   resources :users, :only => [:show]
   match '/user_subidas/:id/:page' => 'users#user_subidas'
-  resources :resources, :only => [:create,:show,:index]
+  resources :resources, :only => [:create,:show,:index,:destroy]
   
   match '/resources/add_like' => 'resources#add_like', :via => :post
   match '/resources/remove_like' => 'resources#remove_like', :via => :post
