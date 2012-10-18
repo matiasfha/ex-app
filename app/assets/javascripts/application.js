@@ -219,10 +219,8 @@ $(document).ready(function(){
 							
 						});	
 					}else{
-						$('.loading.fin').fadeIn('fast');
-						setTimeout(3000,function(){
-							$('.loading.fin').fadeOut()
-						});
+						$('.loading.fin').fadeIn('fast').delay(3000).fadeOut();
+						
 
 					}
 					
