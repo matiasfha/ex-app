@@ -211,7 +211,7 @@ $(document).ready () ->
 					element.css({display:'block',visibility:'hidden'}).insertAfter(container)
 					newTop = element.height()
 					element.remove()
-					container.prepend(data)
+					parent.find('.extra .comentarios .comentarios_nuevos').append(data)
 					for item in items 
 						top = parseInt($(item).css('top')) + newTop 
 						$(item).animate {top:top},300
