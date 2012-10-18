@@ -83,7 +83,7 @@
 
 
         <div class="comentarios">
-          <% resource.comments.order_by([[:created_at, :desc]]).limit(2).each do |comentario| %>
+          <% resource.comments.order_by([[:created_at, :asc]]).limit(2).each do |comentario| %>
           <div class="fila">
             <div class="thumb">
               <% begin 
