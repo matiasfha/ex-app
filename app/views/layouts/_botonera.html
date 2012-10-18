@@ -16,10 +16,12 @@ end
 			<div class="vista_muro active"></div>
 			<div class="vista_circular"></div>
 		</div>
-		<% if current_user.id == @user.id && clase == 'perfil'%>
-		<div class="span2 pull-right" id="upload">
-			<button class="btn btn-inverse" id="nuevo_recurso" style="cursor:pointer;z-index:50000">Agregar nueva publicidad</button>
-		</div>
+		<% if !@user.nil? %>
+			<% if current_user.id == @user.id && clase == 'perfil'%>
+			<div class="span2 pull-right" id="upload">
+				<button class="btn btn-inverse" id="nuevo_recurso" style="cursor:pointer;z-index:50000">Agregar nueva publicidad</button>
+			</div>
+			<% end %>
 		<% end %>
 	</div>
 </div>
