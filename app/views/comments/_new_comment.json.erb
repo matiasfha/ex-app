@@ -1,0 +1,11 @@
+{
+	<% user = User.find(@comment.user_id) %>
+	"id":"<%=@comment.id%>",
+	"avatar":"<%=user.avatar.url(:thumb)%>",
+	"user_nickname":"<%=user.nickname%>",
+	"fecha":"<%=@comment.created_at.strftime("%d-%m-%Y / %I:%M:%S %p") %>",
+	"can_edit":"<%=(current_user.id == user.id) ? true : false %>",
+	"contenido":"<%=@comment.contenido%>",
+	"user_id":"<%=user.id%>",
+	"resource_id":"<%=@resource.id%>"
+}

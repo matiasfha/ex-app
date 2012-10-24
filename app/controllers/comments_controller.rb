@@ -9,8 +9,9 @@ class CommentsController < ApplicationController
 	  	@resource.comments << @comment 
 	  	if @resource.save
         @comentario = @resource.comments.last
-	  		render :partial => 'new_comment_home', :content_type => 'text/html'
-
+        respond_to  do |format|
+	  		 format.json {render :partial => 'new_comment.json'}
+       end
       else
         render :json => false
 	  	end

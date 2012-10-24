@@ -1,0 +1,22 @@
+<div class="botonera">
+	<div class="comments pull-left">
+		<span class="like-count">
+			<i class="heart"></i>{{this.total_likers}}
+		</span>
+		<span class="comment-count">
+			<i class="comment"></i><span>{{this.total_comments}}</span>
+		</span>
+	</div>{{! izquierda}}
+
+	<div class="votos pull-right">
+		{{#iter 1 this.promedio_votos-1}}
+			<div class="mini-star"></div>
+		{{/iter}}
+		{{#iter this.promedio_votos 4}}
+			<div class="mini-star2"></div>
+		{{/iter}}
+		<div class="votos_result">
+			{{this.promedio_votos}}/{{this.total_votos}}
+		</div>
+	</div>{{! derecha }}
+</div>

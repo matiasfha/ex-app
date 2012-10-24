@@ -21,7 +21,8 @@ group :assets do
   gem 'jquery-rails'
   gem 'jquery-ui-rails'
   gem 'less-rails-bootstrap'
-
+  gem "asset_sync"
+  gem 'handlebars_assets'
 end
 
 gem 'unicorn'
@@ -29,7 +30,6 @@ gem 'heroku'
 gem 'foreman'
 
 gem 'i18n'
-#TODO gem 'localeapp'
 gem 'formtastic'
 gem 'rails_admin'
 gem 'mongoid'
@@ -43,13 +43,12 @@ gem 'remotipart',"~> 1.0"
 gem 'kaminari'
 gem 'ruby-oembed'
 gem 'valid_email'
-
+gem 'requirejs-rails'
 gem "mongoid-paperclip", :require => "mongoid_paperclip", :git => "git://github.com/meskyanichi/mongoid-paperclip.git"
 gem "aws-s3",            :require => "aws/s3"
 gem "aws-sdk"
 
 gem 'recaptcha',			:require => 'recaptcha/rails'
-gem 'googlecharts'
 
 
 group :development do

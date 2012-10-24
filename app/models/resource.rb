@@ -118,7 +118,8 @@ class Resource
 	    	avg = self.avg(:num_views).round
 	    	self.where(:num_views.gte => avg).order_by([[:created_at,:desc],[:num_views,:desc]]).page(pagina)
 	    else
-	    	avg = self.where(:type => type).avg(:num_views).round
+	    	avg = self.where(:type => type).avg(:num_views)
+	    	avg  = (avg.nil?) ? 0 : avg.round
 	    	self.where(:num_views.gte => avg,:type => type).order_by([[:created_at,:desc],[:num_views,:desc]]).page(pagina)
 		end
 	end

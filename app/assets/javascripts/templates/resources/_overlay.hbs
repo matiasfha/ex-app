@@ -1,0 +1,32 @@
+<div class="overlay">
+  {{#if this.can_delete}}
+    
+      <div class="left">
+        <div class="delete">
+          <a href="/resources/{{this.id}}" data-method="delete" rel="nofollow" data-remote="true" id="delete_resource" data-confirm="¿Estás Seguro?">
+            <i class="icon-trash"></i>
+          </a>
+        </div>
+        <div class="edit">
+          <i class="icon-edit" data-id="<%=resource.id%>"></i>
+        </div>
+      </div>
+  {{/if}}
+  <div class="up">
+    
+    <a href="https://www.facebook.com/dialog/feed?app_id={{FACEBOOK_KEY}}&link=http://dandoodev.herokuapp.com/resources/{{this.id}}&resource={{this.imagen}}&name={{this.titulo}}&caption=Dandoo.tv&description={{this.descripcion}}&redirect_uri=http://dandoodev.herokuapp.com/" style="z-index:2000" target="_blank">
+    <div class="btn-facebook"></div></a>
+
+    <a href="https://twitter.com/share?url=http://dandoodev.herokuapp.com/resources/{{this.id}}&text={{this.titulo}}&via=Dandootv&lang=es&related=Dandootv&count=none&hashtags=#Dandoo" target="_blank" style="z-index:2000"><div class="btn-twitter" ></div></a>
+    
+    
+    <div class="btn-comentar"></div>
+    {{#compare like 0}}
+    	<div class="btn-like active" data-id="{{this.id}}"></div>
+    {{else}}
+    	<div class="btn-like" data-id="{{this.id}}"></div>
+    {{/compare}}
+    
+    
+  </div>
+</div>
