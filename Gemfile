@@ -26,7 +26,7 @@ group :assets do
 end
 
 gem 'unicorn'
-gem 'heroku'
+#gem 'heroku' -->deprecated
 gem 'foreman'
 
 gem 'i18n'
@@ -47,7 +47,7 @@ gem 'requirejs-rails'
 gem "mongoid-paperclip", :require => "mongoid_paperclip", :git => "git://github.com/meskyanichi/mongoid-paperclip.git"
 gem "aws-s3",            :require => "aws/s3"
 gem "aws-sdk"
-
+gem 'dalli'
 gem 'recaptcha',			:require => 'recaptcha/rails'
 
 

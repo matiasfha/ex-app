@@ -73,4 +73,9 @@ DandooDev::Application.configure do
   config.action_mailer.raise_delivery_errors = false
   config.action_mailer.default :charset => "utf-8"
 
+  config.action_dispatch.rack_cache = {
+    :metastore    => Dalli::Client.new,
+    :entitystore  => 'file:/tmp/cache/rack/body',
+    :allow_reload => false
+  }
 end

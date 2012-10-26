@@ -63,7 +63,8 @@ module DandooDev
 
     #For Heroku
     config.assets.initialize_on_precompile = false
-    config.static_cache_control="public, max-age=31536000"
+    config.static_cache_control="public, max-age=2592000"
+    config.cache_store = :dalli_store
 
     # Version of your assets, change this if you want to expire all your assets
     config.assets.version = '1.0'
