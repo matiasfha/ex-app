@@ -149,12 +149,16 @@
       <div class="row-fluid">
         <div class="span3">
           <div id="contenido">
-            <%= image_tag "landings/logo.png" %>
+	 	
+           <%= image_tag "landings/logo.png" %>
             <%= image_tag "landings/bajada.png" %>
+        	<br />
+		<br />
             <%= image_tag "landings/p1.png" %>
             <%= image_tag "landings/p2.png" %>
             <%= image_tag "landings/p3.png" %>
-            
+            <br />
+	    <br />
             <div class="mail">
               <%=semantic_form_for(@email,:class=>'form',:remote => true) do |f| %>
               <%=f.email_field :email, :class =>'span2',:placeholder => 'Ingresa tu dirección de email' %>
@@ -167,7 +171,7 @@
             <div class="invitacion" style="display:none">
               <span style="font-size:14px;"></span>
             </div>
-            
+            <br />
             <a href="https://twitter.com/share?url=http://www.dandoo.tv&text=Dandoo.tv: La primera red social de publicidad en el mundo.Mira, Decide, Gana&via=Dandootv&lang=es&related=Dandootv&count=none&hashtags=#Dandoo" target="_blank" style="z-index:2000">
             <%= image_tag "landings/comparte_tw.png" %>
             </a>
