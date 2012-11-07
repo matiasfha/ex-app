@@ -1,52 +1,70 @@
 class ResourcesController < ApplicationController
-  before_filter :authenticate_user!, :only => [:add_like,:create]
-  
+  before_filter :authenticate_user!, :only => [:add_like,:create,:destroy]
+  respond_to :html, :json
+  #Retorna los recursos en vas al tipo (imagen,video,todos)
+  #y clasificacion
   def index
-    resources = Resource.order_by([[:created_at,:desc]]).page(params[:page])
-    render :partial => "listado",:locals => {:resources => resources}
+    case params[:clasificacion]
+    when 'index'
+      @resources = Resource.mas_votadas(params[:page],params[:tipo])
+      
+    when 'populares'
+      @resources = Resource.mas_populares(params[:page])
+    when 'vistos'
+      @resources = Resource.mas_vistas(params[:page],'imagen')
+    when 'nuevos' 
+      if params[:tipo]=='todos'
+        @resources = Resource.all.order_by([[:created_at,:desc]]).page(params[:page])
+      else
+        @resources = Resource.where(:type => params[:tipo]).order_by([[:created_at,:desc]]).page(params[:page])
+      end
+    else
+      @resources = Resource.mas_votadas(params[:page])
+    end
+    respond_with(@resources) do |format|
+      format.html {render :partial => "resources/listado"}
+      format.json {render :partial => "resources/listado", :formats => [:json]}
+    end
   end
+
+  #Despliega informacion para un recurso en especifico
+  #Usa el parametro
   def show
   	@resource = Resource.find(params[:id])
     @resource.num_views+=1;
     @resource.save
-    @comentarios = @resource.comments
-    @comentario = Comment.new
+    
+    respond_with(@resource) do |format|
+      format.html
+      format.json {render :partial => 'resources/item',:formats => [:json]}
+    end
   end
 
-  def visor
-    @resource = Resource.find(params[:id])
-    @resource.num_views+=1;
-    @resource.save
-    @comentarios = @resource.comments
-    @comentario = Comment.new
-    render :partial => 'home/visor'
-  end
-
-  def add_like
+  #Permite agregar o eliminar likes desde el recurso
+  #identificado por params[:id]
+  #la acción de agregar o remover se define
+  #en params[:action]
+  def like
   	@resource = Resource.find(params[:id])
-  	if @resource.likers.where(:id => current_user.id).count == 0
-  		@resource.likers << current_user
-      @resource.num_likes+=1;
+  	# if @resource.likers.where(:id => current_user.id).count == 0
+  		
+      if params[:accion] == 'remove'
+        @resource.num_likes-=1
+        @resource.likers.delete current_user
+      else
+        @resource.num_likes+=1;
+        @resource.likers << current_user
+      end
       @resource.save
       render :json => @resource.likers.count
-  	else
-      render :json => -1
-    end
+  	# else
+   #    render :json => -1
+   #  end
 	  
   end
 
-  def remove_like
-    @resource = Resource.find(params[:id])
-    if @resource.likers.where(:id => current_user.id).count > 0
-      @resource.likers.delete current_user
-      @resource.num_likes-=1
-      @resource.save
-      render :json => @resource.likers.count
-    else
-      render :json => -1
-    end
-  end
-
+  #Crea un nuevo recurso
+  #Retorna el recurso creado
   def create
     if params[:resource][:url]
       u = URI.parse(params[:resource][:url])
@@ -66,46 +84,41 @@ class ResourcesController < ApplicationController
       params[:resource][:type] = 'video'
       params[:resource][:html] = res.html
       provider  = res.provider_name.downcase
-      res = Resource.new(params[:resource])
-      res.provider = provider
+      @res = Resource.new(params[:resource])
+      @res.provider = provider
     else
-      res = Resource.new(params[:resource])
+      @res = Resource.new(params[:resource])
     end
-    current_user.resources << res
-    render :json => {:result => current_user.save, :resource => current_user.resources.last,:params =>params[:resource]}
-  end
-
-  
-
-  def populares
-    @resources = Resource.where(:liker_ids => current_user).page(params[:page])
-    render :partial => "resources/listado"
-  end
-
-  def valorados
-    @resources = Array.new
-    Voto.where(:user_id => current_user.id).order_by([[:created_at,:desc]]).page(params[:page]).each do |v|
-      @resources.push Resource.find(v.resource_id)
+    current_user.resources << @res
+    if !current_user.save
+      flash[:error] = "No se pudo crear el nuevo recurso"
     end
-    render :partial => "resources/listado"
+    respond_with(@res)
+    # respond_with(@res) do |format|
+    #   format.html 
+    #   format.json {render :json => @res}  
+    # end
+    # render :json => {:result => current_user.save, :resource => current_user.resources.last,:params =>params[:resource]}
   end
 
-  def subidas
-    @resources = current_user.resources.desc(:created_at).page(params[:page])
-    render :partial => "resources/listado"
-  end
-
-  def last_resource
-    @resource = current_user.resources.last
-    render :partial => "resources/resource"
-  end
-
+  #Permite eliminar un recurso basado en su id params[:id]
   def destroy
     @resource = Resource.find(params[:id])
     if current_user.id == @resource.user_id
-      render :json => {:result => @resource.destroy,:id => params[:id]}
+      if !@resource.destroy
+        flash[:error] ="No se pudo eliminar el recurso"
+      end
+      respond_with(@resource) do |format|
+        format.html {redirect_to "/users/#{current_user.id}"}
+        #format.json {render :json => @resource}
+      end
     else
-      render :json => {:result => false,:id => params[:id]}
+      flash[:error] ="No esta autorizado para eliminar el recurso"
+      respond_with(@resource) do |format|
+        format.html {redirect_to "/users/#{current_user.id}"}
+        format.json {render :json => false}
+      end
     end
   end
+
 end

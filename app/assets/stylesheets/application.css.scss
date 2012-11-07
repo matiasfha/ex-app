@@ -1,0 +1,325 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or vendor/assets/stylesheets of plugins, if any, can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the top of the
+ * compiled file, but it's generally better to create a new file per style scope.
+ *
+ 
+ * require video-js.min
+ *=require jquery.pnotify.default
+ *=require jquery.pnotify.default.icons
+ *=require jquery.ui.core
+ *=require jquery.ui.theme
+ *=require jquery.ui.datepicker
+ *=require jquery.ui.autocomplete
+ *=require_self
+ * require_tree .
+*/
+@import "foundation";
+@import "elastislide";
+
+body{
+	font-family: "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;
+	font-weight: normal;
+	font-style: normal;
+	font-size: 14px;
+	line-height: 1;
+	color: #222222;
+	-webkit-font-smoothing: antialiased;
+	background:url('pattern.gif');
+} 
+ 
+/*	--------------------------------------------------
+Container
+-------------------------------------------------- */
+div#container, div.container { 
+	position: relative; 
+	width: 90%; 
+	margin: 0 auto; 
+	padding: 0; 
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+	letter-spacing: 0;
+	text-indent: 1px;
+	text-shadow: 0 1px 2px white;
+}
+ 
+ 
+/*	--------------------------------------------------
+Grid
+-------------------------------------------------- */
+.column-row, .row { margin: 0 0 18px -20px; }
+.column, .columns { float: left; display: inline; margin: 0 0 0 20px; }
+ 
+.one { width: 8.3%; }
+.two { width: 16.6%; }
+.three { width: 24.9%; }
+.four { width: 33.2%; }
+.five { width: 41.5%; }
+.six { width: 49.8% }
+.seven { width: 58.1% }
+.eight { width: 66.4% }
+.nine { width: 74.7% }
+.ten { width: 83% }
+.eleven { width: 91.3 }
+.twelve { width: 99.6% }
+ 
+.offset-by-one-half { margin-left: 4.15% }
+.offset-by-one { margin-left: 9.3% }
+.offset-by-two { margin-left: 16.6% }
+.offset-by-three { margin-left: 24.9% }
+.offset-by-four { margin-left: 33.2% }
+.offset-by-five { margin-left: 41.5% }
+.offset-by-six { margin-left: 49.8 }
+.offset-by-seven { margin-left: 58.1% }
+.offset-by-eight { margin-left: 66.4% }
+.offset-by-nine { margin-left: 74.7% }
+.offset-by-ten { margin-left: 83% }
+ 
+/* Clear the columns automagically, thanks @kneath */
+.column-row:after, .row:after, .clearfix:after { content: "."; display: block; height: 0; clear: both; visibility: hidden; }
+* html .column-row, * html .row, * html .clearfix { height: 1%; }
+.column-row, .row, .clearfix { display: inline-block; }
+.column-row, .row, .clearfix { display: block; }
+ 
+/*	IE6 Problems ---------- */
+body.ie .column-row { width: 100%; }
+body.ie .eight .column-row	 { width: 66.4% }
+body.ie .nine .column-row	 { width: 74.7% }
+body.ie .ten .column-row	 { width: 83% }
+body.ie .eleven .column-row { width: 91.3% }
+body.ie .two-thirds .column-row { width: 660px; }
+
+
+.top-bar{
+	background:url('top_bar.jpg') repeat-x !important;
+	height:60px !important;
+
+	.logo{
+		background:url('logo_dandoo.png') no-repeat;
+		height:40px;
+		background-position:left;
+		position:relative;
+		top:10px;
+	}
+
+	@mixin attr($image_on,$image_off){
+		background:url($image_off) no-repeat;
+		margin:0;
+		padding:0;
+		width:33px;
+		height:23px;
+		&:hover,&.active{
+			background:url($image_on) no-repeat;
+		}
+	}
+
+	.section{
+		width:96px;
+		top:-25px;
+		right: -200px;
+		position:relative;
+		float:left;
+		.tv{
+			float:left;
+			@include attr("ON_tv.png","Off_tv.png");
+		}
+		.store{
+			float:right;
+			@include attr("ON_store.png","Off_store.png");	
+		}
+
+	}
+
+	.login{
+		position:relative;
+		float:right;
+		width:123px;
+		top:-25px;
+		.twitter{
+			@include attr("ON_twitter.png","Off_twitter.png");
+			float:left;
+			width:31px;
+		}
+
+		.facebook{
+			@include attr("ON_fb.png","Off_fb.png");
+			float:left;
+			width:30px;
+		}
+
+		div.user{
+			@include attr("ON_user.png","ON_user.png");
+			float:left;
+			width:31px;
+			height:23px;
+		}
+
+		.avatar{
+			border-radius:8px;
+			-moz-border-radius:8px;
+			-webkit-border-radius:8px;
+			behavior:('PIE.htc');
+			position:absolute;
+			top:-8px;
+			right: 0px;
+		}
+	}
+}
+
+
+
+
+#header{
+	width:100%;
+	position:relative;
+	height:242px;
+	padding-top:15px;
+	margin-bottom:7px;
+	.widget{
+		background-color:#eeeeee;
+		height: 100%;
+		width:86%;
+		margin-left:95px;
+		-webkit-box-shadow: 0px 4px 7px rgba(10, 10, 10, 0.4);
+		-moz-box-shadow:    0px 4px 7px rgba(10, 10, 10, 0.4);
+		box-shadow:         0px 4px 7px rgba(10, 10, 10, 0.4);
+
+		ul{
+			display:none;
+			height: 230px;
+			li{
+				margin-right: 5px;
+				height: 230px !important;
+				width:291px !important;
+				img.recurso{
+					width:290px;
+					position:relative;
+					top:0;
+				}
+			}
+		}
+
+		
+	}
+}
+
+#sub_header{
+	position:absolute;
+	top:0px;
+	width:100%;
+	left:0;
+	img{
+		top:0;
+		left:0;
+		padding:0;
+		margin:0;
+		width:100%;
+		height:100%;
+		position:relative;
+	}
+	img:not(:first-child){
+		display:none;
+	}
+}
+
+#principal{
+	margin:0 auto;
+	padding:0;
+	
+}
+
+input.buscar{
+	background:url('buscar.png') no-repeat;
+	height:33px;
+	width:90.46875%; //262px;
+	border:0 !important;
+	border-radius:0 !important;
+	box-shadow:0 !important;
+	position:absolute;
+	top:0;
+	left:-10px;
+}
+
+div.buscar{
+	background:url('buscarOFF.png') no-repeat;
+	height:33px;
+	width:42px;
+	position:absolute;
+	top:0;
+	right:20px;
+
+	&:hover,&:active,.active{
+		background:url('buscarON.png') no-repeat;
+	}
+}
+
+.secciones{
+	a{
+		float:right;
+	}
+	position:absolute;
+	right:20px;
+	top:0;
+	width:209px !important;
+}
+
+.section{
+	height:33px;
+	@mixin attr($image_on,$image_off){
+		float:left;
+		cursor:pointer;
+		background:url($image_off) no-repeat;
+		&.active{
+			background:url($image_on) no-repeat;
+		}
+	}
+	&.imagenes{
+		width:31px;
+		@include attr("btn_oN_VISTA_01.png","btn_off_VISTA_01.png");
+	}
+	&.videos{
+		width:28px;
+		@include attr("btn_oN_VISTA_02.png","btn_off_VISTA_02.png");
+	}
+	&.vista1{
+		width:28px;
+		@include attr("btn_oN_VISTA_03.png","btn_off_VISTA_03.png");
+	}
+	&.vista2{
+		width:33px;
+		@include attr("btn_oN_VISTA_04.png","btn_off_VISTA_04.png");
+	}
+
+	&.favoritos{
+		width:31px;
+		@include attr("btn_oN_+_01.png","btn_off_+_01.png");
+	}
+	&.valorados{
+		width:28px;
+		@include attr("btn_oN_+_02.png","btn_off_+_02.png");
+	}
+	&.vistos{
+		width:28px;
+		@include attr("btn_oN_+_03.png","btn_off_+_03.png");
+	}
+	&.nuevos{
+		width:33px;
+		@include attr("btn_oN_+_04.png","btn_off_+_04.png");
+	}
+}
+
+
+#listado_container{
+	position:relative;
+	min-height:600px;
+}
+
+@import "item";
+@import "visor";
+

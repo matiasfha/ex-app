@@ -1,45 +1,70 @@
 define [
 	'jquery'
 	'backbone'
-	'jquery.pnotify'
-	'views/imagenes'
+	'jquery.cycle.all'
 	'jquery.masonry.min'
-],($,Backbone,Notify,ImagenesView,M) ->
+	'jquery.imagesloaded.min'
+	'views/items'
+	'jquery.elastislide'
+	'foundation'
+],($,Backbone,C,M,I,ItemsView,ElastiSlide,F) ->
 	class GeneralView extends Backbone.View
 		el:$('#principal')
 		events:
-			'click #secciones a':'setSeccion'
-			'click #botonera a.imagenes, #botonera a.videos':'setSubSeccion'
+			'click .secciones a':'setSeccion'
+			'click .section.imagenes':'setType'
+			'click .section.videos':'setType'
+
+		setSeccion: (e) ->
+			target = $(e.currentTarget)
+			target.children('.section').addClass 'active'
+			target.siblings().children('.section').removeClass 'active'
+
+		setType: (e) ->
+			target = $(e.currentTarget)
+			target.toggleClass 'active'
+			Backbone.history.loadUrl( Backbone.history.fragment )
 
 		initialize: ->
 			@render()
 		
-		setSeccion:(e) =>
-			target = $(e.currentTarget)
-			target.addClass 'active'
-			target.siblings().removeClass 'active'
-			window.location.href = target.attr('href')
-			
+		masonryLayout: ->
+			$('#sub_header').cycle 
+				fx:'scrollLeft'
+			container = $('#listado_container')
+			gutter = 25
+			if $(window).width() <= 1024
+				gutter =11
+			if $(window).width() <= 800
+					gutter = 0;
 
-		setSubSeccion:(e) =>
-			target = $(e.currentTarget)
-			target.toggleClass('active')
-			if target.siblings('.active').length == 0
-				target.siblings().addClass('active')
-			new ImagenesView($('#secciones a.active').attr('data-url'))
+			container.imagesLoaded () ->
+				container.masonry
+					itemSelector:'.item'
+					isAnimated:true
+					gutterWidth:gutter
+				container.fadeIn()	
+				container.masonry('reload')
+
+			$(window).resize (e) ->
+				container.fadeOut().stop()
+				gutter = 25
+				if $(window).width() <= 1024
+					gutter = 11
+				if $(window).width() <= 800
+					gutter = 0;
+				container.masonry 'option',{gutterWidth:gutter}	
+				container.masonry 'reload'
+				container.fadeIn().stop()
 
 		render: =>
 			if $('.alerta').length > 0
-				$.pnotify
-					title:'Dandoo.tv'
-					text: $('.alerta').attr('data-text')
-					type: $('.alerta').attr('data-type')
-					opacity:.8
-			container = $('#listado_container')
-			container.masonry
-				itemSelector:'.item'
-				isAnimated:true
-				gutterWidth:11
-			container.imagesLoaded () ->
-				container.fadeIn()
-				container.masonry('reload')
+				notify $('.alerta').attr('data-text'), $('.alerta').attr('data-type')
+			c = window.location.href.split('#')[1]
+			if c=='index' 
+				c = 'favoritos'
+			$('.secciones a > .section').removeClass 'active'
+			$(".secciones a > .section.#{c}").addClass 'active'
+
+			$('#listado-list').elastislide({orientation:'horizontal'})
+			@masonryLayout()

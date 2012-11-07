@@ -82,7 +82,7 @@ class Resource
 
 	#Retorna las mas populares respecto al numero de likes
 	def self.mas_populares(pagina,type=nil)
-		if type.nil?
+		if type.nil? || type=="todos"
 			avg = self.avg(:num_likes).round()
 			self.where(:num_likes.gt => avg).order_by([[:created_at,:desc],[:num_likes,:desc]]).page(pagina)
 		else
@@ -93,14 +93,14 @@ class Resource
 	 
 	#Retorna las mas votadas respecto al rating de votos
 	def self.mas_votadas(pagina,type=nil)
-		if type.nil?
+		if type.nil? || type=="todos"
 	    	avg = Voto.avg(:valor)
 	    else
 	    	avg = Voto.where(:type => type).avg(:valor)
 	    end
 	    avg = (avg.nil?)? 0 : avg.round
 	    resources = Array.new
-	    if type.nil?
+	    if type.nil? || type=="todos"
 		    Voto.where(:valor.gte => avg).order_by([[:created_at,:desc],[:valor,:desc]]).page(pagina).each do |v|
 		      resources.push self.find(v.resource_id)
 		    end
@@ -114,7 +114,7 @@ class Resource
 	  
 	#Retorna las mas vistas
 	def self.mas_vistas(pagina,type=nil)
-		if type.nil?
+		if type.nil? || type=="todos"
 	    	avg = self.avg(:num_views).round
 	    	self.where(:num_views.gte => avg).order_by([[:created_at,:desc],[:num_views,:desc]]).page(pagina)
 	    else

@@ -16,7 +16,10 @@
 			voto = Voto.where(:resource_id => resource.id,:user_id => current_user.id).first
 		end
 
-		
+		imagen = resource.imagen.url(:medium)
+		if imagen.nil?
+			imagen = resource.thumbnail
+		end
 		%>
 		{
 			"FACEBOOK_KEY":"<%=ENV['FACEBOOK_KEY']%>",
@@ -24,7 +27,6 @@
 			"type":"<%=resource.type%>",
 			"can_delete":<%=can_delete%>,
 			"imagen":"<%=resource.imagen.url(:medium)%>",
-			"thumbnail":"<%=resource.thumbnail%>",
 			"titulo":"<%=resource.titulo%>",
 			"descripcion":"<%=resource.descripcion%>",
 			"signed_in":<%=user_signed_in?%>,
@@ -47,15 +49,24 @@
 				comments = resource.comments.order_by([[:created_at,:desc]]).limit(2).to_a().reverse
 				comments.each_with_index do |comentario,indice|
 					comment_user = User.find(comentario.user_id)
+					if current_user.nil?
+						can_edit = false
+					else
+						if current_user.id == comment_user.id
+							can_edit = true
+						else
+							can_edit = false
+						end
+					end
 					%>
 					{
 					"id":"<%=comentario.id%>",
 					"avatar":"<%=comment_user.avatar.url(:thumb)%>",
 					"user_nickname":"<%=comment_user.nickname%>",
-					"user_id":"<%=user.id%>",
+					"user_id":"<%=comment_user.id%>",
 					"fecha":"<%=comentario.created_at.strftime("%d-%m-%Y / %I:%M:%S %p") %>",
 					"contenido":"<%=comentario.contenido%>",
-					"can_edit":"<%=(current_user.id == comment_user.id) ? true : false %>"
+					"can_edit":"<%=can_edit%>"
 					}
 					<%
 					if indice != comments.size - 1

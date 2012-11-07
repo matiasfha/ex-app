@@ -1,16 +1,17 @@
 class CommentsController < ApplicationController
   before_filter :authenticate_user!
   def create
-  	@resource = Resource.find(params[:comment][:resource_id])
+  	@resource = Resource.find(params[:resource_id])
   	if !@resource.nil?
 	  	@comment = Comment.new
-	  	@comment.contenido = params[:comment][:contenido]
+	  	@comment.contenido = params[:contenido]
 	  	@comment.user_id = current_user.id
 	  	@resource.comments << @comment 
 	  	if @resource.save
         @comentario = @resource.comments.last
         respond_to  do |format|
-	  		 format.json {render :partial => 'new_comment.json'}
+	  		 format.json {render :partial => 'new_comment', :formats => [:json]}
+
        end
       else
         render :json => false

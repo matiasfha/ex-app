@@ -7,7 +7,7 @@ guard :livereload do
   watch(%r{(public/).+\.(css|js|html)})
 
   watch(%r{app/assets/stylesheets/(.+\.css)$})  { |m| "assets/#{m[1]}" }
-  watch(%r{app/assets/stylesheets/(.+\.less)}) { |m| "assets/style.css"}
+  watch(%r{app/assets/stylesheets/(.+\.scss)}) { |m| "assets/style.css"}
 
   # Rails Assets Pipeline
   watch(%r{(app|vendor)/assets/\w+/(.+\.(js)).*})  { |m| "/assets/#{m[2]}" }

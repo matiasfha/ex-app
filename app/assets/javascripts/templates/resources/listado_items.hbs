@@ -1,0 +1,98 @@
+{{#each resources}}	
+	<div class="item" id="{{this.id}}">
+		<div class="holder">
+			<div class="thi">
+				
+				<img src="{{this.imagen}}" />
+				
+				<div class="overlay">
+					<div class="social">
+						<div class="like"></div>
+						<div class="comment"></div>
+<a href="https://twitter.com/share?url=http://dandoodev.herokuapp.com/resources/{{this.id}}&text={{this.titulo}}&via=Dandootv&lang=es&related=Danootv&count=none&hashtags=#Dandoo" target="_blank">
+						<div class="twitter"></div>
+</a>
+<a href="https://www.facebook.com/dialog/feed?app_id={{FACEBOOK_KEY}}&link=http://dandoodev.herokuapp.com/resources/{{id}}&resource={{imagen}}&name={{this.titulo}}&caption=Dandoo.tv&description={{this.descripcion}}&redirect_uri=http://dandoodev.herokuapp.com" target="_blank">
+						<div class="facebook"></div>
+</a>
+					</div>
+				</div><!--overlay-->
+				{{#compare this.type "video"}}
+				<img src="/assets/PLAY.png" class="play" />
+				{{/compare}}
+			</div>
+		</div>
+		<div class="description">
+			<div class="titulo">
+				{{this.titulo}}
+				<span class="more">
+					<img src="/assets/ver+.gif" />
+				</span>
+			</div>
+			{{this.descripcion}}
+			<br /><br />
+			<div class="separador"></div>
+		</div>
+		<div class="botonera">
+			<div class="left">
+				<img src="/assets/LIKE.gif" />
+				<span class="like_count">{{total_likers}}</span>
+				<img src="/assets/COMMENT.gif" />
+				<span class="comment_count">{{total_comments}}</span>
+			</div>
+			<div class="rigth">
+				<span class="votos_count">
+					{{promedio_votos}}/
+					{{total_votos}}
+				</span>
+				<span class="estrellas">
+				{{#iter 1 promedio_votos}}
+					<img src="/assets/STAR_ON.gif" />
+				{{/iter}}
+				{{#iter promedio_votos 4}}
+					<img src="/assets/STAR_OFF.gif" />
+				{{/iter}}
+				</span>
+			</div>
+		</div>
+		<div class="comentarios">
+			<div class="separador"></div>
+			<div class="descripcion">
+				<div class="avatar">
+					<a href="/users/{{user_id}}">
+						<img src="{{user_avatar}}" width="40" height="40" />
+					</a>
+				</div>
+				<div class="autor">
+					<a href="/users/{{user_id}}">
+						{{user_nickname}}
+					</a>
+				</div>
+				<div class="texto">
+				{{descripcion}}
+				</div>
+			</div>
+			<div class="separador"></div>
+			<div class="nuevos_comentarios">
+				{{> _comentarios_comentarios}}
+			</div>
+			<div class="separador"></div>
+			{{#if signed_in}}
+			<div class="form">
+				<div class="avatar">
+					<img src="{{current_user_avatar}}" width="40" height="40" />
+				</div>
+				<div class="autor">
+					{{current_user_nickname}}
+				</div>
+				<div class="texto">
+					<form accept-charset="UTF-8" action="/comments" class="new_comment" id="new_comment" method="post" >
+					<input type="text" class="text_comentario" placeholder="Escribe tu comentario" name="comment[contenido]" id="comment_contenido" maxlength="40"/>
+					<img src="/assets/comentar.gif" class="comentar" />
+					</form>
+				</div>
+			</div>
+			{{/if}}
+		</div>
+	</div>
+{{/each}}

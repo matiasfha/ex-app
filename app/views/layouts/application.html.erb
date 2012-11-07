@@ -30,151 +30,153 @@
   	<%= csrf_meta_tags %>
 </head>
 <body>
-
 	<!--[if lt IE 7]>
         <p class="chromeframe">Estas usando un navegador muy antiguo. Te proponemos <a href="http://browsehappy.com/">Actualizar tu navegador hoy</a> o <a href="http://www.google.com/chromeframe/?redirect=true">instalar Google Chrome Frame</a> Para mejorar la experiencia en este sitio.</p>
     <![endif]-->
 
-	<div id="principal">
-		<!--NAVBAR 
-			====================================================================== -->
-		<div class="container" >	
-			<div class="navbar navbar-fixed-top" >
-				<div class="navbar-inner">
-					
-						<div class="span3 pull-left" style="margin-left:6.533864542%;">
-							<a href="/">
-								<div id="logo"></div>	
-							</a>
-						</div>
-						<% if user_signed_in? %>
-						<div class="botones">
-							<ul class="nav">
-								<li>
-									<a href="#" class="pull-left tv active"></a>
-								</li>
-								<li>
-									<a href="#" class="pull-right store"></a>
-								</li>
-							</ul>
-						</div>
-						<% end %>
-						
-						<div class="botones" style="float:right;margin-right:5.6%;">
-							<ul class="nav">
-								<% if user_signed_in? %>
-								<li>
-									<div class="config"></div>
-								</li>
-								<li class="dropdown">
-									<a class="mi_cuenta dropdown-toggle" id="menu" data-toggle="dropdown">
-									</a>
-									<ul id="menu1" class="dropdown-menu" role="menu" aria-labelledby="menu">
-	                  					<li><a tabindex="-1" href="<%=user_path(current_user)%>" class="perfil">Perfil</a></li>
-	                  					<li><a tabindex="-1" href="#">Temas</a></li>
-					                    <li><a tabindex="-1" href="<%=user_path(current_user)%>#valorados">Valorados</a></li>
-					                    <li><a tabindex="-1" href="<%=user_path(current_user)%>#favoritos">Favoritos</a></li>
-					                    <li><%= link_to('Salir',destroy_user_session_path,:method=>'delete',:id => 'salir') %></li>
-                					</ul>
-								</li>
-								<li>
-									<div class="mini_logo"></div>
-								</li>
-								<li>
-									<%= image_tag(current_user.avatar.url(:thumb),:class => 'thumb img-rounded',:size => "32x32")
-									%>
-								</li>
-								
-								<% else %>
-								<li>
-									<div class="ingresar"></div>
-								</li>
-								<li style="position:relative;top:-2px">
-									<%= link_to( image_tag('top_FB.jpg'),"/auth/facebook") %>
-								</li>
-								<li style="position:relative;top:-2px">
-									<%= link_to( image_tag('top_TW.jpg'),"/auth/twitter") %>
-								</li>
-								<% end %>
-								
-							</ul>
-						</div>
-					
-				</div>
+	<!-- Navigation -->
+
+	<nav class="top-bar fixed" >
+		<div class="container">
+			<div class="three columns">
+				<a href="/">
+				<section class="logo"></section>
+				</a>
 			</div>
-
-
-		<!-- CONTENEDOR PRINCIPAL 
-		====================================================================== -->
-		
-
-			<!-- HEADER
-			================================================================	====== -->	
-			
-				<div class="span11" id="header">
-					<div class="span5 offset5 pull-right" id="show">
-						<div class="izq pull-left"></div>
-						<div class="der pull-right"></div>
-						<div class="texto">
-							<strong>1.</strong> Disfruta los mejores videos de la Biblioteca
-						</div>
-					</div>
+			<div class="five columns offset-by-seven">
+				<div class="section two columns">
+					<a href="/" class="tv active"></a>
+					<a href="#" class="store"></a>
 				</div>
-			
-			
-			<%= yield(:barra) %>
-			<%= yield(:botonera) %>
-			
-
-			<!-- CONTENIDO
-			====================================================================== -->
-		
-			<div id="body">
-				<div class="row" id="mensajes-flash">
-					<% flash.each do |type, msg| %>
-					  <div class="alerta" data-title="Dandoo.tv" data-text="<%=msg%>" data-type="<%=notify_type(type)%>" style="display:none"></div>
-					    
+				<div class="login two columns">
+					<% if user_signed_in?%>
+					<%= image_tag current_user.avatar.url(:thumb),:size  => '40x40',:class => 'avatar' %>
+					<% else %>
+					<a href="/auth/twitter" class="twitter"></a>
+					<a href="/auth/facebook" class="facebook"></a>
+					<div class="user"></div>
 					<% end %>
+					
+				</div>
+			</div>
+		</div>
+	</nav><br><br>
+
+	<!-- End Navigation -->
+	
+
+	<!-- Header -->
+
+    <div id="header">
+    	<% if user_signed_in? %>
+    	<div class="widget">
+    		
+			<ul id="listado-list" class="elastislide-list">
+				<li style="position:relative;">
+					<%= image_tag 'header/pieza1.jpg' ,:class => 'recurso'%>
+					<div style="position:absolute;top:0;left:0">
+						<%= image_tag '50_dandoo.png' %>
+					</div>
+				</li>
+				<li style="position:relative;">
+					<%= image_tag 'header/pieza2.jpg' ,:class => 'recurso'%>
+					<div style="position:absolute;top:0;left:0">
+						<%= image_tag '100_dandoo.png' %>
+					</div>
+				</li>
+				<li style="position:relative;">
+					<%= image_tag 'http://s3.amazonaws.com/dandoo-pictures/imagens/5081abd82b091e8689000002/medium.png?1350675410' ,:class => 'recurso'%>
+					<div style="position:absolute;top:0;left:0">
+						<%= image_tag '150_dandoo.png' %>
+					</div>
+				</li>
+
+				<li  style="position:relative;">
+					<%= image_tag 'header/pieza1.jpg' ,:class => 'recurso'%>
+					<div style="position:absolute;top:0;left:0">
+						<%= image_tag '50_dandoo.png' %>
+					</div>
+				</li>
+				<li  style="position:relative;">
+					<%= image_tag 'header/pieza2.jpg' ,:class => 'recurso'%>
+					<div style="position:absolute;top:0;left:0">
+						<%= image_tag '100_dandoo.png' %>
+					</div>
+				</li>
+				
+				<li  style="position:relative;">
+					<%= image_tag 'http://s3.amazonaws.com/dandoo-pictures/imagens/5081abb42b091e8689000001/medium.png?1350675376' ,:class => 'recurso'%>
+					<div style="position:absolute;top:0;left:0">
+						<%= image_tag '150_dandoo.png' %>
+					</div>
+				</li>
+			</ul>
+    		
+    	</div>
+	    <% else %>
+    	<%= image_tag 'header/header.jpg' %>
+    	<div id="sub_header">
+    		<%= image_tag 'header/header1280_a.jpg' %>
+    		<%= image_tag 'header/header1280_b.jpg' %>
+    		<%= image_tag 'header/header1280_c.jpg' %>
+    		<%= image_tag 'header/header1280_d.jpg' %>
+    	</div>
+    	<% end %>
+    </div>
+
+  <!-- End Header -->
+	
+
+	<div class="container row" id="principal">
+		<div class="twelve columns">
+			<div class="row">
+				<div class="three columns">
+					<input type="text" class="buscar" placeholder="Buscar"/>
+					<div class="buscar"></div>
+				</div>
+				<div class="three columns botonera">
+					<div class="section imagenes active"></div>
+					<div class="section videos active"></div>
+					<div class="section vista1 active"></div>
+					<div class="section vista2"></div>
+
 				</div>
 
-				<%= yield %>
-				
-
-				
-				
-
-				
-
+				<div class="two columns secciones">
+					<!--en orden inverso a como se veran-->
+					<a href="#nuevos">
+						<div class="section nuevos"></div>
+					</a>
+					<a href="#vistos">
+						<div class="section vistos"></div>
+					</a>
+					<a href="#valorados">
+						<div class="section valorados"></div>
+					</a>
+					<a href="#index">
+						<div class="section favoritos active"></div>
+					</a>
+				</div>
 			</div>
-		</div>	
-
-	</div>
-	<div class="loading">
-		<img src="/assets/loader.gif" width="32" height="32" alt="Loader" />
-		<div><em>Cargando el siguiente grupo de items</em></div>
-	</div>
-
-	<div  class="loading fin">
-		<div><em>Todos los elementos han sido cargados</em></div>
-	</div>
-	<!--<div id="mask"></div>-->
+			<br /><br />
+			<!-- CONTENIDO -->
+			<%= yield %>
+			<!--- -->
+		</div><!--sixteen columns-->
+	</div>			
+  		
+	
 
 	<div id="templating"></div>
 	
+	<!-- <div id="confirmModal" class="reveal-modal [expand, xlarge, large, medium, small]">
+	  <h2>¿Estás seguro?</h2>
+	  <p id="mensaje"></p>
+	  <a class="close-reveal-modal">&#215;</a>
+	</div> -->
 
-	<div id="confirmModal" class="modal hide fade">
-	  <div class="modal-header">
-	    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-	    <h3>¿Estás seguro?</h3>
-	  </div>
-	  <div class="modal-body">
-	    <p id="mensaje"></p>
-	  </div>
-	  <div class="modal-footer">
-	    <button class="btn" data-dismiss="modal">Cancelar</button>
-	    <button data-href="" class="btn btn-danger">Continuar</button>
-	  </div>
-	</div>
+	
+
 	<script>
             var _gaq=[['_setAccount','UA-35427461-2'],['_trackPageview']];
             (function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
