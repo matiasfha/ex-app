@@ -5,3 +5,4 @@
 require File.expand_path('../config/application', __FILE__)
 
 DandooDev::Application.load_tasks
+ENV['RAILS_GROUPS'] = nil # trick asset rake file into shelling out
