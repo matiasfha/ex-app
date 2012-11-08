@@ -1,15 +1,20 @@
+require.config
+	hbs:
+		disableI18n:true
+		disableHelpers:true
+
 require [
 	'jquery'
-	'underscore'
+	'underscore_hbs'
 	'backbone'
 	'domReady',
 	'modernizr-2.6.1-respond-1.1.0.min'
-	'handlebars.runtime'
+	'handlebars'
 	'router'
 	'jquery.pnotify'
 ],($,_,Backbone,domReady,M,HR,Router,N) ->
 	domReady () ->
-		
+		window.Handlebars = HR
 		window.$ = $.noConflict()
 		window._ = _.noConflict()
 		

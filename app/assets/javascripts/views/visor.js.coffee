@@ -2,7 +2,7 @@ define [
 	'jquery'
 	'backbone'
 	'models/resource'
-	'text!templates/visor.hbs'
+	'hbs!templates/visor'
 	'froogaloop2.min'
 ],($,Backbone,ResourceModel,VisorTPL,F) ->
 	class VisorView extends Backbone.View
@@ -16,7 +16,7 @@ define [
 
 
 		initialize:(@parent) ->
-			@tpl = eval(VisorTPL)
+			@tpl = eval(VisorTPL())
 			@id = parent.attr('id')
 			@model = new ResourceModel
 				id:@id

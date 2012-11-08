@@ -2,10 +2,10 @@ define [
 	'jquery'
 	'backbone'
 	'collections/resources'
-	'text!templates/resources/listado_items.hbs'
-	'text!templates/comentarios/_comentarios.hbs'
+	'hbs!templates/resources/listado_items'
+	'hbs!templates/comentarios/_comentarios'
 	'models/comentario'
-	'text!templates/comentarios/comentario.hbs'
+	'hbs!templates/comentarios/comentario'
 	'views/visor'
 	'jquery.imagesloaded.min'
 ],($,Backbone,Resources,TListado,PComentarios,MComentario,TComentario,VisorView,I) ->
@@ -22,9 +22,9 @@ define [
 			'click .item .overlay:not(.social)':'showVisor'
 
 		initialize:(@clasificacion) ->
-			@tpl = eval(TListado)	
-			eval(PComentarios)
-			@tpl_comment = eval(TComentario)
+			@tpl = eval(TListado())	
+			eval(PComentarios())
+			@tpl_comment = eval(TComentario())
 			
 			@resources = new Resources()		
 			if @clasificacion!= false
