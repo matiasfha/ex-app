@@ -20,7 +20,7 @@ group :assets do
   gem 'yui-compressor'
   gem 'jquery-rails'
   gem 'jquery-ui-rails'
-  #gem "asset_sync"
+  gem "asset_sync"
   gem 'handlebars_assets'
 
   gem 'compass-rails'
