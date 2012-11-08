@@ -62,7 +62,7 @@ module DandooDev
     config.assets.enabled = true
 
     #For Heroku
-    config.assets.initialize_on_precompile = false
+    config.assets.initialize_on_precompile = true #false
     config.static_cache_control="public, max-age=2592000"
     #config.cache_store = :dalli_store
 
