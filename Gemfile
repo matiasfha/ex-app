@@ -45,7 +45,7 @@ gem 'remotipart',"~> 1.0"
 gem 'kaminari'
 gem 'ruby-oembed'
 gem 'valid_email'
-gem 'requirejs-rails'
+#gem 'requirejs-rails'
 gem "mongoid-paperclip", :require => "mongoid_paperclip", :git => "git://github.com/meskyanichi/mongoid-paperclip.git"
 gem "aws-s3",            :require => "aws/s3"
 gem "aws-sdk"

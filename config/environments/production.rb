@@ -9,11 +9,11 @@ DandooDev::Application.configure do
   config.action_controller.perform_caching = true
 
   # Disable Rails's static asset server (Apache or nginx will already do this)
-  config.serve_static_assets = false #true
+  config.serve_static_assets = true
 
   # Compress JavaScripts and CSS
   config.assets.compress = true
-  config.assets.debug = true
+  config.assets.debug = false
   config.assets.css_compressor = :yui
   config.assets.js_compressor = :uglifier
 
@@ -52,7 +52,7 @@ DandooDev::Application.configure do
   
   # Precompile additional assets (application.js, application.css, and all non-JS/CSS are already added)
   #config.assets.precompile += %w(*.js,,active_admin.js,active_admin.css)
-
+  config.assets.precompile += %w(templates/*,collections/*,models/*,views/*,*.js)
   # Disable delivery errors, bad email addresses will be ignored
   # config.action_mailer.raise_delivery_errors = false
 

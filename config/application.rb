@@ -60,13 +60,14 @@ module DandooDev
 
     # Enable the asset pipeline
     config.assets.enabled = true
+    config.assets.paths+=['templates']
     #For Heroku
     config.assets.initialize_on_precompile = false
     config.static_cache_control="public, max-age=2592000"
     #config.cache_store = :dalli_store
 
     # Version of your assets, change this if you want to expire all your assets
-    config.assets.version = '1.2'
+    config.assets.version = '1.3'
 
     #config.requirejs.logical_asset_filter += [/\.hbs$/]
     
