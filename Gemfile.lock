@@ -1,11 +1,4 @@
 GIT
-  remote: git://github.com/kolo/handlebars-rails.git
-  revision: 1becd13153a66e644471c520bc5bfcd8541307f4
-  specs:
-    handlebars-rails (0.0.1)
-      sprockets (> 2.0.3)
-
-GIT
   remote: git://github.com/meskyanichi/mongoid-paperclip.git
   revision: 34a66cbc6c35098fb5fc9eaa5cf051c8556c9fe3
   specs:
@@ -118,6 +111,10 @@ GEM
       guard (>= 1.1.0)
       multi_json (~> 1.0)
     haml (3.1.7)
+    handlebars_assets (0.6.6)
+      execjs (>= 1.2.9)
+      sprockets (>= 2.0.3)
+      tilt
     hashie (1.2.0)
     hike (1.2.1)
     httparty (0.9.0)
@@ -314,7 +311,7 @@ DEPENDENCIES
   foreman
   formtastic
   guard-livereload
-  handlebars-rails!
+  handlebars_assets
   i18n
   jquery-rails
   kaminari

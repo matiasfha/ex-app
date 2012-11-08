@@ -21,10 +21,10 @@ group :assets do
   gem 'jquery-rails'
   #gem 'jquery-ui-rails'
   #gem "asset_sync"
-  #gem 'handlebars_assets'
+  gem 'handlebars_assets'
 
 end
-gem 'handlebars-rails', :git => 'git://github.com/kolo/handlebars-rails.git'
+#gem 'handlebars-rails', :git => 'git://github.com/kolo/handlebars-rails.git'
 
 gem 'unicorn'
 gem 'foreman'

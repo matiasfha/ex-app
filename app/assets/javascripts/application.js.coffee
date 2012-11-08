@@ -4,12 +4,10 @@ require [
 	'backbone'
 	'domReady',
 	'modernizr-2.6.1-respond-1.1.0.min'
-	#'handlebars.runtime'
-	'handlebars-rails'
-	'handlebars'
+	'handlebars.runtime'
 	'router'
 	'jquery.pnotify'
-],($,_,Backbone,domReady,M,HR,H,Router,N) ->
+],($,_,Backbone,domReady,M,HR,Router,N) ->
 	domReady () ->
 		
 		window.$ = $.noConflict()

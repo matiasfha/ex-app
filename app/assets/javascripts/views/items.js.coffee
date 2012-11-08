@@ -25,6 +25,7 @@ define [
 			@tpl = eval(TListado)	
 			eval(PComentarios)
 			@tpl_comment = eval(TComentario)
+			
 			@resources = new Resources()		
 			if @clasificacion!= false
 				@getSeccion()
