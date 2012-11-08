@@ -24,6 +24,7 @@ group :assets do
   gem 'handlebars_assets'
 
 end
+#gem 'handlebars-rails', :git => 'git://github.com/kolo/handlebars-rails.git'
 
 gem 'unicorn'
 gem 'foreman'
