@@ -17,10 +17,9 @@
  *=require jquery.ui.datepicker
  *=require jquery.ui.autocomplete
  *=require_self
- * require foundation
+ *=require foundation.min
  * require_tree .
 */
-@import "foundation";
 @import "elastislide";
 
 body{

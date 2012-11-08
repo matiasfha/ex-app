@@ -23,8 +23,8 @@ group :assets do
   #gem "asset_sync"
   gem 'handlebars_assets'
 
-  gem 'compass-rails'
-  gem 'zurb-foundation'
+  #gem 'compass-rails'
+  #gem 'zurb-foundation'
 end
 
 gem 'unicorn'
