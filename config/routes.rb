@@ -13,9 +13,6 @@ DandooDev::Application.routes.draw do
   match 'metadata/populares(/:page)' => 'resources#populares', :via => :get 
   match 'metadata/valorados(/:page)' => 'resources#valorados', :via => :get 
 
-  match 'metadata/subidas(/:page)' => 'resources#subidas', :via => :get
-  match 'metadata/last_resource' => 'resources#last_resource', :via => :get
-  
   root :to => 'home#index'
   # root :to => 'home#prelaunch'
   
@@ -23,7 +20,8 @@ DandooDev::Application.routes.draw do
   devise_for :users, :controllers => { :registrations => "registrations"}
   devise_scope :user do 
     get '/register'                 => 'devise/registrations#new'
-    delete '/logout'                => 'devise/session#destroy'
+    delete '/logout'                => 'devise/sessions#destroy'
+    get '/logout'                   => 'devise/sessions#destroy'
     get '/user/complete_registration/:user' => 'registrations#completar'
     put '/user/complete_registration' => 'registrations#finalizar'
   end
