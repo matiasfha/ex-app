@@ -32,7 +32,7 @@ define [
 			$('#sub_header').cycle 
 				fx:'scrollLeft'
 			container = $('#listado_container')
-			gutter = 25
+			gutter = 17
 			if $(window).width() <= 1024
 				gutter =11
 			if $(window).width() <= 800
@@ -41,7 +41,7 @@ define [
 			container.imagesLoaded () ->
 				container.masonry
 					itemSelector:'.item'
-					isAnimated:true
+					isAnimated:!Modernizr.csstransitions
 					gutterWidth:gutter
 				container.fadeIn()	
 				container.masonry('reload')

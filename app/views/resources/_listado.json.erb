@@ -15,9 +15,8 @@
 		if !current_user.nil?
 			voto = Voto.where(:resource_id => resource.id,:user_id => current_user.id).first
 		end
-
 		imagen = resource.imagen.url(:medium)
-		if imagen.nil?
+		if resource.type == 'video'
 			imagen = resource.thumbnail
 		end
 		%>
@@ -26,7 +25,7 @@
 			"id":"<%=resource.id%>",
 			"type":"<%=resource.type%>",
 			"can_delete":<%=can_delete%>,
-			"imagen":"<%=resource.imagen.url(:medium)%>",
+			"imagen":"<%=imagen%>",
 			"titulo":"<%=resource.titulo%>",
 			"descripcion":"<%=resource.descripcion%>",
 			"signed_in":<%=user_signed_in?%>,

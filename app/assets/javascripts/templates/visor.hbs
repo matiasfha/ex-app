@@ -9,10 +9,12 @@
 				</a>
 				{{else}}
 					{{#compare this.provider "youtube"}}
-					<div id="ytplayer"></div>
+					<div id="ytplayer">
+					</div>
 					{{else}}
 						{{#compare this.provider "vimeo"}}
-						<iframe src="http://player.vimeo.com/video/{{video_id}}?title=0&byline=0&portrait=0&api=1&player_id=vmplayer" id="vmplayer" width="700" height="525" frameborder="0"  webkitAllowFullScreen mozallowfullscreen allowFullScreen ></iframe>
+						<iframe src="http://player.vimeo.com/video/{{vimeo_id}}?title=0&byline=0&portrait=0&api=1&player_id=vmplayer" id="vmplayer" width="754" height="492" frameborder="0"  webkitAllowFullScreen mozallowfullscreen allowFullScreen ></iframe>
+			
 						{{/compare}}
 					{{/compare}}
 				{{/compare}}
@@ -31,6 +33,23 @@
 					</div>
 				</div><!--overlay-->
 			</div>
+			{{#compare this.type "video"}}
+			<div class="video_controls">
+				<div class="volumen">
+					<label class="v1">&nbsp;</label>
+					<label class="v2">&nbsp;</label>
+					<label class="v3">&nbsp;</label>
+					<label class="v4">&nbsp;</label>
+				</div>
+				<div class="start"></div>
+				<div class="pausa active"></div>
+				<div class="seek">
+					<div class="bar">
+					</div>
+				</div>
+				<div class="time">00:00:00</div>
+			</div>
+			{{/compare}}
 			<div class="rating">
 				{{#iter 1 promedio_votos}}
 					<div class="star voted"></div>

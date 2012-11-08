@@ -7,7 +7,8 @@ define [
 	'models/comentario'
 	'text!templates/comentarios/comentario.hbs'
 	'views/visor'
-],($,Backbone,Resources,TListado,PComentarios,MComentario,TComentario,VisorView) ->
+	'jquery.imagesloaded.min'
+],($,Backbone,Resources,TListado,PComentarios,MComentario,TComentario,VisorView,I) ->
 	class ItemView extends Backbone.View 
 		el:$('#listado_container')
 		events:
@@ -18,7 +19,7 @@ define [
 			'click .social .like':'like'
 			'click img.comentar':'crearComentario'
 			'keydown input.text_comentario':'crearComentario'
-			'click .item .overlay':'showVisor'
+			'click .item .overlay:not(.social)':'showVisor'
 
 		initialize:(@clasificacion) ->
 			@tpl = eval(TListado)	
@@ -46,12 +47,12 @@ define [
 
 		render: =>
 			if @clasificacion!= false
-				$(@el).empty()
 				data = $(@tpl(@resources.toJSON()[0]))
-				# data.hide()
-				$(@el).append(data)
-				$(@el).masonry 'reload'
-				# data.fadeIn()
+				items = $('.item')
+				data.imagesLoaded () =>
+					$(@el).masonry('remove',items).masonry()
+					.html(data).masonry('reload')
+					
 
 		close: =>
 			$(@el).undelegate()
@@ -91,15 +92,15 @@ define [
 
 			element = extra.clone()
 			element.children().css({display:'block',visibility:'hidden'})
-			element.css({display:'block',visibility:'hidden'}).insertAfter(parent.find('.extra'))
+			element.css({display:'block',visibility:'hidden'}).insertAfter(parent.find('.comentarios'))
 			newTop = element.height()
 			element.remove()
-
+			
 			#Para cada item posicionarlo en top:newTop
 			for item in items 
 				top = parseInt($(item).css('top'))
 
-				if flecha.hasClass('active')
+				if !flecha.hasClass('active')
 					 top = $(item).attr('original-top')
 				else
 					$(item).attr('original-top',top)

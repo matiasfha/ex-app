@@ -18,7 +18,7 @@ define [
 
 
 		index: ->
-			$('.secciones a .section.favoritos').addClass 'active'
+			$('.secciones a .section.valorados').addClass 'active'
 			@itemsView = new ItemsView(false)
 
 		populares: =>
