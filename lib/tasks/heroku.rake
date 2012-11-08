@@ -8,7 +8,7 @@ namespace :heroku do
         sh "rake tmp:clear"
         sh "rm -rf tmp/"
         sh "bundle"
-        sh "RAILS_ENV=production rake assets:precompile"
+        #sh "RAILS_ENV=production rake assets:precompile"
         sh "git add .  && git commit -am 'Version-#{version}'"
         sh "git tag -a heroku-#{version} -m 'Deploy version to Heroku: #{version}'"
         sh "git push heroku master"
