@@ -6,8 +6,10 @@ define [
 	'jquery.imagesloaded.min'
 	'views/items'
 	'jquery.elastislide'
-	'foundation'
-],($,Backbone,C,M,I,ItemsView,ElastiSlide,F) ->
+	'foundation/jquery.foundation.reveal'
+	'foundation/jquery.placeholder'
+	'foundation/app'
+],($,Backbone,C,M,I,ItemsView,ElastiSlide,FR,FP,FA) ->
 	class GeneralView extends Backbone.View
 		el:$('#principal')
 		events:
