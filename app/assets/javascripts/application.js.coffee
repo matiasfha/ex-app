@@ -13,7 +13,6 @@ require [
 	domReady () ->
 		
 		window.$ = $.noConflict()
-		window.jQuery = window.$
 		window._ = _.noConflict()
 		
 		$.fn.reset = ->

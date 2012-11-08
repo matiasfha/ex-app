@@ -1,3 +1,4 @@
+
 /*
  * jQuery Reveal Plugin 1.1
  * www.ZURB.com
@@ -7,7 +8,9 @@
 */
 /*globals jQuery */
 
-(function ($) {
+// (function ($) {
+define(['jquery'],function($){
+
   'use strict';
   //
   // Global variable.
@@ -791,4 +794,5 @@
 
   }; // end $.fn
 
-} ( jQuery ) );
+// } ( jQuery ) );
+});
