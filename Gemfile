@@ -21,14 +21,12 @@ group :assets do
   gem 'jquery-rails'
   #gem 'jquery-ui-rails'
   #gem "asset_sync"
-  gem 'handlebars_assets'
+  #gem 'handlebars_assets'
 
-  #gem 'compass-rails'
-  #gem 'zurb-foundation'
 end
+gem 'handlebars-rails', :git => 'git://github.com/kolo/handlebars-rails.git'
 
 gem 'unicorn'
-#gem 'heroku' -->deprecated
 gem 'foreman'
 
 gem 'i18n'
@@ -45,7 +43,6 @@ gem 'remotipart',"~> 1.0"
 gem 'kaminari'
 gem 'ruby-oembed'
 gem 'valid_email'
-#gem 'requirejs-rails'
 gem "mongoid-paperclip", :require => "mongoid_paperclip", :git => "git://github.com/meskyanichi/mongoid-paperclip.git"
 gem "aws-s3",            :require => "aws/s3"
 gem "aws-sdk"

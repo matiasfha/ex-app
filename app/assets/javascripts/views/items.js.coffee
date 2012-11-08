@@ -2,10 +2,10 @@ define [
 	'jquery'
 	'backbone'
 	'collections/resources'
-	'text!templates/resources/listado_items.js'
-	'text!templates/comentarios/_comentarios.js'
+	'text!templates/resources/listado_items.hbs'
+	'text!templates/comentarios/_comentarios.hbs'
 	'models/comentario'
-	'text!templates/comentarios/comentario.js'
+	'text!templates/comentarios/comentario.hbs'
 	'views/visor'
 	'jquery.imagesloaded.min'
 ],($,Backbone,Resources,TListado,PComentarios,MComentario,TComentario,VisorView,I) ->

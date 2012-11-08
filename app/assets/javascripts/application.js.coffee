@@ -4,10 +4,12 @@ require [
 	'backbone'
 	'domReady',
 	'modernizr-2.6.1-respond-1.1.0.min'
-	'handlebars.runtime'
+	#'handlebars.runtime'
+	'handlebars-rails'
+	'handlebars'
 	'router'
 	'jquery.pnotify'
-],($,_,Backbone,domReady,M,H,Router,N) ->
+],($,_,Backbone,domReady,M,HR,H,Router,N) ->
 	domReady () ->
 		
 		window.$ = $.noConflict()
@@ -76,7 +78,5 @@ require [
 			if seconds < 10
 				seconds = "0"+seconds
 			time    = hours+':'+minutes+':'+seconds;
-		    
-		
 		new Router()	
 		Backbone.history.start()
