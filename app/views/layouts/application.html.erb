@@ -25,7 +25,7 @@
 	if (!window['YT']) {var YT = {};}if (!YT.Player) {(function(){var s = 'http:' + '//s.ytimg.com/yt/jsbin/www-widgetapi-vflU5wlSl.js';var a = document.createElement('script');a.src = s;a.async = true;var b = document.getElementsByTagName('script')[0];b.parentNode.insertBefore(a, b);YT.embed_template = "\u003ciframe width=\"425\" height=\"344\" src=\"\" frameborder=\"0\" allowfullscreen\u003e\u003c\/iframe\u003e";})();}
 	</script>
 	
-  	<script type="text/javascript" src="/assets/require.js" data-main="/assets/application.js"></script>
+  	<script type="text/javascript" src="/assets/require.js" data-main=<%=yield(:main_js)%>></script>
   	<%= yield(:head) %>
   	<%= csrf_meta_tags %>
 </head>
@@ -50,6 +50,17 @@
 				</div>
 				<div class="login two columns">
 					<% if user_signed_in?%>
+					<div class="tuerca1"></div>
+					<div class="tuerca2"></div>
+					<div class="menu">
+						<ul>
+							<li><a href="/users/<%=current_user.id%>">Perfil</a></li>
+							<li><a href="/user/<%=current_user.id%>/#temas">Temas</a></li>
+							<li><a href="/users/<%=current_user.id%>/#valorados">Valorados</a></li>
+							<li><a href="/users/<%=current_user.id%>/#favoritos">Favoritos</a></li>
+							<li><a href="/logout">Cerrar Sesión</a></li>
+						</ul>
+					</div>
 					<%= image_tag current_user.avatar.url(:thumb),:size  => '40x40',:class => 'avatar' %>
 					<% else %>
 					<a href="/auth/twitter" class="twitter"></a>
@@ -165,6 +176,19 @@
 		</div><!--sixteen columns-->
 	</div>			
   		
+  	<div id="feedback">
+  		<div class="tab">
+  			Feedback
+  		</div>
+  		<div class="body">
+  			<form method="post">
+  				<input type="text" placeholder="Nombre" id="nombre" name="nombre"/>
+  				<input type="text" placeholder="Email" id="email" name="email"/>
+  				<textarea placeholder="Comentario" id="comentario" name="comentario"></textarea>
+  				<input type="submit" value="Enviar" class="small button" style="align:rigth"/>
+  			</form>
+		</div>
+  	</div>
 	
 
 	<div id="templating"></div>

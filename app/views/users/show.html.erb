@@ -1,12 +1,6 @@
-<% content_for :barra do 
-    render :partial => "users/barra"
-  end
-
-  content_for :botonera do 
-    render :partial => "layouts/botonera", :locals => {:section => "perfil"}
-  end
-%>
-
+<% content_for :main_js do %>
+  "/assets/user_index.js"
+<% end %>
 <div class="span11 contenido" id="perfil-data">
   <div id="listado_subidas">
   <%= render :partial => "resources/listado" %>

@@ -26,7 +26,8 @@ DandooDev::Application.routes.draw do
     put '/user/complete_registration' => 'registrations#finalizar'
   end
   
-  match '/user_subidas/:id/:page' => 'users#user_subidas'
+  #match '/user_subidas/:id/:page' => 'users#user_subidas'
+  resources :users, :only => [:show]
   
   resources :resources, :only => [:create,:show,:index,:destroy]
   match '/resources/listado(/:clasificacion)(/:tipo)(/:page)' => 'resources#index', :via => :get
@@ -38,7 +39,7 @@ DandooDev::Application.routes.draw do
   match '/votos/:pid/:valor' => 'votos#create', :via => :post
 
   match 'auth/:provider/callback'  => 'authentications#new'
-
+  match 'completar' => 'authentications#test'
   resources :authentications, :only => [:index,:create,:destroy]
   resources :emails, :only => [:create] 
   

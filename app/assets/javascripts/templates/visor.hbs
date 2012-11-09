@@ -22,7 +22,11 @@
 
 				<div class="overlay">
 					<div class="social">
-						<div class="like"></div>
+						{{#if this.like}}
+						<div class="like active" data-id="{{id}}"></div>
+						{{else}}
+						<div class="like" data-id="{{id}}"></div>
+						{{/if}}
 						<div class="comment"></div>
 						<a href="https://twitter.com/share?url=http://dandoodev.herokuapp.com/resources/{{this.id}}&text={{this.titulo}}&via=Dandootv&lang=es&related=Danootv&count=none&hashtags=#Dandoo" target="_blank">
 							<div class="twitter"></div>
@@ -111,6 +115,30 @@
 				</div>
 				
 				<div class="more"></div>
+				<div class="more_comentarios">
+					{{#each more_comments}}
+					<div class="fila" id="comentario-{{id}}">
+						<div class="avatar">
+							<a href="/users/{{user_id}}">
+								<img src="{{this.avatar}}" width="40" height="40" />
+							</a>
+						</div>
+						<div class="autor">
+							<a href="/users/{{this.user_id}}">
+								{{this.user_nickname}}
+							</a>
+						</div>
+						<div class="fecha">
+							{{fecha}}
+						</div>
+						<div class="texto">
+							{{this.contenido}}
+						</div>
+					</div>
+					<div class="separador"></div>
+					{{/each}}
+				</div>
+				<div class="append_comments"></div>
 				{{#if signed_in}}
 				<div class="form">
 					<div class="fila">
@@ -122,6 +150,7 @@
 					
 						<div class="texto">
 							<form accept-charset="UTF-8" action="/comments" class="new_comment" id="new_comment" method="post" >
+							<input type="hidden" name="comment[resource_id"] id="comment_resource_id" value="{{id}}" />
 							<input type="text" class="text_comentario" placeholder="Escribe tu comentario" name="comment[contenido]" id="comment_contenido" maxlength="40"/>
 							<img src="/assets/comentar.gif" class="comentar" />
 							</form>

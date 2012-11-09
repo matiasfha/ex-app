@@ -143,6 +143,7 @@
 				float:right;
 				top:-10px;
 				position:relative;
+				cursor:pointer;
 			}
 			.botones{
 				width:100%;
@@ -205,8 +206,10 @@
 					font-size:95%;
 				}
 			}
-
-			.nuevos_comentarios,.form{
+			.more_comentarios{
+				display: none;
+			}
+			.nuevos_comentarios,.form,.more_comentarios,.append_comments{
 				.fila{
 					margin:5px 0 5px 0;
 					min-height: 55px;
@@ -253,7 +256,7 @@
 				input{
 					background:url('Visor/input.png') no-repeat;
 					height:31px;
-					width:523px;
+					width:89%;
 					border:0 !important;
 					border-radius:0 !important;
 					box-shadow:0 !important;
@@ -264,7 +267,7 @@
 					background:url('Visor/BTNcomentarOFF.png') no-repeat;
 					top:-5px; 
 					position:absolute;
-					left:524px;
+					left:90%;
 					border:0 !important;
 					width:80px;
 					height: 30px;

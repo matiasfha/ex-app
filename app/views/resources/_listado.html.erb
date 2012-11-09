@@ -15,9 +15,9 @@
 			
 				<div class="overlay">
 					<div class="social">
-						<% like = (current_user.nil?) ? [] : resource.likers.where(:id => current_user.id)
+						<% like = (!current_user.nil?) ? resource.likers.where(:id => current_user.id).count : 0
 						  style=""
-						  if like.count > 0
+						  if like
 						    style="active"
 						  end %> 
 						<div class="like <%=style%>"></div>

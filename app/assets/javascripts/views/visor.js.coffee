@@ -4,7 +4,9 @@ define [
 	'models/resource'
 	'hbs!templates/visor'
 	'froogaloop2.min'
-],($,Backbone,ResourceModel,VisorTPL,F) ->
+	'models/comentario'
+	'hbs!templates/comentarios/comentario'
+],($,Backbone,ResourceModel,VisorTPL,F,MComentario,TComentario) ->
 	class VisorView extends Backbone.View
 		el:$('#templating')
 		events:
@@ -13,10 +15,15 @@ define [
 			'click .rating .star':'ratingSet'
 			'mouseenter .thi':'showOverlay'
 			'mouseleave .thi':'hideOverlay'
-
+			'click .more':'showMoreComments'
+			'keydown input.text_comentario':'crearComentario'
+			'click img.comentar':'crearComentario'
+			'click .social .comment':'comentar'
+			'click .social .like':'like'
 
 		initialize:(@parent) ->
 			@tpl = eval(VisorTPL())
+			@tpl_comment = eval(TComentario())
 			@id = parent.attr('id')
 			@model = new ResourceModel
 				id:@id
@@ -42,6 +49,61 @@ define [
 			$(@el).empty()
 			$(@el).undelegate()
 
+		crearComentario:(e) =>
+			enviar = false
+			if e.type == 'keydown'
+				if e.which == 13
+					enviar = true
+					e.preventDefault()
+			else
+				if e.type == 'click' && $(e.currentTarget).hasClass 'comentar'
+					enviar = true
+			if enviar
+				resource_id = $('#comment_resource_id').val()
+				form = $(e.currentTarget).closest('.new_comment')
+				contenido = form.find('.text_comentario').val()
+				if contenido!=''
+					comment = new MComentario
+						'contenido':contenido
+						'resource_id':resource_id
+					comment.save()
+					comment.on 'change',(d) =>
+						html = @tpl_comment(d.toJSON())
+						form.find('.text_comentario').val('')
+
+						item = $("##{resource_id}.item")
+						count = $('#visor-modal .comment_count')
+						total = parseInt(count.html())+1
+						count.html(total)
+						item.find('.comment_count').html(total)
+						$('#visor-modal .append_comments').append html
+						item.find('.nuevos_comentarios').append html
+		like: (e) ->
+			target = $(e.currentTarget)
+			id = target.attr('data-id')
+			if target.hasClass 'active'
+				action = 'remove'
+			else
+				action = 'add'
+			$.post "/resources/like/#{id}/#{action}",(d) ->
+				$('#visor-modal .like_count').text(d)
+				$("##{id}.item").find('.like_count').text(d)
+				target.toggleClass 'active'
+				$("##{id}.item").find('.like').toggleClass 'active'
+
+		comentar:(e) =>
+			$('#visor-modal').find('.text_comentario').focus()
+			false
+
+		showMoreComments:(e) ->
+			target = $(e.currentTarget)
+			if target.hasClass 'active'
+				$('.nuevos_comentarios').fadeIn()
+				$('.more_comentarios').slideUp()
+			else
+				$('.nuevos_comentarios').fadeOut()
+				$('.more_comentarios').slideDown()
+			$(e.currentTarget).toggleClass 'active'
 		showOverlay:(e) =>
 			$(e.currentTarget).find('.overlay').show()
 
@@ -74,6 +136,8 @@ define [
 						html+='<img src="/assets/STAR_OFF.gif"/>'	
 					$('#visor-modal').find('.estrellas').html html
 					$("##{@id}").find('.estrellas').html html
+
+
 
 		loadVimeoPlayer:(video_url) ->
 			player = $f($('#vmplayer')[0]);

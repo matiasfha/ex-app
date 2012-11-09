@@ -42,7 +42,7 @@ define [
 				@type = 'imagen'
 			else
 				if !imgs.hasClass('active') && vids.hasClass('active')
-					@type = 'videos'
+					@type = 'video'
 
 		render: =>
 			if @clasificacion!= false
@@ -153,40 +153,41 @@ define [
 				resource_id = item.attr('id')
 				form = $(e.currentTarget).closest('.new_comment')
 				contenido = form.find('.text_comentario').val()
-				comment = new MComentario
-					'contenido':contenido
-					'resource_id':resource_id
-				comment.save()
-				comment.on 'change',(d) =>
-					html = $(@tpl_comment(d.toJSON()))
-					html.hide()
-					form.find('.text_comentario').val('')
-					count = item.find('.comment_count')
-					total = parseInt(count.html())+1
-					count.html(total)
+				if contenido!=''
+					comment = new MComentario
+						'contenido':contenido
+						'resource_id':resource_id
+					comment.save()
+					comment.on 'change',(d) =>
+						html = @tpl_comment(d.toJSON())
+						
+						form.find('.text_comentario').val('')
+						count = item.find('.comment_count')
+						total = parseInt(count.html())+1
+						count.html(total)
 
-					element = html.clone()
-					element.children().css({display:'block',visibility:'hidden'})
-					element.css({display:'block',visibility:'hidden'}).insertAfter(form)
-					height = element.height()
-					element.remove()
-					$(@el).height ($(@el).height()+height)
+						element = html.clone()
+						element.children().css({display:'block',visibility:'hidden'})
+						element.css({display:'block',visibility:'hidden'}).insertAfter(form)
+						height = element.height()
+						element.remove()
+						$(@el).height ($(@el).height()+height)
 
-					# Reposicionar los elementos inferiores
-					siblings = parent.nextAll('.item')
-					items = []
-					items.push s for s in siblings when $(s).css('left')==item.css('left')
-					#Para cada item posicionarlo en top:newTop
-					for e in items 
-						top = parseInt($(e).css('top'))
+						# Reposicionar los elementos inferiores
+						siblings = parent.nextAll('.item')
+						items = []
+						items.push s for s in siblings when $(s).css('left')==item.css('left')
+						#Para cada item posicionarlo en top:newTop
+						for e in items 
+							top = parseInt($(e).css('top'))
 
-						if flecha.hasClass('active')
-							 top = $(e).attr('original-top')
-						else
-							$(e).attr('original-top',top)
-							top = top + height + 30
-						$(e).animate {top:top},300
+							if flecha.hasClass('active')
+								 top = $(e).attr('original-top')
+							else
+								$(e).attr('original-top',top)
+								top = top + height + 30
+							$(e).animate {top:top},300
 
-					item.find('.nuevos_comentarios').append html
-					html.fadeIn()
+						item.find('.nuevos_comentarios').append html
+						
 			

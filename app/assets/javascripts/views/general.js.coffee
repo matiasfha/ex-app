@@ -16,6 +16,7 @@ define [
 			'click .secciones a':'setSeccion'
 			'click .section.imagenes':'setType'
 			'click .section.videos':'setType'
+			
 
 		setSeccion: (e) ->
 			target = $(e.currentTarget)
@@ -27,7 +28,23 @@ define [
 			target.toggleClass 'active'
 			Backbone.history.loadUrl( Backbone.history.fragment )
 
+		clickTuercas:(e) ->
+			if !$('.tuerca1').hasClass 'active'
+				$('.menu').show()
+			else
+				$('.menu').hide()
+			$('.tuerca1').toggleClass 'active'
+			$('.tuerca2').toggleClass 'active'
+
 		initialize: ->
+			$('.tuerca1,.tuerca2').on 'click',@clickTuercas
+			$('#feedback .tab').on 'click',(e) ->
+				if $(e.currentTarget).hasClass 'active'
+					top = '96%'
+				else
+					top = '68%'
+				$('#feedback').animate({top:top})			
+				$(e.currentTarget).toggleClass 'active'	
 			@render()
 		
 		masonryLayout: ->
@@ -60,8 +77,8 @@ define [
 				container.fadeIn().stop()
 
 		render: =>
-			if $('.alerta').length > 0
-				notify $('.alerta').attr('data-text'), $('.alerta').attr('data-type')
+			# if $('.alerta').length > 0
+			# 	notify $('.alerta').attr('data-text'), $('.alerta').attr('data-type')
 			c = window.location.href.split('#')[1]
 			if c=='index' 
 				c = 'favoritos'

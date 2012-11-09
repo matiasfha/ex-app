@@ -1,4 +1,4 @@
-define 'templates/helpers/iter',['handlebars'],(Handlebars) ->
+define 'templates/helpers/compare',['handlebars'],(Handlebars) ->
     Handlebars.registerHelper 'compare', (lvalue, operator, rvalue, options) ->
     	if arguments.length < 3
             throw new Error("Handlerbars Helper 'compare' needs 2 parameters");

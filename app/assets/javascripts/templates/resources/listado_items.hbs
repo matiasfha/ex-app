@@ -8,7 +8,11 @@
 				
 				<div class="overlay">
 					<div class="social">
-						<div class="like"></div>
+						{{#if this.like}}
+						<div class="like active" data-id="{{id}}"></div>
+						{{else}}
+						<div class="like" data-id="{{id}}"></div>
+						{{/if}}
 						<div class="comment"></div>
 <a href="https://twitter.com/share?url=http://dandoodev.herokuapp.com/resources/{{this.id}}&text={{this.titulo}}&via=Dandootv&lang=es&related=Danootv&count=none&hashtags=#Dandoo" target="_blank">
 						<div class="twitter"></div>

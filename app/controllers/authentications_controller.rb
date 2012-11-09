@@ -77,6 +77,9 @@ class AuthenticationsController < ApplicationController
     @user
   end
 
+  def test
+  end
+
   def new
     auth         = request.env['omniauth.auth']
     @provider     = auth['provider'] || ""

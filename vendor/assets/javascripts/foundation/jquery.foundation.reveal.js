@@ -8,8 +8,8 @@
 */
 /*globals jQuery */
 
-// (function ($) {
-define(['jquery'],function($){
+(function ($) {
+
 
   'use strict';
   //
@@ -794,5 +794,5 @@ define(['jquery'],function($){
 
   }; // end $.fn
 
-// } ( jQuery ) );
-});
+} ( jQuery ) );
+
