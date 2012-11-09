@@ -16,6 +16,9 @@ class ResourcesController < ApplicationController
       if params[:tipo]=='todos'
         @resources = Resource.all.order_by([[:created_at,:desc]]).page(params[:page])
       else
+        if params[:tipo]=='videos'
+          params[:tipo]='video'
+        end
         @resources = Resource.where(:type => params[:tipo]).order_by([[:created_at,:desc]]).page(params[:page])
       end
     else

@@ -43,7 +43,7 @@ define [
 				@type = 'imagen'
 			else
 				if !imgs.hasClass('active') && vids.hasClass('active')
-					@type = 'video'
+					@type = 'videos'
 
 		render: =>
 			if @clasificacion!= false
