@@ -29,11 +29,10 @@ DandooDev::Application.routes.draw do
   #match '/user_subidas/:id/:page' => 'users#user_subidas'
   resources :users, :only => [:show]
   
-  resources :resources 
-  #, :only => [:create,:show,:index,:destroy]
   match 'resources/listado/:clasificacion/:tipo(/:page)' => 'resources#index', :via => :get
   match 'resources/like/:id/:accion' => 'resources#like', :via => :post
-  
+  resources :resources , :only => [:create,:show,:index,:destroy]
+
   resources :comments, :only => [:create,:show]
   match '/comments/:pid/:cid' => 'comments#destroy', :via => :delete
   
