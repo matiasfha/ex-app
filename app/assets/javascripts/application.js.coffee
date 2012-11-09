@@ -2,6 +2,17 @@ require.config
 	hbs:
 		disableI18n:true
 		disableHelpers:true
+	shim:
+		'combobox':['jquery']
+		'jquery.pnotify':['jquery']
+		'modernizr-2.6.1-respond-1.1.0.min':
+			exports:'Modernizr'
+		'jquery.serializeObject':['jquery']
+		'jquery.masonry.min':['jquery']
+		'jquery.imagesloaded.min':['jquery']
+		'jquery.elastislide':['jquery']
+		'jquery.cycle.all':['jquery']
+		'froogaloop2.min':['jquery']
 
 require [
 	'jquery'

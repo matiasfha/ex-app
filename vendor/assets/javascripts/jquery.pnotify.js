@@ -10,8 +10,7 @@
  *	  http://www.mozilla.org/MPL/MPL-1.1.html
  */
 
-define(['jquery'],function($){
-// (function($) {
+(function($) {
 	var history_handle_top,
 		timer,
 		body,
@@ -910,5 +909,4 @@ define(['jquery'],function($){
 		// The stack on which the notices will be placed. Also controls the direction the notices stack.
 		stack: {"dir1": "down", "dir2": "left", "push": "bottom", "spacing1": 25, "spacing2": 25}
 	};
-// })(jQuery);
-});
+})(jQuery);
