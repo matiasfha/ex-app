@@ -1,6 +1,5 @@
+#encoding utf-8
 DandooDev::Application.routes.draw do
-  
-
   devise_for :admins
   mount RailsAdmin::Engine => '/admin', :as => 'rails_admin'
 
@@ -26,12 +25,11 @@ DandooDev::Application.routes.draw do
     put '/user/complete_registration' => 'registrations#finalizar'
   end
   
-  #match '/user_subidas/:id/:page' => 'users#user_subidas'
   resources :users, :only => [:show]
   
   match 'resources/listado/:clasificacion/:tipo(/:page)' => 'resources#index', :via => :get
   match 'resources/like/:id/:accion' => 'resources#like', :via => :post
-  resources :resources , :only => [:create,:show,:index,:destroy]
+  resources :resources, :only => [:create,:show,:index,:destroy]
 
   resources :comments, :only => [:create,:show]
   match '/comments/:pid/:cid' => 'comments#destroy', :via => :delete
