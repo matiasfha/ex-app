@@ -22,8 +22,8 @@ define [
 			'click .social .like':'like'
 
 		initialize:(@parent) ->
-			@tpl = eval(VisorTPL())
-			@tpl_comment = eval(TComentario())
+			@tpl = eval(VisorTPL)
+			@tpl_comment = eval(TComentario)
 			@id = parent.attr('id')
 			@model = new ResourceModel
 				id:@id

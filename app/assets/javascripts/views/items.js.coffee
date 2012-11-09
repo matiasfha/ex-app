@@ -22,7 +22,7 @@ define [
 
 		initialize:(@clasificacion) ->
 			@tpl = eval(TListado)	
-			@tpl_comment = eval(TComentario())
+			@tpl_comment = eval(TComentario)
 			
 			@resources = new Resources()		
 			if @clasificacion!= false
