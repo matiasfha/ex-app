@@ -21,7 +21,7 @@ define [
 			'click .item .overlay:not(.social)':'showVisor'
 
 		initialize:(@clasificacion) ->
-			console.log TListado
+
 			@tpl = eval(TListado)	
 			@tpl_comment = eval(TComentario)
 			
@@ -47,6 +47,7 @@ define [
 
 		render: =>
 			if @clasificacion!= false
+				console.log @tpl(@resources.toJSON()[0])
 				data = $(@tpl(@resources.toJSON()[0]))
 				items = $('.item')
 				data.imagesLoaded () =>
