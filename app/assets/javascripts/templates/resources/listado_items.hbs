@@ -75,7 +75,25 @@
 			</div>
 			<div class="separador"></div>
 			<div class="nuevos_comentarios">
-				{{> _comentarios_comentarios}}
+				{{#each comments}}
+				<div class="fila" id="comentario-{{id}}">
+					<div class="avatar">
+						<a href="/users/{{user_id}}">
+							<img src="{{this.avatar}}" width="40" height="40" />
+						</a>
+						
+					</div>
+					<div class="autor">
+						<a href="/users/{{this.user_id}}">
+								{{this.user_nickname}}
+							</a>
+						
+					</div>
+					<div class="texto">
+					{{this.contenido}}
+					</div>
+				</div>
+				{{/each}}
 			</div>
 			
 			{{#if signed_in}}

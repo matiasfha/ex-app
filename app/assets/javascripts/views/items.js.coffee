@@ -3,12 +3,11 @@ define [
 	'backbone'
 	'collections/resources'
 	'hbs!templates/resources/listado_items'
-	'hbs!templates/comentarios/_comentarios'
 	'models/comentario'
 	'hbs!templates/comentarios/comentario'
 	'views/visor'
 	'jquery.imagesloaded.min'
-],($,Backbone,Resources,TListado,PComentarios,MComentario,TComentario,VisorView,I) ->
+],($,Backbone,Resources,TListado,MComentario,TComentario,VisorView,I) ->
 	class ItemView extends Backbone.View 
 		el:$('#listado_container')
 		events:
@@ -23,7 +22,6 @@ define [
 
 		initialize:(@clasificacion) ->
 			@tpl = eval(TListado())	
-			eval(PComentarios())
 			@tpl_comment = eval(TComentario())
 			
 			@resources = new Resources()		
