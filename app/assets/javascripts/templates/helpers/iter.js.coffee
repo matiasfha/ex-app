@@ -1,4 +1,4 @@
-define 'templates/helpers/iter',['handelbars'],(Handlebars) ->
+define 'templates/helpers/iter',['handlebars'],(Handlebars) ->
 	Handlebars.registerHelper 'iter', (inicio,fin,options) ->
 		ret = ""
 		if inicio <= fin 
