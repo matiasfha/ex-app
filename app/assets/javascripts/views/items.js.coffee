@@ -21,7 +21,7 @@ define [
 			'click .item .overlay:not(.social)':'showVisor'
 
 		initialize:(@clasificacion) ->
-			@tpl = eval(TListado())	
+			@tpl = eval(TListado)	
 			@tpl_comment = eval(TComentario())
 			
 			@resources = new Resources()		
