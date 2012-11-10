@@ -9,9 +9,11 @@ class ResourcesController < ApplicationController
       @resources = Resource.mas_votadas(params[:page],params[:tipo])
       
     when 'populares'
-      @resources = Resource.mas_populares(params[:page])
+      @resources = Resource.mas_populares(params[:page],params[:tipo])
+      
     when 'vistos'
-      @resources = Resource.mas_vistas(params[:page],'imagen')
+      @resources = Resource.mas_vistas(params[:page],params[:tipo])
+      
     when 'nuevos' 
       if params[:tipo]=='todos'
         @resources = Resource.all.order_by([[:created_at,:desc]]).page(params[:page])

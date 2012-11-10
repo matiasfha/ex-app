@@ -20,7 +20,7 @@ group :assets do
   gem 'yui-compressor'
   gem 'jquery-rails'
   #gem 'jquery-ui-rails'
-  gem "asset_sync"
+  #gem "asset_sync"
   gem 'handlebars_assets'
 
 end
@@ -46,7 +46,7 @@ gem 'valid_email'
 gem "mongoid-paperclip", :require => "mongoid_paperclip", :git => "git://github.com/meskyanichi/mongoid-paperclip.git"
 gem "aws-s3",            :require => "aws/s3"
 gem "aws-sdk"
-gem 'dalli'
+#gem 'dalli'
 gem 'recaptcha',			:require => 'recaptcha/rails'
 
 

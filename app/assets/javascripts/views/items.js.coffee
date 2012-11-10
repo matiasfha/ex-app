@@ -48,9 +48,11 @@ define [
 		render: =>
 			if @clasificacion!= false
 				data = $(@tpl(@resources.toJSON()[0]))
+				console.log @resources.toJSON()[0]
 				items = $('.item')
 				data.imagesLoaded () =>
 					$(@el).masonry('remove',items).masonry()
+					$(@el).empty()
 					.html(data).masonry('reload')
 					
 

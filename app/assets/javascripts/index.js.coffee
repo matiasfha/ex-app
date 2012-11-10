@@ -46,6 +46,7 @@ require [
 		$.ajaxSetup
 			beforeSend: (xhr) ->
 				xhr.setRequestHeader('X-CSRF-Token', token);
+			cache: false
 		
 		# window.notify = (text,type) ->
 		# 	$.pnotify
