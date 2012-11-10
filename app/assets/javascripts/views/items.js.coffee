@@ -2,7 +2,7 @@ define [
 	'jquery'
 	'backbone'
 	'collections/resources'
-	'hbs!templates/resources/listado_items'
+	'text!templates/resources/listado_items.hbs'
 	'models/comentario'
 	'text!templates/comentarios/comentario.hbs'
 	'views/visor'
@@ -22,8 +22,9 @@ define [
 
 		initialize:(@clasificacion) ->
 			
-			@tpl = TListado
-			@tpl_comment = TComentario
+			@tpl = eval(TListado)
+			
+			@tpl_comment = eval(TComentario)
 			
 			@resources = new Resources()		
 			if @clasificacion!= false
@@ -47,11 +48,10 @@ define [
 
 		render: =>
 			if @clasificacion!= false
-				data = $(@tpl(@resources.toJSON()[0]))
-				console.log @resources.toJSON()[0]
 				items = $('.item')
+				$(@el).masonry('remove',items).masonry()
+				data = $(@tpl(@resources.toJSON()[0]))
 				data.imagesLoaded () =>
-					$(@el).masonry('remove',items).masonry()
 					$(@el).empty()
 					.html(data).masonry('reload')
 					
