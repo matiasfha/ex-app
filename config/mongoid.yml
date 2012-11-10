@@ -70,7 +70,7 @@ test:
 production:
   sessions:
     default:
-      uri: mongodb://dandoo:n$&824FT@alex.mongohq.com:10089/dev
+      uri: ENV['MONGOIDURL']
       options:
         skip_version_check: true
         safe: true
