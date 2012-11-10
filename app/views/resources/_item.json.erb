@@ -48,6 +48,7 @@ end
 	,"comments":[
 		<%
 		comments = @resource.comments.order_by([[:created_at,:desc]]).limit(2).to_a().reverse
+		comments = comments.select{ |e| e}
 		comments.each_with_index do |comentario,indice|
 			comment_user = User.find(comentario.user_id)
 			if current_user.nil?
@@ -83,6 +84,7 @@ end
 	,"more_comments":[
 		<%
 		comments = @resource.comments.order_by([[:created_at,:desc]]).to_a().reverse
+		comments = comments.select{ |e| e}
 		comments.each_with_index do |comentario,indice|
 			comment_user = User.find(comentario.user_id)
 			if current_user.nil?
