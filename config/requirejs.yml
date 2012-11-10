@@ -1,4 +1,0 @@
-modules:
-  - name: 'index'
-  - name: 'user_index'
-  - name: 'registrations'
