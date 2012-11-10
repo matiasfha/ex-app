@@ -4,7 +4,7 @@ define [
 	'collections/resources'
 	'hbs!templates/resources/listado_items'
 	'models/comentario'
-	'hbs!templates/comentarios/comentario'
+	'text!templates/comentarios/comentario.hbs'
 	'views/visor'
 	'jquery.imagesloaded.min'
 ],($,Backbone,Resources,TListado,MComentario,TComentario,VisorView,I) ->
@@ -21,10 +21,8 @@ define [
 			'click .item .overlay:not(.social)':'showVisor'
 
 		initialize:(@clasificacion) ->
-
 			@tpl = eval(TListado)	
 			@tpl_comment = eval(TComentario)
-			
 			@resources = new Resources()		
 			if @clasificacion!= false
 				@getSeccion()
@@ -49,9 +47,11 @@ define [
 			if @clasificacion!= false
 				console.log @tpl(@resources.toJSON()[0])
 				data = $(@tpl(@resources.toJSON()[0]))
+				console.log @resources.toJSON()[0]
 				items = $('.item')
 				data.imagesLoaded () =>
 					$(@el).masonry('remove',items).masonry()
+					$(@el).empty()
 					.html(data).masonry('reload')
 					
 

@@ -4,7 +4,6 @@ require.config
 		disableHelpers:true
 	shim:
 		'combobox':['jquery']
-		#'jquery.pnotify':['jquery']
 		'foundation/modernizr.foundation':
 			exports:'Modernizr'
 		'jquery.serializeObject':['jquery']
@@ -14,10 +13,12 @@ require.config
 		'jquery.cycle.all':['jquery']
 		'froogaloop2.min':['jquery']
 		'foundation/jquery.foundation.reveal':['jquery']
-		'foundation/app':['jquery']
 		'foundation/jquery.placeholder':['jquery']
+		'foundation/app':['jquery','foundation/modernizr.foundation','foundation/jquery.placeholder']
 		'underscore_hbs':
 			exports:'_'
+		'handlebars.runtime':
+			exports:'Handlebars'
 		'foundation/jquery.foundation.forms':['jquery']
 		
 require [
@@ -26,7 +27,7 @@ require [
 	'backbone'
 	'domReady',
 	'foundation/modernizr.foundation'
-	'handlebars'
+	'handlebars.runtime'
 	'router'
 	'templates/helpers/compare'
 	'templates/helpers/iter'
@@ -45,6 +46,7 @@ require [
 		$.ajaxSetup
 			beforeSend: (xhr) ->
 				xhr.setRequestHeader('X-CSRF-Token', token);
+			cache: false
 		
 		# window.notify = (text,type) ->
 		# 	$.pnotify
