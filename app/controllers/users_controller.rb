@@ -5,10 +5,7 @@ class UsersController < ApplicationController
   	@user = User.find(params[:id])
   	@resource = Resource.new
     
-    @resources = Array.new
-    Voto.where(:user_id => @user.id).each do |v|
-      @resources << Resource.find(v.resource_id)
-    end
+    @resources = @user.resources.order_by([[:created_at,:desc]]).page(params[:page])
   end
 
   def user_subidas

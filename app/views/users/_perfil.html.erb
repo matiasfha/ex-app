@@ -1,5 +1,5 @@
-<div class="row" id="perfil">
-	<div class="twelve columns widget">
+<div class="row" id="perfil" >
+	<div class="twelve columns widget" style="height: 350px !important;margin-bottom:120px">
 		<div class="row">
 			<br />
 			<br />
@@ -57,7 +57,7 @@
 						<label>Género</label>
 					</div>
 					<div class="six columns" >
-						<label><%=Gender.find(@user.gender_id).descripcion%>
+						<label><%=(@user.gender_id.nil?) ? 'No especificado' : Gender.find(@user.gender_id).descripcion%>
 					</div>
 				</div>
 
@@ -67,7 +67,7 @@
 						<label>Estado Civil</label>
 					</div>
 					<div class="six columns" >
-						<label><%=CivilStatu.find(@user.civil_statu_id).descripcion%>
+						<label><%=(@user.civil_statu_id.nil?) ? 'No especificado' : CivilStatu.find(@user.civil_statu_id).descripcion%>
 					</div>
 				</div>
 				<div class="row">
@@ -76,7 +76,7 @@
 						<label>País:</label>
 					</div>
 					<div class="six columns">
-						<label><%=Country.find(@user.country_id).nombre%></label>
+						<label><%=(@user.country_id.nil?) ? 'No especificado' : Country.find(@user.country_id).nombre%></label>
 					</div>
 				</div>
 				<div class="row">
@@ -85,7 +85,8 @@
 						<label>Región:</label>
 					</div>
 					<div class="six columns">
-						<label><%=State.find(@user.state_id).nombre%></label>
+						<label><%= (@user.state_id.nil?) ? 'No especificado': State.find(@user.state_id).nombre
+						%></label>
 					</div>
 				</div>
 				<div class="row">
@@ -94,7 +95,7 @@
 						<label>Comuna:</label>
 					</div>
 					<div class="six columns">
-						<label>Comuna: <%=Commune.find(@user.commune_id).nombre%></label>
+						<label><%= (@user.commune_id.nil?) ? 'No especificado' : Commune.find(@user.commune_id).nombre%></label>
 					</div>
 				</div>
 				<div class="row">
@@ -103,7 +104,7 @@
 						<label>Ciudad:</label>
 					</div>
 					<div class="six columns">
-						<label><%=City.find(@user.city_id).nombre%></label>
+						<label><%=(@user.city_id.nil?) ? 'No especificado' : City.find(@user.city_id).nombre%></label>
 					</div>
 				</div>
 			</div>
