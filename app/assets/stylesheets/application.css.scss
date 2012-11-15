@@ -10,14 +10,14 @@
  *
  
  * require video-js.min
- *=require jquery.pnotify.default
- *=require jquery.pnotify.default.icons
+ * require jquery.pnotify.default
+ * require jquery.pnotify.default.icons
  *=require jquery.ui.core
  *=require jquery.ui.theme
  *=require jquery.ui.datepicker
- *=require jquery.ui.autocomplete
- *=require_self
+ * require jquery.ui.autocomplete
  *=require foundation.min
+ *=require_self
  * require_tree .
 */
 @import "elastislide";
@@ -46,7 +46,7 @@ div#container, div.container {
 	vertical-align: baseline;
 	letter-spacing: 0;
 	text-indent: 1px;
-	text-shadow: 0 1px 2px white;
+	//text-shadow: 0 1px 2px white;
 }
  
  
@@ -122,7 +122,7 @@ body.ie .two-thirds .column-row { width: 660px; }
 	.section{
 		width:96px;
 		top:-25px;
-		right: -200px;
+		right: -100px;
 		position:relative;
 		float:left;
 		.tv{
@@ -164,6 +164,7 @@ body.ie .two-thirds .column-row { width: 660px; }
 			border-radius:8px;
 			-moz-border-radius:8px;
 			-webkit-border-radius:8px;
+			-o-border-radius:8px;
 			behavior:('PIE.htc');
 			position:absolute;
 			top:-8px;
@@ -172,11 +173,16 @@ body.ie .two-thirds .column-row { width: 660px; }
 		
 	}
 
+	.iso{
+		position:absolute;
+		top:-20px;
+		right:42px;
+	}
 	.tuerca1{
 		cursor:pointer;
 		position:absolute;
 		top:0px;
-		right:84px;
+		right:104px;
 		width:31px;
 		height: 23px;
 		background:url('tuercaOFF_01.png') no-repeat;
@@ -194,7 +200,7 @@ body.ie .two-thirds .column-row { width: 660px; }
 		cursor:pointer;
 		position:absolute;
 		top:0px;
-		right:50px;
+		right:70px;
 		width:34px;
 		height: 23px;
 		background:url('tuercaOFF_02.png') no-repeat;
@@ -508,3 +514,5 @@ div.buscar{
 		}
 	}
 }
+
+@import "user"

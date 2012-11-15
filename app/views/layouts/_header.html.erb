@@ -1,0 +1,56 @@
+<div id="header">
+	<% if user_signed_in? %>
+	<div class="widget">
+		
+		<ul id="listado-list" class="elastislide-list">
+			<li style="position:relative;">
+				<%= image_tag 'header/pieza1.jpg' ,:class => 'recurso'%>
+				<div style="position:absolute;top:0;left:0">
+					<%= image_tag '50_dandoo.png' %>
+				</div>
+			</li>
+			<li style="position:relative;">
+				<%= image_tag 'header/pieza2.jpg' ,:class => 'recurso'%>
+				<div style="position:absolute;top:0;left:0">
+					<%= image_tag '100_dandoo.png' %>
+				</div>
+			</li>
+			<li style="position:relative;">
+				<%= image_tag 'http://s3.amazonaws.com/dandoo-pictures/imagens/5081abd82b091e8689000002/medium.png?1350675410' ,:class => 'recurso'%>
+				<div style="position:absolute;top:0;left:0">
+					<%= image_tag '150_dandoo.png' %>
+				</div>
+			</li>
+
+			<li  style="position:relative;">
+				<%= image_tag 'header/pieza1.jpg' ,:class => 'recurso'%>
+				<div style="position:absolute;top:0;left:0">
+					<%= image_tag '50_dandoo.png' %>
+				</div>
+			</li>
+			<li  style="position:relative;">
+				<%= image_tag 'header/pieza2.jpg' ,:class => 'recurso'%>
+				<div style="position:absolute;top:0;left:0">
+					<%= image_tag '100_dandoo.png' %>
+				</div>
+			</li>
+			
+			<li  style="position:relative;">
+				<%= image_tag 'http://s3.amazonaws.com/dandoo-pictures/imagens/5081abb42b091e8689000001/medium.png?1350675376' ,:class => 'recurso'%>
+				<div style="position:absolute;top:0;left:0">
+					<%= image_tag '150_dandoo.png' %>
+				</div>
+			</li>
+		</ul>
+		
+	</div>
+    <% else %>
+	<%= image_tag 'header/header.jpg' %>
+	<div id="sub_header">
+		<%= image_tag 'header/header1280_a.jpg' %>
+		<%= image_tag 'header/header1280_b.jpg' %>
+		<%= image_tag 'header/header1280_c.jpg' %>
+		<%= image_tag 'header/header1280_d.jpg' %>
+	</div>
+	<% end %>
+</div>

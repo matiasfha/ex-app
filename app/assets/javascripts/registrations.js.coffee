@@ -21,7 +21,7 @@ require [
 			dayNamesMin:['Do','Lu','Ma','Mi','Ju','Vi','Sa']
 			dayNamesShort:['Dom','Lun','Mar','Mie','Jue','Vie','Sab']
 			dateFormat:'dd/mm/yy'
-
+		
 		populate_select = (url,element) ->
 			$.getJSON url, (data) ->
 				options = '<option>Seleccione</option>'

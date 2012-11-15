@@ -20,7 +20,7 @@ define [
 			'keydown input.text_comentario':'crearComentario'
 			'click .item .overlay:not(.social)':'showVisor'
 
-		initialize:(@clasificacion) ->
+		initialize:(@clasificacion,@user_id=null) ->
 			
 			@tpl = eval(TListado)
 			
@@ -29,7 +29,10 @@ define [
 			@resources = new Resources()		
 			if @clasificacion!= false
 				@getSeccion()
-				@resources.url = "#{@resources.url}/#{@clasificacion}/#{@type}"
+				@resources.url = "#{@resources.url}/#{@clasificacion}/#{@type}/1"
+				if @user_id?
+					@resources.url = "#{@resources.url}/#{@user_id}"
+
 				@resources.fetch()
 				@resources.on 'reset', () =>
 					@render()

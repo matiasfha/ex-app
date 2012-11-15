@@ -11,4 +11,6 @@ en:
   genero: "Género"
   estado_civil: "Estado Civil"
   captcha_error: "There was an error with the recaptcha code below. Please re-enter the code."
-  
+  time:
+    formats: 
+      de:"%d of %B of %Y"

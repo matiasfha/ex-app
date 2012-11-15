@@ -1,9 +1,125 @@
-<div class="row">
-	<div class="span5">
-		<%=image_tag @user.avatar.url(:medium) %>
-	</div>
-	<div class="span5">
-		Nombre: <%=@user.nombre%>
+<div class="row" id="perfil">
+	<div class="twelve columns widget">
+		<div class="row">
+			<br />
+			<br />
+			<div class="izq">
+				<div class="row">
+					<label class="nombre">
+						<%=@user.nombre+" "+@user.apellidos %>
+					</label>
+					<hr />
+				</div>
+				<div class="row">
+					<label><strong>Miembro Dandoo desde:</strong> <%=@user.created_at.strftime("%d de %B de %Y")%></label>
+              		<br />
+				</div>
+				<div class="row">
+					<div class="avatar">
+		                <%= image_tag @user.avatar.url(:medium) %>
+		            </div>
+				</div>
+				<div class="row">
+						<br />
+						<%=@user.bio %>
+					
+				</div>
+				
+			</div>
+
+			<div class="center">
+				<div class="row">
+					<br />
+					<br />
+					<br />
+				</div>
+
+				<div class="row">
+					<div class="two columns">
+						<label>Email:</label>
+					</div>
+					<div class="six columns">
+						<label><%=@user.email %></label>
+					</div>
+				</div>
+				<div class="row">
+					<br />
+					<div class="two columns">
+						<label>Cumpleaños:</label>
+					</div>
+					<div class="six columns">
+					<label><%=@user.nacimiento.strftime("%d/%m/%Y") %></label>
+					</div>
+				</div>
+				<div class="row">
+					<br />
+					<div class="two columns" >
+						<label>Género</label>
+					</div>
+					<div class="six columns" >
+						<label><%=Gender.find(@user.gender_id).descripcion%>
+					</div>
+				</div>
+
+				<div class="row">
+					<br />
+					<div class="two columns" >
+						<label>Estado Civil</label>
+					</div>
+					<div class="six columns" >
+						<label><%=CivilStatu.find(@user.civil_statu_id).descripcion%>
+					</div>
+				</div>
+				<div class="row">
+					<br />
+					<div class="two columns">
+						<label>País:</label>
+					</div>
+					<div class="six columns">
+						<label><%=Country.find(@user.country_id).nombre%></label>
+					</div>
+				</div>
+				<div class="row">
+					<br />
+					<div class="two columns">
+						<label>Región:</label>
+					</div>
+					<div class="six columns">
+						<label><%=State.find(@user.state_id).nombre%></label>
+					</div>
+				</div>
+				<div class="row">
+					<br />
+					<div class="two columns">
+						<label>Comuna:</label>
+					</div>
+					<div class="six columns">
+						<label>Comuna: <%=Commune.find(@user.commune_id).nombre%></label>
+					</div>
+				</div>
+				<div class="row">
+					<br />
+					<div class="two columns">
+						<label>Ciudad:</label>
+					</div>
+					<div class="six columns">
+						<label><%=City.find(@user.city_id).nombre%></label>
+					</div>
+				</div>
+			</div>
+
+			<div class="right">
+	            <div class="row">
+	              <div class="info_pts">
+	                <label class="ranks"><%=Voto.where(:user_id => @user.id).count %></label>
+	                <label class="favs"><%=Resource.where(:likers_ids => @user.id).count %></label>
+	                <label class="doos">350</label>
+	              </div>
+	            </div>
+	            
+          	</div>
+
+		</div>
 
 	</div>
 </div>

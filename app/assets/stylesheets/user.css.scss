@@ -1,0 +1,339 @@
+.nine.columns{
+	.custom.dropdown{
+		width:100% !important
+	}	
+}
+
+form.custom div.custom.dropdown{
+	width:90% !important;
+}
+#header{
+	position:relative;
+	.display{
+		width:100%;
+		position:absolute;
+		bottom:0;
+		left:0;
+		height:70px;
+		background:rgb(0,0,0);
+		background:rgba(0,0,0,0.3);
+		z-index:2;
+		color:white;
+		font-weight: bold;
+		
+		.avatar{
+			width:150px;
+			height: 150px;
+			position:relative;
+			left:95px;
+			bottom:90px;
+		}
+
+		.nombre{
+			position:relative;
+			left:255px;
+			bottom:144px;
+			font-size:1.4em;
+		}
+		.apellido{
+			position:relative;
+			left:255px;
+			bottom:140px;
+			font-size:1.4em;
+		}
+	}
+}
+
+.user{
+	position:relative;
+	left:-25px;
+	top:-20px;
+	padding-bottom:100px;
+	.buttons{
+		position:relative;
+		top:0;
+		left:-20px;
+		@mixin buttons($default, $activa){
+			width:51px;
+			height: 49px;
+			float:left;
+			background:url($default) no-repeat;
+			&:active,&.active{
+				background:url($activa) no-repeat;
+			}
+		}
+		.separador{
+			background:url('usuario/separador.png') no-repeat;
+			width:3px;
+			height: 37px;
+			float:left;
+			position:relative;
+			top:5px;
+		}
+		.perfil{
+			@include buttons("usuario/BTN_main_perfil_OFF.png","usuario/BTN_main_perfil.png");
+		}
+
+		.tema{
+			@include buttons("usuario/BTN_main_tema_OFF.png","usuario/BTN_main_tema.png")
+		}
+
+		.ranks{
+			@include buttons("usuario/BTN_main_RANK_OFF.png","usuario/BTN_main_RANK.png")	
+		}
+
+		.favs{
+			@include buttons("usuario/BTN_main_LIKE_OFF.png","usuario/BTN_main_LIKE.png")
+		}
+
+		.salir{
+			@include buttons("usuario/BTN_main_salir_OFF.png","usuario/BTN_main_salir.png")
+		}
+	}
+
+	.widget{
+		top:50px;
+		left:15px;
+		background:#FFFFFF;
+		padding:10px;
+		width:95.7% !important;
+		-webkit-box-shadow: 0 3px 4px rgba(0, 0, 0, 0.27), 0 0 40px rgba(0, 0, 0, 0.06) inset;
+		-moz-box-shadow: 0 3px 4px rgba(0, 0, 0, 0.27), 0 0 40px rgba(0, 0, 0, 0.06) inset; 
+		box-shadow: 0 3px 4px rgba(0, 0, 0, 0.27), 0 0 40px rgba(0, 0, 0, 0.06) inset;
+		behavior:url(PIE.htc);
+		height: 550px;
+		color:#aaa3af !important;
+		&::before,&::after{
+			z-index: -10;
+			position: absolute;
+			content: "";
+			bottom: 20px;
+			left: 11px;
+			width: 54%;
+			top: 17px;
+			background: rgba(0, 0, 0, 0.7);
+			-webkit-box-shadow: -10px 9px 17px rgba(50, 50, 50, 0.75);
+			-moz-box-shadow:    -10px 9px 17px rgba(50, 50, 50, 0.75);
+			box-shadow:         -10px 9px 17px rgba(50, 50, 50, 0.75);
+			-webkit-transform: rotate(3deg);
+			-moz-transform: rotate(3deg);
+			-o-transform: rotate(3deg);
+			-ms-transform: rotate(3deg);
+			transform: rotate(3deg);
+		}
+
+		&::after{
+			-webkit-transform: rotate(-3deg);
+			-moz-transform: rotate(-3deg);
+			-o-transform: rotate(-3deg);
+			-ms-transform: rotate(-3deg);
+			transform: rotate(-3deg);
+			-webkit-box-shadow: 14px 13px 15px rgba(50, 50, 50, 0.75);
+			-moz-box-shadow:    14px 13px 15px rgba(50, 50, 50, 0.75);
+			box-shadow:         14px 13px 15px rgba(50, 50, 50, 0.75);
+			right: 11px;
+			left: auto;
+		}
+
+
+		.izq,.center,.right{
+			width:32%;
+			margin:0 5px 5px 5px;
+			display:block;
+			float:left;
+			color:#aaa3af !important;
+		}
+
+		div.right{
+			margin-left:10px !important;
+			width:28%;
+			.info_pts{
+				width: 288px;
+				height: 188px;
+				background:url('usuario/info_ptos.jpg') no-repeat;
+				background-position:right;
+				position:absolute;
+				right: 2%;
+				top:-8px;
+				.ranks,.favs,.doos{
+					color:white !important;
+					font-weight: bold;
+					font-size:1.2em;
+					display:inline-block;
+					position:relative;
+					top:80px;
+					left:40px;
+					text-shadow:0 !important;
+					text-align: center;
+					vertical-align: center;
+				}
+				.favs{
+					left:125px;
+				}
+
+				.doos{
+					left:193px;
+				}
+
+			}
+
+			.guardar{
+				background:url('usuario/btn_GUARDAR.png') no-repeat;
+				width:154px;
+				height:30px;
+				position:absolute;
+				top:455px;
+				right:2%;
+				cursor:pointer;
+			}
+		}
+		.multiple{
+			.one.columns,.two.columns,.four.columns{
+				margin-left:0px;
+			}
+			label{
+				margin-left:-10px;
+			}
+		}
+
+		.center{
+			margin-left:35px !important;
+			.two.columns{
+				text-align:left;
+				white-space:nowrap;
+				label{
+					font-weight: bold;
+				}
+			}
+			.six.columns{
+				text-align:right;
+			}
+		}
+
+		input[type='text'],input[type='password']{
+			color:#aaa3af;
+			border: 2px #eee8ef inset;
+			border-radius:4px;
+			-webkit-border-radius:4px;
+			-moz-border-radius:4px;
+			-o-border-radius:4px;
+			behavior:url('PIE.htc');
+		}
+
+		label{
+			color:#aaa3af !important;
+		}
+		input[type='text'][disabled]{
+			background:url('usuario/ico_BLOCKED.gif') right center no-repeat;
+			
+		}
+		.izq{
+			margin-left: 10px !important;
+			.row{
+				position:relative;
+				left:20px;
+
+			}
+			label.nombre{
+				font-weight: bold;
+				font-size:1.4em;
+			}
+			hr{
+				width:92%;
+				height: 3px;
+				margin:10px 2px 5px 2px;
+				color: #aaa3af;
+				background-color: #aaa3af;
+			}
+
+			.avatar{
+				width:150px;
+				height:150px;
+				padding:0;
+				float:left;
+				img{
+					border: 2px #aaa3af inset;
+					border-radius:4px;
+					-webkit-border-radius:4px;
+					-moz-border-radius:4px;
+					-o-border-radius:4px;
+					behavior:url('PIE.htc');
+					width:150px;
+					height:150px;
+				}
+			}
+
+			.buscar{
+				position:relative;
+				left:170px;
+			}
+			.input_buscar{
+				background:url('usuario/btn_buscar.jpg') no-repeat;
+				width:164px;
+				height: 36px;
+				cursor:pointer;
+			}
+			.adjuntar{
+				margin-top:20px;
+				background:url('usuario/btn_adjuntar.png') no-repeat;
+				width:100px;
+				height: 29px;
+				cursor:pointer;
+			}
+			.authorizations{
+				position:relative;
+				top:70px;
+				left:20px;
+				label{
+					float:left;
+				}
+				.inputs{
+					position:absolute;
+					right: 40px;
+				}
+				input[type='checkbox']{
+					opacity:0;
+					float:left;
+					width:16px;
+				}
+				input[type='checkbox'] + label{
+					padding:2px 0 15px 2px;
+					clear:none;
+					width: 16px;
+					height: 16px;
+					background:url('usuario/btn_checkOFF.png') no-repeat;
+					cursor:pointer;
+				}
+				img.fb{
+					position:relative;
+					top:-15px;
+				}
+
+				input[type='checkbox'].active + label.active{
+					background:url('usuario/btn_checkIN.png') no-repeat;
+				}
+			}
+
+			textarea{
+				color:#aaa3af;
+				border: 2px #aaa3af inset;
+				border-radius:4px;
+				-webkit-border-radius:4px;
+				-moz-border-radius:4px;
+				-o-border-radius:4px;
+				behavior:url('PIE.htc');
+				width:93%;
+				height: 80px;
+				text-align:left;
+			}
+		}
+
+
+		
+		
+	}
+	#listado_container{
+		position:relative;
+		top:-90px;
+	}
+}
