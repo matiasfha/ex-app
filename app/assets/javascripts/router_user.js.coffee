@@ -15,6 +15,9 @@ define [
 			'subir':'showSubir'
 
 		initialize: ->
+			if @itemsView?
+				@itemsView.close()
+			@itemsView = new ItemsView()
 			@masonryLayout()
 
 		masonryLayout: ->
@@ -48,12 +51,16 @@ define [
 			if @itemsView?
 				@itemsView.close()
 			$('#perfil').remove()
+			$('.perfil,.favs,.salir,.tema').removeClass 'active'
+			$('.ranks').addClass 'active'
 			@itemsView = new ItemsView('ranks','5078712d2b091eb4d7000021')
 			
 		showFavs:  =>
 			if @itemsView?
 				@itemsView.close()
 			$('#perfil').remove()
+			$('.perfil,.ranks,.salir,.tema').removeClass 'active'
+			$('.favs').addClass 'active'
 			@itemsView = new ItemsView('favs','5078712d2b091eb4d7000021')
 			
 		showTema: ->
