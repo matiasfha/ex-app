@@ -28,7 +28,7 @@ end
 
 gem 'unicorn'
 gem 'foreman'
-
+gem 'version'
 gem 'i18n'
 gem 'formtastic'
 gem 'rails_admin'
