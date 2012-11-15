@@ -52,12 +52,6 @@ define [
 
 		render: =>
 			if @clasificacion!= false
-<<<<<<< HEAD
-				console.log @tpl(@resources.toJSON()[0])
-				data = $(@tpl(@resources.toJSON()[0]))
-				console.log @resources.toJSON()[0]
-=======
->>>>>>> release-v0.31
 				items = $('.item')
 				$(@el).masonry('remove',items).masonry()
 				data = $(@tpl(@resources.toJSON()[0]))
