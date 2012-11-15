@@ -41,7 +41,7 @@ DandooDev::Application.routes.draw do
   match '/votos/:pid/:valor' => 'votos#create', :via => :post
 
   match 'auth/:provider/callback'  => 'authentications#new'
-  
+  match 'completar' => 'authentications#test'
   resources :authentications, :only => [:index,:create,:destroy]
   resources :emails, :only => [:create] 
   
