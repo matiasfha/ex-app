@@ -19,6 +19,15 @@ define [
 				@itemsView.close()
 			@itemsView = new ItemsView()
 			@masonryLayout()
+			$('.tuerca1,.tuerca2').on 'click',@clickTuercas
+
+		clickTuercas:(e) ->
+			if !$('.tuerca1').hasClass 'active'
+				$('.menu').show()
+			else
+				$('.menu').hide()
+			$('.tuerca1').toggleClass 'active'
+			$('.tuerca2').toggleClass 'active'
 
 		masonryLayout: ->
 			container = $('#listado_container')
@@ -50,7 +59,7 @@ define [
 		showRanks: =>
 			if @itemsView?
 				@itemsView.close()
-			$('#perfil').remove()
+			$('#perfil').fadeOut()
 			$('.perfil,.favs,.salir,.tema').removeClass 'active'
 			$('.ranks').addClass 'active'
 			@itemsView = new ItemsView('ranks','5078712d2b091eb4d7000021')
@@ -58,7 +67,7 @@ define [
 		showFavs:  =>
 			if @itemsView?
 				@itemsView.close()
-			$('#perfil').remove()
+			$('#perfil').fadeOut()
 			$('.perfil,.ranks,.salir,.tema').removeClass 'active'
 			$('.favs').addClass 'active'
 			@itemsView = new ItemsView('favs','5078712d2b091eb4d7000021')
