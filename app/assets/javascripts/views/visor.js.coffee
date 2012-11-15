@@ -2,10 +2,10 @@ define [
 	'jquery'
 	'backbone'
 	'models/resource'
-	'hbs!templates/visor'
+	'text!templates/visor.hbs'
 	'froogaloop2.min'
 	'models/comentario'
-	'hbs!templates/comentarios/comentario'
+	'text!templates/comentarios/comentario.hbs'
 ],($,Backbone,ResourceModel,VisorTPL,F,MComentario,TComentario) ->
 	class VisorView extends Backbone.View
 		el:$('#templating')
@@ -23,8 +23,8 @@ define [
 
 		initialize:(@parent) ->
 
-			@tpl = VisorTPL
-			@tpl_comment = TComentario
+			@tpl = eval(VisorTPL)
+			@tpl_comment = eval(TComentario)
 			@id = parent.attr('id')
 			@model = new ResourceModel
 				id:@id

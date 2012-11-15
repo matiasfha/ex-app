@@ -21,6 +21,7 @@ es:
 		long: "%d-%m-%Y %H:%M"
       	default: "%d-%m-%Y"
       	short: "%d-%m-%Y"
+    de: ! "%d de %B de %Y"
   mensajes:
     ingreso:
       provider_fail: "Provider desconocido"
@@ -28,4 +29,4 @@ es:
       success:"Ingreso exitoso via %{provider}"
       user_fail: "El usuario aun no existe"
       auth_success:"Autentificación vía %{provider} agregada a tu cuenta"
-      no_provider:"No se proveyo provider ni uid""
+      no_provider:"No se proveyo provider ni uid"

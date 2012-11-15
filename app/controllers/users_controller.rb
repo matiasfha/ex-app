@@ -3,7 +3,6 @@ class UsersController < ApplicationController
   
   def show
   	@user = User.find(params[:id])
-  	@resources = @user.resources.order_by([[:created_at,:desc]]).page(params[:page])
   	@resource = Resource.new
   end
 

@@ -1,0 +1,14 @@
+<div id="header">
+	<%= image_tag 'usuario/header_img.jpg' %>
+	<div class="display">
+		<div class="avatar">
+			<%= image_tag @user.avatar.url(:medium) %>
+		</div>
+		<div class="nombre">
+			<%= @user.nombre %>
+		</div>
+		<div class="apellido">
+			<%= @user.apellidos %>
+		</div>
+	</div>
+</div>

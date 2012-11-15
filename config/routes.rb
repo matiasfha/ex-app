@@ -31,6 +31,10 @@ DandooDev::Application.routes.draw do
   match 'resources/like/:id/:accion' => 'resources#like', :via => :post
   resources :resources, :only => [:create,:show,:index,:destroy]
 
+  match '/resources/listado(/:clasificacion)(/:tipo)(/:page)' => 'resources#index', :via => :get
+  match '/resources/listado(/:clasificacion)(/:tipo)(/:page)(/:user_id)' => 'resources#index', :via => :get
+  match '/resources/like/:id/:accion' => 'resources#like', :via => :post
+  
   resources :comments, :only => [:create,:show]
   match '/comments/:pid/:cid' => 'comments#destroy', :via => :delete
   

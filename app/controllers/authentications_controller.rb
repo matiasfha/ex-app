@@ -40,6 +40,15 @@ class AuthenticationsController < ApplicationController
         password = Devise.friendly_token.first(10)
         @user.password = password
         @user.password_confirmation = password
+        params[:user][:interests_ids].each do |i|
+          @user.interests << Interest.find(i)
+        end
+        @user.gender = params[:user][:gender]
+        @user.civil_statu = params[:user][:civil_statu]
+        @user.country = params[:user][:country]
+        @user.state   = params[:user][:state]
+        @user.commune = params[:user][:commune]
+        @user.city    = params[:user][:city ]
         if @user.save
           # flash[:notice] = t(:welcome)
           # sign_in_and_redirect :user, @user

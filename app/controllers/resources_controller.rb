@@ -4,6 +4,7 @@ class ResourcesController < ApplicationController
   #Retorna los recursos en vas al tipo (imagen,video,todos)
   #y clasificacion
   def index
+
     case params[:clasificacion]
     when 'index'
       @resources = Resource.mas_votadas(params[:page],params[:tipo])
@@ -23,6 +24,21 @@ class ResourcesController < ApplicationController
         end
         @resources = Resource.where(:type => params[:tipo]).order_by([[:created_at,:desc]]).page(params[:page])
       end
+    when 'ranks'
+      if params[:user_id].nil?
+        @resources = Resource.mas_votadas(params[:page])
+      else
+        @resources = Array.new 
+        Voto.where(:user_id => params[:user_id]).page(params[:page]).each do |v|
+          @resources << Resource.find(v.resource_id)
+        end
+      end
+    when 'favs'
+      if params[:user_id].nil?
+        @resources = Resource.mas_votadas(params[:page])
+      else
+        @resources = Resource.where(:liker_ids => params[:user_id]).page(params[:page])
+      end
     else
       @resources = Resource.mas_votadas(params[:page])
     end
@@ -31,6 +47,8 @@ class ResourcesController < ApplicationController
       format.json {render :partial => "resources/listado", :formats => [:json]}
     end
   end
+
+
 
   #Despliega informacion para un recurso en especifico
   #Usa el parametro

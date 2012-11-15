@@ -2,7 +2,7 @@ define [
 	'jquery'
 	'backbone'
 	'collections/resources'
-	'hbs!templates/resources/listado_items'
+	'text!templates/resources/listado_items.hbs'
 	'models/comentario'
 	'text!templates/comentarios/comentario.hbs'
 	'views/visor'
@@ -20,13 +20,20 @@ define [
 			'keydown input.text_comentario':'crearComentario'
 			'click .item .overlay:not(.social)':'showVisor'
 
-		initialize:(@clasificacion) ->
-			@tpl = eval(TListado)	
+
+		initialize:(@clasificacion=false,@user_id=null) ->
+			
+			@tpl = eval(TListado)
+			
 			@tpl_comment = eval(TComentario)
+			
 			@resources = new Resources()		
 			if @clasificacion!= false
 				@getSeccion()
-				@resources.url = "#{@resources.url}/#{@clasificacion}/#{@type}"
+				@resources.url = "#{@resources.url}/#{@clasificacion}/#{@type}/1"
+				if @user_id?
+					@resources.url = "#{@resources.url}/#{@user_id}"
+
 				@resources.fetch()
 				@resources.on 'reset', () =>
 					@render()
@@ -45,12 +52,16 @@ define [
 
 		render: =>
 			if @clasificacion!= false
+<<<<<<< HEAD
 				console.log @tpl(@resources.toJSON()[0])
 				data = $(@tpl(@resources.toJSON()[0]))
 				console.log @resources.toJSON()[0]
+=======
+>>>>>>> release-v0.31
 				items = $('.item')
+				$(@el).masonry('remove',items).masonry()
+				data = $(@tpl(@resources.toJSON()[0]))
 				data.imagesLoaded () =>
-					$(@el).masonry('remove',items).masonry()
 					$(@el).empty()
 					.html(data).masonry('reload')
 					

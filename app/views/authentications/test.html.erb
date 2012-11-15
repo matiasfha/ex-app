@@ -12,81 +12,99 @@
     <br />
     <br />
   </div>
-  <div class="row body">
-    <% @user = User.new 
+  <% @user = User.new 
     @provider = 'facebook'
     @uid = '123'
     %>
     <%= semantic_form_for(@user, :url => "/authentications", :html => { :class => 'custom', :method => :post }) do |f| %>
-      <div class="three columns">
-        <div class="row">
-          <div class="avatar" style="background-image: url('<%=@user.avatar_tmp%>');">
+    <div class="row body">
+        <div class="three columns">
+          <div class="row">
+            <div class="avatar" style="background-image: url('<%=@user.avatar_tmp%>');">
+            </div>
+            <%=f.hidden_field :avatar_tmp %>
+            <input type="hidden" name="user[provider]" id="user_provider" value="<%=@provider%>" />
+            <input type="hidden" name="user[uid]" id="user_uid" value="<%=@uid%>" />
+            <br />
           </div>
-          <%=f.hidden_field :avatar_tmp %>
-          <input type="hidden" name="user[provider]" id="user_provider" value="<%=@provider%>" />
-          <input type="hidden" name="user[uid]" id="user_uid" value="<%=@uid%>" />
-          <br />
+          <div class="row">
+            <%= f.select :gender, options_for_select(Gender.all.map{|u| [u.descripcion,u.id]}),{:include_blank => 'Seleccione Género'},{:required => true} %>
+          </div>
+          <div class="row">
+            <%= f.select :civil_statu, CivilStatu.all.map{|u| [u.descripcion, u.id]},{:include_blank => 'Seleccione Estado Civil'},{:required => true} %>
+          </div>
         </div>
-        <div class="row">
-          <%= f.select :gender, options_for_select(Gender.all.map{|u| [u.descripcion,u.id]}),{:include_blank => 'Seleccione Género'},{:required => true} %>
+        <div class="four columns">
+          <div class="row">
+            <%= f.text_field :rut, :required => true, :placeholder => "Rut"%>
+          </div>
+          <div class="row">
+            <%= f.email_field :email, :required => true, :placeholder => "Email"%>
+          </div>
+          <div class="row">
+            <%= f.text_field :nombre, :required => true, :placeholder => "Nombre"%>
+          </div>
+          <div class="row">
+            <%= f.text_field :apellidos, :required => true, :placeholder => "Apellidos"%>
+          </div>
+          <div class="row">
+            <%= f.text_field :nickname, :required => true, :placeholder => "Nickname"%>
+          </div>
+          <div class="row">
+            <%= f.text_field :nacimiento, :required => true, :placeholder => "Fecha de nacimiento", :class => "date"%>
+          </div>
+          <div class="row">
+            <%= f.text_field :bio, :required => true, :placeholder => "Biografía en 140 carácteres",:maxlength => '140'%>
+          </div>
+          <div class="row">
+            <%= f.text_field :ocupacion, :placeholder => 'Ocupación' %>
+          </div>
         </div>
-        <div class="row">
-          <%= f.select :civil_statu, CivilStatu.all.map{|u| [u.descripcion, u.id]},{:include_blank => 'Seleccione Estado Civil'},{:required => true} %>
-        </div>
-      </div>
-      <div class="four columns">
-        <div class="row">
-          <%= f.email_field :email, :required => true, :placeholder => "Email"%>
-        </div>
-        <div class="row">
-          <%= f.text_field :nombre, :required => true, :placeholder => "Nombre"%>
-        </div>
-        <div class="row">
-          <%= f.text_field :apellidos, :required => true, :placeholder => "Apellidos"%>
-        </div>
-        <div class="row">
-          <%= f.text_field :nickname, :required => true, :placeholder => "Nickname"%>
-        </div>
-        <div class="row">
-          <%= f.text_field :nacimiento, :required => true, :placeholder => "Fecha de nacimiento", :class => "date"%>
-        </div>
-        <div class="row">
-          <%= f.text_field :bio, :required => true, :placeholder => "Biografía en 140 carácteres",:maxlength => '140'%>
-        </div>
-        <div class="row">
-          <%= f.text_field :ocupacion, :placeholder => 'Ocupación' %>
-        </div>
-      </div>
 
-      <div class="four columns">
-        <div class="row">
-          <%= f.select :country, Country.all.map{ |u| [u.nombre,u.id] }, {:include_blank => 'Selecciona Pais'},{:class => "span2", :required => true} %>
+        <div class="four columns">
+          <div class="row">
+            <%= f.select :country, Country.all.map{ |u| [u.nombre,u.id] }, {:include_blank => 'Selecciona Pais'},{:class => "span2", :required => true} %>
+          </div>
+          <div class="row">
+            <%= f.select :state, (@user.state_id?) ? State.all.map{|u| [u.nombre,u.id]} : Hash.new, {:include_blank => 'Selecciona Región'},{:class => "span2", :required => true} %>
+          </div>
+          <div class="row">
+            <%= f.select :commune, (@user.commune_id?) ? Commune.all.map{|u| [u.nombre,u.id]} : Hash.new, {:include_blank => 'Comuna'},{:class => "span2", :required => true} %>
+          </div>
+          <div class="row">
+            <%= f.text_field :city, :placeholder => 'Ciudad' %>
+          </div>
+          
+          
         </div>
-        <div class="row">
-          <%= f.select :state, (@user.state_id?) ? State.all.map{|u| [u.nombre,u.id]} : Hash.new, {:include_blank => 'Selecciona Región'},{:class => "span2", :required => true} %>
-        </div>
-        <div class="row">
-          <%= f.select :commune, (@user.commune_id?) ? Commune.all.map{|u| [u.nombre,u.id]} : Hash.new, {:include_blank => 'Comuna'},{:class => "span2", :required => true} %>
-        </div>
-        <div class="row">
-          <%= f.text_field :city, :placeholder => 'Ciudad' %>
-        </div>
-        <div class="row">
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        </div>
-        <div class="row">
-          <%= f.submit "Finalizar", :class => "button small",:id => 'commit' %>
-          <input type="reset" class="button secondary small" value="Cancelar" />
-        </div>
-      </div>
-    <%end%>
-  </div>
+      
+    </div>
 
+    <div class="row interest">
+      <div class="twelve columns">
+        <fieldset>
+          <legend>Tus Intereses</legend>
+          <div class="row">
+          
+          <% Interest.all.each do |i|
+            %>
+            <div class="three columns">
+              <label><%=i.nombre%></label>
+              <%= check_box_tag "user[interests_ids][]",i.id %>
+              <!-- <input type="checkbox" value="<%=i.id%>" /> -->
+            </div>
+            <%
+          end
+          %>
+          </div>
+        </fieldset>
+      </div>
+    </div>
+    <div class="row">
+      <div class="fin two columns offset-by-ten">
+        <%= f.submit "Finalizar", :class => "button small",:id => 'commit' %>
+        <input type="reset" class="button secondary small" value="Cancelar" />
+      </div>
+    </div>
+  <%end%>
 </div>

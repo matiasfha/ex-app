@@ -1,0 +1,150 @@
+ <%= semantic_form_for @user,:html => {:class => 'custom',:style => 'margin-bottom:-50px'} do |f|%>
+    <div class="row" id="perfil">
+      <div class="twelve columns widget" style="height: 500px !important;top:20px !important;left:10px !important;">
+        <div class="row">
+         <br /><br />
+          <div class="izq" >
+            <div class="row">
+              <label class="nombre">
+                <%= @user.nombre %>
+                <%= @user.apellidos %>
+              </label>
+              <hr />
+            </div>
+            <div class="row">
+              <label><strong>Miembro Dandoo desde:</strong> <%=@user.created_at.strftime("%d de %B de %Y")%></label>
+              <br />
+            </div>
+            <div class="row">
+              <div class="avatar">
+                <%= image_tag @user.avatar.url(:medium) %>
+              </div>
+              <div class="buscar">
+                <div class="input_buscar"></div>
+                <%=f.hidden_field :avatar %>
+                <div class="adjuntar"></div>
+              </div>
+              <div class="authorizations">
+                <label>Conectado a</label>
+                <div class="inputs">
+                  <% auth = Authentication.where(:user_id => @user.id,:provider => 'twitter').first
+                  %> 
+                  <input type="checkbox"  <%=(!auth.nil?) ? raw('checked="checked"') : '' %> /><label></label>
+                  <label><%=image_tag "usuario/ico_tw.png" %> </label>
+                  <br />
+                  <% auth = Authentication.where(:user_id => @user.id,:provider => 'facebook').first
+                  %> 
+                  <input type="checkbox" <%=(!auth.nil?) ? raw('checked="checked"') : '' %>/><label></label>
+                  <label><%=image_tag "usuario/ico_fb.png",:class =>'fb' %></label>
+                </div>
+              </div>
+            </div>
+            
+            <div class="row">
+              <br />
+              <%=f.text_area :bio,:placeholder => 'Biografía en 140 carácteres' %>
+            </div>
+            <div class="row">
+              <%=f.text_field :rut, :class => 'blocked',:placeholder => 'Rut',:disabled =>'disabled',:style => 'width:93%;' %>
+            </div>
+            <div class="row multiple">
+              <div class="four columns">
+              <%=f.label :gender, :class => 'right inline'%>
+              </div>
+              <div class="seven columns">
+                <%= f.select :gender, options_for_select(Gender.all.map{ |u| [u.descripcion,u.id] },@user.gender_id) %>
+              </div>
+            </div>
+
+            <div class="row multiple">
+              <div class="four columns" style="white-space:nowrap">
+              <%=f.label :civil_statu, :class => 'right inline',:style => 'display:inline-block'%>
+              </div>
+              <div class="seven columns">
+                <%= f.select :civil_statu, options_for_select(CivilStatu.all.map{ |u| [u.descripcion,u.id] },@user.civil_statu_id) %>
+              </div>
+            </div>
+
+          </div>
+
+          <div class="center">
+            <div class="row">
+              <%=f.text_field :email, :required => true,:placeholder => 'Email' %>
+            </div>
+            
+            <div class="row">
+              <%=f.text_field :nombre, :required => true,:placeholder => 'nombre' %>
+            </div>
+            <div class="row">
+              <%=f.text_field :apellidos, :required => true,:placeholder => 'Apellidos' %>
+            </div>
+            
+            <div class="row">
+              <%=f.password_field :password,:placeholder => 'Password'%>
+            </div>
+            <div class="row">
+              <%=f.password_field :password_confirmation,:placeholder => 'Confirme Password'%>
+            </div>
+
+            <div class="row multiple">
+              <div class="two columns">
+              <%=f.label :nacimiento, :class => 'right inline'%>
+              </div>
+              <div class="nine columns">
+                <%=f.text_field :nacimiento, :class => 'date', :value => @user.nacimiento.strftime("%d/%m/%Y"),:disabled => 'disabled' %>
+              </div>
+            </div>
+            <div class="row multiple">
+              <div class="two columns">
+                <%=f.label :country, :class => 'right inline'%>
+              </div>
+              <div class="nine columns">
+                <%= f.select :country, options_for_select(Country.all.map{ |u| [u.nombre,u.id] },@user.country_id) %>
+              </div>
+            </div>
+            <div class="row multiple">
+              <div class="one columns">
+                <%=f.label :state,:class => 'right inline'%>
+              </div>
+              <div class="nine columns">
+                <%= f.select :state, options_for_select(State.all.map{|u| [u.nombre,u.id]},@user.state_id) %>
+              </div>
+            </div>
+
+            <div class="row multiple">
+              <div class="one columns">
+                <%=f.label :commune,:class => 'right inline'%>
+              </div>
+              <div class="nine columns">
+                <%= f.select :commune, options_for_select(Commune.all.map{|u| [u.nombre,u.id]},@user.commune_id) %>
+              </div>
+            </div>
+
+            <div class="row multiple">
+              <div class="one columns">
+                <%=f.label :city,:class => 'right inline'%>
+              </div>
+              <div class="nine columns">
+                 <%= f.select :city, options_for_select(Commune.all.map{|u| [u.nombre,u.id]},@user.city_id) %>
+              </div>
+            </div>
+
+          </div>
+
+          <div class="right">
+            <div class="row">
+              <div class="info_pts">
+                <label class="ranks"><%=Voto.where(:user_id => @user.id).count %></label>
+                <label class="favs"><%=Resource.where(:liker_ids => @user.id).count %></label>
+                <label class="doos"><%=@user.doos%></label>
+              </div>
+            </div>
+            <div class="row">
+              <div class="guardar"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <% end %>

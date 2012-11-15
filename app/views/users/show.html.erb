@@ -1,67 +1,50 @@
-<% content_for :main_js do %>
+<% 
+css 'redmond/jquery-ui-1.9.1.custom.min'
+content_for :main_js do %>
   "/assets/user_index.js"
-<% end %>
-<div class="span11 contenido" id="perfil-data">
-  <div id="listado_subidas">
-  <%= render :partial => "resources/listado" %>
-  </div>
-  <div id="page2-nav" style="display:none">
-  <a href="/user_subidas/<%=@user.id%>/2"></a>
-</div>
-</div>
+<% end 
+content_for :header do 
+  render :partial => 'users/header'
+end 
 
-<div class="span11 contenido disabled" id="listado_container" >
-  
-</div>
-<div id="page-nav" style="display:none">
-  <a href="/imagenes_index/2"></a>
-</div>
 
-<div class="modal hide fade" id="modal-form">
-  <% if current_user.id == @user.id %>
-    <div class="modal-header">
-      
-      <h3>Nueva publicidad</h3>
+%>
+<input type="hidden" id="user_id" value="<%=@user.id%>" />
+<div class="user">
+
+  <div class="row">
+    <div class="four columns buttons" >
+      <a href="/users/<%=@user.id%>">
+        <div class="perfil active"></div>
+      </a>
+      <% if @user.id == current_user.id %>  
+        <div class="separador"></div>
+      <a href="#tema"><div class="tema"></div></a>
+      <% end %>
+        <div class="separador"></div>
+      <a href="#ranks"><div class="ranks"></div></a>
+        <div class="separador"></div>
+      <a href="#favs"><div class="favs"></div></a>
+      <% if @user.id == current_user.id %>
+        <div class="separador"></div>
+      <a href="/logout">
+        <div class="salir"></div>
+      </a>
+      <% end %>
     </div>
-    <div class="modal-body">
-    <%= semantic_form_for(@resource,:html => {:multipart => true,:class=>'form form-horizontal',:remote => true}) do |f| %>
-      <div class="control-group">
-        <%=f.label :titulo, :class =>'control-label'%>
-        <div class="controls">
-        <%=f.text_field :titulo, :placeholder => 'Titulo',:required => true %>
-        </div>
-      </div>
-      <div class="control-group">
-        <%=f.label :descripcion, :class =>'control-label'%>
-        <div class="controls">
-          <%=f.text_field :descripcion, :placeholder => 'Descripcion',:required => true %>
-        </div>
-      </div>
-      <%=f.hidden_field :type %>
-      <div class="control-group">
-        <%=f.label :url,"Video (Youtube/Vimeo)", :class =>'control-label'%>
-        <div class="controls">
-          <%=f.text_field :url, :placeholder => 'URL del video con http://' %>
-        </div>
-      </div>
-      <div class="control-group">
-        <%=f.label :imagen,"Subir una imagen", :class =>'control-label'%>
-        <div class="controls">
-          <%=f.file_field :imagen %>
-        </div>
-      </div>
+    <% if @user.id == current_user.id %>
+    <div class="two columns">
+      <button class="button small">Subir Recursos</button>
     </div>
-    <div class="modal-footer">  
-      <%= f.submit "Agregar", :class => "btn btn-inverse",:id => 'subir_recurso' %>
-      <input type="reset" value="Cancelar" class="btn" data-dismiss="modal" id="cancelar"/>
+    <% end %>
   </div>
-  <% end %>
-  
-  <% end %>
-</div><!--modal-->
 
-<%= css(:visor) %>
-<%= javascript(:home) %>
-<%= javascript(:user) %>
-<%= javascript(:visor) %>
+  <%= render :partial => 'users/perfil_editar' if current_user.id == @user.id %>
 
+  <%= render :partial => 'users/perfil' if current_user.id != @user.id %>
+</div>
+
+<div class="row user" id="listado_container" style="display:none">
+  <% @resources = @user.resources.order_by([[:created_at,:desc]]).page(1) %>
+    <%= render :partial => 'resources/listado' %>
+</div>

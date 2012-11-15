@@ -17,7 +17,7 @@ require.config
 		'foundation/app':['jquery','foundation/modernizr.foundation','foundation/jquery.placeholder']
 		'underscore_hbs':
 			exports:'_'
-		'handlebars.runtime':
+		'handlebars':
 			exports:'Handlebars'
 		'foundation/jquery.foundation.forms':['jquery']
 		
@@ -27,7 +27,7 @@ require [
 	'backbone'
 	'domReady',
 	'foundation/modernizr.foundation'
-	'handlebars.runtime'
+	'handlebars'
 	'router'
 	'templates/helpers/compare'
 	'templates/helpers/iter'

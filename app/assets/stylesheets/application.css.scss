@@ -10,14 +10,14 @@
  *
  
  * require video-js.min
- *=require jquery.pnotify.default
- *=require jquery.pnotify.default.icons
+ * require jquery.pnotify.default
+ * require jquery.pnotify.default.icons
  *=require jquery.ui.core
  *=require jquery.ui.theme
  *=require jquery.ui.datepicker
- *=require jquery.ui.autocomplete
- *=require_self
+ * require jquery.ui.autocomplete
  *=require foundation.min
+ *=require_self
  * require_tree .
 */
 @import "elastislide";
@@ -46,7 +46,7 @@ div#container, div.container {
 	vertical-align: baseline;
 	letter-spacing: 0;
 	text-indent: 1px;
-	text-shadow: 0 1px 2px white;
+	//text-shadow: 0 1px 2px white;
 }
  
  
@@ -122,7 +122,7 @@ body.ie .two-thirds .column-row { width: 660px; }
 	.section{
 		width:96px;
 		top:-25px;
-		right: -200px;
+		right: -100px;
 		position:relative;
 		float:left;
 		.tv{
@@ -139,8 +139,9 @@ body.ie .two-thirds .column-row { width: 660px; }
 	.login{
 		position:relative;
 		float:right;
-		width:123px;
+		width:143px;
 		top:-25px;
+
 		.twitter{
 			@include attr("ON_twitter.png","Off_twitter.png");
 			float:left;
@@ -155,15 +156,17 @@ body.ie .two-thirds .column-row { width: 660px; }
 
 		div.user{
 			@include attr("ON_user.png","ON_user.png");
-			float:left;
+			float:right;
 			width:31px;
 			height:23px;
+			top:0;
 		}
 
 		.avatar{
 			border-radius:8px;
 			-moz-border-radius:8px;
 			-webkit-border-radius:8px;
+			-o-border-radius:8px;
 			behavior:('PIE.htc');
 			position:absolute;
 			top:-8px;
@@ -172,11 +175,16 @@ body.ie .two-thirds .column-row { width: 660px; }
 		
 	}
 
+	.iso{
+		position:absolute;
+		top:-20px;
+		right:42px;
+	}
 	.tuerca1{
 		cursor:pointer;
 		position:absolute;
 		top:0px;
-		right:84px;
+		right:104px;
 		width:31px;
 		height: 23px;
 		background:url('tuercaOFF_01.png') no-repeat;
@@ -194,7 +202,7 @@ body.ie .two-thirds .column-row { width: 660px; }
 		cursor:pointer;
 		position:absolute;
 		top:0px;
-		right:50px;
+		right:70px;
 		width:34px;
 		height: 23px;
 		background:url('tuercaOFF_02.png') no-repeat;
@@ -476,6 +484,9 @@ div.buscar{
 
 
 #register{
+	.custom.dropdown{
+		width:100% !important;
+	}
 	background-color:#FFFFFF;
 	border-radius:4px;
 	-webkit-border-radius:4px;
@@ -507,4 +518,39 @@ div.buscar{
 			-o-border-radius:4px;
 		}
 	}
+	.fin{
+		position:relative;
+		right:45px;
+	}
+	.interest{
+		width:89%;
+		fieldset{
+			left:55px;
+			position:relative;
+			.three.columns{
+				margin-right: 0px;
+				margin-left:0px;
+				span.checkbox{
+					float:right;
+					position:relative;
+					top:-15px;
+					right: 35px;
+				}
+				input[type="checkbox"]{
+					display:none;
+				}
+
+
+				label{
+					position:relative;
+					top:5px;
+				}
+
+			}
+			
+
+		}
+	}
 }
+
+@import "user"

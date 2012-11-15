@@ -17,7 +17,7 @@
 					<div class="social">
 						<% like = (!current_user.nil?) ? resource.likers.where(:id => current_user.id).count : 0
 						  style=""
-						  if like
+						  if like > 0
 						    style="active"
 						  end %> 
 						<div class="like <%=style%>"></div>

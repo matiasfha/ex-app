@@ -1,6 +1,14 @@
 <% content_for :main_js do %>
 	"/assets/index.js"
-<% end %>
+<% end 
+
+content_for :header do 
+	render :partial => 'layouts/header'
+end
+content_for :barra do 
+	render :partial => 'layouts/barra'
+end
+%>
 <div class="row" id="listado_container" style="display:none">
 	<%= render :partial => "resources/listado" %>
 </div>
@@ -11,3 +19,16 @@
 	<a href="/todos_index/2"></a>
 </div>
 
+<div id="feedback">
+	<div class="tab">
+		Feedback
+	</div>
+	<div class="body">
+		<form method="post">
+			<input type="text" placeholder="Nombre" id="nombre" name="nombre"/>
+			<input type="text" placeholder="Email" id="email" name="email"/>
+			<textarea placeholder="Comentario" id="comentario" name="comentario"></textarea>
+			<input type="submit" value="Enviar" class="small button" style="align:rigth"/>
+		</form>
+</div>
+</div>

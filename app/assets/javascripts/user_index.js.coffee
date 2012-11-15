@@ -1,23 +1,18 @@
 require.config
-	hbs:
-		disableI18n:true
-		disableHelpers:true
 	shim:
-		'combobox':['jquery']
-		#'jquery.pnotify':['jquery']
 		'foundation/modernizr.foundation':
 			exports:'Modernizr'
-		'jquery.serializeObject':['jquery']
 		'jquery.masonry.min':['jquery']
 		'jquery.imagesloaded.min':['jquery']
-		'jquery.elastislide':['jquery','modernizr.custom.17475']
-		'jquery.cycle.all':['jquery']
 		'froogaloop2.min':['jquery']
 		'foundation/jquery.foundation.reveal':['jquery']
-		'foundation/app':['jquery']
 		'foundation/jquery.placeholder':['jquery']
+		'foundation/app':['jquery','foundation/modernizr.foundation','foundation/jquery.placeholder']
 		'underscore_hbs':
 			exports:'_'
+		'handlebars':
+			exports:'Handlebars'
+		'foundation/jquery.foundation.forms':['jquery']
 		
 require [
 	'jquery'
@@ -26,15 +21,14 @@ require [
 	'domReady',
 	'foundation/modernizr.foundation'
 	'handlebars'
-	'jquery.pnotify'
 	'templates/helpers/compare'
 	'templates/helpers/iter'
 	'router_user'
-],($,_,Backbone,domReady,M,HR,N,Compare,Iter,Router) ->
+	'foundation/jquery.foundation.forms'
+],($,_,Backbone,domReady,M,HR,Compare,Iter,Router,F) ->
 	domReady () ->
 		window.Handlebars = HR
 		window.$ = $.noConflict()
-		#window._ = _.noConflict()
 		
 		$.fn.reset = ->
 			$(this).each () ->
@@ -45,15 +39,9 @@ require [
 		$.ajaxSetup
 			beforeSend: (xhr) ->
 				xhr.setRequestHeader('X-CSRF-Token', token);
-		
-		# window.notify = (text,type) ->
-		# 	$.pnotify
-		# 		title:'Dandoo.tv'
-		# 		text:text
-		# 		type:type 
-		# 		opacity:.8
+			cache:false
 
-
+		$(document).foundationCustomForms();
 
 		
 		String.prototype.toHHMMSS = () ->
@@ -69,5 +57,5 @@ require [
 			if seconds < 10
 				seconds = "0"+seconds
 			time    = hours+':'+minutes+':'+seconds;
-		new Router()	
+		new Router()
 		Backbone.history.start()
