@@ -34,7 +34,7 @@ class ResourcesController < ApplicationController
       if params[:user_id].nil?
         @resources = Resource.mas_votadas(params[:page])
       else
-        @resources = Resource.where(:liker_ids => User.find(params[:user_id]).id).page(params[:page])
+        @resources = Resource.where(:liker_ids => params[:user_id]).page(params[:page])
       end
     else
       @resources = Resource.mas_votadas(params[:page])

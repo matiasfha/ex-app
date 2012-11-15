@@ -32,18 +32,18 @@ end
       </a>
       <% end %>
     </div>
+    <% if @user.id == current_user.id %>
     <div class="two columns">
       <button class="button small">Subir Recursos</button>
     </div>
+    <% end %>
   </div>
 
   <%= render :partial => 'users/perfil_editar' if current_user.id == @user.id %>
 
   <%= render :partial => 'users/perfil' if current_user.id != @user.id %>
-  
-  <div class="row" id="listado_container" style="display:none">
-    
-  </div>
-
 </div>
 
+<div class="row user" id="listado_container" style="display:none">
+    <%= render :partial => 'resources/listado' %>
+</div>

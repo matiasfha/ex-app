@@ -48,7 +48,8 @@ form.custom div.custom.dropdown{
 	position:relative;
 	left:-25px;
 	top:-20px;
-	padding-bottom:100px;
+	padding-bottom:50px;
+	margin-bottom:90px;
 	.buttons{
 		position:relative;
 		top:0;
@@ -92,8 +93,8 @@ form.custom div.custom.dropdown{
 	}
 
 	.widget{
-		top:50px;
-		left:15px;
+		top:10px;
+		left:0px;
 		background:#FFFFFF;
 		padding:10px;
 		width:95.7% !important;
@@ -101,7 +102,6 @@ form.custom div.custom.dropdown{
 		-moz-box-shadow: 0 3px 4px rgba(0, 0, 0, 0.27), 0 0 40px rgba(0, 0, 0, 0.06) inset; 
 		box-shadow: 0 3px 4px rgba(0, 0, 0, 0.27), 0 0 40px rgba(0, 0, 0, 0.06) inset;
 		behavior:url(PIE.htc);
-		height: 550px;
 		color:#aaa3af !important;
 		&::before,&::after{
 			z-index: -10;
@@ -332,8 +332,11 @@ form.custom div.custom.dropdown{
 		
 		
 	}
-	#listado_container{
-		position:relative;
-		top:-90px;
-	}
+}
+
+#listado_container.user{
+	position:relative;
+	top:-150px;
+	left:-23px;
+
 }

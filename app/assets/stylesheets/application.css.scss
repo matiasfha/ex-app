@@ -139,8 +139,9 @@ body.ie .two-thirds .column-row { width: 660px; }
 	.login{
 		position:relative;
 		float:right;
-		width:123px;
+		width:143px;
 		top:-25px;
+
 		.twitter{
 			@include attr("ON_twitter.png","Off_twitter.png");
 			float:left;
@@ -155,9 +156,10 @@ body.ie .two-thirds .column-row { width: 660px; }
 
 		div.user{
 			@include attr("ON_user.png","ON_user.png");
-			float:left;
+			float:right;
 			width:31px;
 			height:23px;
+			top:0;
 		}
 
 		.avatar{

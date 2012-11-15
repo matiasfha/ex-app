@@ -1,5 +1,5 @@
-<div class="row" id="perfil">
-	<div class="twelve columns widget">
+<div class="row" id="perfil" >
+	<div class="twelve columns widget" style="height: 350px !important;left:-7px !important">
 		<div class="row">
 			<br />
 			<br />
@@ -38,7 +38,7 @@
 					<div class="two columns">
 						<label>Email:</label>
 					</div>
-					<div class="six columns">
+					<div class="five columns">
 						<label><%=@user.email %></label>
 					</div>
 				</div>
@@ -47,7 +47,7 @@
 					<div class="two columns">
 						<label>Cumpleaños:</label>
 					</div>
-					<div class="six columns">
+					<div class="five columns">
 					<label><%=@user.nacimiento.strftime("%d/%m/%Y") %></label>
 					</div>
 				</div>
@@ -56,8 +56,8 @@
 					<div class="two columns" >
 						<label>Género</label>
 					</div>
-					<div class="six columns" >
-						<label><%=Gender.find(@user.gender_id).descripcion%>
+					<div class="five columns" >
+						<label><%=(@user.gender_id.nil?) ? 'No especificado' : Gender.find(@user.gender_id).descripcion%>
 					</div>
 				</div>
 
@@ -66,8 +66,8 @@
 					<div class="two columns" >
 						<label>Estado Civil</label>
 					</div>
-					<div class="six columns" >
-						<label><%=CivilStatu.find(@user.civil_statu_id).descripcion%>
+					<div class="five columns" >
+						<label><%=(@user.civil_statu_id.nil?) ? 'No especificado' : CivilStatu.find(@user.civil_statu_id).descripcion%>
 					</div>
 				</div>
 				<div class="row">
@@ -75,8 +75,8 @@
 					<div class="two columns">
 						<label>País:</label>
 					</div>
-					<div class="six columns">
-						<label><%=Country.find(@user.country_id).nombre%></label>
+					<div class="five columns">
+						<label><%=(@user.country_id.nil?) ? 'No especificado' : Country.find(@user.country_id).nombre%></label>
 					</div>
 				</div>
 				<div class="row">
@@ -84,8 +84,9 @@
 					<div class="two columns">
 						<label>Región:</label>
 					</div>
-					<div class="six columns">
-						<label><%=State.find(@user.state_id).nombre%></label>
+					<div class="five columns">
+						<label><%= (@user.state_id.nil?) ? 'No especificado': State.find(@user.state_id).nombre
+						%></label>
 					</div>
 				</div>
 				<div class="row">
@@ -93,8 +94,8 @@
 					<div class="two columns">
 						<label>Comuna:</label>
 					</div>
-					<div class="six columns">
-						<label>Comuna: <%=Commune.find(@user.commune_id).nombre%></label>
+					<div class="five columns">
+						<label><%= (@user.commune_id.nil?) ? 'No especificado' : Commune.find(@user.commune_id).nombre%></label>
 					</div>
 				</div>
 				<div class="row">
@@ -102,8 +103,8 @@
 					<div class="two columns">
 						<label>Ciudad:</label>
 					</div>
-					<div class="six columns">
-						<label><%=City.find(@user.city_id).nombre%></label>
+					<div class="five columns">
+						<label><%=(@user.city_id.nil?) ? 'No especificado' : City.find(@user.city_id).nombre%></label>
 					</div>
 				</div>
 			</div>
