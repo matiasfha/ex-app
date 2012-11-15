@@ -44,6 +44,6 @@ end
   <%= render :partial => 'users/perfil' if current_user.id != @user.id %>
 </div>
 
-<div class="row" id="listado_container" style="display:none">
+<div class="row user" id="listado_container" style="display:none">
     <%= render :partial => 'resources/listado' %>
 </div>
