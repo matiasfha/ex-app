@@ -484,6 +484,9 @@ div.buscar{
 
 
 #register{
+	.custom.dropdown{
+		width:100% !important;
+	}
 	background-color:#FFFFFF;
 	border-radius:4px;
 	-webkit-border-radius:4px;
@@ -513,6 +516,39 @@ div.buscar{
 			-webkit-border-radius:4px;
 			-moz-border-radius:4px;
 			-o-border-radius:4px;
+		}
+	}
+	.fin{
+		position:relative;
+		right:45px;
+	}
+	.interest{
+		width:89%;
+		fieldset{
+			left:55px;
+			position:relative;
+			.three.columns{
+				margin-right: 0px;
+				margin-left:0px;
+				span.checkbox{
+					float:right;
+					position:relative;
+					top:-15px;
+					right: 35px;
+				}
+				input[type="checkbox"]{
+					display:none;
+				}
+
+
+				label{
+					position:relative;
+					top:5px;
+				}
+
+			}
+			
+
 		}
 	}
 }

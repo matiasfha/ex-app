@@ -62,7 +62,7 @@ define [
 			$('#perfil').fadeOut()
 			$('.perfil,.favs,.salir,.tema').removeClass 'active'
 			$('.ranks').addClass 'active'
-			@itemsView = new ItemsView('ranks','5078712d2b091eb4d7000021')
+			@itemsView = new ItemsView 'ranks',$('#user_id').val()
 			
 		showFavs:  =>
 			if @itemsView?
@@ -70,7 +70,7 @@ define [
 			$('#perfil').fadeOut()
 			$('.perfil,.ranks,.salir,.tema').removeClass 'active'
 			$('.favs').addClass 'active'
-			@itemsView = new ItemsView('favs','5078712d2b091eb4d7000021')
+			@itemsView = new ItemsView 'favs',$('#user_id').val()
 			
 		showTema: ->
 

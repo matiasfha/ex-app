@@ -20,7 +20,7 @@ define [
 			'keydown input.text_comentario':'crearComentario'
 			'click .item .overlay:not(.social)':'showVisor'
 
-		initialize:(@clasificacion,@user_id=null) ->
+		initialize:(@clasificacion=false,@user_id=null) ->
 			
 			@tpl = eval(TListado)
 			

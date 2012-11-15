@@ -9,7 +9,7 @@ end
 
 
 %>
-
+<input type="hidden" id="user_id" value="<%=@user.id%>" />
 <div class="user">
 
   <div class="row">
@@ -45,5 +45,6 @@ end
 </div>
 
 <div class="row user" id="listado_container" style="display:none">
+  <% @resources = @user.resources.order_by([[:created_at,:desc]]).page(1) %>
     <%= render :partial => 'resources/listado' %>
 </div>
