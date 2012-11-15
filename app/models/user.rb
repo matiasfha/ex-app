@@ -34,13 +34,15 @@ class User
 
   #Relaciones
   has_many :authentications, :dependent => :delete
+  accepts_nested_attributes_for :authentications
   belongs_to  :gender
   belongs_to  :civil_statu
   belongs_to  :country
   belongs_to  :state #Region
   belongs_to  :commune
   belongs_to  :city
-
+  has_many :interests
+  accepts_nested_attributes_for :interests
   has_many :resources,:dependent => :delete
   has_many :votos,:dependent => :delete
 
@@ -55,6 +57,7 @@ class User
   field :avatar_tmp, :type => String
   field :rut, :type => String
   field :theme, :type => String
+  field :doos, :type => Numeric, :default => 0
 
   index({ email: 1 }, { unique: true, background: true })
   index({ nickname: 1 }, { unique: true, background: true })
@@ -64,6 +67,7 @@ class User
   attr_accessible :apellidos, :nickname, :rut,  :bio, :ocupacion, :nacimiento
   attr_accessible :country_id, :state_id, :commune_id, :city_id, :gender_id, :civil_statu_id
   attr_accessible :avatar, :avatar_tmp, :theme,:rut
+  attr_accessible :interests_attributes, :gender_attributes, :civil_statu_attributes
 
   validates_presence_of :email, :rut
   validates_uniqueness_of :email, :rut

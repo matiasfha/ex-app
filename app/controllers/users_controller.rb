@@ -4,8 +4,6 @@ class UsersController < ApplicationController
   def show
   	@user = User.find(params[:id])
   	@resource = Resource.new
-    
-    @resources = @user.resources.order_by([[:created_at,:desc]]).page(params[:page])
   end
 
   def user_subidas

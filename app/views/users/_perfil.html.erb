@@ -113,8 +113,8 @@
 	            <div class="row">
 	              <div class="info_pts">
 	                <label class="ranks"><%=Voto.where(:user_id => @user.id).count %></label>
-	                <label class="favs"><%=Resource.where(:likers_ids => @user.id).count %></label>
-	                <label class="doos">350</label>
+	                <label class="favs"><%=Resource.where(:liker_ids => @user.id).count %></label>
+	                <label class="doos"><%=@user.doos%></label>
 	              </div>
 	            </div>
 	            
