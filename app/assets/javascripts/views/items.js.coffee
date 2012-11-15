@@ -20,6 +20,7 @@ define [
 			'keydown input.text_comentario':'crearComentario'
 			'click .item .overlay:not(.social)':'showVisor'
 
+
 		initialize:(@clasificacion=false,@user_id=null) ->
 			
 			@tpl = eval(TListado)
@@ -47,7 +48,7 @@ define [
 				@type = 'imagen'
 			else
 				if !imgs.hasClass('active') && vids.hasClass('active')
-					@type = 'video'
+					@type = 'videos'
 
 		render: =>
 			if @clasificacion!= false

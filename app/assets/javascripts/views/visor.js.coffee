@@ -22,6 +22,7 @@ define [
 			'click .social .like':'like'
 
 		initialize:(@parent) ->
+
 			@tpl = eval(VisorTPL)
 			@tpl_comment = eval(TComentario)
 			@id = parent.attr('id')

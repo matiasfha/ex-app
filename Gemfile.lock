@@ -283,6 +283,7 @@ GEM
     valid_email (0.0.4)
       activemodel
       mail
+    version (1.0.0)
     warden (1.2.1)
       rack (>= 1.0)
     xml-simple (1.1.1)
@@ -332,5 +333,6 @@ DEPENDENCIES
   uglifier (>= 1.0.3)
   unicorn
   valid_email
+  version
   yajl-ruby
   yui-compressor
