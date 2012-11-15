@@ -12,7 +12,7 @@
     <br />
     <br />
   </div>
-  <% @user = User.new 
+  <% @user = User.last
     @provider = 'facebook'
     @uid = '123'
     %>
@@ -51,7 +51,7 @@
             <%= f.text_field :nickname, :required => true, :placeholder => "Nickname"%>
           </div>
           <div class="row">
-            <%= f.text_field :nacimiento, :required => true, :placeholder => "Fecha de nacimiento", :class => "date"%>
+            <%= f.text_field :nacimiento, :required => true, :placeholder => "Fecha de nacimiento", :class => "date",:value => @user.nacimiento.strftime('%d/%m/%Y')%>
           </div>
           <div class="row">
             <%= f.text_field :bio, :required => true, :placeholder => "Biografía en 140 carácteres",:maxlength => '140'%>
