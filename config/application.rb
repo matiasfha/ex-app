@@ -67,7 +67,7 @@ module DandooDev
     #config.cache_store = :dalli_store
 
     # Version of your assets, change this if you want to expire all your assets
-    config.assets.version = '1.7'
+    config.assets.version = '1.8'
 
     # config.requirejs.logical_asset_filter += [/\.hbs$/]
     
