@@ -14,7 +14,6 @@ define [
 			'ranks':'showRanks'
 			'favs':'showFavs'
 			'tema':'showTema'
-			'subir':'showSubir'
 
 		initialize: ->
 			if @itemsView?
@@ -29,6 +28,15 @@ define [
 			$('.error').live 'focus', (e) ->
 				$(e.currentTarget).removeClass 'error'
 
+			$('#resource_imagen').on 'change',@previewResource
+			$('#close').on 'click', (e) ->
+				e.preventDefault()
+				e.stopPropagation()
+				$('#subir_modal form').reset()
+				$('#subir_modal .preview').empty()
+				$('#subir_modal').trigger('reveal:close')
+			$('#agregar_resource').on 'submit',@beforeSend
+			
 		clickTuercas:(e) ->
 			if !$('.tuerca1').hasClass 'active'
 				$('.menu').show()
@@ -83,27 +91,39 @@ define [
 		updateAvatar:(e) ->
 			e.preventDefault()
 			e.stopPropagation()
-			if window.File && window.FileReader
-				file = FileAPI.getFiles $('#file')
-				FileAPI.readAsDataURL file[0],(evt) ->
-					switch evt.type
-						when 'load'
-							image = $('<img>')
-							image.attr('src',evt.result)
-							image.attr('width','150')
-							image.attr('heigth',150)
-							$('#perfil .avatar').html image 
-						when 'progress'
-							$('#avatar_prev').animate {opacity: evt.loaded/evt.total * 100}
-						else
-							html = '<span>No se puede mostrar un preview del nuevo Avatar, tu Navegador no lo soporta.<br />Aún así podrá actualizarse sin problemas</span>'
-							$('#perfil .avatar').html html
+			
+			file = FileAPI.getFiles $('#file')
+			FileAPI.readAsDataURL file[0],(evt) ->
+				switch evt.type
+					when 'load'
+						image = $('<img>')
+						image.attr('src',evt.result)
+						image.attr('width','150')
+						image.attr('heigth',150)
+						$('#perfil .avatar').html image 
+					when 'progress'
+						$('#avatar_prev').animate {opacity: evt.loaded/evt.total * 100}
+					else
+						html = '<span>No se puede mostrar un preview del nuevo Avatar, tu Navegador no lo soporta.<br />Aún así podrá actualizarse sin problemas</span>'
+						$('#perfil .avatar').html html
 
-
-			else
-				$('#avatar_prev').fadeOut 'fast',( ) ->
-					html = '<span>No se puede mostrar un preview del nuevo Avatar, tu Navegador no lo soporta.<br />Aún así podrá actualizarse sin problemas</span>'
-					$('.avatar').html html
+		previewResource:(e) ->
+			e.stopPropagation()
+			file = FileAPI.getFiles $('#resource_imagen')
+			FileAPI.readAsDataURL file[0],(evt) ->
+				switch evt.type
+					when 'load'
+						image = $('<img>')
+						image.attr('src',evt.result)
+						image.attr('width','200')
+						$('#subir_modal .preview').html image
+					when 'progress'
+						$('#subir_modal .preview').text 'Cargando..'		
+					else
+						html = '<span>No se puede mostrar un preview de la nueva Imagen, tu Navegador no lo soporta.<br />Aún así podrá actualizarse sin problemas</span>'
+						$('#subir_modal .preview').html html
+							
+			
 
 
 
@@ -144,5 +164,27 @@ define [
 
 		showTema: ->
 
-		subir: ->
+
+		beforeSend: (e) ->
+			e.preventDefault()
+			e.stopPropagation()
+			
+			if $('#resource_titulo').val()=="" || $('#resource_descripcion').val()==""
+				$('#resource_titulo').addClass 'error'
+				$('#resource_descripcion').addClass 'error'					
+				false
+			else
+				#Check si hay imagen o video (no ambas ni ninguna)
+				
+				if $('#resource_imagen').val().length > 0 && $('#resource_url').val().length > 0
+					$('#resource_imagen').addClass 'error'
+					$('#resource_url').addClass 'error'
+					alert('Solo puedes subir una Imagen o Video, no ambas ')
+				else
+					if $('#resource_imagen').val().length == 0 && $('#resource_url').val().length == 0
+						$('#resource_imagen').addClass 'error'
+						$('#resource_url').addClass 'error'
+						alert('Debes completar o la URL de un Video o seleccionar una Imagen');
+					else
+						$('#new_resource').submit()
 		

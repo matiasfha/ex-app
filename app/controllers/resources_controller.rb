@@ -89,7 +89,7 @@ class ResourcesController < ApplicationController
   #Crea un nuevo recurso
   #Retorna el recurso creado
   def create
-    if params[:resource][:url]
+    if !params[:resource][:url].blank?
       u = URI.parse(params[:resource][:url])
       url = params[:resource][:url]
       if !u.scheme
@@ -116,7 +116,8 @@ class ResourcesController < ApplicationController
     if !current_user.save
       flash[:error] = "No se pudo crear el nuevo recurso"
     end
-    respond_with(@res)
+    redirect_to "/users/#{current_user.id}"
+    #respond_with(@res)
     # respond_with(@res) do |format|
     #   format.html 
     #   format.json {render :json => @res}  

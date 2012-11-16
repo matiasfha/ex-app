@@ -34,7 +34,7 @@ end
     </div>
     <% if @user.id == current_user.id %>
     <div class="two columns">
-      <button class="button small">Subir Recursos</button>
+      <a class="button small" data-reveal-id="subir_modal">Subir Recursos</a>
     </div>
     <% end %>
   </div>
@@ -48,3 +48,41 @@ end
   <% @resources = @user.resources.order_by([[:created_at,:desc]]).page(1) %>
     <%= render :partial => 'resources/listado' %>
 </div>
+
+<div id="subir_modal" class="reveal-modal [expand, xlarge, large, medium, small]">
+  <div class="row">
+    <h2>Agrega tus recursos a DandooTV!!</h2>
+  </div>
+  <%=semantic_form_for @resource, :html => {:multipart => true,:remote => true} do |f| %>
+  <%=f.hidden_field :user_id, :value => @user.id %>
+  <div class="row">
+    <%=f.text_field :titulo, :placeholder => 'Titulo' %>
+  </div>
+  <div class="row">
+    <%=f.text_field :descripcion,:placeholder => 'Descripcion' %>
+  </div>
+  <div class="row">
+    <%=f.text_field :url, :placeholder => 'URL del video (Youtube o Vimeo)' %>
+  </div>
+  <div class="row">
+    <div class="two columns">
+      <div class="input_buscar"></div>
+      <!-- <input type="file" id="file_resource"> -->
+      <%=f.input :imagen,:as => :file %>
+      <br />
+      <br />
+      <br />
+      <%=f.submit 'Agregar',:class =>'button small',:id => 'agregar_resource' %>
+      <button class="button alert small" id="close">Cancelar</button>
+    </div>
+    <div class="six columns">
+      <div class="preview">
+      </div>
+    </div>
+  </div>
+
+  <% end %>
+  
+</div>
+</div>
+
