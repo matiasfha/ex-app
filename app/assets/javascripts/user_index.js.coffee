@@ -28,7 +28,9 @@ require [
 	'templates/helpers/iter'
 	'router_user'
 	'foundation/jquery.foundation.forms'
-],($,_,Backbone,domReady,M,HR,Compare,Iter,Router,F) ->
+	'foundation/jquery.foundation.reveal'
+	'foundation/app'
+],($,_,Backbone,domReady,M,HR,Compare,Iter,Router,F,R,A) ->
 	domReady () ->
 		window.Handlebars = HR
 		window.$ = $.noConflict()

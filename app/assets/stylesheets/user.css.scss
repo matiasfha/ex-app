@@ -350,3 +350,47 @@ form.custom div.custom.dropdown{
 	left:-23px;
 
 }
+
+#subir_modal{
+	position:fixed;
+	overflow-x:hidden;
+	overflow-y:auto;
+	top:100px !important;
+	z-index:99999;
+	height:77%;
+	.input_buscar{
+		background:url('usuario/btn_buscar.jpg') no-repeat;
+		width:164px;
+		height: 36px;
+		cursor:pointer;
+		position:relative;
+		left:-28px;
+	}
+	#resource_imagen_input{
+		position:relative;
+		top:-30px;
+		left:88px;
+		z-index:10;
+		@include opacity(0);
+	}
+	#resource_imagen{
+		
+		@include opacity(0);
+	}
+
+	.preview{
+		width:200px;
+		height: auto;
+		min-height: 200px;
+	}
+
+	#agregar_resource{
+		position:relative;
+		left:-28px;
+	}
+	button.button{
+		position:relative;
+		left:50px;
+		top:-28px;
+	}
+}
