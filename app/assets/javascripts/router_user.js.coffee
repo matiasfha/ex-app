@@ -155,7 +155,8 @@ define [
 				url:$('form').attr('action')
 				success:(data) ->
 					if data.success = true
-						window.location.reload()
+						# window.location.reload()
+						console.log data
 					else
 						alert('Ocurrio un error, intente nuevamente más tarde')
 			false
