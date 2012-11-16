@@ -16,7 +16,7 @@ class UsersController < ApplicationController
     @user.commune_id =  params[:user][:commune]
     @user.city_id =  params[:user][:city]
     if @user.save
-      render :json => {:success => true, :user => params[:user]}
+      render :json => {:success => true}
     else
       render :json => {:success => false}
     end
