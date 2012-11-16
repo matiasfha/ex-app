@@ -8,7 +8,7 @@ class UsersController < ApplicationController
 
   def update
     @user = User.find(params[:user][:id])
-    @user.update(params[:user])
+    @user.update_attributes(params[:user])
     @user.gender_id = params[:user][:gender]
     @user.civil_statu_id = params[:user][:civil_statu]
     @user.country_id = params[:user][:country]
@@ -16,7 +16,7 @@ class UsersController < ApplicationController
     @user.commune_id =  params[:user][:commune]
     @user.city_id =  params[:user][:city]
     if @user.save
-      render :json => {:success => params[:user]}
+      render :json => {:success => true, :user => params[:user]}
     else
       render :json => {:success => false}
     end
