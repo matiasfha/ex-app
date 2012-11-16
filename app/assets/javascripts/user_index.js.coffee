@@ -13,7 +13,7 @@ require.config
 		'handlebars':
 			exports:'Handlebars'
 		'foundation/jquery.foundation.forms':['jquery']
-		'FileAPI/FileAPI.min':
+		'File/FileAPI.min':
 			exports:'FileAPI'
 		'jquery.serializeObject':['jquery']
 		

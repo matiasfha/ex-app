@@ -5,7 +5,7 @@ define [
 	'jquery.imagesloaded.min'
 	'views/items'
 	'foundation/jquery.foundation.reveal'
-	'FileAPI/FileAPI.min'
+	'File/FileAPI.min'
 	'jquery.serializeObject'
 ],($,Backbone,M,I,ItemsView,R,F,S) ->
 	class AppRouter extends Backbone.Router 
