@@ -25,7 +25,7 @@ DandooDev::Application.routes.draw do
     put '/user/complete_registration' => 'registrations#finalizar'
   end
   
-  resources :users, :only => [:show]
+  resources :users, :only => [:show,:update]
   
   match 'resources/listado/:clasificacion/:tipo(/:page)' => 'resources#index', :via => :get
   match 'resources/like/:id/:accion' => 'resources#like', :via => :post
