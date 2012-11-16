@@ -1,4 +1,5 @@
- <%= semantic_form_for @user,:html => {:class => 'custom',:style => 'margin-bottom:-50px'} do |f|%>
+ <%= semantic_form_for @user,:html => {:class => 'custom',:style => 'margin-bottom:-50px',:multipart=>true} do |f|%>
+  <%=f.hidden_field :id %>
     <div class="row" id="perfil">
       <div class="twelve columns widget" style="height: 500px !important;top:20px !important;left:10px !important;">
         <div class="row">
@@ -17,10 +18,11 @@
             </div>
             <div class="row">
               <div class="avatar">
-                <%= image_tag @user.avatar.url(:medium) %>
+                <%= image_tag @user.avatar.url(:medium), :id => 'avatar_prev' %>
               </div>
               <div class="buscar">
                 <div class="input_buscar"></div>
+                <input type="file" id="file">
                 <%=f.hidden_field :avatar %>
                 <div class="adjuntar"></div>
               </div>
@@ -44,9 +46,7 @@
               <br />
               <%=f.text_area :bio,:placeholder => 'Biografía en 140 carácteres' %>
             </div>
-            <div class="row">
-              <%=f.text_field :rut, :class => 'blocked',:placeholder => 'Rut',:disabled =>'disabled',:style => 'width:93%;' %>
-            </div>
+            
             <div class="row multiple">
               <div class="four columns">
               <%=f.label :gender, :class => 'right inline'%>
@@ -71,7 +71,9 @@
             <div class="row">
               <%=f.text_field :email, :required => true,:placeholder => 'Email' %>
             </div>
-            
+            <div class="row">
+              <%=f.text_field :rut, :class => 'blocked',:placeholder => 'Rut',:disabled =>'disabled'%>
+            </div>
             <div class="row">
               <%=f.text_field :nombre, :required => true,:placeholder => 'nombre' %>
             </div>
@@ -79,12 +81,12 @@
               <%=f.text_field :apellidos, :required => true,:placeholder => 'Apellidos' %>
             </div>
             
-            <div class="row">
+            <!-- <div class="row">
               <%=f.password_field :password,:placeholder => 'Password'%>
             </div>
             <div class="row">
               <%=f.password_field :password_confirmation,:placeholder => 'Confirme Password'%>
-            </div>
+            </div> -->
 
             <div class="row multiple">
               <div class="two columns">

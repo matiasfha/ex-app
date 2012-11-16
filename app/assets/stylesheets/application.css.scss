@@ -22,6 +22,15 @@
 */
 @import "elastislide";
 
+
+@mixin opacity($value) {
+  opacity: #{"." + $value};
+  filter: alpha(opacity=$value);
+  -ms-filter: "alpha(opacity=$value)";
+  -khtml-opacity: #{"." + $value};
+  -moz-opacity: #{"." + $value};
+}
+
 body{
 	font-family: "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;
 	font-weight: normal;

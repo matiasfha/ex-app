@@ -266,6 +266,13 @@ form.custom div.custom.dropdown{
 			.buscar{
 				position:relative;
 				left:170px;
+				input[type="file"]{
+					position:absolute;
+					top:5px;
+					left:40px;
+					z-index:10;
+					@include opacity(0);
+				}
 			}
 			.input_buscar{
 				background:url('usuario/btn_buscar.jpg') no-repeat;
@@ -274,6 +281,9 @@ form.custom div.custom.dropdown{
 				cursor:pointer;
 			}
 			.adjuntar{
+				position:absolute;
+				top:20px;
+				left:64px;
 				margin-top:20px;
 				background:url('usuario/btn_adjuntar.png') no-repeat;
 				width:100px;
