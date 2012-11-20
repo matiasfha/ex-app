@@ -25,10 +25,10 @@
             <br />
           </div>
           <div class="row">
-            <%= f.select :gender, options_for_select(Gender.all.map{|u| [u.descripcion,u.id]}),{:include_blank => 'Seleccione Género'},{:required => true} %>
+            <%= f.select :gender_id, options_for_select(Gender.all.map{|u| [u.descripcion,u.id]}),{:include_blank => 'Seleccione Género'},{:required => true} %>
           </div>
           <div class="row">
-            <%= f.select :civil_statu, CivilStatu.all.map{|u| [u.descripcion, u.id]},{:include_blank => 'Seleccione Estado Civil'},{:required => true} %>
+            <%= f.select :civil_statu_id, CivilStatu.all.map{|u| [u.descripcion, u.id]},{:include_blank => 'Seleccione Estado Civil'},{:required => true} %>
           </div>
         </div>
         <div class="four columns">
@@ -54,22 +54,22 @@
             <%= f.text_field :bio, :required => true, :placeholder => "Biografía en 140 carácteres",:maxlength => '140'%>
           </div>
           <div class="row">
-            <%= f.text_field :ocupacion, :placeholder => 'Ocupación' %>
+           <%= f.select :ocupacion_id, (@user.ocupacion_id.nil?) ? Ocupacion.all.order_by([[:nombre,:asc]]).map{|u| [u.nombre,u.id]} : Hash.new, {:include_blank => 'Ocupación'},{:class => "span2", :required => true} %>
           </div>
         </div>
 
         <div class="four columns">
           <div class="row">
-            <%= f.select :country, Country.all.map{ |u| [u.nombre,u.id] }, {:include_blank => 'Selecciona Pais'},{:class => "span2", :required => true} %>
+            <%= f.select :country_id, Country.all.order_by([[:nombre,:asc]]).map{ |u| [u.nombre,u.id] }, {:include_blank => 'Selecciona País'},{:class => "span2", :required => true} %>
           </div>
           <div class="row">
-            <%= f.select :state, (@user.state_id?) ? State.all.map{|u| [u.nombre,u.id]} : Hash.new, {:include_blank => 'Selecciona Región'},{:class => "span2", :required => true} %>
+            <%= f.select :state_id, (@user.state_id?) ? State.all.order_by([[:nombre,:asc]]).map{|u| [u.nombre,u.id]} : Hash.new, {:include_blank => 'Selecciona Región'},{:class => "span2", :required => true} %>
           </div>
           <div class="row">
-            <%= f.select :commune, (@user.commune_id?) ? Commune.all.map{|u| [u.nombre,u.id]} : Hash.new, {:include_blank => 'Comuna'},{:class => "span2", :required => true} %>
+            <%= f.select :commune_id, (@user.commune_id?) ? Commune.all.order_by([[:nombre,:asc]]).map{|u| [u.nombre,u.id]} : Hash.new, {:include_blank => 'Comuna'},{:class => "span2", :required => true} %>
           </div>
           <div class="row">
-            <%= f.text_field :city, :placeholder => 'Ciudad' %>
+            <%= f.select :city_id, (@user.city_id?) ? City.all.order_by([[:nombre,:asc]]).map{|u| [u.nombre,u.id]} : Hash.new, {:include_blank => 'Ciudad'},{:class => "span2", :required => true} %>
           </div>
           
           
@@ -83,12 +83,11 @@
           <legend>Tus Intereses</legend>
           <div class="row">
           
-          <% Interest.all.each do |i|
+          <% Interest.all.order_by([[:nombre,:asc]]).each_with_index do |i,j|
             %>
             <div class="three columns">
               <label><%=i.nombre%></label>
-              <%= check_box_tag "user[interests_ids][]",i.id %>
-              <!-- <input type="checkbox" value="<%=i.id%>" /> -->
+              <%= check_box_tag "user[user_interests_attributes][#{j}][interest_id]",i.id %>
             </div>
             <%
           end

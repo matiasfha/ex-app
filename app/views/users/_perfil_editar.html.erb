@@ -1,8 +1,9 @@
- <%= semantic_form_for @user,:html => {:class => 'custom',:style => 'margin-bottom:-50px',:multipart=>true} do |f|%>
-  <%=f.hidden_field :id %>
-    <div class="row" id="perfil">
-      <div class="twelve columns widget" style="height: 500px !important;top:20px !important;left:10px !important;">
-        <div class="row">
+ <input type="hidden" id="user_id" value="<%=@user.id%>" />
+ <%= form_for @user,:html => {:class => 'custom',:style => 'margin-bottom:-50px',:multipart=>true,:method => 'put'} do |f|%>
+  
+  <div class="row" id="perfil">
+    <div class="twelve columns widget" style="left:-15px !important;">
+      <div class="row">
          <br /><br />
           <div class="izq" >
             <div class="row">
@@ -22,8 +23,7 @@
               </div>
               <div class="buscar">
                 <div class="input_buscar"></div>
-                <input type="file" id="file">
-                <%=f.hidden_field :avatar %>
+                <%=f.file_field :avatar%>
                 <div class="adjuntar"></div>
               </div>
               <div class="authorizations">
@@ -52,16 +52,16 @@
               <%=f.label :gender, :class => 'right inline'%>
               </div>
               <div class="seven columns">
-                <%= f.select :gender, options_for_select(Gender.all.map{ |u| [u.descripcion,u.id] },@user.gender_id) %>
+                <%= f.select :gender_id, options_for_select(Gender.all.map{ |u| [u.descripcion,u.id] },@user.gender_id) %>
               </div>
             </div>
 
             <div class="row multiple">
               <div class="four columns" style="white-space:nowrap">
-              <%=f.label :civil_statu, :class => 'right inline',:style => 'display:inline-block'%>
+              <%=f.label :civil_statu, 'Estado Civil', :class => 'right inline',:style => 'display:inline-block'%>
               </div>
               <div class="seven columns">
-                <%= f.select :civil_statu, options_for_select(CivilStatu.all.map{ |u| [u.descripcion,u.id] },@user.civil_statu_id) %>
+                <%= f.select :civil_statu_id, options_for_select(CivilStatu.all.map{ |u| [u.descripcion,u.id] },@user.civil_statu_id) %>
               </div>
             </div>
 
@@ -98,36 +98,45 @@
             </div>
             <div class="row multiple">
               <div class="two columns">
-                <%=f.label :country, :class => 'right inline'%>
+                <%=f.label :country,'País', :class => 'right inline'%>
               </div>
               <div class="nine columns">
-                <%= f.select :country, options_for_select(Country.all.map{ |u| [u.nombre,u.id] },@user.country_id) %>
+                <%= f.select :country_id, options_for_select(Country.all.order_by([[:nombre,:asc]]).map{ |u| [u.nombre,u.id] },@user.country_id) %>
               </div>
             </div>
             <div class="row multiple">
               <div class="one columns">
-                <%=f.label :state,:class => 'right inline'%>
+                <%=f.label :state,'Región',:class => 'right inline'%>
               </div>
               <div class="nine columns">
-                <%= f.select :state, options_for_select(State.all.map{|u| [u.nombre,u.id]},@user.state_id) %>
-              </div>
-            </div>
-
-            <div class="row multiple">
-              <div class="one columns">
-                <%=f.label :commune,:class => 'right inline'%>
-              </div>
-              <div class="nine columns">
-                <%= f.select :commune, options_for_select(Commune.all.map{|u| [u.nombre,u.id]},@user.commune_id) %>
+                <%= f.select :state_id, options_for_select(State.all.order_by([[:nombre,:asc]]).map{|u| [u.nombre,u.id]},@user.state_id) %>
               </div>
             </div>
 
             <div class="row multiple">
               <div class="one columns">
-                <%=f.label :city,:class => 'right inline'%>
+                <%=f.label :commune,'Comuna',:class => 'right inline'%>
               </div>
               <div class="nine columns">
-                 <%= f.select :city, options_for_select(Commune.all.map{|u| [u.nombre,u.id]},@user.city_id) %>
+                <%= f.select :commune_id,  options_for_select(Commune.all.order_by([[:nombre,:asc]]).map{|u| [u.nombre,u.id]},@user.commune_id) %>
+              </div>
+            </div>
+
+            <div class="row multiple">
+              <div class="one columns">
+                <%=f.label :city,'Ciudad',:class => 'right inline'%>
+              </div>
+              <div class="nine columns">
+                 <%= f.select :city_id,  options_for_select(City.all.order_by([[:nombre,:asc]]).map{|u| [u.nombre,u.id]},@user.city_id) %>
+              </div>
+            </div>
+
+             <div class="row multiple">
+              <div class="one columns">
+                <%=f.label :ocupacion,:class => 'right inline'%>
+              </div>
+              <div class="nine columns">
+                 <%= f.select :ocupacion_id, options_for_select(Ocupacion.all.order_by([[:nombre,:asc]]).map{|u| [u.nombre,u.id]},@user.ocupacion_id) %>
               </div>
             </div>
 
@@ -141,12 +150,57 @@
                 <label class="doos"><%=@user.doos%></label>
               </div>
             </div>
-            <div class="row">
-              <div class="guardar"></div>
-            </div>
           </div>
         </div>
-      </div>
-    </div>
 
-    <% end %>
+      <div class="row">
+        <div class="twelve columns">
+          <fieldset>
+            <legend>Tus Intereses</legend>
+            <% 
+            k=0
+            Interest.all.order_by([[:nombre,:asc]]).each_with_index do |i,j|
+              if k==0
+                %>
+                <div class="row">
+                <%
+              end   
+              %>
+              <div class="columna" > 
+                <label><%=i.nombre%></label>
+                <%
+                c = @user.user_interests.where(:interest_id => i.id).first
+                if !c.nil? %>
+                  <%= check_box_tag "user[user_interests_attributes][#{j}][interest_id]",i.id,:checked => 'checked'%>
+                <%
+                else
+                  %>
+                  <%= check_box_tag "user[user_interests_attributes][#{j}][interest_id]",i.id%>
+                  <%
+                end
+                %>
+              </div><!--columna-->
+              <%
+              k=k+1
+              if k==4
+                %>
+                </div><!--row-->
+                <%
+                  k=0
+              end
+            end
+            %>
+          </fieldset>
+        </div><!--twelve-->
+      </div><!--row-->
+
+      <div class="row">
+        <br />
+        <br />
+        <%=f.submit :id => 'commit_user',:value => '' %>
+      </div>
+
+    </div>
+  </div>
+
+<% end %>

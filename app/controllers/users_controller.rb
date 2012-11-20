@@ -7,18 +7,11 @@ class UsersController < ApplicationController
   end
 
   def update
-    @user = User.find(params[:user][:id])
+    @user = User.find(params[:id])
     @user.update_attributes(params[:user])
-    @user.gender_id = params[:user][:gender]
-    @user.civil_statu_id = params[:user][:civil_statu]
-    @user.country_id = params[:user][:country]
-    @user.state_id = params[:user][:state]
-    @user.commune_id =  params[:user][:commune]
-    @user.city_id =  params[:user][:city]
-    if @user.save
-      render :json => {:success => true}
-    else
-      render :json => {:success => false}
-    end
+    
+    # render :json => {:success => @user.save()}
+    redirect_to "/users/#{@user.id}"
+    
   end
 end

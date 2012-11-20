@@ -94,7 +94,7 @@ form.custom div.custom.dropdown{
 
 	.widget{
 		top:10px;
-		left:0px;
+		left:-40px;
 		background:#FFFFFF;
 		padding:10px;
 		width:95.7% !important;
@@ -107,8 +107,8 @@ form.custom div.custom.dropdown{
 			z-index: -10;
 			position: absolute;
 			content: "";
-			bottom: 20px;
-			left: 11px;
+			bottom: 15px;
+			left: 21px;
 			width: 54%;
 			top: 17px;
 			background: rgba(0, 0, 0, 0.7);
@@ -131,7 +131,7 @@ form.custom div.custom.dropdown{
 			-webkit-box-shadow: 14px 13px 15px rgba(50, 50, 50, 0.75);
 			-moz-box-shadow:    14px 13px 15px rgba(50, 50, 50, 0.75);
 			box-shadow:         14px 13px 15px rgba(50, 50, 50, 0.75);
-			right: 11px;
+			right: 21px;
 			left: auto;
 		}
 
@@ -143,6 +143,37 @@ form.custom div.custom.dropdown{
 			float:left;
 			color:#aaa3af !important;
 		}
+
+		fieldset{
+			font-size:0.8em;
+			font-weight: bold;
+			left:-20px;
+			position:relative;
+			padding:0 0 0 10px;
+			label{
+				font-size:0.8em;
+				width:92%;
+				display: inline-block;
+				white-space: nowrap;
+				text-align: left;
+			}
+			.checkbox{
+				left:-40%;
+				top:0px;
+				position:relative;
+			}
+			.columna{
+				display:inline-block;
+				width:25%;
+				float:left;
+				margin-bottom:5px;
+			}
+			
+		}
+		
+		
+
+		
 
 		div.right{
 			margin-left:10px !important;
@@ -177,15 +208,7 @@ form.custom div.custom.dropdown{
 
 			}
 
-			.guardar{
-				background:url('usuario/btn_GUARDAR.png') no-repeat;
-				width:154px;
-				height:30px;
-				position:absolute;
-				top:455px;
-				right:2%;
-				cursor:pointer;
-			}
+			
 		}
 		.multiple{
 			.one.columns,.two.columns,.four.columns{
@@ -266,10 +289,11 @@ form.custom div.custom.dropdown{
 			.buscar{
 				position:relative;
 				left:170px;
-				input[type="file"]{
+				#user_avatar{
 					position:absolute;
-					top:5px;
-					left:40px;
+					top:0px;
+					left:0px;
+					width:164px;
 					z-index:10;
 					@include opacity(0);
 				}
@@ -342,6 +366,18 @@ form.custom div.custom.dropdown{
 		
 		
 	}
+}
+
+
+
+#commit_user{
+	width:154px;
+	height:30px;
+	position:relative;
+	top:-30px;
+	left:85%;
+	background:url('usuario/btn_GUARDAR.png') no-repeat;
+	cursor:pointer;
 }
 
 #listado_container.user{

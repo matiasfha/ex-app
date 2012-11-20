@@ -41,8 +41,12 @@ class User
   belongs_to  :state #Region
   belongs_to  :commune
   belongs_to  :city
-  has_many :interests
-  accepts_nested_attributes_for :interests
+  belongs_to  :ocupacion
+  
+  # has_and_belongs_to_many :interests
+  has_many :user_interests
+  accepts_nested_attributes_for :user_interests
+  
   has_many :resources,:dependent => :delete
   has_many :votos,:dependent => :delete
 
@@ -66,8 +70,9 @@ class User
   attr_accessible :nombre,:email,:password,:password_confirmation, :remember_me, :created_at, :updated_at
   attr_accessible :apellidos, :nickname, :rut,  :bio, :ocupacion, :nacimiento
   attr_accessible :country_id, :state_id, :commune_id, :city_id, :gender_id, :civil_statu_id
-  attr_accessible :avatar, :avatar_tmp, :theme,:rut
-  attr_accessible :interests_attributes, :gender_attributes, :civil_statu_attributes
+  attr_accessible :avatar, :avatar_tmp, :theme,:rut,:ocupacion_id
+  attr_accessible :user_interests_attributes
+
 
   validates_presence_of :email, :rut
   validates_uniqueness_of :email, :rut

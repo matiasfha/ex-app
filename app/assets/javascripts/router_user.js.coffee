@@ -22,8 +22,7 @@ define [
 			@masonryLayout()
 			$('.tuerca1,.tuerca2').on 'click',@clickTuercas
 			$('.guardar').on 'click',@updateUser
-			$('#file').on 'change',() ->
-				$('#user_avatar').val $('#file').val()
+			
 			$('.adjuntar').on 'click',@updateAvatar
 			$('.error').live 'focus', (e) ->
 				$(e.currentTarget).removeClass 'error'
@@ -92,7 +91,7 @@ define [
 			e.preventDefault()
 			e.stopPropagation()
 			
-			file = FileAPI.getFiles $('#file')
+			file = FileAPI.getFiles $('#user_avatar')
 			FileAPI.readAsDataURL file[0],(evt) ->
 				switch evt.type
 					when 'load'
@@ -143,22 +142,11 @@ define [
 			# 			$('#user_password').addClass 'error'
 			# 			$('#user_password_confirmation').addClass 'error'
 			# 			continuar = false
-			avatar = $('#user_avatar')
-			file   = $('#file')
-			if avatar.val()!=file.val()
-				avatar.remove()
-			data = $('form :input[value!=""]').serializeObject()
 			
-			$.ajax 
-				type:'PUT'
-				data:data
-				url:$('form').attr('action')
-				success:(data) ->
-					if data.success = true
-						window.location.reload()
-					else
-						alert('Ocurrio un error, intente nuevamente más tarde')
-			false
+			data = $('.user form :input[value!=""]').serializeObject()
+			# $('.user form').submit()
+			console.log data
+			
 				
 
 

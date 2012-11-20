@@ -1,11 +1,13 @@
 class Interest
   include Mongoid::Document
 
-  belongs_to :user
+  # has_and_belongs_to_many :user
+  # belongs_to :user
+  has_many :user_interets
+  field :nombre, :type => String
+  attr_accessible :nombre
 
-  field :nombre
-  attr_accessible :nombre, :user_id
 
   validates_presence_of :nombre
-
+  validates_uniqueness_of :nombre
 end
