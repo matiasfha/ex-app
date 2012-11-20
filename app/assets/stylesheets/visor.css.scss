@@ -123,9 +123,9 @@
 					float:left;
 					width:32px;
 					height: 29px;
-					background:url('Visor/starOFF.png') no-repeat;	
+					background:url('visor/starOFF.png') no-repeat;	
 					&.on,&.voted{
-						background:url('Visor/starON.png') no-repeat;
+						background:url('visor/starON.png') no-repeat;
 					}
 					
 				}
@@ -133,11 +133,11 @@
 
 			.separador{
 				width:100%;
-				background:url('Visor/separador.png') repeat-x;
+				background:url('visor/separador.png') repeat-x;
 				height:3px;
 			}
 			.more{
-				background:url('Visor/btn_+.png') no-repeat;
+				background:url('visor/btn_+.png') no-repeat;
 				width:17px;
 				height: 16px;
 				float:right;
@@ -170,7 +170,7 @@
 				padding:10px 0px 10px 0px;
 				margin:0;
 				.logo-background{
-					background:url('Visor/logo.png') no-repeat;
+					background:url('visor/logo.png') no-repeat;
 					background-position:right;
 					width:100%;
 					height: 49px;
@@ -254,7 +254,7 @@
 				}
 
 				input{
-					background:url('Visor/input.png') no-repeat;
+					background:url('visor/input.png') no-repeat;
 					height:31px;
 					width:89%;
 					border:0 !important;
@@ -264,7 +264,7 @@
 					top:-5px;
 				}
 				.comentar{
-					background:url('Visor/BTNcomentarOFF.png') no-repeat;
+					background:url('visor/BTNcomentarOFF.png') no-repeat;
 					top:-5px; 
 					position:absolute;
 					left:90%;
@@ -272,7 +272,7 @@
 					width:80px;
 					height: 30px;
 					&:active,&.active{
-						background:url('Visor/BTNcomentar.png') no-repeat;
+						background:url('visor/BTNcomentar.png') no-repeat;
 					}
 				}
 
