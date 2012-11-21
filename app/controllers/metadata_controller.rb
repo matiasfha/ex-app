@@ -40,7 +40,7 @@ class MetadataController < ApplicationController
 		comentario = params[:comentario]
 		if validate_email_domain(from)
 			if verify_recaptcha
-				Emailer.feedback_email(autor,from,comentario)
+				Emailer.feedback_email(autor,from,comentario).deliver
 				render :json => {:success => true}
 			else
 				render :json => {:success => false, :mensaje => 'recaptcha'}
