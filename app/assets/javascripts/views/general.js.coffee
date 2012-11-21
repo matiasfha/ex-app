@@ -93,17 +93,24 @@ define [
 			e.stopPropagation()
 
 			data =$('#feedback_form').serialize()
-			$.post '/feedback',data,(res) ->
-				if res.success == true
-					alert('Feedback enviado')
-					$('#feedback').animate({top:'96%'})			
-					$('#feedback tab').toggleClass 'active'	
-				else
-					if res.mensaje == 'recaptcha'
-						alert('Captcha Invalido')
+			nombre= $('#feedback_form #nombre').val()
+			email = $('#feedback_form #email').val()
+			comentario=$('#feedback_form #comentario').val()
+
+			if nombre!="" && email!="" && comentario!=""
+				$.post '/feedback',data,(res) ->
+					if res.success == true
+						alert('Feedback enviado')
+						$('#feedback').animate({top:'96%'})			
+						$('#feedback tab').toggleClass 'active'	
 					else
-						alert('Email Invalido')
-				Recaptcha.reload()
-				$('#feedback_form').reset()
+						if res.mensaje == 'recaptcha'
+							alert('Captcha Invalido')
+						else
+							alert('Email Invalido')
+					$('#feedback_form').reset()
+			else
+				alert('Completa todo los datos')
+			Recaptcha.reload()
 
 

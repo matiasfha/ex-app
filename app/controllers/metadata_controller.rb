@@ -35,15 +35,22 @@ class MetadataController < ApplicationController
 
 	#Recibe el formulario de Feedback y envia un email
 	def feedback
+		puts params
 		from = params[:email]
 		autor = params[:nombre]
 		comentario = params[:comentario]
-		if validate_email_domain(from)
-			if verify_recaptcha
-				Emailer.feedback_email(autor,from,comentario).deliver
-				render :json => {:success => true}
+		validar = (from =~ /^[a-zA-Z][\w\.-]*[a-zA-Z0-9]@[a-zA-Z0-9][\w\.-]*[a-zA-Z0-9]\.[a-zA-Z][a-zA-Z\.]*[a-zA-Z]$/)
+		if !validar.nil?
+			if validate_email_domain(from)
+
+				if verify_recaptcha
+					Emailer.feedback_email(autor,from,comentario).deliver
+					render :json => {:success => true}
+				else
+					render :json => {:success => false, :mensaje => 'recaptcha'}
+				end
 			else
-				render :json => {:success => false, :mensaje => 'recaptcha'}
+				render :json => {:success => false, :mensaje => 'email'}		
 			end
 		else
 			render :json => {:success => false, :mensaje => 'email'}		
