@@ -20,7 +20,8 @@ require.config
 		'handlebars':
 			exports:'Handlebars'
 		'foundation/jquery.foundation.forms':['jquery']
-		
+		'recaptcha_ajax':
+			exports:'Recaptcha'
 require [
 	'jquery'
 	'underscore_hbs'

@@ -1,0 +1,50 @@
+{ "_id" : { "$oid" : "50aa2db92b091e3da2000001" }, "nombre" : "Asistente Ejecutivo" }
+{ "_id" : { "$oid" : "50aa2df22b091e3da2000002" }, "nombre" : "Contador" }
+{ "_id" : { "$oid" : "50aa2df52b091e3da2000003" }, "nombre" : "Consultor" }
+{ "_id" : { "$oid" : "50aa2dfa2b091e3da2000004" }, "nombre" : "Empresario" }
+{ "_id" : { "$oid" : "50aa2e012b091e3da2000005" }, "nombre" : "Ingeniero Comercial" }
+{ "_id" : { "$oid" : "50aa2e0b2b091e3da2000006" }, "nombre" : "Importador y Exportador" }
+{ "_id" : { "$oid" : "50aa2e152b091e3da2000008" }, "nombre" : "Actor" }
+{ "_id" : { "$oid" : "50aa2e232b091e3da2000009" }, "nombre" : "Arquitecto" }
+{ "_id" : { "$oid" : "50aa2e2a2b091e3da200000a" }, "nombre" : "Bailaín" }
+{ "_id" : { "$oid" : "50aa2e362b091e3da200000b" }, "nombre" : "Chef" }
+{ "_id" : { "$oid" : "50aa2e392b091e3da200000c" }, "nombre" : "Cineasta" }
+{ "_id" : { "$oid" : "50aa2e3f2b091e3da200000d" }, "nombre" : "Dibujante" }
+{ "_id" : { "$oid" : "50aa2e442b091e3da200000e" }, "nombre" : "Fotógrafo" }
+{ "_id" : { "$oid" : "50aa2e532b091e3da200000f" }, "nombre" : "Músico" }
+{ "_id" : { "$oid" : "50aa2e902b091e3da2000010" }, "nombre" : "Biólogo" }
+{ "_id" : { "$oid" : "50aa2eb82b091e3da2000011" }, "nombre" : "Químico" }
+{ "_id" : { "$oid" : "50aa2ebf2b091e3da2000012" }, "nombre" : "Químico Farmaeutico" }
+{ "_id" : { "$oid" : "50aa2ef32b091e3da2000013" }, "nombre" : "Meteorólogo" }
+{ "_id" : { "$oid" : "50aa2f052b091e3da2000014" }, "nombre" : "Psquiatra" }
+{ "_id" : { "$oid" : "50aa2f0a2b091e3da2000015" }, "nombre" : "Trabajador Social" }
+{ "_id" : { "$oid" : "50aa2f0e2b091e3da2000016" }, "nombre" : "Profesor" }
+{ "_id" : { "$oid" : "50aa2f142b091e3da2000017" }, "nombre" : "Cientista Político" }
+{ "_id" : { "$oid" : "50aa2f732b091e3da2000018" }, "nombre" : "Publicista" }
+{ "_id" : { "$oid" : "50aa2f812b091e3da2000019" }, "nombre" : "Trabajador Social" }
+{ "_id" : { "$oid" : "50aa2f882b091e3da200001a" }, "nombre" : "Parvulo" }
+{ "_id" : { "$oid" : "50aa2f8d2b091e3da200001b" }, "nombre" : "Vendedor" }
+{ "_id" : { "$oid" : "50aa2f912b091e3da200001c" }, "nombre" : "Chofer" }
+{ "_id" : { "$oid" : "50aa2f952b091e3da200001d" }, "nombre" : "Periodista" }
+{ "_id" : { "$oid" : "50aa2f9a2b091e3da200001e" }, "nombre" : "Educador Diferencial" }
+{ "_id" : { "$oid" : "50aa2f9f2b091e3da200001f" }, "nombre" : "Psicopedagogo" }
+{ "_id" : { "$oid" : "50aa2fa32b091e3da2000020" }, "nombre" : "Escritor" }
+{ "_id" : { "$oid" : "50aa2fa82b091e3da2000021" }, "nombre" : "Ingeniero Civil" }
+{ "_id" : { "$oid" : "50aa2fae2b091e3da2000022" }, "nombre" : "Ingeniero Eléctrico" }
+{ "_id" : { "$oid" : "50aa2fb42b091e3da2000023" }, "nombre" : "Ingeniero Industrial" }
+{ "_id" : { "$oid" : "50aa2fc02b091e3da2000024" }, "nombre" : "Ingeniero en Minas" }
+{ "_id" : { "$oid" : "50aa2fc52b091e3da2000025" }, "nombre" : "Ingeniero Informático" }
+{ "_id" : { "$oid" : "50aa2fcc2b091e3da2000026" }, "nombre" : "IngenieroMecánico" }
+{ "_id" : { "$oid" : "50aa2fd62b091e3da2000027" }, "nombre" : "Prevencionista" }
+{ "_id" : { "$oid" : "50aa2fdb2b091e3da2000028" }, "nombre" : "Abodago" }
+{ "_id" : { "$oid" : "50aa2fdf2b091e3da2000029" }, "nombre" : "Fiscal" }
+{ "_id" : { "$oid" : "50aa2fe72b091e3da200002a" }, "nombre" : "Ingeniero Ambiental" }
+{ "_id" : { "$oid" : "50aa2feb2b091e3da200002b" }, "nombre" : "Ingeniero Forestal" }
+{ "_id" : { "$oid" : "50aa2ff02b091e3da200002c" }, "nombre" : "Veterinario" }
+{ "_id" : { "$oid" : "50aa2ff92b091e3da200002d" }, "nombre" : "Enfermero" }
+{ "_id" : { "$oid" : "50aa2ffe2b091e3da200002e" }, "nombre" : "Fonoaudiólogo" }
+{ "_id" : { "$oid" : "50aa30092b091e3da200002f" }, "nombre" : "Kinesiologo" }
+{ "_id" : { "$oid" : "50aa300e2b091e3da2000030" }, "nombre" : "Matrona" }
+{ "_id" : { "$oid" : "50aa30122b091e3da2000031" }, "nombre" : "Médico" }
+{ "_id" : { "$oid" : "50aa30382b091e3da2000032" }, "nombre" : "Odontólogo" }
+{ "_id" : { "$oid" : "50aa304a2b091e3da2000033" }, "nombre" : " Tencolog Médico" }

@@ -37,12 +37,9 @@ DandooDev::Application.routes.draw do
   
   resources :comments, :only => [:create,:show]
   match '/comments/:pid/:cid' => 'comments#destroy', :via => :delete
-  
   match '/votos/:pid/:valor' => 'votos#create', :via => :post
-
   match 'auth/:provider/callback'  => 'authentications#new'
-  match 'completar' => 'authentications#test'
-  resources :authentications, :only => [:index,:create,:destroy]
-  resources :emails, :only => [:create] 
   
+  resources :authentications, :only => [:index,:create,:destroy]
+  match '/feedback' => 'metadata#feedback', :via => :post
 end

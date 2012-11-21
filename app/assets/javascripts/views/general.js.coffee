@@ -16,7 +16,7 @@ define [
 			'click .secciones a':'setSeccion'
 			'click .section.imagenes':'setType'
 			'click .section.videos':'setType'
-			
+			'submit #feedback_form':'sendFeedback'
 
 		setSeccion: (e) ->
 			target = $(e.currentTarget)
@@ -42,7 +42,7 @@ define [
 				if $(e.currentTarget).hasClass 'active'
 					top = '96%'
 				else
-					top = '68%'
+					top = '45%'
 				$('#feedback').animate({top:top})			
 				$(e.currentTarget).toggleClass 'active'	
 			@render()
@@ -87,3 +87,23 @@ define [
 
 			$('#listado-list').elastislide({orientation:'horizontal'})
 			@masonryLayout()
+
+		sendFeedback: (e) ->
+			e.preventDefault()
+			e.stopPropagation()
+
+			data =$('#feedback_form').serialize()
+			$.post '/feedback',data,(res) ->
+				if res.success == true
+					alert('Feedback enviado')
+					$('#feedback').animate({top:'96%'})			
+					$('#feedback tab').toggleClass 'active'	
+				else
+					if res.mensaje == 'recaptcha'
+						alert('Captcha Invalido')
+					else
+						alert('Email Invalido')
+				Recaptcha.reload()
+				$('#feedback_form').reset()
+
+
