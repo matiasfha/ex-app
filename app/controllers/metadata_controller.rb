@@ -24,6 +24,7 @@ class MetadataController < ApplicationController
 
 
 	
+	#Valida el dominio del email dado
 	require 'resolv'
 	def validate_email_domain(email)
 	      domain = email.match(/\@(.+)/)[1]
@@ -39,6 +40,7 @@ class MetadataController < ApplicationController
 		from = params[:email]
 		autor = params[:nombre]
 		comentario = params[:comentario]
+		#Valida que el formato del email sea correcto
 		validar = (from =~ /^[a-zA-Z][\w\.-]*[a-zA-Z0-9]@[a-zA-Z0-9][\w\.-]*[a-zA-Z0-9]\.[a-zA-Z][a-zA-Z\.]*[a-zA-Z]$/)
 		if !validar.nil?
 			if validate_email_domain(from)
