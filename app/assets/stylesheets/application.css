@@ -1,23 +1,494 @@
-/*
- * This is a manifest file that'll be compiled into application.css, which will include all the files
- * listed below.
- *
- * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
- * or vendor/assets/stylesheets of plugins, if any, can be referenced here using a relative path.
- *
- * You're free to add application-wide styles to this file and they'll appear at the top of the
- * compiled file, but it's generally better to create a new file per style scope.
- *
- *require bootstrap_control
- *=require style
- *=require video-js.min
- *=require jquery.pnotify.default
- *=require jquery.pnotify.default.icons
- *=require_self
+/* --
+CSS Reseter by Jorge Epuñan
+-- */
 
- *= require jquery.ui.core
- *= require jquery.ui.theme
- *= require jquery.ui.datepicker
- *= require jquery.ui.autocomplete
- * require_tree .
-*/
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, font, img, ins, kbd, q, s, samp, small, strike, sub, sup, tt, var, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, dialog, figure, header, footer, hgroup, menu, nav, section, time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	outline: 0;
+	font-weight: inherit;
+	font-style: inherit;
+	font-size: 100%;
+}
+
+article, aside, nav, section, dialog, figure, header, footer, hgroup { 
+    display:block;
+}
+
+legend {
+	display:none;
+}
+
+:focus {
+	outline: 0;
+}
+
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+caption, th, td {
+	text-align: left;
+	font-weight: normal;
+}
+
+a img, iframe {
+	border: none;
+}
+
+ul {
+	list-style: none;
+}
+
+input, textarea, select, button {
+	font-size: 100%;
+	font-family: inherit;
+}
+
+input, select {
+    vertical-align:middle;
+}
+
+select {
+	margin: inherit;
+}
+
+button {
+	border: 0;
+	padding: 0;
+	background: transparent;
+	cursor: pointer;
+}
+
+.clear { clear: both;}
+
+/* Fixes incorrect placement of numbers in ol's in IE6/7 */
+ol { margin-left:2em; }
+
+
+/* ========================================= clearfix == */
+.clearfix:after {
+	content: ".";
+	display: block;
+	height: 0;
+	clear: both;
+	visibility: hidden;
+}
+
+.clearfix {display: inline-block;}
+
+* html .clearfix {height: 1%;}
+.clearfix {display: block;}
+
+
+/***************************************************  
+
+Theme Name: Dandoo.tv Landing Page
+Theme URI: http://www.dandoo.tv
+Author: Pablo Vivanco Lara
+Version: 1.0
+
+***************************************************/
+
+
+
+* { 
+    margin: 0; 
+    padding: 0; 
+    font-family:helvetica, arial, sans-serif;
+}
+
+html, body, #bg, #bg table, #bg td, #cont {
+    height:100%;
+    width:100%;
+    overflow:hidden;
+}
+
+
+
+#landing {
+	z-index: 10;
+	width: 650px;
+	position: absolute;
+	margin: 0 auto;
+	left: 0px;
+	top: 50px;
+	right: 0px;
+	bottom: 0px;
+}
+
+#textoDandoo {
+	z-index: 12;
+	position: absolute;
+	margin: 0 auto;
+	left: 0px;
+	top: 423px;
+	right: 0px;
+	bottom: 0px;
+	width: 100%;
+	background: #fff;
+	margin-top: -33px;
+
+}
+
+#contenedor2 {
+	margin: 19px auto 0;
+	right: 0px;
+	width: 863px;
+	background: #fff;
+	
+
+}
+
+footer {
+	z-index: 13;
+	position: absolute;
+	margin: 0 auto;
+	left: 0px;
+	right: 0px;
+	bottom: -10px;
+	width: 100%;
+	height: 50px;
+
+}
+
+
+#opacidad{
+	color: lime;
+	background: url(opacidad.png) left top repeat-x;
+	position: absolute;
+	z-index: 2;
+	width: 100%;
+	height: 400px;
+}
+
+.logo {
+	text-indent: -9999px;
+	overflow: hidden;
+	background: url(dandoo.png) left top no-repeat;
+	height: 50px;
+	margin-left: -36px;
+}
+
+#landing header h2 {
+	color:#fff;
+	font-size: 23px;
+	font-weight: bold;
+	text-shadow: 0px 2px 3px #000;
+
+}
+
+#landing section h3 {
+	color:#fff;
+	font-size: 18px;
+	margin-top: 81px;
+	text-shadow: 0px 2px 3px #000;
+}
+
+#descubre h4, #elige h4, #gana h4 {
+	color: #333;
+	font-size: 18px;	
+	font-weight: bold;
+	padding-bottom: 3px;
+}
+
+#descubre p, #elige p, #gana p {
+	color: #666;
+	font-size: 11px;	
+	line-height: 17px;
+	letter-spacing: 0.08em;
+}
+
+.field input {
+	background: url(bg-input.png) left top repeat;
+	border: none;
+	width: 350px;
+	padding: 13px 13px 13px 25px;
+	border-radius: 3px 0 0 3px;	
+}
+
+.field input.error{
+	border:1px red solid;
+}
+
+#chile, #compartelo {
+	color: #666;
+	font-size: 11px;
+}
+
+.facebook{
+	text-indent: -9999px;
+	background: url(dandoo-facebook.gif) left top no-repeat;
+	overflow: hidden;
+	display: block;	
+}
+
+.twitter{
+	text-indent: -9999px;
+	background: url(dandoo-twitter.gif) left top no-repeat;
+	overflow: hidden;
+	display: block;	
+}
+
+.button{
+	float: right;
+	margin-top: -51px;
+	margin-right: 55px;
+	text-indent: -99999px;
+	overflow: hidden;
+	background:url(btn.png) no-repeat -6px -3px;
+	display: block;
+	width: 162px;
+	height: 58px;
+}
+
+.button:hover {
+	background-position: -6px -58px;
+}
+
+
+.field {
+	margin-top: 10px;
+}
+
+.field input {
+	letter-spacing:0.04em;	
+}
+
+#contenedor1{
+padding-left: 50px;	
+}
+
+#descubre, #elige {
+width: 200px;
+float: left;
+}
+
+#descubre {
+margin-right: 120px;
+padding-left: 20px;
+}
+
+#elige {
+margin-right: 120px;
+}
+
+#gana {
+width: 200px;
+float: right;
+margin-right: 0px;
+}
+
+#chile {
+margin-left: 20px;
+float: left;
+}
+
+#compartelo {
+float: right;
+width: 255px;
+}
+
+#compartelo span{
+display: block;
+margin-top: 10px;
+}
+
+#compartelo ul {
+float: right;
+margin-right: 47px;
+margin-top: -15px;
+}
+
+#compartelo ul li  {
+float: left;
+display: inline;
+width: 30px;
+}
+
+#compartelo ul li a  {
+padding-bottom: 10px;
+}
+
+
+#graciasycomparte {
+	color: #fff;
+	text-shadow: 0px 2px 3px #000;
+	font-size: 1.3em;
+	margin-top: 20px;
+	line-height: 28px;
+	padding-top: 10px;
+	padding-left: 55px;
+	margin-right: 100px;
+
+}
+
+#graciasycomparte ul{
+overflow: hidden;
+margin-left: 47px;
+float: right;
+clear: both;
+margin-top: -7px;
+margin-right: 40px;
+}
+
+#graciasycomparte ul li {
+	float: right;
+	display: inline;
+}
+
+.facebook2{
+	text-indent: -9999px;
+	background: url(compartir.png) -107px top no-repeat;
+	overflow: hidden;
+	display: block;
+	width: 108px;
+	height: 79px;	
+}
+
+.facebook2:hover {
+	background-position: -107px -80px;
+}
+
+.twitter2{
+	text-indent: -9999px;
+	background: url(compartir.png) left top no-repeat;
+	overflow: hidden;
+	display: block;
+	width: 108px;
+	height: 79px;	
+}
+
+.twitter2:hover {
+	background-position: 0px -80px;
+}
+
+#linea {
+display: block;
+float: right;
+margin-right: 140px;
+margin-top: -5px;
+}
+
+.fullBg {
+	position: absolute;
+	top: 0;
+	left:0;
+	/*left: -390px;*/
+	overflow: hidden;
+	width: 100%;
+	height: 100%;
+	margin:0;
+	padding: 0;
+}
+
+#first{
+	display:inline-block;
+	/*display: none;*/
+}
+#second{
+	/*display:inline-block;*/
+	display: none;
+}
+
+
+.modal{
+	border:10px solid rgb(82,82,82);
+	border:10px solid rgba(82,82,82,.7);
+	border-radius: 8px;
+	-webkit-border-radius:8px;
+	-moz-border-radius:8px;
+	-o-border-radius:8px;
+	behavior:url('PIE.htc');
+	z-index:10000;
+	position:fixed;
+	top:100px;
+	display: none;
+}
+
+.modal .inner-modal{
+	background:#FFF !important;
+	position:relative;
+	width:500px;
+	min-height: 300px;
+}
+
+.modal .inner-modal .head{
+	background-color: #6D84B4;
+	border: 1px solid #3B5998;
+	border-bottom: 0;
+	color: white;
+	font-size: 14px;
+	font-weight: bold;
+	padding:10px;
+}
+
+.modal .inner-modal .content{
+	padding:10px;
+}
+
+
+.modal .inner-modal .action{
+	position:absolute;
+	bottom:10px;
+	width:98%;
+	border-top:1px #eee solid;
+	padding:10px 5px 5px 5px;
+}
+
+#theMask{
+	z-index:900;
+	position:absolute;
+	left:0;
+	top:0;
+	background-color:rgba(150,150,150,.3);
+	width: 100%;
+	height: 100%;
+	behavior:url('PIE.htc');
+	display: none;
+}
+
+.uibutton{
+	position: relative;
+	z-index: 1;
+	overflow: visible;
+	display: inline-block;
+	padding: 0.3em 0.6em 0.375em;
+	border: 1px solid #999;
+	border-bottom-color: #888;
+	margin: 0;
+	text-decoration: none;
+	text-align: center;
+	font: bold 11px/normal 'lucida grande', tahoma, verdana, arial, sans-serif;
+	white-space: nowrap;
+	cursor: pointer;
+	color: #333;
+	background-color: #eee;
+	background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#f5f6f6), to(#e4e4e3));
+	background-image: -moz-linear-gradient(#f5f6f6, #e4e4e3);
+	background-image: -o-linear-gradient(#f5f6f6, #e4e4e3);
+	background-image: linear-gradient(#f5f6f6, #e4e4e3);
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorStr='#f5f6f6', EndColorStr='#e4e4e3');
+	-webkit-box-shadow: 0 1px 0 rgba(0, 0, 0, 0.1), inset 0 1px 0 #fff;
+	-moz-box-shadow: 0 1px 0 rgba(0, 0, 0, 0.1), inset 0 1px 0 #fff;
+	box-shadow: 0 1px 0 rgba(0, 0, 0, 0.1), inset 0 1px 0 #fff;
+	zoom: 1;
+}
+
+.uibutton.ok{
+	border-color: #29447E #29447E #1A356E;
+	color: #fff;
+	background-color: #5B74A8;
+	background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#637bad), to(#5872a7));
+	background-image: -moz-linear-gradient(#637bad, #5872a7);
+	background-image: -o-linear-gradient(#637bad, #5872a7);
+	background-image: linear-gradient(#637bad, #5872a7);
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorStr='#637bad', EndColorStr='#5872a7');
+	-webkit-box-shadow: 0 1px 0 rgba(0, 0, 0, 0.1), inset 0 1px 0 #8a9cc2;
+	-moz-box-shadow: 0 1px 0 rgba(0, 0, 0, 0.1), inset 0 1px 0 #8a9cc2;
+box-shadow: 0 1px 0 rgba(0, 0, 0, 0.1), inset 0 1px 0 #8a9cc2;
+}
+

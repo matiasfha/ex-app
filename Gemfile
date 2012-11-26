@@ -19,47 +19,16 @@ group :assets do
   gem 'uglifier', '>= 1.0.3'
   gem 'yui-compressor'
   gem 'jquery-rails'
-  gem 'jquery-ui-rails'
-  gem 'less-rails-bootstrap'
 
 end
 
 gem 'unicorn'
-gem 'heroku'
 gem 'foreman'
 
-gem 'i18n'
-#TODO gem 'localeapp'
 gem 'formtastic'
-gem 'rails_admin'
 gem 'mongoid'
 gem 'bson_ext'
-gem 'devise'
-gem 'devise-i18n'
-gem 'omniauth'
-gem 'omniauth-twitter'
-gem 'omniauth-facebook'
-gem 'remotipart',"~> 1.0"
-gem 'kaminari'
-gem 'ruby-oembed'
 gem 'valid_email'
 
-gem "mongoid-paperclip", :require => "mongoid_paperclip", :git => "git://github.com/meskyanichi/mongoid-paperclip.git"
-gem "aws-s3",            :require => "aws/s3"
-gem "aws-sdk"
-
 gem 'recaptcha',			:require => 'recaptcha/rails'
-gem 'googlecharts'
-gem 'faker'
-
-group :test do 
-	gem 'capybara'
-	gem 'database_cleaner'
-	gem 'mongoid-rspec'
-	gem 'launchy'
-	gem 'factory_girl_rails'
-	gem 'mongoid-rspec'
-end
-
-gem 'rspec-rails',:group =>[:development,:test]
 

@@ -7,28 +7,38 @@ class EmailsController < ApplicationController
   end
 
 
-  def check_captcha(challenge,response)
-    params = {
-      :privatekey => ENV['RECAPTCHA_PRIVATE'],
-      :remoteip => request.remote_ip,
-      :challenge => challenge,
-      :response  => response
-    }
-    x = Net::HTTP.post_form(URI.parse('http://www.google.com/recaptcha/api/verify'), params)
-    x.body
+  #Valida el dominio del email dado
+  require 'resolv'
+  def validate_email_domain(email)
+        domain = email.match(/\@(.+)/)[1]
+        Resolv::DNS.open do |dns|
+            @mx = dns.getresources(domain, Resolv::DNS::Resource::IN::MX)
+        end
+        @mx.size > 0 ? true : false
   end
+  
   def create
-    if check_captcha(params[:recaptcha_challenge_field],params[:recaptcha_response_field])
-      @email = Email.where(:email => params[:email][:email]).first
-      if @email.nil?
-        @email = Email.new params[:email]
-        render :json => {:success => @email.save,:mensaje => 'OK'}
+    validar = (params[:email][:email] =~ /^[a-zA-Z][\w\.-]*[a-zA-Z0-9]@[a-zA-Z0-9][\w\.-]*[a-zA-Z0-9]\.[a-zA-Z][a-zA-Z\.]*[a-zA-Z]$/)
+    #Validar email
+    if !validar.nil?
+      if validate_email_domain(params[:email][:email])
+        if verify_recaptcha
+          @email = Email.where(:email => params[:email][:email]).first
+          if @email.nil?
+            @email = Email.new params[:email]
+            render :json => {:success => @email.save, :mensaje => 'OK'}
+          else
+            render :json => {:success => 'false',:mensaje => 'existe'}
+          end
+        else
+          render :json => {:success => 'false',:mensaje => 'recaptcha'}
+        end
       else
-        render :json => {:mensaje => 'Ya Existe',:success => 'repeat'}
+        render :json => {:success => 'false',:mensaje => 'dominio'}
       end
     else
-      render :json => {:success => 'recaptcha'}
+      render :json => {:success => 'false',:mensaje => 'email',:validar => validar}
     end
-  	
   end
+
 end

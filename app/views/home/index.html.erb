@@ -1,19 +1,304 @@
-<%
-  content_for :barra do 
-    render :partial => "layouts/barra"
-  end
-  content_for :botonera do
-    render :partial => "layouts/botonera"
-  end
-%>
-<div class="span11 contenido" id="listado_container">
-  <%= render :partial => "resources/listado" %>
-</div>
-<div id="page-nav" style="display:none">
-	<a href="/todos_index/2"></a>
-</div>
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+
+<head>
+    <meta charset="utf-8">
+    <title>Dandoo.tv - Disfruta la mejor publicidad del mundo elegida por la gente</title>
+    <meta name="description" content="">
+    <meta name="keywords" content="" />
+    <meta name="author" content="">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta property="og:title" content="Dandoo.tv - La primera red social de publicidad" />
+    <meta property="og:type" content="company" />
+    <meta property="og:site_name" content="Dandoo.tv" />
+    <meta property="og:url" content="http://dandoo.tv" />
+    <meta property="og:image" content="http://dandoo.tv/assets/logo.png" />
+    <meta property="og:description" content="Dandoo.tv es la primera red social de Publicidad. Basados en Neurociencias Perceptivas desarrollamos interfaces capaces de llevar la interacción entre marca y usuario target al siguiente nivel." />
+    <link rel="icon" 
+      type="image/ico" 
+      href="/assets/favicon.ico" />
+      
+    <%= csrf_meta_tags %>
+ 
+    <!-- CSS -->
+    <%= stylesheet_link_tag    "application", :media => "all" %>
+    <style type="text/css">
+    	#modal{
+	      /*opacity:0;*/
+	      z-index:20;
+	      display:none;
+	      position:fixed;
+	      top:20%;
+	      left:34%;
+	      width:400px;
+	      height:200px;
+	      background: rgba(55,255,255);
+	      background:rgba(155,155,155,0.8);
+	      -webkit-border-radius: 10px; 
+	      border-radius: 10px; 
+	      -moz-border-radius: 10px;
+	      -webkit-box-shadow: 0px 3px 6px -2px rgba(68, 68, 68, 0.5);
+	      -moz-box-shadow:    0px 3px 6px -2px rgba(68, 68, 68, 0.5);
+	      box-shadow:         0px 3px 6px -2px rgba(68, 68, 68, 0.5);
+	      behavior:url(PIE.htc);
+	    }
+
+	    #recaptcha_area{
+	        margin: 0 auto !important;
+	        position: relative !important;
+	        top: 30px !important; 
+	        left: 0 !important;
+	    }
+    </style>
+
+</head>
+<body>
+	<div id="opacidad"></div>
+	
+	<div id="first">
+		<img src="/assets/bg.jpg" alt="" id="background" class="fullBg" />
+		<div id="landing">
+	        <header>
+		        <h1 class="logo">Dandoo.tv</h1>
+		        <h2>Disfruta la mejor publicidad del mundo elegida por la gente</h2>
+	        </header>
+	        <section id="contenedor1">       
+	        	<h3>Inscríbete para el pre lanzamiento</h3>
+	        	<%=semantic_form_for(@email,:class =>'stn-form label-inline simple formulario',:remote => true) do |f| %>
+					<div class="field">
+						<%=f.email_field :email, :style=>'color:#727272;font-size:14px;letter-spacing:0.03em',:size => '30',:value => 'Ingresa tu email ej : usuario@mail.com'%>
+					</div>        
+			        <%=f.hidden_field :ip %>
+			        <div id="modal">
+		                <div id="recaptcha">
+		                	<%recaptcha_tags %>
+		                </div>
+		                
+		            </div>
+		        	<div class="actionrow">
+			        	<div  class="button" id="inscribir"/>Inscribirme!</div><br>
+			    	</div>
+		    	<% end %>
+	        </section>
+		</div>
+	</div>
+	<div id="second">
+		<img src="/assets/bg-paso-2.jpg" alt="" id="background" class="fullBg" >
+		<div id="landing">
+	        <header>
+	        	<h1 class="logo">Dandoo.tv</h1>        
+	        </header><!-- fin header -->
+	        <section id="contenedor1">       
+	        	<div id="graciasycomparte">
+			    	<p><strong>Listo! ya estás inscrito</strong><br>
+				       pronto recibirás tu invitación.
+				       <br><br>
+				       Comparte esta buena noticia con tus amigos.
+				 	</p>
+				 	<span id="linea"><img src="/assets/linea.png" alt="linea" width="34" height="34" border="0"></span><ul>
+		        		<li>
+		        			<a href="https://www.facebook.com/dialog/feed?app_id=<%=ENV['FACEBOOK_KEY']%>&link=http://www.dandoo.tv&resource=/assets/logo.png&name=Dandoo.tv&caption=Dandoo.tv&description=La primera red social de publicidad en el mundo.Mira, Decide, Gana&redirect_uri=http://www.dandoo.tv" class="facebook2" title="Dandoo.tv en Facebook">Dandoo.tv en Facebook</a> 
+		        		</li>
+		        		<li>
+		        			<a href="https://twitter.com/share?url=http://www.dandoo.tv&text=Dandoo.tv: La primera red social de publicidad en el mundo.Mira, Decide, Gana&via=Dandootv&lang=es&related=Dandootv&count=none&hashtags=#Dandoo" target="_blank" class="twitter2" title="Dandoo.tv en Twitter">Dandoo.tv en Twitter</a>
+		        		</li>
+		        	</ul>			    
+				</div>
+	        </section><!-- fin section -->    
+		</div><!-- fin container -->
+	</div>
+ 	<section id="textoDandoo">       
+		<div id="contenedor2">
+	        <div id="descubre">
+		        <h4>Descubre</h4>
+		        <p>Las publicidades mas creativas y geniales del planeta en un solo lugar. </p>
+	        </div>
+
+	        <div id="elige">
+		        <h4>Elije</h4>
+		        <p>Dale 5 estrellas y comparte la que te hizo reír, llorar y emocionarte. 
+		        Digamos en comunidad que queremos ver.</p>
+	        </div>
+	        
+	        <div id="gana">
+		        <h4>Gana</h4>
+		        <p>Junta puntos por valorar las publicidades. Luego canjéalos por minutos de 
+		        internet, de telefonía, carga tu BIP! o compra aplicaciones para tu smarphone!</p>
+	        </div>	        
+		</div>
+    </section>
 
 
-<% css "visor" %>
-<% javascript "home" %>
-<% javascript "visor" %>
+
+	<footer>
+    	<div id="chile">
+        	<span>Hecho en <strong>Chile</strong> con mucho Rock <img src="/assets/rock.gif" alt="rock" width="25" height="17"></span>
+        </div>
+
+		<div id="compartelo">
+        	<span>Compártelo con tus amigos </span>
+        	<ul>
+        		<li>
+        			<a href="https://www.facebook.com/dialog/feed?app_id=<%=ENV['FACEBOOK_KEY']%>&link=http://www.dandoo.tv&resource=/assets/logo.png&name=Dandoo.tv&caption=Dandoo.tv&description=La primera red social de publicidad en el mundo.Mira, Decide, Gana&redirect_uri=http://www.dandoo.tv" class="facebook" title="Dandoo.tv en Facebook">Dandoo.tv en Facebook</a> 
+        		</li>
+        		<li>
+        			<a href="https://twitter.com/share?url=http://www.dandoo.tv&text=Dandoo.tv: La primera red social de publicidad en el mundo.Mira, Decide, Gana&via=Dandootv&lang=es&related=Dandootv&count=none&hashtags=#Dandoo" target="_blank" class="twitter" title="Dandoo.tv en Twitter">Dandoo.tv en Twitter</a>
+        		</li>
+        	</ul>
+        </div>
+
+   
+    </footer><!-- fin footer -->
+
+    <div class="modal">
+    	<div class="inner-modal">
+    		<div class="head">
+    			
+    		</div>
+    		<div class="content">
+    			
+    		</div>
+    		<div class="action">
+    			<button class="uibutton ok" style="float:right">Aceptar</button>
+    			<!-- <button class="uibutton" style="float:right">Cancelar</button> -->
+    		</div>
+    	</div>
+    </div>
+    <div id="theMask"></div>
+
+        <!-- JS -->
+	    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+	    <script type="text/javascript" src="http://www.google.com/recaptcha/api/js/recaptcha_ajax.js"></script>
+	    <%= javascript_include_tag "jquery.fullbg.min"%>
+
+        <script type="text/javascript">
+			$(document).ready(function(){
+
+				Recaptcha.create("<%=ENV['RECAPTCHA_PUBLIC']%>","recaptcha",{
+      					theme: "red",
+      					callback: Recaptcha.focus_response_field
+    				}
+  				);
+
+				var showDialog = function(titulo,mensaje){
+					$('.modal .head').html(titulo);
+					$('.modal .content').html(mensaje);
+					var dialogLeft = (($(window).width() - $('.modal').outerWidth())/2) +  $(window).scrollLeft()+'px';
+					dialogActions();
+					$('#theMask').fadeTo('slow',0.3);
+					$('.modal').css({'left':dialogLeft});
+					$('.modal').fadeIn();
+				}
+
+				var closeDialog = function(){
+					$('#theMask').fadeOut();
+					$('.modal').fadeOut();
+				}
+
+				var dialogActions = function(){
+					$('button.uibutton.ok').off('click');
+					$('button.uibutton.ok').on('click',function(e){
+						closeDialog();
+					});
+				}
+
+				var showRecaptcha = function(e){
+					e.preventDefault();
+					e.stopPropagation();
+					if($('#email_email').val()===""){
+						$('#email_email').addClass('error')
+					}else{
+						$('#modal').fadeIn('fast',function(){
+							$('#recaptcha_response_field').focus();
+						});	
+					}
+					
+				};
+
+				$('.error').focus(function(e){
+					$(this).removeClass('error');
+				});
+				$('input').keydown(function(e){
+					if(e.which == 13){
+						showRecaptcha(e);	  
+					}
+				});
+
+				$('#inscribir').click(function(e){
+					showRecaptcha(e);
+				});
+
+				$("#background").fullBg();
+
+				$('#email_email').blur(function(e){
+					if($(this).val() == '') {
+						this.style.color='#727272'; 
+						this.value='Ingresa tu email ej : usuario@mail.com'
+					}
+				});
+
+				$('#email_email').focus(function(e){
+					if (this.value != '') {
+						this.style.color='#fff';
+						this.style.color='#fff';
+						this.value='';
+					}
+				});
+
+				$('#recaptcha_response_field').live('keypress',function(e){
+					if(e.which === 13){
+						// e.preventDefault();
+						e.stopPropagation();
+						var action = $('form').attr('action');
+						var data   = $('form').serialize();
+
+						$.post(action,data,function(resp){
+							console.log(resp);
+							if(resp.success === 'false'){
+								switch(resp.mensaje){
+									case 'existe':
+										showDialog('Error','El email ingresado ya ha sido registrado');
+										$('#modal').css('display','none');
+										$('#email_email').focus();
+									break;
+									case 'recaptcha':
+										showDialog('Error','¿Realmente eres humano?');
+									break;
+									case 'dominio':
+										showDialog('Error','El email ingresado tiene un dominio inválido');
+										$('#modal').css('display','none');
+										$('#email_email').focus();
+										
+									break;
+									case 'email':
+										showDialog('Error','El email ingresado no es válido');
+										$('#modal').css('display','none');
+										$('#email_email').focus();
+									break;
+								}
+								Recaptcha.reload();
+							}else{
+								$('#first').fadeOut('fast',function(e){
+									$('#first').remove();
+								});
+								$('#second').fadeIn();
+							}
+						});
+					}
+					
+				});
+			});
+
+
+	
+		    var _gaq=[['_setAccount','UA-35427461-2'],['_trackPageview']];
+		    (function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
+		    g.src=('https:'==location.protocol?'//ssl':'//www')+'.google-analytics.com/ga.js';
+		    s.parentNode.insertBefore(g,s)}(document,'script'));
+		</script>
+ 
+</body>
+</html>
