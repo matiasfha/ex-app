@@ -160,7 +160,7 @@
     <div class="modal">
     	<div class="inner-modal">
     		<div class="head">
-    			
+    			TItulo
     		</div>
     		<div class="content">
     			
@@ -205,7 +205,12 @@
 					showDialog('Pronto!','Pronto podrás trabajar con nosotros');
 				});
 
-				var showDialog = function(titulo,mensaje){
+				var showDialog = function(titulo,mensaje,tipo){
+					if(tipo==='error'){
+						$('.modal').addClass('error')
+					}else{
+						$('.modal').removeClass('error');
+					}
 					$('.modal .head').html(titulo);
 					$('.modal .content').html(mensaje);
 					var dialogLeft = (($(window).width() - $('.modal').outerWidth())/2) +  $(window).scrollLeft()+'px';
@@ -282,21 +287,21 @@
 							if(resp.success === 'false'){
 								switch(resp.mensaje){
 									case 'existe':
-										showDialog('Error','Atención! El email ingresado ya está esperando la invitación.');
+										showDialog('Error','Atención! El email ingresado ya está esperando la invitación.','error');
 										$('#modal').css('display','none');
 										$('#email_email').focus();
 									break;
 									case 'recaptcha':
-										showDialog('Error','¿Realmente eres humano?');
+										showDialog('Error','¿Realmente eres humano?','error');
 									break;
 									case 'dominio':
-										showDialog('Error','El email ingresado tiene un dominio inválido');
+										showDialog('Error','El email ingresado tiene un dominio inválido','error');
 										$('#modal').css('display','none');
 										$('#email_email').focus();
 										
 									break;
 									case 'email':
-										showDialog('Error','El email ingresado no es válido');
+										showDialog('Error','El email ingresado no es válido','error');
 										$('#modal').css('display','none');
 										$('#email_email').focus();
 									break;

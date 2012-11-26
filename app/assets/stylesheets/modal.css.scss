@@ -10,39 +10,54 @@
 	position:fixed;
 	top:100px;
 	display:none;
+	&.error{
+		.inner-modal{
+			.head{
+				background-color:#991A00;
+				color:white;
+			}
+
+			.content{
+				color:#991A00;
+			}
+		}
+	}
+
+	.inner-modal{
+		background:#FFF !important;
+		position:relative;
+		width:500px;
+		min-height: 171px;
+		.head{
+			background-color: #CCC;
+			border-bottom: 0;
+			color: #666;
+			font-size: 14px;
+			font-weight: bold;
+			padding:10px;
+		}
+
+		.content{
+			text-align: center;
+			padding-top: 37px;
+			color: #333;
+			font-family: Arial;
+			font-size: 14px;
+		}
+
+		.action{
+			position:absolute;
+			padding:10px 5px 5px 5px;
+			bottom: 1px;
+			text-align: center;
+			width: 99%;
+		}
+	}
+
+
 }
 
-.modal .inner-modal{
-	background:#FFF !important;
-	position:relative;
-	width:500px;
-	min-height: 171px;
-}
 
-.modal .inner-modal .head{
-	background-color: #CCC;
-	border-bottom: 0;
-	color: #666;
-	font-size: 14px;
-	font-weight: bold;
-	padding:10px;
-}
-
-.modal .inner-modal .content{
-	text-align: center;
-	padding-top: 37px;
-	color: #333;
-	font-family: Arial;
-	font-size: 14px;
-}
-
-.modal .inner-modal .action{
-	position:absolute;
-	padding:10px 5px 5px 5px;
-	bottom: 1px;
-	text-align: center;
-	width: 75%;
-}
 
 #theMask{
 	z-index:900;
@@ -84,23 +99,25 @@
 	border-radius: 3px;
 	padding: 9px 29px;
 	margin-right: 10px;
+
+	&.ok{
+		border-color: #29447E #29447E #1A356E;
+		color: #fff;
+		background-color: #0B3892;
+		background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#4073A3), to(#0B3892));
+		background-image: -moz-linear-gradient(#4073A3, #0B3892);
+		background-image: -o-linear-gradient(#4073A3, #0B3892);
+		background-image: linear-gradient(#4073A3, #0B3892);
+		filter: progid:DXImageTransform.Microsoft.gradient(startColorStr='#4073A3', EndColorStr='#0B3892');
+		-webkit-box-shadow: 0 1px 0 rgba(0, 0, 0, 0.1), inset 0 1px 0 #8a9cc2;
+		-moz-box-shadow: 0 1px 0 rgba(0, 0, 0, 0.1), inset 0 1px 0 #8a9cc2;
+		box-shadow: 0 1px 0 rgba(0, 0, 0, 0.1),inset 0 1px 0 #4298e2;
+		border-radius: 3px;
+		padding: 9px 29px;
+	}
 }
 
-.uibutton.ok{
-	border-color: #29447E #29447E #1A356E;
-	color: #fff;
-	background-color: #0B3892;
-	background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#4073A3), to(#0B3892));
-	background-image: -moz-linear-gradient(#4073A3, #0B3892);
-	background-image: -o-linear-gradient(#4073A3, #0B3892);
-	background-image: linear-gradient(#4073A3, #0B3892);
-	filter: progid:DXImageTransform.Microsoft.gradient(startColorStr='#4073A3', EndColorStr='#0B3892');
-	-webkit-box-shadow: 0 1px 0 rgba(0, 0, 0, 0.1), inset 0 1px 0 #8a9cc2;
-	-moz-box-shadow: 0 1px 0 rgba(0, 0, 0, 0.1), inset 0 1px 0 #8a9cc2;
-	box-shadow: 0 1px 0 rgba(0, 0, 0, 0.1),inset 0 1px 0 #4298e2;
-	border-radius: 3px;
-	padding: 9px 29px;
-}
+
 
 
 
