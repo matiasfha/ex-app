@@ -125,11 +125,11 @@ footer {
 	width: 350px;
 	padding: 13px 13px 13px 25px;
 	border-radius: 3px 0 0 3px;	
+	&.error{
+		border:1px red solid;	
+	}
 }
 
-.field input.error{
-	border:1px red solid;
-}
 
 #chile, #compartelo {
 	color: #666;
@@ -160,76 +160,71 @@ footer {
 	display: block;
 	width: 162px;
 	height: 58px;
+	&:hover{
+		background-position: -6px -58px;	
+	}
 }
 
-.button:hover {
-	background-position: -6px -58px;
-}
 
 
 .field {
 	margin-top: 10px;
+	input{
+		letter-spacing:0.04em;	
+	}
 }
 
-.field input {
-	letter-spacing:0.04em;	
-}
 
 #contenedor1{
-padding-left: 50px;	
+	padding-left: 50px;	
 }
 
 #descubre, #elige {
-width: 200px;
-float: left;
+	width: 200px;
+	float: left;
 }
 
 #descubre {
-margin-right: 120px;
-padding-left: 20px;
+	margin-right: 120px;
+	padding-left: 20px;
 }
 
 #elige {
-margin-right: 120px;
+	margin-right: 120px;
 }
 
 #gana {
-width: 200px;
-float: right;
-margin-right: 0px;
+	width: 200px;
+	float: right;
+	margin-right: 0px;
 }
 
 #chile {
-margin-left: 20px;
-float: left;
+	margin-left: 20px;
+	float: left;
 }
 
 #compartelo {
-float: right;
-width: 255px;
+	float: right;
+	width: 255px;
+	span{
+		display: block;
+		margin-top: 10px;
+	}
+	ul {
+		float: right;
+		margin-right: 47px;
+		margin-top: -15px;
+		li  {
+			float: left;
+			display: inline;
+			width: 30px;
+			a  {
+				padding-bottom: 10px;
+			}
+		}
+	}
 }
-
-#compartelo span{
-display: block;
-margin-top: 10px;
-}
-
-#compartelo ul {
-float: right;
-margin-right: 47px;
-margin-top: -15px;
-}
-
-#compartelo ul li  {
-float: left;
-display: inline;
-width: 30px;
-}
-
-#compartelo ul li a  {
-padding-bottom: 10px;
-}
-
 
 #graciasycomparte {
 	color: #fff;
@@ -240,22 +235,23 @@ padding-bottom: 10px;
 	padding-top: 10px;
 	padding-left: 55px;
 	margin-right: 100px;
-
+	ul{
+		overflow: hidden;
+		margin-left: 47px;
+		float: right;
+		clear: both;
+		margin-top: -7px;
+		margin-right: 40px;
+		li {
+			float: right;
+			display: inline;
+		}
+	}
 }
 
-#graciasycomparte ul{
-overflow: hidden;
-margin-left: 47px;
-float: right;
-clear: both;
-margin-top: -7px;
-margin-right: 40px;
-}
 
-#graciasycomparte ul li {
-	float: right;
-	display: inline;
-}
+
+
 
 .facebook2{
 	text-indent: -9999px;
@@ -264,11 +260,12 @@ margin-right: 40px;
 	display: block;
 	width: 108px;
 	height: 79px;	
+	&:hover {
+		background-position: -107px -80px;
+	}
 }
 
-.facebook2:hover {
-	background-position: -107px -80px;
-}
+
 
 .twitter2{
 	text-indent: -9999px;
@@ -277,17 +274,17 @@ margin-right: 40px;
 	display: block;
 	width: 108px;
 	height: 79px;	
+	&:hover{
+		background-position: 0px -80px;
+	}
 }
 
-.twitter2:hover {
-	background-position: 0px -80px;
-}
 
 #linea {
-display: block;
-float: right;
-margin-right: 140px;
-margin-top: -5px;
+	display: block;
+	float: right;
+	margin-right: 140px;
+	margin-top: -5px;
 }
 
 .fullBg {
@@ -305,35 +302,38 @@ margin-top: -5px;
 }
 
 
-
-.accesoEmpresas a {
-	color: #fff;
-	position: absolute;
-	top: 0;
-	z-index: 999;
-	font-size: 12px;
-	right: 10px;
-	padding: 10px;	
-	text-decoration: none;	
+.accesoEmpresas{
+	display:none;
+	a {
+		color: #fff;
+		position: absolute;
+		top: 0;
+		z-index: 999;
+		font-size: 12px;
+		right: 10px;
+		padding: 10px;	
+		text-decoration: none;	
+		&:hover{
+			text-decoration: underline;
+		}
+	}
 }
 
-.accesoEmpresas a:hover {
-	text-decoration: underline;
-}
 
 .accesos-empresas {
 	margin-top: 90px;	
 	overflow: hidden;
 	float: right;
+	li {
+		float: left;
+		display: inline;
+		margin: 0px;
+		border: 0px;
+		padding: 0px;
+	}
 }
 
-.accesos-empresas li {
-	float: left;
-	display: inline;
-	margin: 0px;
-	border: 0px;
-	padding: 0px;
-}
+
 
 .crear-cuenta-emp {
 	background: url(../i/crear-cuenta-empresa.png) left top no-repeat;
@@ -343,11 +343,11 @@ margin-top: -5px;
 	height: 56px;
 	padding-left: 5px;
 	width: 158px;
+	&:hover{
+		background-position:0 -59px ;	
+	}
 }
 
-.crear-cuenta-emp:hover {
-	background-position:0 -59px ;
-}
 
 
 .ingresar-empresa {
@@ -358,8 +358,7 @@ margin-top: -5px;
 	height: 56px;
 	width: 165px;
 	margin-left: -6px;
-}
-
-.ingresar-empresa:hover {
-	background-position:0 -59px ;
+	&:hover{
+		background-position:0 -59px ;
+	}
 }
