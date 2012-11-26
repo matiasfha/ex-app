@@ -279,7 +279,6 @@
 						var data   = $('form').serialize();
 
 						$.post(action,data,function(resp){
-							console.log(resp);
 							if(resp.success === 'false'){
 								switch(resp.mensaje){
 									case 'existe':
@@ -307,6 +306,7 @@
 								$('#first').fadeOut('fast',function(e){
 									$('#first').remove();
 								});
+								$('.fullBg').css('left','-290px');
 								$('#second').fadeIn();
 							}
 						});
