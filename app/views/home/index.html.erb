@@ -104,10 +104,10 @@
 				 	</p>
 				 	<span id="linea"><img src="/assets/linea.png" alt="linea" width="34" height="34" border="0"></span><ul>
 		        		<li>
-		        			<a href="https://www.facebook.com/dialog/feed?app_id=<%=ENV['FACEBOOK_KEY']%>&link=http://www.dandoo.tv&resource=/assets/logo.png&name=Dandoo.tv&caption=Dandoo.tv&description=La primera red social de publicidad en el mundo.Mira, Decide, Gana&redirect_uri=http://www.dandoo.tv" class="facebook2" title="Dandoo.tv en Facebook">Dandoo.tv en Facebook</a> 
+		        			<a href="https://www.facebook.com/dialog/feed?app_id=<%=ENV['FACEBOOK_KEY']%>&link=http://www.dandoo.tv&resource=/assets/logo.png&name=Dandoo.tv&caption=Dandoo.tv&description=La primera red social de publicidad en el mundo.Mira, Decide, Gana&redirect_uri=http://www.dandoo.tv" class="facebook2 popup" title="Dandoo.tv en Facebook">Dandoo.tv en Facebook</a> 
 		        		</li>
 		        		<li>
-		        			<a href="https://twitter.com/share?url=http://www.dandoo.tv&text=Dandoo.tv: La primera red social de publicidad en el mundo.Mira, Decide, Gana&via=Dandootv&lang=es&related=Dandootv&count=none&hashtags=#Dandoo" target="_blank" class="twitter2" title="Dandoo.tv en Twitter">Dandoo.tv en Twitter</a>
+		        			<a href="https://twitter.com/share?url=http://www.dandoo.tv&text=Dandoo.tv: La primera red social de publicidad en el mundo.Mira, Decide, Gana&via=Dandootv&lang=es&related=Dandootv&count=none&hashtags=#Dandoo" target="_blank" class="twitter2 popup" title="Dandoo.tv en Twitter">Dandoo.tv en Twitter</a>
 		        		</li>
 		        	</ul>			    
 				</div>
@@ -146,10 +146,10 @@
         	<span>Compártelo con tus amigos </span>
         	<ul>
         		<li>
-        			<a href="https://www.facebook.com/dialog/feed?app_id=<%=ENV['FACEBOOK_KEY']%>&link=http://www.dandoo.tv&resource=/assets/logo.png&name=Dandoo.tv&caption=Dandoo.tv&description=La primera red social de publicidad en el mundo.Mira, Decide, Gana&redirect_uri=http://www.dandoo.tv" class="facebook" title="Dandoo.tv en Facebook">Dandoo.tv en Facebook</a> 
+        			<a href="https://www.facebook.com/dialog/feed?app_id=<%=ENV['FACEBOOK_KEY']%>&link=http://www.dandoo.tv&resource=/assets/logo.png&name=Dandoo.tv&caption=Dandoo.tv&description=La primera red social de publicidad en el mundo.Mira, Decide, Gana&redirect_uri=http://www.dandoo.tv" class="facebook popup" title="Dandoo.tv en Facebook">Dandoo.tv en Facebook</a> 
         		</li>
         		<li>
-        			<a href="https://twitter.com/share?url=http://www.dandoo.tv&text=Dandoo.tv: La primera red social de publicidad en el mundo.Mira, Decide, Gana&via=Dandootv&lang=es&related=Dandootv&count=none&hashtags=#Dandoo" target="_blank" class="twitter" title="Dandoo.tv en Twitter">Dandoo.tv en Twitter</a>
+        			<a href="https://twitter.com/share?url=http://www.dandoo.tv&text=Dandoo.tv: La primera red social de publicidad en el mundo.Mira, Decide, Gana&via=Dandootv&lang=es&related=Dandootv&count=none&hashtags=#Dandoo" target="_blank" class="twitter popup" title="Dandoo.tv en Twitter">Dandoo.tv en Twitter</a>
         		</li>
         	</ul>
         </div>
@@ -187,6 +187,19 @@
     				}
   				);
 
+
+				$('.popup').on('click',function(e){
+					e.preventDefault();
+					e.stopPropagation();
+					var width=875,
+						height = 500,
+						left = ($(window).width() - width) / 2,
+						top = ($(window).height() - height) / 2,
+						url = this.href,
+						opts = 'status=1,width='+width+',height='+height+',top='+top+',left='+left;
+						window.open(url,'Compartelo con tus amigos',opts);
+						return false;
+				});
 
 				$('.accesoEmpresas a').on('click',function(e){
 					showDialog('Pronto!','Pronto podrás trabajar con nosotros');
@@ -270,7 +283,7 @@
 							if(resp.success === 'false'){
 								switch(resp.mensaje){
 									case 'existe':
-										showDialog('Error','El email ingresado ya ha sido registrado');
+										showDialog('Error','Atención! El email ingresado ya está esperando la invitación.');
 										$('#modal').css('display','none');
 										$('#email_email').focus();
 									break;
