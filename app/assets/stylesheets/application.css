@@ -492,3 +492,61 @@ margin-top: -5px;
 box-shadow: 0 1px 0 rgba(0, 0, 0, 0.1), inset 0 1px 0 #8a9cc2;
 }
 
+
+.accesoEmpresas a {
+	color: #fff;
+	position: absolute;
+	top: 0;
+	z-index: 999;
+	font-size: 12px;
+	right: 10px;
+	padding: 10px;	
+	text-decoration: none;	
+}
+
+.accesoEmpresas a:hover {
+	text-decoration: underline;
+}
+
+.accesos-empresas {
+	margin-top: 90px;	
+	overflow: hidden;
+	float: right;
+}
+
+.accesos-empresas li {
+	float: left;
+	display: inline;
+	margin: 0px;
+	border: 0px;
+	padding: 0px;
+}
+
+.crear-cuenta-emp {
+	background: url(../i/crear-cuenta-empresa.png) left top no-repeat;
+	text-indent: -9999px;
+	overflow: hidden;
+	display: block;
+	height: 56px;
+	padding-left: 5px;
+	width: 158px;
+}
+
+.crear-cuenta-emp:hover {
+background-position:0 -59px ;
+}
+
+
+.ingresar-empresa {
+	background: url(../i/ingresar-empresa.png) left top no-repeat;
+	text-indent: -9999px;
+	overflow: hidden;
+	display: block;
+	height: 56px;
+	width: 165px;
+	margin-left: -6px;
+}
+
+.ingresar-empresa:hover {
+background-position:0 -59px ;
+}
