@@ -1,0 +1,2 @@
+module RegistroEmpresasHelper
+end

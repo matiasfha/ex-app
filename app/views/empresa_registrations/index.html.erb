@@ -1,0 +1,77 @@
+<% 
+content_for :css do %>
+<%= stylesheet_link_tag    "empresa", :media => "all" %>
+<% end 
+content_for :main_js do %>
+  "/assets/user_index.js"
+<% end %>
+
+
+<div id="empresas">
+    <header>
+    
+    <h1>Dandoo.tv</h1>
+    <h2>Acerca tu marca o productos <br>a tus consumidores</h2>
+    
+    </header><!-- fin header -->
+    
+    
+    <section id="contenedor">       
+            
+    <h3>Datos de Empresa</h3>
+    
+    <%= semantic_form_for @empresa, :html => {:class => "stn-form label-inline simple formulario"} do |f|%>
+    
+
+	<div class="field">
+		<label for="fname">Nombre de Empresa: </label> 
+		<input id="fname" name="fname" size="25" type="text" />
+	</div>  
+	
+
+	<div class="field">
+		<label for="fname">Nombre Legal: </label> 
+		<input id="fname" name="fname" size="25" type="text" />
+	</div>  
+
+	<div class="field">
+		<label for="fname">RUT Empresa: </label> 
+		<input id="fname" name="fname" size="7" maxlength="7" type="text" /> -
+		<input style="width:20px;" id="fname" name="fname" maxlength="1" size="2" type="text" /> 
+		<span class="pruebaerror">ej: 1234567-8</span>
+	</div>        
+
+	<div class="field">
+		<label for="fname">Rubro: </label>
+		<select>
+		  <option value="seleccionar">Seleccionar rubro...</option>
+		  <option value="1">opción 1</option>
+		  <option value="2">opción 2</option>
+		  <option value="3">opción 3</option>
+		</select>			
+	</div>         
+    
+    
+    <div class="actionrow">
+        <a href="#" class="button"/>Datos de Contacto</a>
+    </div> 
+    <br>  
+    <% end %>
+    
+    </section><!-- fin section -->    
+    
+    
+    <ul class="pasos">
+        <li><img src="/assets/empresa/paso-on.png" alt="paso-on" width="11" height="11" /></li>
+        <li><img src="/assets/empresa/paso-off.png" alt="paso-on" width="11" height="11" /></li>
+        <li><img src="/assets/empresa/paso-off.png" alt="paso-on" width="11" height="11" /></li>
+    </ul>
+
+
+        <a href="#" class="back">Volver a la portada</a>
+                      
+    <footer>
+    </footer><!-- fin footer -->
+
+
+</div><!-- fin container -->
