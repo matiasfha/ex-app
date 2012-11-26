@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+
+
+<head>
+    <meta charset="utf-8">
+    <title>Dandoo.tv - Una nueva experiencia en campañas</title>
+    <meta name="description" content="">
+    <meta name="keywords" content="" />
+    <meta name="author" content="">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta property="og:title" content="Dandoo.tv - La primera red social de publicidad" />
+    <meta property="og:type" content="company" />
+    <meta property="og:site_name" content="Dandoo.tv" />
+    <meta property="og:url" content="http://dandoo.tv" />
+    <meta property="og:image" content="http://dandoo.tv/assets/logo.png" />
+    <meta property="og:description" content="Dandoo.tv es la primera red social de Publicidad. Basados en Neurociencias Perceptivas desarrollamos interfaces capaces de llevar la interacción entre marca y usuario target al siguiente nivel." />
+    <link rel="icon" 
+      type="image/ico" 
+      href="/assets/favicon.ico" />
+ 	
+ 	<%= csrf_meta_tags %>
+
+    <!-- CSS -->
+    <%= stylesheet_link_tag    "application", :media => "all" %>
+	<!--BG-->
+	<style type="text/css">
+		.fullBg {
+  			position: absolute;
+  			top: 0;
+  			left: -190px;
+  			overflow: hidden;
+			}
+	</style>
+
+</head>
+ 
+<body>
+
+<div id="opacidad"></div>
+
+<img src="/assets/bg-empresas.jpg" alt="" id="background" class="fullBg" >
+
+<span class="accesoEmpresas"><a href="/" title="Una mejor experiencia en publicidad">Volver a Dandoo.tv</a></span>
+
+<div id="landing">
+        
+        <header>
+        <h1 class="logo">Dandoo.tv</h1>   
+        <h2>Brindamos una experiencia de otro planeta para conocer a tus audiencias.</h2>
+        </header><!-- fin header -->
+        
+        
+        <section id="contenedor1">       
+	        <div id="empresas">
+		    
+		   <!--  <ul class="accesos-empresas">
+	        	<li><a href="../empresa/1-crear-cuenta.html" class="crear-cuenta-emp" title="Crea tu cuenta empresa">Crear cuenta</a> </li>
+	        	<li><a href="#" class="ingresar-empresa" title="Ingresa a tu cuenta Dandoo">Ingresar</a></li>
+	        </ul>	 -->		    
+	    
+        
+        
+        </section><!-- fin section -->    
+
+</div><!-- fin container -->
+ 
+ 
+ 
+ 
+        <section id="textoDandoo">       
+
+	        <div id="contenedor2">
+
+	        <div id="descubre">
+	        <h4>100%</h4>
+	        <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt .</p>
+	        </div>
+
+	        <div id="elige">
+	        <h4>Comprensión</h4>
+	        <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt .</p>
+	        </div>
+	        
+	        <div id="gana">
+	        <h4>Opinión</h4>
+	        <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt .</p>
+	        </div>	        
+	        </div>       
+        </section><!-- fin section -->    
+	                      
+       
+        <footer>
+        
+	        <div id="chile">
+	        <span>Hecho en <strong>Chile</strong> con mucho Rock <img src="/assets/rock.gif" alt="rock" width="25" height="17"></span>
+	        </div>
+
+
+	        <div id="compartelo">
+	        <span>Compártelo con tus amigos </span>
+	        <ul>
+	        	<li>
+        			<a href="https://www.facebook.com/dialog/feed?app_id=<%=ENV['FACEBOOK_KEY']%>&link=http://www.dandoo.tv&resource=/assets/logo.png&name=Dandoo.tv&caption=Dandoo.tv&description=La primera red social de publicidad en el mundo.Mira, Decide, Gana&redirect_uri=http://www.dandoo.tv" class="facebook popup" title="Dandoo.tv en Facebook">Dandoo.tv en Facebook</a> 
+        		</li>
+        		<li>
+        			<a href="https://twitter.com/share?url=http://www.dandoo.tv&text=Dandoo.tv: La primera red social de publicidad en el mundo.Mira, Decide, Gana&via=Dandootv&lang=es&related=Dandootv&count=none&hashtags=#Dandoo" target="_blank" class="twitter popup" title="Dandoo.tv en Twitter">Dandoo.tv en Twitter</a>
+        		</li>
+	        </ul>
+	        </div>
+
+       
+        </footer><!-- fin footer -->
+        
+         
+ <!-- JS -->
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+
+	
+<%= javascript_include_tag "jquery.fullbg.min"%>
+<script type="text/javascript">
+		$(document).ready(function(){
+			$("#background").fullBg();
+			$('.popup').on('click',function(e){
+				e.preventDefault();
+				e.stopPropagation();
+				var width=875,
+					height = 500,
+					left = ($(window).width() - width) / 2,
+					top = ($(window).height() - height) / 2,
+					url = this.href,
+					opts = 'status=1,width='+width+',height='+height+',top='+top+',left='+left;
+					window.open(url,'Compartelo con tus amigos',opts);
+					return false;
+			});
+		});
+</script>
+</body>
+</html>

@@ -5,5 +5,7 @@ class HomeController < ApplicationController
     render :layout => nil
   end
 
-  
+  def empresas
+  	render :layout => nil
+  end
 end
