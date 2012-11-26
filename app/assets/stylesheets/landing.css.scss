@@ -1,89 +1,3 @@
-/* --
-CSS Reseter by Jorge Epuñan
--- */
-
-html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, font, img, ins, kbd, q, s, samp, small, strike, sub, sup, tt, var, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td,
-article, aside, dialog, figure, header, footer, hgroup, menu, nav, section, time, mark, audio, video {
-	margin: 0;
-	padding: 0;
-	border: 0;
-	outline: 0;
-	font-weight: inherit;
-	font-style: inherit;
-	font-size: 100%;
-}
-
-article, aside, nav, section, dialog, figure, header, footer, hgroup { 
-    display:block;
-}
-
-legend {
-	display:none;
-}
-
-:focus {
-	outline: 0;
-}
-
-table {
-	border-collapse: collapse;
-	border-spacing: 0;
-}
-
-caption, th, td {
-	text-align: left;
-	font-weight: normal;
-}
-
-a img, iframe {
-	border: none;
-}
-
-ul {
-	list-style: none;
-}
-
-input, textarea, select, button {
-	font-size: 100%;
-	font-family: inherit;
-}
-
-input, select {
-    vertical-align:middle;
-}
-
-select {
-	margin: inherit;
-}
-
-button {
-	border: 0;
-	padding: 0;
-	background: transparent;
-	cursor: pointer;
-}
-
-.clear { clear: both;}
-
-/* Fixes incorrect placement of numbers in ol's in IE6/7 */
-ol { margin-left:2em; }
-
-
-/* ========================================= clearfix == */
-.clearfix:after {
-	content: ".";
-	display: block;
-	height: 0;
-	clear: both;
-	visibility: hidden;
-}
-
-.clearfix {display: inline-block;}
-
-* html .clearfix {height: 1%;}
-.clearfix {display: block;}
-
-
 /***************************************************  
 
 Theme Name: Dandoo.tv Landing Page
@@ -175,9 +89,12 @@ footer {
 
 #landing header h2 {
 	color:#fff;
-	font-size: 23px;
+	font-size: 32px;
 	font-weight: bold;
 	text-shadow: 0px 2px 3px #000;
+	padding-top:26px;
+	line-height:35px;
+	letter-spacing:-0.06em;
 
 }
 
@@ -376,118 +293,17 @@ margin-top: -5px;
 .fullBg {
 	position: absolute;
 	top: 0;
-	/*left: -390px;*/
 	overflow: hidden;
-	/*width: 100%;*/
-	/*height: 100%;*/
+	left:-390px;	
 }
 
 #first{
 	display:inline-block;
-	/*display: none;*/
 }
 #second{
-	/*display:inline-block;*/
 	display: none;
 }
 
-
-.modal{
-	border:10px solid rgb(82,82,82);
-	border:10px solid rgba(82,82,82,.7);
-	border-radius: 8px;
-	-webkit-border-radius:8px;
-	-moz-border-radius:8px;
-	-o-border-radius:8px;
-	behavior:url('PIE.htc');
-	z-index:10000;
-	position:fixed;
-	top:100px;
-	display: none;
-}
-
-.modal .inner-modal{
-	background:#FFF !important;
-	position:relative;
-	width:500px;
-	min-height: 300px;
-}
-
-.modal .inner-modal .head{
-	background-color: #6D84B4;
-	border: 1px solid #3B5998;
-	border-bottom: 0;
-	color: white;
-	font-size: 14px;
-	font-weight: bold;
-	padding:10px;
-}
-
-.modal .inner-modal .content{
-	padding:10px;
-}
-
-
-.modal .inner-modal .action{
-	position:absolute;
-	bottom:10px;
-	width:98%;
-	border-top:1px #eee solid;
-	padding:10px 5px 5px 5px;
-}
-
-#theMask{
-	z-index:900;
-	position:absolute;
-	left:0;
-	top:0;
-	background-color:rgba(150,150,150,.3);
-	width: 100%;
-	height: 100%;
-	behavior:url('PIE.htc');
-	display: none;
-}
-
-.uibutton{
-	position: relative;
-	z-index: 1;
-	overflow: visible;
-	display: inline-block;
-	padding: 0.3em 0.6em 0.375em;
-	border: 1px solid #999;
-	border-bottom-color: #888;
-	margin: 0;
-	text-decoration: none;
-	text-align: center;
-	font: bold 11px/normal 'lucida grande', tahoma, verdana, arial, sans-serif;
-	white-space: nowrap;
-	cursor: pointer;
-	color: #333;
-	background-color: #eee;
-	background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#f5f6f6), to(#e4e4e3));
-	background-image: -moz-linear-gradient(#f5f6f6, #e4e4e3);
-	background-image: -o-linear-gradient(#f5f6f6, #e4e4e3);
-	background-image: linear-gradient(#f5f6f6, #e4e4e3);
-	filter: progid:DXImageTransform.Microsoft.gradient(startColorStr='#f5f6f6', EndColorStr='#e4e4e3');
-	-webkit-box-shadow: 0 1px 0 rgba(0, 0, 0, 0.1), inset 0 1px 0 #fff;
-	-moz-box-shadow: 0 1px 0 rgba(0, 0, 0, 0.1), inset 0 1px 0 #fff;
-	box-shadow: 0 1px 0 rgba(0, 0, 0, 0.1), inset 0 1px 0 #fff;
-	zoom: 1;
-}
-
-.uibutton.ok{
-	border-color: #29447E #29447E #1A356E;
-	color: #fff;
-	background-color: #5B74A8;
-	background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#637bad), to(#5872a7));
-	background-image: -moz-linear-gradient(#637bad, #5872a7);
-	background-image: -o-linear-gradient(#637bad, #5872a7);
-	background-image: linear-gradient(#637bad, #5872a7);
-	filter: progid:DXImageTransform.Microsoft.gradient(startColorStr='#637bad', EndColorStr='#5872a7');
-	-webkit-box-shadow: 0 1px 0 rgba(0, 0, 0, 0.1), inset 0 1px 0 #8a9cc2;
-	-moz-box-shadow: 0 1px 0 rgba(0, 0, 0, 0.1), inset 0 1px 0 #8a9cc2;
-box-shadow: 0 1px 0 rgba(0, 0, 0, 0.1), inset 0 1px 0 #8a9cc2;
-}
 
 
 .accesoEmpresas a {
@@ -530,7 +346,7 @@ box-shadow: 0 1px 0 rgba(0, 0, 0, 0.1), inset 0 1px 0 #8a9cc2;
 }
 
 .crear-cuenta-emp:hover {
-background-position:0 -59px ;
+	background-position:0 -59px ;
 }
 
 
@@ -545,5 +361,5 @@ background-position:0 -59px ;
 }
 
 .ingresar-empresa:hover {
-background-position:0 -59px ;
+	background-position:0 -59px ;
 }

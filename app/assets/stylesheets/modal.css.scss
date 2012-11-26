@@ -1,0 +1,127 @@
+.modal{
+	border:10px solid rgb(82,82,82);
+	border:10px solid rgba(82,82,82,.7);
+	border-radius: 8px;
+	-webkit-border-radius:8px;
+	-moz-border-radius:8px;
+	-o-border-radius:8px;
+	behavior:url('PIE.htc');
+	z-index:10000;
+	position:fixed;
+	top:100px;
+	display:none;
+}
+
+.modal .inner-modal{
+	background:#FFF !important;
+	position:relative;
+	width:500px;
+	min-height: 171px;
+}
+
+.modal .inner-modal .head{
+	background-color: #CCC;
+	border-bottom: 0;
+	color: #666;
+	font-size: 14px;
+	font-weight: bold;
+	padding:10px;
+}
+
+.modal .inner-modal .content{
+	text-align: center;
+	padding-top: 37px;
+	color: #333;
+	font-family: Arial;
+	font-size: 14px;
+}
+
+.modal .inner-modal .action{
+	position:absolute;
+	padding:10px 5px 5px 5px;
+	bottom: 1px;
+	text-align: center;
+	width: 75%;
+}
+
+#theMask{
+	z-index:900;
+	position:absolute;
+	left:0;
+	top:0;
+	background-color:rgba(150,150,150,.3);
+	width: 100%;
+	height: 100%;
+	behavior:url('PIE.htc');
+	display: none;
+}
+
+.uibutton{
+	position: relative;
+	z-index: 1;
+	overflow: visible;
+	display: inline-block;
+	padding: 0.3em 0.6em 0.375em;
+	border: 1px solid #ccc;
+	border-bottom-color: #888;
+	margin: 0;
+	text-decoration: none;
+	text-align: center;
+	font: bold 12px/normal arial,sans-serif;
+	white-space: nowrap;
+	cursor: pointer;
+	color: #333;
+	background-color: #eee;
+	background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#f5f6f6), to(#e4e4e3));
+	background-image: -moz-linear-gradient(#f5f6f6, #e4e4e3);
+	background-image: -o-linear-gradient(#f5f6f6, #e4e4e3);
+	background-image: linear-gradient(#f5f6f6, #e4e4e3);
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorStr='#f5f6f6', EndColorStr='#e4e4e3');
+	-webkit-box-shadow: 0 1px 0 rgba(0, 0, 0, 0.1), inset 0 1px 0 #fff;
+	-moz-box-shadow: 0 1px 0 rgba(0, 0, 0, 0.1), inset 0 1px 0 #fff;
+	box-shadow: 0 1px 0 rgba(0, 0, 0, 0.1), inset 0 1px 0 #fff;
+	zoom: 1;
+	border-radius: 3px;
+	padding: 9px 29px;
+	margin-right: 10px;
+}
+
+.uibutton.ok{
+	border-color: #29447E #29447E #1A356E;
+	color: #fff;
+	background-color: #0B3892;
+	background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#4073A3), to(#0B3892));
+	background-image: -moz-linear-gradient(#4073A3, #0B3892);
+	background-image: -o-linear-gradient(#4073A3, #0B3892);
+	background-image: linear-gradient(#4073A3, #0B3892);
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorStr='#4073A3', EndColorStr='#0B3892');
+	-webkit-box-shadow: 0 1px 0 rgba(0, 0, 0, 0.1), inset 0 1px 0 #8a9cc2;
+	-moz-box-shadow: 0 1px 0 rgba(0, 0, 0, 0.1), inset 0 1px 0 #8a9cc2;
+	box-shadow: 0 1px 0 rgba(0, 0, 0, 0.1),inset 0 1px 0 #4298e2;
+	border-radius: 3px;
+	padding: 9px 29px;
+}
+
+
+
+/* Nuevo */
+
+
+
+.head {
+	font-size: 18px;
+	font-family: arial;
+	font-weight: bold;	
+}
+
+
+
+
+
+
+
+
+
+
+
+
