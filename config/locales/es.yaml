@@ -30,3 +30,14 @@ es:
       user_fail: "El usuario aun no existe"
       auth_success:"Autentificación vía %{provider} agregada a tu cuenta"
       no_provider:"No se proveyo provider ni uid"
+  mongoid:
+    errors:
+      models:
+        empresa:
+          attributes:
+            email:
+              taken: 'Email ya registrado'
+              blank: 'El email no puede estar vacío'
+    attributes:
+      empresa:
+        email:'Dirección de correo'

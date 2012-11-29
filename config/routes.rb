@@ -18,12 +18,12 @@ DandooDev::Application.routes.draw do
   
   devise_for :users, :controllers => { :registrations => "registrations"}
   devise_scope :user do 
-    get '/register'                 => 'devise/registrations#new'
+    get '/register'                 => 'registrations#new'
     delete '/logout'                => 'devise/sessions#destroy'
     get '/logout'                   => 'devise/sessions#destroy'
-    get '/user/complete_registration/:user' => 'registrations#completar'
-    put '/user/complete_registration' => 'registrations#finalizar'
   end
+
+  match '/empresas' => 'registrations#create', :via => :post
   
   resources :users, :only => [:show,:update]
   

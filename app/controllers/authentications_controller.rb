@@ -1,55 +1,42 @@
 class AuthenticationsController < ApplicationController
   before_filter :authenticate_user!, :only => [:index,:destroy]
-  def index
-  	@authentications = current_user.authentications if current_user
-  end
+ 
 
 
   def create
-    avatar = params[:user][:avatar_tmp]
+    avatar = params[:usuario][:avatar_tmp]
     if avatar.index('facebook')
       avatar_tmp = avatar.split('?')
       avatar = avatar_tmp[0]+'?type=large'
     end
     params[:user][:avatar_tmp] = avatar
     #Check por el email
-    u = User.where(:email => params[:user][:email]).first
+    u = Usuario.where(:email => params[:usuario][:email]).first
     if !u.nil?
       #Ya existe el usuario, asociar con la nueva authentificacion
-      u.authentications << Authentication.new(:provider => params[:user][:provider], :uid => params[:user][:uid])
+      u.authentications << Authentication.new(:provider => params[:usuario][:provider], :uid => params[:user][:uid])
       u.save
-      # sign_in_and_redirect :user, u
       sign_in :user, u
       render :json => {:success=>true}
     else
-      @user = User.new params[:user]
+      @user = Usuario.new params[:usuario]
       
-      vacios = params[:user].reject {|k,v| !v.blank? }
+      vacios = params[:usuario].reject {|k,v| !v.blank? }
       if vacios.size > 0 #Hay datos vacios generar el mensaje de error
         @error_messages = Hash.new
         vacios.each do |k,v|
           @error_messages[k] = "#{k} No puede estar vacio"
         end
-        # respond_to do |format|
-        #   flash.now[:error] = 'Hay campos vacios por completar'
-        #   format.html { render :action => 'new' }
-        # end
         render :json => {:success=>false,:mensaje => 'vacios',:campos =>vacios}
       else
-        @user.avatar_remote_url(params[:user][:avatar_tmp])
+        @user.avatar_remote_url(params[:usuario][:avatar_tmp])
         password = Devise.friendly_token.first(10)
         @user.password = password
         @user.password_confirmation = password
         if @user.save
-          # flash[:notice] = t(:welcome)
-          # sign_in_and_redirect :user, @user
           sign_in :user,@user 
           render :json => {:success=>true}
         else
-          # respond_to do |format|
-          #   flash.now[:error] = 'Ocurrio un error creando el usuario'
-          #   format.html { render :action => 'new' }
-          # end
           render :json => {:success=>false,:mensaje => 'Ocurrio un error creando el usuario'}
         end
         
@@ -66,7 +53,7 @@ class AuthenticationsController < ApplicationController
       avatar_tmp = avatar.split("_normal")
       avatar_tmp = avatar_tmp[0]+"_bigger.png"
     end
-    @user = User.new(:nombre => name, :apellidos => apellidos,
+    @user = Usuario.new(:nombre => name, :apellidos => apellidos,
       :nickname => nickname, :bio => bio,:avatar_tmp => avatar_tmp,
       :nacimiento => nacimiento, :email => email,
       :password => password, :password_confirmation => password)
@@ -77,8 +64,7 @@ class AuthenticationsController < ApplicationController
     @user
   end
 
-  def test
-  end
+  
 
   def new
     auth         = request.env['omniauth.auth']
@@ -111,7 +97,7 @@ class AuthenticationsController < ApplicationController
       @authentication = Authentication.where(:uid => @uid, :provider => @provider).first
       if @authentication.nil?
         #Buscar un usuario por el email
-        @user = User.where(:email => email).first
+        @user = Usuario.where(:email => email).first
         if @user.nil?
           #Crear un nuevo usuario
           
@@ -142,7 +128,7 @@ class AuthenticationsController < ApplicationController
         
       else
         #La autenticacion ya existe, logear al usuario
-        @user = User.find(@authentication.user_id)
+        @user = Usuario.find(@authentication.usuario_id)
         sign_in_and_redirect :user, @user 
       end
     else
@@ -155,9 +141,11 @@ class AuthenticationsController < ApplicationController
   
 
   def destroy
-  	@authentication = current_user.authentications.find(params[:id])
-  	@authentication.destroy
-  	flash[:notice] = t(:signed_out)
+    if current_user._type == 'Usuario'
+    	@authentication = current_user.authentications.find(params[:id])
+    	@authentication.destroy
+    	flash[:notice] = t(:signed_out)
+    end
   	redirect_to root_url
   end
 

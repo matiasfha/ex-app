@@ -21,7 +21,7 @@ require [
 	'jquery'
 	'underscore_hbs'
 	'backbone'
-	'domReady',
+	'domReady'
 	'foundation/modernizr.foundation'
 	'handlebars'
 	'templates/helpers/compare'

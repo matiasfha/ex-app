@@ -33,49 +33,26 @@ class User
   field :last_sign_in_ip,    :type => String
 
   #Relaciones
-  has_many :authentications, :dependent => :delete
-  accepts_nested_attributes_for :authentications
-  belongs_to  :gender
-  belongs_to  :civil_statu
-  belongs_to  :country
-  belongs_to  :state #Region
-  belongs_to  :commune
-  belongs_to  :city
-  belongs_to  :ocupacion
   
-  # has_and_belongs_to_many :interests
-  has_many :user_interests
-  accepts_nested_attributes_for :user_interests
+  belongs_to  :country
+  
   
   has_many :resources,:dependent => :delete
   has_many :votos,:dependent => :delete
 
-  #Atributos
-  field :nombre, :type => String
-  field :apellidos, :type => String
-  field :rut, :type => String
-  field :nickname, :type => String
-  field :bio, :type => String
-  field :ocupacion, :type => String
-  field :nacimiento, :type => Date
-  field :avatar_tmp, :type => String
-  field :rut, :type => String
-  field :theme, :type => String
-  field :doos, :type => Numeric, :default => 0
+  belongs_to :rolable, :polymorphic => true
+
+  
 
   index({ email: 1 }, { unique: true, background: true })
-  index({ nickname: 1 }, { unique: true, background: true })
-  index({rut:1},{unique:true, background:true})
+  
 
-  attr_accessible :nombre,:email,:password,:password_confirmation, :remember_me, :created_at, :updated_at
-  attr_accessible :apellidos, :nickname, :rut,  :bio, :ocupacion, :nacimiento
-  attr_accessible :country_id, :state_id, :commune_id, :city_id, :gender_id, :civil_statu_id
-  attr_accessible :avatar, :avatar_tmp, :theme,:rut,:ocupacion_id
-  attr_accessible :user_interests_attributes
+  
+  attr_accessible :email,:password,:password_confirmation, :remember_me, :created_at, :updated_at
+  attr_accessible :country_id
 
-
-  validates_presence_of :email, :rut
-  validates_uniqueness_of :email, :rut
+  validates_presence_of :email
+  validates_uniqueness_of :email
 
   has_mongoid_attached_file :avatar,
     :path => ':attachment/:id/:style.:extension',

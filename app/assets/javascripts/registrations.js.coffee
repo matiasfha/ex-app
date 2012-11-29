@@ -35,23 +35,23 @@ require [
 				element.foundationCustomForms();
 		
 
-		$('#user_country_id').change (e) ->
-			country = $('#user_country_id :selected').val()
+		$('#usuario_country_id').change (e) ->
+			country = $('#usuario_country_id :selected').val()
 			if country?
-				populate_select "/metadata/get_states/#{country}", $('#user_state_id')
+				populate_select "/metadata/get_states/#{country}", $('#usuario_state_id')
 			
 					
 
-		$('#user_state_id').live 'change',(e) ->
-			state = $('#user_state_id :selected').val()
+		$('#usuario_state_id').live 'change',(e) ->
+			state = $('#usuario_state_id :selected').val()
 			if state?
-				populate_select "/metadata/get_communes/#{state}",$('#user_commune_id')
+				populate_select "/metadata/get_communes/#{state}",$('#usuario_commune_id')
 					
 
-		$('#user_commune_id').live 'change',(e)->
-			commune = $('#user_commune_id :selected').val()
+		$('#usuario_commune_id').live 'change',(e)->
+			commune = $('#usuario_commune_id :selected').val()
 			if commune?
-				populate_select "/metadata/get_cities/#{commune}",$('#user_city_id')
+				populate_select "/metadata/get_cities/#{commune}",$('#usuario_city_id')
 			
 		$('input#commit').live 'click',(e) ->
 			e.stopPropagation()
@@ -64,7 +64,7 @@ require [
 				else
 					if response.mensaje == 'vacios'
 						for campo,value of response.campos
-							$("#user_#{campo}").parent().addClass('error')
+							$("#usuario_#{campo}").parent().addClass('error')
 					
 
 		
