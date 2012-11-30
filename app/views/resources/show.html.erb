@@ -3,13 +3,16 @@
 body {
    background: rgba(51,51,51,0.67) url(/assets/bg-dandoo.png)left top repeat !important;
 }
+#header:not(.resource){
+  display:none;
+}
 </style>
 <% end %>
 <%
 content_for :main_js do %>
 "/assets/index"
 <% end %>
-<header id="header">
+<header id="header" class="resource">
         <div id="site-head">
             <div class="wrapModal group">
                 <hgroup class="logo">

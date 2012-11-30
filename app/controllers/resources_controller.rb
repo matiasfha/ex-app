@@ -9,7 +9,7 @@ class ResourcesController < ApplicationController
 		# @resource.num_views+=1;
 		# @resource.save
 		@comments = @resource.comments.limit(10)
-
+		
 		# respond_with(@resource) do |format|
   # 			format.html
   # 			format.json {render :partial => 'resources/item',:formats => [:json]}
