@@ -1,6 +1,6 @@
 
 #contenedor-modal{
-	background: rgba(51,51,51,0.67) url(bg-dandoo.png)left top repeat !important;
+	background: rgba(51,51,51,0.67);// url(bg-dandoo.png)left top repeat !important;
 	position:absolute;
 	top:0;
 	left:0;
@@ -63,6 +63,13 @@
 #user-share-1 span{
 	float: left;
 	display: block;
+	img{
+		border-radius:3px;
+		-o-border-radius:3px;
+		-webkit-border-radius:3px;
+		-moz-border-radius:3px;
+		behavior:url('PIE.htc')
+	}
 }
 
 #ad-comment-right {

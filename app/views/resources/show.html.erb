@@ -118,6 +118,7 @@ content_for :main_js do %>
       <div class="bigStar"><span><%=nota %></span><br><span id="votoWord"><%=@resource.votos.count%> votos</span></div>
       
       <br><br>
+      <% if user_signed_in? %>
       <h3>¿Te gustó? ponle una nota</h3>
       <ul id="rating" data-id="<%=@resource.id%>">
         <% for i in 1..nota %>
@@ -128,6 +129,7 @@ content_for :main_js do %>
         <% end %>
 
       </ul>
+      <% end %>
 
     </div><!-- UNO--> 
 
