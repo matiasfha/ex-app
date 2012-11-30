@@ -41,19 +41,19 @@ content_for :main_js do
       <%=f.fields_for @user.empresa do |e| %>
         <div class="field">
           <%=e.label :nombre_empresa, 'Nombre de Empresa:'%>
-          <%=e.text_field :nombre_empresa, :size => '45', :required => true %>
+          <%=e.text_field :nombre_empresa, :size => '25', :required => true %>
         </div>  
     
         <div class="field">
           <%=e.label :nombre_legal, 'Nombre Legal (SII):'%>
-          <%=e.text_field :nombre_legal, :size => '45', :required => true %>
+          <%=e.text_field :nombre_legal, :size => '25', :required => true %>
         </div>  
 
         <div class="field">
           <%=e.label :rut_empresa, 'RUT Empresa:' %>
-          <%=e.text_field :rut_empresa, :size => '29', :maxlength => '8',:required => true,:style => 'text-align:right',:class => 'numeric' %>
+          <%=e.text_field :rut_empresa, :size => '7', :maxlength => '8',:required => true,:style => 'text-align:right',:class => 'numeric' %>
           -
-          <%=e.text_field :dv_empresa, :required => true, :maxlength => '1', :size => '4', :style =>'width:30px' %>
+          <%=e.text_field :dv_empresa, :required => true, :maxlength => '1', :size => '2', :style =>'width:30px' %>
           
           <span class="pruebaerror">ej: 1234567-8</span>
         </div>        
@@ -67,13 +67,13 @@ content_for :main_js do
 
       <div class="field relative">
         <%=f.label :password, 'Contraseña' %>
-        <%=f.password_field :password, :size => '20', :maxlength => '20', :class => 'password' %>
+        <%=f.password_field :password, :size => '3', :maxlength => '20', :class => 'password' %>
         <span class="contrasena">Contraseña de mínimo 6 carácteres.</span>
       </div>         
           
       <div class="field relative">
         <%=f.label :password_confirmation, 'Confirmación Contraseña' %>
-        <%=f.password_field :password_confirmation, :size => '20', :maxlength => '20', :class => 'password' %>
+        <%=f.password_field :password_confirmation, :size => '3', :maxlength => '20', :class => 'password' %>
         <br />
         <input type="checkbox" id="show" name="valor" value="valor" style="position: absolute; right: 270px;">
         <span class="mostrar">
@@ -102,14 +102,14 @@ content_for :main_js do
         <%=e.fields_for @user.empresa.representante do |r| %>
           <div class="field">
             <%=r.label :nombre,'Nombre Representante' %>
-            <%=r.text_field :nombre, :size => '45', :required => true %>
+            <%=r.text_field :nombre, :size => '25', :required => true %>
           </div>        
           
           <div class="field">
             <%=r.label :rut, 'RUT Representante:' %>
-            <%=r.text_field :rut, :size => '29', :maxlength => '8',:required => true,:style => 'text-align:right' %>
+            <%=r.text_field :rut, :size => '7', :maxlength => '8',:required => true,:style => 'text-align:right' %>
             -
-            <%=r.text_field :dv, :required => true, :maxlength => '1', :size => '4', :style =>'width:30px' %>
+            <%=r.text_field :dv, :required => true, :maxlength => '1', :size => '2', :style =>'width:30px' %>
             <a class="tooltip ttgreen" href="#"><img src="/assets/empresa/info.gif" alt="info" width="14" height="14" border="0" />
             <span>Requerido para datos de pago</span></a>
             <span class="pruebaerror">ej: 1234567-8</span>
@@ -117,14 +117,14 @@ content_for :main_js do
 
           <div class="field">
             <%=r.label :cargo, 'Cargo en la Empresa' %>
-            <%=r.text_field :cargo, :size => '45', :required => true %>
+            <%=r.text_field :cargo, :size => '25', :required => true %>
           </div>  
           
           <div class="field">
             <%=r.label :telefono %>
             <%=r.select :tipo_telefono, [['Fijo','fijo'],['Móvil','movil']],{:include_blank => 'Tipo'},{:required => true} %>
 
-            <%=r.text_field :telefono, :size => '29', :maxlength => '9', :type => 'datetime',:class => 'numeric' %>
+            <%=r.text_field :telefono, :size => '7', :maxlength => '9', :type => 'datetime',:class => 'numeric' %>
 
             <a class="tooltip ttgreen" href="#"><img src="/assets/empresa/info.gif" alt="info" width="14" height="14" border="0" />
             <span>Sólo lo utilizaremos en caso de contacto</span></a>
@@ -137,14 +137,14 @@ content_for :main_js do
 
       <div class="field">
         <%=f.label :email %>
-        <%=f.text_field :email, :size => '45', :placeholder => "ej: usuario@mail.com" %>
+        <%=f.text_field :email, :size => '25', :placeholder => "ej: usuario@mail.com" %>
       </div>        
 
 
       <%=f.fields_for :empresa do |e| %>
         <div class="field">
           <%=e.label :web,'Dirección Web' %>
-          <%=e.text_field :web, :size => '45', :placeholder => "ej: www.empresa.com" %>
+          <%=e.text_field :web, :size => '25', :placeholder => "ej: www.empresa.com" %>
         </div> 
        <% end %>   
       <div class="field">
