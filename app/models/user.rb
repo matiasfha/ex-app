@@ -36,8 +36,10 @@ class User
   belongs_to  :country
 
   field :tipo_usuario, :type => String, :default => 'usuario'
+  field :language, :type => String, :default => 'es'
   embeds_one :usuario
   embeds_one :empresa
+  #accepts_nested_attributes_for :empresa,:usuario
 
   index({ email: 1 }, { unique: true, background: true })
 
@@ -45,6 +47,8 @@ class User
 
   attr_accessible :email,:password,:password_confirmation
   attr_accessible :country_id, :remember_me, :created_at, :updated_at
+  attr_accessible :tipo_usuario, :avatar
+  #attr_accessible :usuario_attributes, :empresa_attributes
 
   validates_presence_of :email
   validates_uniqueness_of :email
@@ -53,6 +57,7 @@ class User
     :path => ':attachment/:id/:style.:extension',
     :storage => :s3,
     :bucket => 'dandoo-avatars',
+    :s3_protocol => "http",
     :s3_credentials => {
       :access_key_id =>ENV['S3_KEY_ID'],
       :secret_access_key =>ENV['S3_ACCESS_KEY']

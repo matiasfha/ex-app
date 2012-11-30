@@ -1,0 +1,209 @@
+/***************************************************  
+
+Theme Name: Dandoo.tv BOTONES
+Theme URI: http://www.dandoo.tv
+Author: Pablo Vivanco Lara
+Version: 1.0
+
+***************************************************/
+
+
+.buttonF{
+	text-decoration:none; text-align:center; 
+ 	padding: 5px 14px;
+ 	border:none; 
+ 	-webkit-border-radius:4px;
+ 	-moz-border-radius:4px; 
+ 	border-radius: 4px; 
+ 	font:12px Arial, Helvetica, sans-serif; 
+ 	color:#ffffff !important; 
+ 	background-color:#2fabc4; 
+	 background-image: -moz-linear-gradient(top, #2fabc4 0%, #4dbbd1 100%); 
+	 background-image: -webkit-linear-gradient(top, #2fabc4 0%, #4dbbd1 100%); 
+	 background-image: -o-linear-gradient(top, #2fabc4 0%, #4dbbd1 100%); 
+	 background-image: -ms-linear-gradient(top, #2fabc4 0% ,#4dbbd1 100%); 
+	 filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#4dbbd1', endColorstr='#4dbbd1',GradientType=0 ); 
+ 	background-image: linear-gradient(top, #2fabc4 0% ,#4dbbd1 100%);   
+	 -webkit-box-shadow:0px 0px 2px #ffffff, inset 0px -1px 0px #278ea3; 
+	 -moz-box-shadow: 0px 0px 2px #ffffff,  inset 0px -1px 0px #278ea3;  
+	 box-shadow:0px 0px 2px #ffffff, inset 0px -1px 0px #278ea3;  
+	 text-shadow: 0px 1px 0px #359eb3; 
+	 filter: dropshadow(color=#359eb3, offx=0, offy=1);
+	 behavior:url('PIE.htc');
+}
+.button:hover{
+  	 -webkit-box-shadow:0px 0px 2px #bababa, inset 0px 0px 1px #ffffff; 
+	 -moz-box-shadow: 0px 0px 2px #bababa,  inset 0px 0px 1px #ffffff;  
+	 box-shadow:0px 0px 2px #bababa, inset 0px 0px 1px #ffffff;  
+	 text-shadow: 0px 1px 0px #248da5; 
+	 filter: dropshadow(color=#248da5, offx=0, offy=1);
+}
+	 
+
+
+/* Boton formulario */
+
+.button{
+	text-decoration:none; text-align:center; 
+	 padding:12px 28px; 
+	 border:none; 
+	 -webkit-border-radius:4px;
+	 -moz-border-radius:4px; 
+	 border-radius: 4px; 
+	 font:14px Arial, Helvetica, sans-serif; 
+	 font-weight:bold; 
+	 color:#ffffff; 
+	 background-color:#2fabc4; 
+	 background-image: -moz-linear-gradient(top, #2fabc4 0%, #4dbbd1 100%); 
+	 background-image: -webkit-linear-gradient(top, #2fabc4 0%, #4dbbd1 100%); 
+	 background-image: -o-linear-gradient(top, #2fabc4 0%, #4dbbd1 100%); 
+	 background-image: -ms-linear-gradient(top, #2fabc4 0% ,#4dbbd1 100%); 
+	 filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#4dbbd1', endColorstr='#4dbbd1',GradientType=0 ); 
+	 background-image: linear-gradient(top, #2fabc4 0% ,#4dbbd1 100%);   
+	 -webkit-box-shadow:0px 0px 2px #ffffff, inset 0px -1px 0px #278ea3; 
+	 -moz-box-shadow: 0px 0px 2px #ffffff,  inset 0px -1px 0px #278ea3;  
+	 box-shadow:0px 0px 2px #ffffff, inset 0px -1px 0px #278ea3;  
+	 text-shadow: 0px 1px 0px #359eb3; 
+	 filter: dropshadow(color=#359eb3, offx=0, offy=1); 
+	 behavior:url('PIE.htc');
+}
+.button:hover{
+	 background:#49c4dd; 
+	 text-shadow: 0px 1px 0px #248da5; 
+	 filter: dropshadow(color=#248da5, offx=0, offy=1);
+}
+
+.modal .uibutton {
+	position: relative;
+	z-index: 1;
+	overflow: visible;
+	display: inline-block;
+	padding: 0.3em 0.6em 0.375em;
+	border: 1px solid #ccc;
+	border-bottom-color: #888;
+	margin: 0;
+	text-decoration: none;
+	text-align: center;
+	font: bold 12px/normal arial,sans-serif;
+	white-space: nowrap;
+	cursor: pointer;
+	color: #333;
+	background-color: #eee;
+	background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#f5f6f6), to(#e4e4e3));
+	background-image: -moz-linear-gradient(#f5f6f6, #e4e4e3);
+	background-image: -o-linear-gradient(#f5f6f6, #e4e4e3);
+	background-image: linear-gradient(#f5f6f6, #e4e4e3);
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorStr='#f5f6f6', EndColorStr='#e4e4e3');
+	-webkit-box-shadow: 0 1px 0 rgba(0,0,0,0.1),inset 0 1px 0 #fff;
+	-moz-box-shadow: 0 1px 0 rgba(0,0,0,0.1),inset 0 1px 0 #fff;
+	box-shadow: 0 1px 0 rgba(0,0,0,0.1),inset 0 1px 0 #fff;
+	zoom: 1;
+	border-radius: 3px;
+	padding: 9px 29px;
+	margin-right: 10px;
+}
+.modal .uibutton.ok {
+	border-color: #29447E #29447E #1A356E;
+	color: #fff;
+	background-color: #0B3892;
+	background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#4073a3), to(#0b3892));
+	background-image: -moz-linear-gradient(#4073a3, #0b3892);
+	background-image: -o-linear-gradient(#4073a3, #0b3892);
+	background-image: linear-gradient(#4073a3, #0b3892);
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorStr='#4073A3', EndColorStr='#0B3892');
+	-webkit-box-shadow: 0 1px 0 rgba(0,0,0,0.1),inset 0 1px 0 #8a9cc2;
+	-moz-box-shadow: 0 1px 0 rgba(0,0,0,0.1),inset 0 1px 0 #8a9cc2;
+	box-shadow: 0 1px 0 rgba(0,0,0,0.1),inset 0 1px 0 #4298e2;
+	border-radius: 3px;
+	padding: 9px 29px;
+}
+
+#nav-access {
+	margin-right:27px;
+}
+
+#nav-access .icon-small {
+	width:20px;
+	height:20px;
+	float:left;
+	-webkit-border-radius: 2px;
+	-moz-border-radius: 2px;
+	border-radius: 2px;
+	margin-left: 10px;
+	margin-top:-5px; 
+	behavior:url('PIE.htc');
+}
+
+.twitter img{
+padding-left: 3px;
+padding-top: 4px;
+}
+
+.facebook img{
+padding-left: 3px;
+padding-top: 4px;
+}
+
+.facebook {
+margin-left: 0px !important;
+}
+
+#nav-access .twitter, #nav-access .facebook  {
+	-webkit-box-shadow:
+		inset 0px 1px 0px rgba(255,255,255,.75),
+		0px 1px 1px rgba(0,0,0,.15);
+	-moz-box-shadow:
+		inset 0px 1px 0px rgba(255,255,255,.75),
+		0px 1px 1px rgba(0,0,0,.15);
+	box-shadow:
+		inset 0px 1px 0px rgba(255,255,255,.75),
+		0px 1px 1px rgba(0,0,0,.15);
+	behavior:url('PIE.htc');
+}
+#nav-access a img { float:left; }
+
+
+.twitter {
+	background-image: -webkit-linear-gradient(top, rgb(148, 220, 241), rgb(95, 190, 229));
+	background-image: -moz-linear-gradient(top, rgb(148, 220, 241), rgb(95, 190, 229));
+	background-image: -o-linear-gradient(top, rgb(148, 220, 241), rgb(95, 190, 229));
+	background-image: -ms-linear-gradient(top, rgb(148, 220, 241), rgb(95, 190, 229));
+	background-image: linear-gradient(top, rgb(148, 220, 241), rgb(95, 190, 229));
+	filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0,StartColorStr='#94dcf1', EndColorStr='#5fbee5');
+	border:1px solid #4d9ebe;
+	behavior:url('PIE.htc');
+	text-shadow: 0px 1px 0px rgba(8,83,111,.47);
+}
+.twitter:hover {
+	background-image: -webkit-linear-gradient(top, rgb(95, 190, 229), rgb(136, 213, 238));
+	background-image: -moz-linear-gradient(top, rgb(95, 190, 229), rgb(136, 213, 238));
+	background-image: -o-linear-gradient(top, rgb(95, 190, 229), rgb(136, 213, 238));
+	background-image: -ms-linear-gradient(top, rgb(95, 190, 229), rgb(136, 213, 238));
+	background-image: linear-gradient(top, rgb(95, 190, 229), rgb(136, 213, 238));
+	filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0,StartColorStr='#5fbee5', EndColorStr='#88d5ee');
+	behavior:url('PIE.htc');
+}
+
+
+
+
+.facebook {
+	background-image: -webkit-linear-gradient(top, rgb(95, 151, 202), rgb(52, 118, 178));
+	background-image: -moz-linear-gradient(top, rgb(95, 151, 202), rgb(52, 118, 178));
+	background-image: -o-linear-gradient(top, rgb(95, 151, 202), rgb(52, 118, 178));
+	background-image: -ms-linear-gradient(top, rgb(95, 151, 202), rgb(52, 118, 178));
+	background-image: linear-gradient(top, rgb(95, 151, 202), rgb(52, 118, 178));
+	filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0,StartColorStr='#5f97ca', EndColorStr='#3476b2');
+	border:1px solid #21629c;
+	behavior:url('PIE.htc');
+	text-shadow:0px 1px 0px rgba(7,39,68,.47);
+}
+.facebook:hover {
+	background-image: -webkit-linear-gradient(top, rgb(52, 118, 178), rgb(95, 151, 202));
+	background-image: -moz-linear-gradient(top, rgb(52, 118, 178), rgb(95, 151, 202));
+	background-image: -o-linear-gradient(top, rgb(52, 118, 178), rgb(95, 151, 202));
+	background-image: -ms-linear-gradient(top, rgb(52, 118, 178), rgb(95, 151, 202));
+	background-image: linear-gradient(top, rgb(52, 118, 178), rgb(95, 151, 202));
+	filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0,StartColorStr='#3476b2', EndColorStr='#5f97ca');
+	behavior:url('PIE.htc');
+}

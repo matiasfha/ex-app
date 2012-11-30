@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+    <head>
+        <meta charset="utf-8">
+        <title>Crear Cuenta en Dandoo.tv</title>
+        <meta name="description" content="Dandoo.tv La primera red social de publicidad en el mundo">
+        <meta name="keywords" content="Dandoo, Dandoo.tv, DandooTV, Publicidad, Puntos, Dinero" />
+        <meta name="author" content="Matías Hernández Arellano">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <meta name="viewport" content="width=device-width">
+        <link rel="icon" type="image/ico" href="/assets/favicon.ico" />
+        <meta property="og:title" content="Dandoo.tv - La primera red social de publicidad" />
+        <meta property="og:type" content="company" />
+        <meta property="og:site_name" content="Dandoo.tv" />
+        <meta property="og:url" content="dandoodev.herokuapp.com/auth/facebook" />
+        <meta property="og:image" content="http://devdandoo.tv/assets/logo.png" />
+        <meta property="og:description" content="Dandoo.tv es la primera red social de Publicidad. Basados en Neurociencias Perceptivas desarrollamos interfaces capaces de llevar la interacción entre marca y usuario target al siguiente nivel." />
+
+     
+        <!-- CSS -->
+        <%=stylesheet_link_tag 'application','empresa',:media => 'all' %>
+        <script type="text/javascript" src="/assets/require.js" data-main=<%=yield(:main_js)%>></script>
+        <%= csrf_meta_tags %>
+    </head>
+    <body>
+        <!--[if lt IE 7]>
+            <p class="chromeframe">Estas usando un navegador muy antiguo. Te proponemos <a href="http://browsehappy.com/">Actualizar tu navegador hoy</a> o <a href="http://www.google.com/chromeframe/?redirect=true">instalar Google Chrome Frame</a> Para mejorar la experiencia en este sitio.</p>
+        <![endif]-->
+        <%=yield%>
+
+        <div class="modal" id="mensajes">
+            <div class="inner-modal">
+                <div class="head"></div>
+                <div class="content"></div>
+                <div class="action">
+                    <button class="uibutton ok" style="float:right">Aceptar</button>
+                    <!-- <button class="uibutton" style="float:right">Cancelar</button> -->
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

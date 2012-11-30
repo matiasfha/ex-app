@@ -10,6 +10,7 @@ require.config
 		'backbone-min':
 			deps:['underscore-min']
 			exports:'Backbone'
+		
 
 require [
 	'jquery'
@@ -18,7 +19,8 @@ require [
 	'jquery.isotope'
 	'domReady'
 	'modernizr'
-],($,_,Backbone,Isotope,domReady,M,T) ->
+	'froogaloop2.min'
+],($,_,Backbone,Isotope,domReady,M,T,F) ->
 	domReady () ->
 		$.fn.reset = ->
 			$(this).each () ->
@@ -30,6 +32,9 @@ require [
 			beforeSend: (xhr) ->
 				xhr.setRequestHeader('X-CSRF-Token', token);
 			cache: false
+
+		$('li#negocio').click (e) ->
+			$('li#negocio ul').slideToggle('fast');
 
 		$('#entry-listing').isotope(
 			animationOptions: 
@@ -57,6 +62,7 @@ require [
 
 		setContainerWidth();
 
+		#Eventos para la ventana modal
 		#Tabs 
 		setTabs = () ->
 			$('#modal #dos').hide()
@@ -71,6 +77,32 @@ require [
 				.removeClass('offWord')
 		setTabs()
 
+		ratingStar =  ->
+			'mouseenter .rating .star':'ratingON'
+			'mouseleave .rating .star':'ratingOFF'
+			$('#rating .star').live 'mouseenter', (e) ->
+				lis = $(e.currentTarget).prevAll().andSelf().children()
+				lis.addClass('starOn').removeClass('starOff')
+				lis = $(e.currentTarget).nextAll().children()
+				lis.removeClass('starOn').addClass('starOff')
+			.live 'mouseleave', (e) ->
+				lis = $(e.currentTarget).prevAll().andSelf().children(':not(.voted)')
+				lis.removeClass('starOn').addClass('starOff')
+			.live 'click',(e) ->
+				$(e.currentTarget).siblings('.voted').andSelf().removeClass 'voted'
+				elems = $(e.currentTarget).siblings().andSelf()
+				elems = elems.children('.starOn')
+				elems.addClass 'voted'
+				nota = $(e.currentTarget).children().html()
+				resource_id = $('#rating').attr('id')
+				$.ajax
+					url: "/votos/#{resource_id}/#{nota}"
+					type:'POST'
+					success: (data) ->
+						console.log data
+					error:(d) ->
+						alert d.responseText
+
 		#OnClick en un element
 		$('article').live 'click', (e) ->
 			id = $(e.currentTarget).attr('id')
@@ -78,13 +110,14 @@ require [
 				h = $(document).height()+'30'
 				$('#contenedor-modal').css({'height':h}).html(data).fadeIn()
 				setTabs()
-			
+				ratingStar()
 
 		$('#contenedor-modal .paddr10').live 'click', (e) ->
 			e.preventDefault()
 			$('#contenedor-modal').fadeOut().empty();
 			false
 
+		#Eventos del Home
 		$('#mas_votados').click (e) ->
 			$.get "/recursos/mas_votados",(data) ->
 				items = $('#entry-listing article')
@@ -107,7 +140,7 @@ require [
 					$('#entry-listing') .isotope('reLayout')
 
 				
-				
+		
 					
 
 

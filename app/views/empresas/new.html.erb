@@ -1,0 +1,191 @@
+<%
+content_for :main_js do 
+  %>
+  "/assets/empresa_index"
+<% end %>
+
+<div id="empresas">
+  <header>
+    <a href="<%=root_path%>">
+      <h1>Dandoo.tv</h1>
+      </a>
+    <h2>Acerca tu marca o productos <br>a tus consumidores</h2>
+  </header><!-- fin header -->
+  
+  <% if flash[:error] %>
+  <div class="mensajes error">
+    <label>Se produjero los siguientes errores</label>
+    <ul>
+    <% flash.each do |type,messages| %>
+     <% if messages.respond_to?(:each)
+          messages.each do |m| %>
+            <li><%= m %></li>
+          <%end%>
+      <% else %>
+        <li><%= messages%></li>
+      <% end %>
+    <% end %>
+    </ul>
+  </div>
+  <% end %>
+  <%= form_for(@user,:url => empresas_path, :html => {:class =>'stn-form label-inline simple formulario'}) do |f| %>
+  
+
+
+  <input type="hidden" name="user[tipo_usuario]" id="user_tipo_usuario" value="empresa" />
+
+
+    <section class="contenedor" id="paso1">       
+      <h3>Datos de Empresa</h3>
+      
+      <%=f.fields_for @user.empresa do |e| %>
+        <div class="field">
+          <%=e.label :nombre_empresa, 'Nombre de Empresa:'%>
+          <%=e.text_field :nombre_empresa, :size => '45', :required => true %>
+        </div>  
+    
+        <div class="field">
+          <%=e.label :nombre_legal, 'Nombre Legal (SII):'%>
+          <%=e.text_field :nombre_legal, :size => '45', :required => true %>
+        </div>  
+
+        <div class="field">
+          <%=e.label :rut_empresa, 'RUT Empresa:' %>
+          <%=e.text_field :rut_empresa, :size => '29', :maxlength => '8',:required => true,:style => 'text-align:right',:class => 'numeric' %>
+          -
+          <%=e.text_field :dv_empresa, :required => true, :maxlength => '1', :size => '4', :style =>'width:30px' %>
+          
+          <span class="pruebaerror">ej: 1234567-8</span>
+        </div>        
+
+        <div class="field">
+          <%=e.label :rubro_id,'Rubro' %>
+          <%= e.select :rubro_id, Rubro.all.map{|u| [u.nombre, u.id]},{:include_blank => 'Seleccione Rubro'},{:required => true} %>
+        </div>         
+      <% end %>
+       
+
+      <div class="field relative">
+        <%=f.label :password, 'Contraseña' %>
+        <%=f.password_field :password, :size => '20', :maxlength => '20', :class => 'password' %>
+        <span class="contrasena">Contraseña de mínimo 6 carácteres.</span>
+      </div>         
+          
+      <div class="field relative">
+        <%=f.label :password_confirmation, 'Confirmación Contraseña' %>
+        <%=f.password_field :password_confirmation, :size => '20', :maxlength => '20', :class => 'password' %>
+        <br />
+        <input type="checkbox" id="show" name="valor" value="valor" style="position: absolute; right: 270px;">
+        <span class="mostrar">
+        Mostrar contraseña</span><br>
+      </div>  
+
+      <div class="field" style="margin-bottom:-120px">
+        <%=f.label :avatar, 'Avatar' %>
+        <button class="button small">Buscar imagen</button>
+        <%=f.file_field :avatar, :as => :file %>
+        <div class="avatar">
+          
+        </div>
+      </div>  
+
+      <div class="actionrow">
+          <div  id="go_paso2" class="button"/>Datos de Contacto</div>
+      </div> 
+      <br>  
+    </section><!-- fin section -->    
+
+    <section class="contenedor" id="paso2">       
+      <h3>Datos de Contacto</h3>
+
+      <%=f.fields_for :empresa do |e| %>
+        <%=e.fields_for @user.empresa.representante do |r| %>
+          <div class="field">
+            <%=r.label :nombre,'Nombre Representante' %>
+            <%=r.text_field :nombre, :size => '45', :required => true %>
+          </div>        
+          
+          <div class="field">
+            <%=r.label :rut, 'RUT Representante:' %>
+            <%=r.text_field :rut, :size => '29', :maxlength => '8',:required => true,:style => 'text-align:right' %>
+            -
+            <%=r.text_field :dv, :required => true, :maxlength => '1', :size => '4', :style =>'width:30px' %>
+            <a class="tooltip ttgreen" href="#"><img src="/assets/empresa/info.gif" alt="info" width="14" height="14" border="0" />
+            <span>Requerido para datos de pago</span></a>
+            <span class="pruebaerror">ej: 1234567-8</span>
+          </div>   
+
+          <div class="field">
+            <%=r.label :cargo, 'Cargo en la Empresa' %>
+            <%=r.text_field :cargo, :size => '45', :required => true %>
+          </div>  
+          
+          <div class="field">
+            <%=r.label :telefono %>
+            <%=r.select :tipo_telefono, [['Fijo','fijo'],['Móvil','movil']],{:include_blank => 'Tipo'},{:required => true} %>
+
+            <%=r.text_field :telefono, :size => '29', :maxlength => '9', :type => 'datetime',:class => 'numeric' %>
+
+            <a class="tooltip ttgreen" href="#"><img src="/assets/empresa/info.gif" alt="info" width="14" height="14" border="0" />
+            <span>Sólo lo utilizaremos en caso de contacto</span></a>
+
+            <br>
+            <span class="pruebaerror">ej: fijo: 02 3151513 / móvil: 56094050</span>
+          </div>  
+          <% end %>      
+      <% end %>
+
+      <div class="field">
+        <%=f.label :email %>
+        <%=f.text_field :email, :size => '45', :placeholder => "ej: usuario@mail.com" %>
+      </div>        
+
+
+      <%=f.fields_for :empresa do |e| %>
+        <div class="field">
+          <%=e.label :web,'Dirección Web' %>
+          <%=e.text_field :web, :size => '45', :placeholder => "ej: www.empresa.com" %>
+        </div> 
+       <% end %>   
+      <div class="field">
+        <%=f.label :country_id, 'País' %>
+        <%= f.select :country_id, Country.all.order_by([[:nombre,:asc]]).map{ |u| [u.nombre,u.id] }, {:include_blank => 'Selecciona País'},{:class => "span2", :required => true} %>
+      </div>
+
+      <div class="field relative" style="margin-top: -16px;">
+        <label for="condiciones">Acepto las condiciones de uso </label>
+        <input type="checkbox" name="condiciones" value="1" id="condiciones"/>
+        <a href="#" class="leercondiciones">Leer las condiciones de uso</a>
+        
+        <br>
+      </div>         
+
+
+      
+      <div class="actionrow">
+        <div  id="go_paso3" class="button"/>Registrar</div><br>
+        <div id="ir_paso1" class="backGray"/>Volver</div>
+      </div>
+      <br>
+    </section><!-- fin section -->
+
+  <div id="recaptcha_modal">
+      <%=recaptcha_tags :ajax => true%>
+    </div>
+
+  <% end %>   
+        
+  <ul class="pasos">
+    <li><div class="paso-on" id="ir_paso1"></div></li>
+    <li><div class="paso-off" id="ir_paso2"></div></li>
+    <li><div class="paso-off"></div></li>
+  </ul>
+
+
+    <a href="/" class="back">Volver a la portada</a>
+                  
+  <footer>
+  </footer><!-- fin footer -->
+
+
+</div><!-- fin container -->

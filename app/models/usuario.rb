@@ -1,7 +1,7 @@
 class Usuario
 	include Mongoid::Document
 	include Mongoid::Timestamps
-	include Mongoid::Paranoia
+	
 
 	embedded_in :user
 	has_many :authentications, :dependent => :delete

@@ -438,6 +438,35 @@ Contenedores
 #nav-access li a{
   color:#fff;
   text-decoration: none;
+
+}
+
+
+
+#nav-access li ul{
+    display:none;
+    top:35px;
+    background:url('bg-nav.png') ;
+    border-radius:3px;
+    -webkit-border-radius:3px;
+    -o-border-radius:3px;
+    -moz-border-radius:3px;
+    width:10em;
+    position:absolute;
+    margin:0;
+    padding:10px 1px 5px 2px;
+    li{
+      margin:4px;
+      padding:0;
+      display: block;
+      a{
+        border-bottom:1px solid white;
+        color:white;
+        &:hover{
+          text-decoration: none;
+        }
+      }
+    }
 }
 
 

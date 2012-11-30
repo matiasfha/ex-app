@@ -9,14 +9,15 @@ DandooDev::Application.routes.draw do
   root :to => 'home#index'
 
 
-  devise_for :users, :controllers => { :registrations => "registrations"}
+  devise_for :users, :controllers => { :registrations => "registrations",:sessions => 'sessions'}
   devise_scope :user do
-    get '/register'                 => 'registrations#new'
     delete '/logout'                => 'devise/sessions#destroy'
     get '/logout'                   => 'devise/sessions#destroy'
+    get '/empresas/login'    => 'sessions#new'
   end
 
-  match '/empresas' => 'registrations#create', :via => :post
+  resources :empresas, :only => [:new, :create, :update, :destroy]
+  #match '/empresas' => 'registrations#create', :via => :post
 
   resources :users, :only => [:show,:update]
 
@@ -28,7 +29,7 @@ DandooDev::Application.routes.draw do
   
   #resources :comments, :only => [:create,:show]
   #match '/comments/:pid/:cid' => 'comments#destroy', :via => :delete
-  #match '/votos/:pid/:valor' => 'votos#create', :via => :post
+  match '/votos/:pid/:valor' => 'votos#create', :via => :post
 
   match 'auth/:provider/callback'  => 'authentications#new'
   resources :authentications, :only => [:index,:create,:destroy]

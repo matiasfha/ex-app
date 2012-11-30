@@ -2,7 +2,6 @@
 class Resource
   include Mongoid::Document
   include Mongoid::Timestamps
-  include Mongoid::Paranoia
   include Mongoid::Paperclip
 
   paginates_per 8
@@ -35,6 +34,8 @@ class Resource
       :original => '1920x1680>'
     }
 
+    
+
     #Campos para videos
     field :thumbnail, :type => String
     field :url, :type => String
@@ -43,7 +44,7 @@ class Resource
 
 
     attr_accessible :imagen,  :descripcion, :titulo, :num_views
-    attr_accessible :thumbnail, :url, :type,:html
+    attr_accessible :thumbnail, :url, :type,:html,:provider
 
     index "comments.id" => 1
 

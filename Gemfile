@@ -40,7 +40,7 @@ gem "mongoid-paperclip", :require => "mongoid_paperclip", :git => "git://github.
 gem "aws-s3",            :require => "aws/s3"
 gem "aws-sdk"
 gem 'recaptcha',			:require => 'recaptcha/rails'
-
+gem 'rails-i18n'
 
 group :development do
   gem 'rb-fsevent'
