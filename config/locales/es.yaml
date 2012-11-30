@@ -1,35 +1,8 @@
-# Sample localization file for English. Add more files in this directory for other locales.
-# See https://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
-
-
 es:
-  signed_in: 'Bienvenido'
-  fail: 'Falló la autenficación'
-  success: 'Autentificación completada!'
-  welcome: 'Bienvenido'
-  signed_out: "Vuelve pronto"
-  ciudades: "Ciudades"
-  ciudad: "Ciudad"
-  comuna: "Comuna"
-  region: "Región"
-  pais: "País"
-  genero: "Gender"
-  estado_civil: "Estado Civil"
-  captcha_error: "Hubo un error con el código CAPTCHA introducido. Intenta nuevamente"
+  captcha_error: "¿Realmente eres humano? . Intenta ingresar el código nuevamente."
   time:
     formats:
-		long: "%d-%m-%Y %H:%M"
-      	default: "%d-%m-%Y"
-      	short: "%d-%m-%Y"
-    de: ! "%d de %B de %Y"
-  mensajes:
-    ingreso:
-      provider_fail: "Provider desconocido"
-      provider_exists: "%{provider} ya existe en tu cuenta"
-      success:"Ingreso exitoso via %{provider}"
-      user_fail: "El usuario aun no existe"
-      auth_success:"Autentificación vía %{provider} agregada a tu cuenta"
-      no_provider:"No se proveyo provider ni uid"
+      de:"%d of %B of %Y"
   mongoid:
     errors:
       models:
@@ -38,6 +11,3 @@ es:
             email:
               taken: 'Email ya registrado'
               blank: 'El email no puede estar vacío'
-    attributes:
-      empresa:
-        email:'Dirección de correo'

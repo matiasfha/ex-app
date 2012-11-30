@@ -19,23 +19,16 @@ group :assets do
   gem 'uglifier', '>= 1.0.3'
   gem 'yui-compressor'
   gem 'jquery-rails'
-  #gem 'jquery-ui-rails'
-  #gem "asset_sync"
   gem 'handlebars_assets'
 
 end
-#gem 'handlebars-rails', :git => 'git://github.com/kolo/handlebars-rails.git'
 
 gem 'unicorn'
 gem 'foreman'
 gem 'version'
-gem 'i18n'
-gem 'formtastic'
-gem 'rails_admin'
 gem 'mongoid'
 gem 'bson_ext'
 gem 'devise'
-gem 'devise-i18n'
 gem 'omniauth'
 gem 'omniauth-twitter'
 gem 'omniauth-facebook'
@@ -46,7 +39,6 @@ gem 'valid_email'
 gem "mongoid-paperclip", :require => "mongoid_paperclip", :git => "git://github.com/meskyanichi/mongoid-paperclip.git"
 gem "aws-s3",            :require => "aws/s3"
 gem "aws-sdk"
-#gem 'dalli'
 gem 'recaptcha',			:require => 'recaptcha/rails'
 
 
@@ -58,7 +50,7 @@ group :development do
   gem 'yajl-ruby'
 end
 
-group :test do 
+group :test do
 	gem 'capybara'
 	gem 'database_cleaner'
 	gem 'mongoid-rspec'

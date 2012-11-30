@@ -4,9 +4,6 @@ class User
   include Mongoid::Timestamps
   include Mongoid::Paperclip
   include Mongoid::Paranoia
-  # Include default devise modules. Others available are:
-  # :token_authenticatable, :confirmable,
-  # :lockable, :timeoutable and 
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
@@ -17,7 +14,7 @@ class User
 
   #validates_presence_of :email
   validates_presence_of :encrypted_password
-  
+
   ## Recoverable
   field :reset_password_token,   :type => String
   field :reset_password_sent_at, :type => Time
@@ -33,23 +30,21 @@ class User
   field :last_sign_in_ip,    :type => String
 
   #Relaciones
-  
-  belongs_to  :country
-  
-  
   has_many :resources,:dependent => :delete
   has_many :votos,:dependent => :delete
 
-  belongs_to :rolable, :polymorphic => true
+  belongs_to  :country
 
-  
+  field :tipo_usuario, :type => String, :default => 'usuario'
+  embeds_one :usuario
+  embeds_one :empresa
 
   index({ email: 1 }, { unique: true, background: true })
-  
 
-  
-  attr_accessible :email,:password,:password_confirmation, :remember_me, :created_at, :updated_at
-  attr_accessible :country_id
+
+
+  attr_accessible :email,:password,:password_confirmation
+  attr_accessible :country_id, :remember_me, :created_at, :updated_at
 
   validates_presence_of :email
   validates_uniqueness_of :email
@@ -68,23 +63,23 @@ class User
       :original => '1920x1680>'
     }
 
-  
+
   def avatar_remote_url(url_value)
     # self.avatar = URI.parse(url_value)
     self.avatar = open(url_value)
   end
-  
-  
-  def self.resource_votados(user_id,pagina)
-    resources = Array.new
-    Voto.where(:user_id => user_id).page(pagina).each do |voto|
-      p = Resource.find(voto.resource_id)
-      if !p.nil?
-        resources.push p
-      end
-    end
-    resources
-  end
-  
+
+
+  # def self.resource_votados(user_id,pagina)
+  #   resources = Array.new
+  #   Voto.where(:user_id => user_id).page(pagina).each do |voto|
+  #     p = Resource.find(voto.resource_id)
+  #     if !p.nil?
+  #       resources.push p
+  #     end
+  #   end
+  #   resources
+  # end
+
 
 end

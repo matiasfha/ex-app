@@ -1,76 +1,115 @@
 require.config
-	hbs:
-		disableI18n:true
-		disableHelpers:true
 	shim:
-		'combobox':['jquery']
-		'foundation/modernizr.foundation':
+		'modernizr':
 			exports:'Modernizr'
-		'jquery.serializeObject':['jquery']
-		'jquery.masonry.min':['jquery']
-		'jquery.imagesloaded.min':['jquery']
-		'jquery.elastislide':['jquery','modernizr.custom.17475']
-		'jquery.cycle.all':['jquery']
-		'froogaloop2.min':['jquery']
-		'foundation/jquery.foundation.reveal':['jquery']
-		'foundation/jquery.placeholder':['jquery']
-		'foundation/app':['jquery','foundation/modernizr.foundation','foundation/jquery.placeholder']
-		'underscore_hbs':
+		'jquery.isotope':['jquery']
+		'jquery.fitvids':['jquery']
+		'jquery.flexislider-min':['jquery']
+		'underscore-min':
 			exports:'_'
-		'handlebars':
-			exports:'Handlebars'
-		'foundation/jquery.foundation.forms':['jquery']
-		'recaptcha_ajax':
-			exports:'Recaptcha'
+		'backbone-min':
+			deps:['underscore-min']
+			exports:'Backbone'
+
 require [
 	'jquery'
-	'underscore_hbs'
-	'backbone'
-	'domReady',
-	'foundation/modernizr.foundation'
-	'handlebars'
-	'router'
-	'templates/helpers/compare'
-	'templates/helpers/iter'
-],($,_,Backbone,domReady,M,HR,Router,Compare,Iter) ->
+	'underscore-min'
+	'backbone-min'
+	'jquery.isotope'
+	'domReady'
+	'modernizr'
+],($,_,Backbone,Isotope,domReady,M,T) ->
 	domReady () ->
-		window.Handlebars = HR
-		window.$ = $.noConflict()
-		#window._ = _.noConflict()
-		
 		$.fn.reset = ->
 			$(this).each () ->
 				this.reset()
-		
+
 		token = $('meta[name="csrf-token"]').attr('content')
 		param = $('meta[name="csrf-param"]').attr('content')
 		$.ajaxSetup
 			beforeSend: (xhr) ->
 				xhr.setRequestHeader('X-CSRF-Token', token);
 			cache: false
+
+		$('#entry-listing').isotope(
+			animationOptions: 
+				duration: 750
+				easing: 'linear'
+				queue: false
+			
+			itemSelector: 'article.entry'
+			transformsEnabled: false
+			layoutMode: 'masonry'
+			resizesContainer: true
+		)
+
+		$(window).resize(setContainerWidth)
+		box = $(".box")
 		
-		# window.notify = (text,type) ->
-		# 	$.pnotify
-		# 		title:'Dandoo.tv'
-		# 		text:text
-		# 		type:type 
-		# 		opacity:.8
+		setContainerWidth =  ->
+			columnNumber = parseInt(($(window).width() + 15) / box.outerWidth(true))
+			containerWidth = (columnNumber * box.outerWidth(true)) - 15
+
+			if  columnNumber > 1
+		    		$("#box-container").css("width",containerWidth+'px')
+			else
+				$("#box-container").css("width", "90%")
+
+		setContainerWidth();
+
+		#Tabs 
+		setTabs = () ->
+			$('#modal #dos').hide()
+			$('ul.idTabs li').live 'click', (e) ->
+				$('ul.idTabs  li').removeClass('onTab')
+				console.log $('#uno')
+				$('#uno,#dos').hide()
+				activeTab = $(this).attr('data-tab')
+				$(activeTab).show()
+				$(e.currentTarget).addClass('onTab')
+				.addClass('onWord')
+				.removeClass('offWord')
+		setTabs()
+
+		#OnClick en un element
+		$('article').live 'click', (e) ->
+			id = $(e.currentTarget).attr('id')
+			$.get  "/resources/#{id}", (data) ->
+				h = $(document).height()+'30'
+				$('#contenedor-modal').css({'height':h}).html(data).fadeIn()
+				setTabs()
+			
+
+		$('#contenedor-modal .paddr10').live 'click', (e) ->
+			e.preventDefault()
+			$('#contenedor-modal').fadeOut().empty();
+			false
+
+		$('#mas_votados').click (e) ->
+			$.get "/recursos/mas_votados",(data) ->
+				items = $('#entry-listing article')
+				$('#entry-listing').isotope 'insert',$(data), () ->
+					$('#entry-listing').isotope 'remove', items	
+					$('#entry-listing') .isotope('reLayout')
+
+		$('#mas_comentados').click (e) ->
+			$.get "/recursos/mas_comentados",(data) ->
+				items = $('#entry-listing article')
+				$('#entry-listing').isotope 'insert',$(data), () ->
+					$('#entry-listing').isotope 'remove', items	
+					$('#entry-listing') .isotope('reLayout')
+
+		$('#nuevos').click (e) ->
+			$.get "/recursos/nuevos",(data) ->
+				items = $('#entry-listing article')
+				$('#entry-listing').isotope 'insert',$(data), () ->
+					$('#entry-listing').isotope 'remove', items	
+					$('#entry-listing') .isotope('reLayout')
+
+				
+				
+					
 
 
 
-		
-		String.prototype.toHHMMSS = () ->
-			sec_numb    = parseInt(this)
-			hours   = Math.floor(sec_numb / 3600)
-			minutes = Math.floor((sec_numb - (hours * 3600)) / 60)
-			seconds = sec_numb - (hours * 3600) - (minutes * 60)
 
-			if hours   < 10
-				hours   = "0"+hours
-			if minutes < 10
-				minutes = "0"+minutes
-			if seconds < 10
-				seconds = "0"+seconds
-			time    = hours+':'+minutes+':'+seconds;
-		new Router()	
-		Backbone.history.start()

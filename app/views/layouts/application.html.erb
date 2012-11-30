@@ -7,113 +7,46 @@
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 	<meta name="description" content="Dandoo.tv La primera red social de publicidad en el mundo">
-    <meta name="viewport" content="width=device-width">
-    <link rel="icon" 
-      type="image/ico" 
-      href="/assets/favicon.ico" />
-    <meta property="og:title" content="Dandoo.tv - La primera red social de publicidad" />
-    <meta property="og:type" content="company" />
-    <meta property="og:site_name" content="Dandoo.tv" />
-    <meta property="og:url" content="dandoodev.herokuapp.com/auth/facebook" />
-    <meta property="og:image" content="http://devdandoo.tv/assets/logo.png" />
-    <meta property="og:description" content="Dandoo.tv es la primera red social de Publicidad. Basados en Neurociencias Perceptivas desarrollamos interfaces capaces de llevar la interacción entre marca y usuario target al siguiente nivel." />
+      <meta name="viewport" content="width=device-width">
+      <link rel="icon" type="image/ico" href="/assets/favicon.ico" />
+      <meta property="og:title" content="Dandoo.tv - La primera red social de publicidad" />
+      <meta property="og:type" content="company" />
+      <meta property="og:site_name" content="Dandoo.tv" />
+      <meta property="og:url" content="dandoodev.herokuapp.com/auth/facebook" />
+      <meta property="og:image" content="http://devdandoo.tv/assets/logo.png" />
+      <meta property="og:description" content="Dandoo.tv es la primera red social de Publicidad. Basados en Neurociencias Perceptivas desarrollamos interfaces capaces de llevar la interacción entre marca y usuario target al siguiente nivel." />
 
-  	<title>Dandoo.tv</title>
+  	<title>Dandoo.tv Home</title>
   	<%= stylesheet_link_tag    "application", :media => "all" %>
-
-	<script type="text/javascript">
-	if (!window['YT']) {var YT = {};}if (!YT.Player) {(function(){var s = 'http:' + '//s.ytimg.com/yt/jsbin/www-widgetapi-vflU5wlSl.js';var a = document.createElement('script');a.src = s;a.async = true;var b = document.getElementsByTagName('script')[0];b.parentNode.insertBefore(a, b);YT.embed_template = "\u003ciframe width=\"425\" height=\"344\" src=\"\" frameborder=\"0\" allowfullscreen\u003e\u003c\/iframe\u003e";})();}
-	</script>
-	
-  	<script type="text/javascript" src="/assets/require.js" data-main=<%=yield(:main_js)%>></script>
-  	<%= yield(:head) %>
-  	<%= csrf_meta_tags %>
+     <%=yield(:css)%>
+      <%= csrf_meta_tags %>
 </head>
 <body>
 	<!--[if lt IE 7]>
         <p class="chromeframe">Estas usando un navegador muy antiguo. Te proponemos <a href="http://browsehappy.com/">Actualizar tu navegador hoy</a> o <a href="http://www.google.com/chromeframe/?redirect=true">instalar Google Chrome Frame</a> Para mejorar la experiencia en este sitio.</p>
     <![endif]-->
+    <%=yield%>
 
-	<!-- Navigation -->
+   
 
-	<nav class="top-bar fixed" >
-		<div class="container">
-			<div class="three columns">
-				<a href="/">
-				<section class="logo"></section>
-				</a>
-			</div>
-			<div class="five columns offset-by-seven">
-				<div class="section two columns">
-					<a href="/" class="tv active"></a>
-					<a href="#" class="store"></a>
-				</div>
-				<div class="login two columns">
-					<% if user_signed_in?%>
-					<div class="tuerca1"></div>
-					<div class="tuerca2"></div>
-					<div class="menu">
-						<ul>
-							<li><a href="/users/<%=current_user.id%>">Perfil</a></li>
-							<li><a href="/user/<%=current_user.id%>/#temas">Temas</a></li>
-							<li><a href="/users/<%=current_user.id%>/#valorados">Valorados</a></li>
-							<li><a href="/users/<%=current_user.id%>/#favoritos">Favoritos</a></li>
-							<li><a href="/logout">Cerrar Sesión</a></li>
-						</ul>
-					</div>
-					<%= image_tag "usuario/TOP_iso.png",:class => 'iso' %>
-					<%= image_tag current_user.avatar.url(:thumb),:size  => '40x40',:class => 'avatar' %>
-					<% else %>
-					<a href="/auth/twitter" class="twitter"></a>
-					<a href="/auth/facebook" class="facebook"></a>
-					<div class="user"></div>
-					<% end %>
-					
-				</div>
-			</div>
-		</div>
-	</nav><br><br>
 
-	<!-- End Navigation -->
-	
 
-	<!-- Header -->
+  <script type="text/javascript">
+  if (!window['YT']) {var YT = {};}if (!YT.Player) {(function(){var s = 'http:' + '//s.ytimg.com/yt/jsbin/www-widgetapi-vflU5wlSl.js';var a = document.createElement('script');a.src = s;a.async = true;var b = document.getElementsByTagName('script')[0];b.parentNode.insertBefore(a, b);YT.embed_template = "\u003ciframe width=\"425\" height=\"344\" src=\"\" frameborder=\"0\" allowfullscreen\u003e\u003c\/iframe\u003e";})();}
+  </script>
+  <!--[if (gte IE 6)&(lte IE 8)]><script type="text/javascript" src="js/selectivizr-min.js"></script><![endif]-->
+  <script type="text/javascript" src="/assets/require.js" data-main=<%=yield(:main_js)%>></script>
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-35427461-2']);
+    _gaq.push(['_trackPageview']);
 
-    <%= yield(:header) %>
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
 
-  <!-- End Header -->
-	
-
-	<div class="container row" id="principal">
-		<div class="twelve columns">
-			<%= yield(:barra) %>
-			<br /><br />
-			<!-- CONTENIDO -->
-			<%= yield %>
-			<!--- -->
-		</div><!--sixteen columns-->
-	</div>			
-  		
-  	
-	
-
-	<div id="templating"></div>
-	
-	<!-- <div id="confirmModal" class="reveal-modal [expand, xlarge, large, medium, small]">
-	  <h2>¿Estás seguro?</h2>
-	  <p id="mensaje"></p>
-	  <a class="close-reveal-modal">&#215;</a>
-	</div> -->
-
-	
-
-	<script>
-            var _gaq=[['_setAccount','UA-35427461-2'],['_trackPageview']];
-            (function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
-            g.src=('https:'==location.protocol?'//ssl':'//www')+'.google-analytics.com/ga.js';
-            s.parentNode.insertBefore(g,s)}(document,'script'));
-        </script>
-	
 </body>
-
 </html>

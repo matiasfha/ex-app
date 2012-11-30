@@ -1,37 +1,87 @@
-<% content_for :main_js do %>
-	"/assets/index.js"
-<% end 
+<%
+content_for :main_js do %>
+"/assets/index"
+<% end %>
 
-content_for :header do 
-	render :partial => 'layouts/header'
-end
-content_for :barra do 
-	render :partial => 'layouts/barra'
-end
-%>
-<div class="row" id="listado_container" style="display:none">
-	<%= render :partial => "resources/listado" %>
-</div>
-	
- 
+<header id="header">
+    <div class="pre-head show-on-mobile">
+        <div class="wrap group">
 
-<div id="page-nav" style="display:none">
-	<a href="/todos_index/2"></a>
-</div>
+        </div>
+    </div><!-- .pre-head -->
 
-<div id="feedback">
-	<div class="tab">
-		Feedback
-	</div>
-	<div class="body">
-		<form method="post" id="feedback_form">
-			<input type="text" placeholder="Nombre" id="nombre" name="nombre"/>
-			<input type="text" placeholder="Email" id="email" name="email"/>
-			<textarea placeholder="Comentario" id="comentario" name="comentario"></textarea>
-			<%=recaptcha_tags :display => {:theme => 'white'}, :ajax => true%>
-			<input type="submit" value="Enviar" class="small button" style="align:rigth" id="feedback_send"/>
-		</form>
-</div>
+    <div id="site-head">
+        <div class="wrap group">
+            <hgroup class="logo">
+                <h1>
+                    <a href="index.html">
+                        <img src="assets/dandooTV.png" alt="dandooTV" width="148" height="44">
+                    </a>
+                </h1>
+
+                <ul id="nav-access">
+                	<li><a href="#" title="Ingresar">Ingresar</a></li>
+                        <li><a href="#" title="Ingresar">¿Tienes un negocio?</a></li>
+                	<li><a href="#" title="Acerca de Dandoo" class="paddr10">Nosotros</a></li>
+                </ul>
+            </hgroup>
 
 
-</div>
+
+        </div><!-- .wrap  #header -->
+    </div><!-- #site-head -->
+
+    <nav>
+        <div class="group">
+            <ul id="navigation" class="group">
+                <li class="current_page_item">
+                    <div id="mas_votados">Los mejores</div>
+                </li>
+                <li>
+                    <div id="mas_comentados">Los más comentados</div>
+                </li>
+                <li>
+                    <div id="nuevos">Nuevos</div>
+                </li>
+            </ul>
+        </div><!-- .wrap < nav -->
+    </nav>
+</header>
+
+<div id="page">
+    <section id="main">
+        <div class="group">
+           <div id="box-container">
+                <div id="entry-listing" class="group">
+                    
+                    <%
+                    @resources.each do |resource|
+                        %>
+                    <article id="<%=resource.id%>" class="post-1 category-blog-posts entry box format-video">
+                        <div class="entry-content-cnt">
+                            <div class="entry-content">
+                                <img src="<%=resource.imagen.url(:medium)%>" class="attachment-ci_listing_thumb" alt="Dandoo" title="Dandoo" data-large="<%=resource.imagen.url(:large)%>">
+                            </div>
+                        </div>
+
+                        <div class="entry-desc">
+                            <h1><a href="#" title="Titulo"><%=resource.titulo%></a></h1>
+                            <div class="entry-meta group">
+                             <a class="comments-no" href="#"><%=resource.comments.count%></a> <a data-post-id="213" class="heart-this loved" href="#" title="Me gusta">
+                             <span class="heart-no"><%=Resource.promedio_votos(resource.id).round %> / <%=resource. votos.count%></span></a>
+                            </div>
+                        </div>
+                    </article>
+                    <% end %>
+                </div><!-- #entry-listing -->
+                <div class="nav">
+                    <a id="nextpage" href="content1.html">Next Page</a>
+                </div>
+           </div><!-- #box-container-->
+        </div><!-- group -->
+    </section><!--  #main -->
+</div><!-- #page -->
+
+
+
+<div id="contenedor-modal"></div>
