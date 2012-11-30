@@ -85,9 +85,11 @@ require [
 				lis.addClass('starOn').removeClass('starOff')
 				lis = $(e.currentTarget).nextAll().children()
 				lis.removeClass('starOn').addClass('starOff')
+				e.stopPropagation()
 			.live 'mouseleave', (e) ->
 				lis = $(e.currentTarget).prevAll().andSelf().children(':not(.voted)')
 				lis.removeClass('starOn').addClass('starOff')
+				e.stopPropagation()
 			.live 'click',(e) ->
 				$(e.currentTarget).siblings('.voted').andSelf().removeClass 'voted'
 				elems = $(e.currentTarget).siblings().andSelf()
@@ -102,6 +104,7 @@ require [
 						console.log data
 					error:(d) ->
 						alert d.responseText
+				false
 
 		#OnClick en un element
 		$('article').live 'click', (e) ->
