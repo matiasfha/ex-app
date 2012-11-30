@@ -118,8 +118,9 @@ content_for :main_js do %>
       <div class="bigStar"><span><%=nota %></span><br><span id="votoWord"><%=@resource.votos.count%> votos</span></div>
       
       <br><br>
-      <% if user_signed_in? %>
+      
       <h3>¿Te gustó? ponle una nota</h3>
+      <% if user_signed_in? %>
       <ul id="rating" data-id="<%=@resource.id%>">
         <% for i in 1..nota %>
           <li class="star"><a href="" class="starOn"><%=i+1%></a></li>
@@ -129,6 +130,8 @@ content_for :main_js do %>
         <% end %>
 
       </ul>
+      <% else %>
+      <a href="#" title="seguir" class="buttonF ma17" >Regístrate</a>
       <% end %>
 
     </div><!-- UNO--> 
@@ -140,6 +143,8 @@ content_for :main_js do %>
           <input class="marl4" style="color: #727272; font-size:12px; letter-spacing:0.03em;" type="text" size="37" value="Comenta" onblur="if(this.value == '') { this.style.color='#727272'; this.value='Comenta'}" onfocus="if (this.value == 'Comenta') {this.style.color='#666';this.style.color='#666'; this.value=''}"/>     
         </div>                  
       </form>
+      <% else%>
+      <a href="#" title="seguir" class="buttonF ma17" >Regístrate</a>
       <% end %>
       <div id="comments"><!-- Comentario Usuario-->
         <%@comments.each do |comment| %>
