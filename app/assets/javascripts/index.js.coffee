@@ -36,17 +36,19 @@ require [
 		$('li#negocio').click (e) ->
 			$('li#negocio ul').slideToggle('fast');
 
-		$('#entry-listing').isotope(
-			animationOptions: 
-				duration: 750
-				easing: 'linear'
-				queue: false
-			
-			itemSelector: 'article.entry'
-			transformsEnabled: false
-			layoutMode: 'masonry'
-			resizesContainer: true
-		)
+		$('#entry-listing').imagesLoaded () ->
+			$('#entry-listing').isotope(
+				animationOptions: 
+					duration: 750
+					easing: 'linear'
+					queue: false
+				
+				itemSelector: 'article.entry'
+				transformsEnabled: false
+				layoutMode: 'masonry'
+				resizesContainer: true
+			)
+			$('#entry-listing').fadeIn().isotope('reLayout')
 
 		$(window).resize(setContainerWidth)
 		box = $(".box")
