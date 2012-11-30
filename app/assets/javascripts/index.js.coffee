@@ -70,7 +70,6 @@ require [
 			$('#modal #dos').hide()
 			$('ul.idTabs li').live 'click', (e) ->
 				$('ul.idTabs  li').removeClass('onTab')
-				console.log $('#uno')
 				$('#uno,#dos').hide()
 				activeTab = $(this).attr('data-tab')
 				$(activeTab).show()
@@ -104,6 +103,7 @@ require [
 					type:'POST'
 					success: (data) ->
 						console.log data
+						#TODO ACTUALIZAR VOTOS
 					error:(d) ->
 						alert d.responseText
 				false
