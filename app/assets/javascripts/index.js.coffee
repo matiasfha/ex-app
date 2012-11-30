@@ -10,6 +10,7 @@ require.config
 		'backbone-min':
 			deps:['underscore-min']
 			exports:'Backbone'
+		'jquery.infinitescroll.min':['jquery']
 		
 
 require [
@@ -20,7 +21,8 @@ require [
 	'domReady'
 	'modernizr'
 	'froogaloop2.min'
-],($,_,Backbone,Isotope,domReady,M,T,F) ->
+	'jquery.infinitescroll.min'
+],($,_,Backbone,Isotope,domReady,M,T,F,S) ->
 	domReady () ->
 		$.fn.reset = ->
 			$(this).each () ->
@@ -47,6 +49,7 @@ require [
 				transformsEnabled: false
 				layoutMode: 'masonry'
 				resizesContainer: true
+				animationEngine:'jquery'
 			)
 			items = $('#entry-listing article.entry')
 			$('#entry-listing').empty()
@@ -127,31 +130,55 @@ require [
 			false
 
 		#Eventos del Home
-		$('#mas_votados').click (e) ->
-			$.get "/recursos/mas_votados",(data) ->
-				items = $('#entry-listing article')
-				items.imagesLoaded () ->
-					$('#entry-listing').isotope 'insert',$(data), () ->
-						$('#entry-listing').isotope 'remove', items	
-						$('#entry-listing') .isotope('reLayout')
+		# $('#mas_votados').click (e) ->
+		# 	$.get "/recursos/mas_votados",(data) ->
+		# 		items = $('#entry-listing article')
+		# 		items.imagesLoaded () ->
+		# 			$('#entry-listing').isotope 'insert',$(data), () ->
+		# 				$('#entry-listing').isotope 'remove', items	
+		# 				$('#entry-listing') .isotope('reLayout')
+		# 				$('#navigation li div').removeClass 'active'
+		# 				$('#mas_votados').addClass 'active'
+		# 				$('#navSelector #nextpage').attr 'href', "/recursos/mas_votados/1"
 
-		$('#mas_comentados').click (e) ->
-			$.get "/recursos/mas_comentados",(data) ->
-				items = $('#entry-listing article')
-				items.imagesLoaded () ->
-					$('#entry-listing').isotope 'insert',$(data), () ->
-						$('#entry-listing').isotope 'remove', items	
-						$('#entry-listing') .isotope('reLayout')
+		# $('#mas_comentados').click (e) ->
+		# 	$.get "/recursos/mas_comentados",(data) ->
+		# 		items = $('#entry-listing article')
+		# 		items.imagesLoaded () ->
+		# 			$('#entry-listing').isotope 'insert',$(data), () ->
+		# 				$('#entry-listing').isotope 'remove', items	
+		# 				$('#entry-listing') .isotope('reLayout')
+		# 				$('#navigation li div').removeClass 'active'
+		# 				$('#mas_comentados').addClass 'active'
+		# 				$('#navSelector #nextpage').attr 'href', "/recursos/mas_comentados/1"
 
-		$('#nuevos').click (e) ->
-			$.get "/recursos/nuevos",(data) ->
-				items = $('#entry-listing article')
-				items.imagesLoaded () ->
-					$('#entry-listing').isotope 'insert',$(data), () ->
-						$('#entry-listing').isotope 'remove', items	
-						$('#entry-listing') .isotope('reLayout')
+		# $('#nuevos').click (e) ->
+		# 	$.get "/recursos/nuevos",(data) ->
+		# 		items = $('#entry-listing article')
+		# 		items.imagesLoaded () ->
+		# 			$('#entry-listing').isotope 'insert',$(data), () ->
+		# 				$('#entry-listing').isotope 'remove', items	
+		# 				$('#entry-listing') .isotope('reLayout')
+		# 				$('#navigation li div').removeClass 'active'
+		# 				$('#nuevos').addClass 'active'
+		# 				$('#navSelector #nextpage').attr 'href', "/recursos/nuevos/1"
 
-				
+		$('#entry-listing').infinitescroll
+			navSelector:'#navSelector'
+			nextSelector:'#nextpage'
+			itemSelector:'article.entry'
+			loading:
+				img:"/assets/ajax-loader.gif"
+				finishedMsg:"Ya no quedan más elementos..."
+				msgText:"<em>Cargando recursos..</em>"
+			
+		, (data) ->
+			$(data).imagesLoaded () ->
+				$('#entry-listing').isotope('appended',$(data)).isotope('reLayout')
+		
+
+		
+
 		
 					
 

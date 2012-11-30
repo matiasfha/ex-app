@@ -4,10 +4,10 @@ class Resource
   include Mongoid::Timestamps
   include Mongoid::Paperclip
 
-  paginates_per 4
+  paginates_per 8
 
   embeds_many :comments
-  accepts_nested_attributes_for :comments
+  
   has_many :votos, :dependent => :delete
   belongs_to :user
 

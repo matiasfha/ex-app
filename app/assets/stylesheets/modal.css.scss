@@ -86,16 +86,24 @@
 
 }
 
-#user1 span, #user2 span {
+.user1 span, .user2 span {
 	display: block;
 	float: left;
 	height: 38px;
 	padding-top:14px;
 	padding-left: 5px;
+	img{
+		border-radius:3px;
+		-webkit-border-radius:3px;
+		-moz-border-radius:3px;
+		-o-border-radius:3px;
+		behavior:url(PIE.htc);	
+	}
+
 }
 
 
-#user2{
+.user2{
 	background: #eceaea;
 }
 

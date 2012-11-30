@@ -8,6 +8,8 @@ DandooDev::Application.routes.draw do
 
   root :to => 'home#index'
   match 'ingresar' => 'home#ingresar', :via => :get
+  match 'nuevos' => 'home#recursos_nuevos',:via => :get 
+  match 'comentados' => 'home#recursos_comentados',:via => :get
 
   devise_for :users, :controllers => { :registrations => "registrations",:sessions => 'sessions'}
   devise_scope :user do
