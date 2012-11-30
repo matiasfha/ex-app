@@ -7,7 +7,7 @@ DandooDev::Application.routes.draw do
   match 'metadata/get_cities/:id'   => 'metadata#get_cities'
 
   root :to => 'home#index'
-
+  match 'ingresar' => 'home#ingresar', :via => :get
 
   devise_for :users, :controllers => { :registrations => "registrations",:sessions => 'sessions'}
   devise_scope :user do

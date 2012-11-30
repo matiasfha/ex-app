@@ -144,7 +144,12 @@ content_for :main_js do %>
         </div>                  
       </form>
       <% else%>
-      <h5 style="margin-left:55px">Danos tu opinión</h5>
+        <% if @comments.count == 0 %>
+          <h5 style="margin-left:30px;text-align: center;width: 180px">Se el primero y déjanos tu opinión</h5>
+          <%=image_tag 'comment.png' ,:style =>'margin-left:90px'%>
+        <% else %>
+          <h5 style="margin-left:25px;text-align: center;width: 180px">Únete y déjanos tu opinión</h5>
+        <% end %>
       <a href="#" title="seguir" class="buttonF ma17" >Regístrate</a>
       <% end %>
       <div id="comments"><!-- Comentario Usuario-->

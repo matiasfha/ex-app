@@ -48,7 +48,11 @@ require [
 				layoutMode: 'masonry'
 				resizesContainer: true
 			)
-			$('#entry-listing').fadeIn().isotope('reLayout')
+			items = $('#entry-listing article.entry')
+			$('#entry-listing').empty()
+			$('#entry-listing').fadeIn()
+			$('#entry-listing').isotope 'insert',items, () ->
+				$('#entry-listing').isotope('reLayout')
 
 		$(window).resize(setContainerWidth)
 		box = $(".box")
@@ -126,23 +130,26 @@ require [
 		$('#mas_votados').click (e) ->
 			$.get "/recursos/mas_votados",(data) ->
 				items = $('#entry-listing article')
-				$('#entry-listing').isotope 'insert',$(data), () ->
-					$('#entry-listing').isotope 'remove', items	
-					$('#entry-listing') .isotope('reLayout')
+				items.imagesLoaded () ->
+					$('#entry-listing').isotope 'insert',$(data), () ->
+						$('#entry-listing').isotope 'remove', items	
+						$('#entry-listing') .isotope('reLayout')
 
 		$('#mas_comentados').click (e) ->
 			$.get "/recursos/mas_comentados",(data) ->
 				items = $('#entry-listing article')
-				$('#entry-listing').isotope 'insert',$(data), () ->
-					$('#entry-listing').isotope 'remove', items	
-					$('#entry-listing') .isotope('reLayout')
+				items.imagesLoaded () ->
+					$('#entry-listing').isotope 'insert',$(data), () ->
+						$('#entry-listing').isotope 'remove', items	
+						$('#entry-listing') .isotope('reLayout')
 
 		$('#nuevos').click (e) ->
 			$.get "/recursos/nuevos",(data) ->
 				items = $('#entry-listing article')
-				$('#entry-listing').isotope 'insert',$(data), () ->
-					$('#entry-listing').isotope 'remove', items	
-					$('#entry-listing') .isotope('reLayout')
+				items.imagesLoaded () ->
+					$('#entry-listing').isotope 'insert',$(data), () ->
+						$('#entry-listing').isotope 'remove', items	
+						$('#entry-listing') .isotope('reLayout')
 
 				
 		

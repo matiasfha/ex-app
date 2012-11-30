@@ -162,6 +162,66 @@ margin-left: 0px !important;
 }
 #nav-access a img { float:left; }
 
+.container a {
+	-webkit-box-shadow:
+		inset 0px 1px 0px rgba(255,255,255,.75),
+		0px 1px 1px rgba(0,0,0,.15);
+	-moz-box-shadow:
+		inset 0px 1px 0px rgba(255,255,255,.75),
+		0px 1px 1px rgba(0,0,0,.15);
+	box-shadow:
+		inset 0px 1px 0px rgba(255,255,255,.75),
+		0px 1px 1px rgba(0,0,0,.15);
+		text-decoration: none;
+}
+.container a img { float:left; }
+
+.ml15 {
+	margin-left: 15px;
+}
+
+.ml17 {
+	margin-left: 17px;
+}
+
+.oespacio {
+	width: 10px;
+	float: left;
+	padding-left: 18px;
+	padding-top: 10px;
+}
+
+.medium {
+	width:177px;
+	height:41px;
+
+	float:left;
+	margin-bottom: 62px;
+
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	border-radius: 3px;
+
+	font-size:12px;
+	font-weight:bold;
+	color:#fff;
+	line-height:41px;
+	text-align:center;
+}
+
+
+.container a {
+	-webkit-box-shadow:
+		inset 0px 1px 0px rgba(255,255,255,.75),
+		0px 1px 1px rgba(0,0,0,.15);
+	-moz-box-shadow:
+		inset 0px 1px 0px rgba(255,255,255,.75),
+		0px 1px 1px rgba(0,0,0,.15);
+	box-shadow:
+		inset 0px 1px 0px rgba(255,255,255,.75),
+		0px 1px 1px rgba(0,0,0,.15);
+}
+.container a img { float:left; }
 
 .twitter {
 	background-image: -webkit-linear-gradient(top, rgb(148, 220, 241), rgb(95, 190, 229));
@@ -171,7 +231,7 @@ margin-left: 0px !important;
 	background-image: linear-gradient(top, rgb(148, 220, 241), rgb(95, 190, 229));
 	filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0,StartColorStr='#94dcf1', EndColorStr='#5fbee5');
 	border:1px solid #4d9ebe;
-	behavior:url('PIE.htc');
+
 	text-shadow: 0px 1px 0px rgba(8,83,111,.47);
 }
 .twitter:hover {
@@ -181,10 +241,12 @@ margin-left: 0px !important;
 	background-image: -ms-linear-gradient(top, rgb(95, 190, 229), rgb(136, 213, 238));
 	background-image: linear-gradient(top, rgb(95, 190, 229), rgb(136, 213, 238));
 	filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0,StartColorStr='#5fbee5', EndColorStr='#88d5ee');
-	behavior:url('PIE.htc');
 }
-
-
+.twitter img {
+	box-shadow: 
+		1px 0px 0px rgba(255,255,255,.55),
+		2px 0px 0px #4d9ebe;
+}
 
 
 .facebook {
@@ -195,7 +257,7 @@ margin-left: 0px !important;
 	background-image: linear-gradient(top, rgb(95, 151, 202), rgb(52, 118, 178));
 	filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0,StartColorStr='#5f97ca', EndColorStr='#3476b2');
 	border:1px solid #21629c;
-	behavior:url('PIE.htc');
+
 	text-shadow:0px 1px 0px rgba(7,39,68,.47);
 }
 .facebook:hover {
@@ -205,5 +267,10 @@ margin-left: 0px !important;
 	background-image: -ms-linear-gradient(top, rgb(52, 118, 178), rgb(95, 151, 202));
 	background-image: linear-gradient(top, rgb(52, 118, 178), rgb(95, 151, 202));
 	filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0,StartColorStr='#3476b2', EndColorStr='#5f97ca');
-	behavior:url('PIE.htc');
 }
+.facebook img {
+	box-shadow: 
+		1px 0px 0px rgba(255,255,255,.55),
+		2px 0px 0px #256299;
+}
+
