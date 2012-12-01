@@ -121,7 +121,11 @@ require [
 			id = $(e.currentTarget).attr('id')
 			$.get  "/resources/#{id}", (data) ->
 				h = $(document).height()+'30'
-				$('#contenedor-modal').css({'height':h}).html(data).fadeIn()
+				w = $(document).width()
+				$('#contenedor-modal').css 
+					'height':h
+					'width':w
+				.html(data).fadeIn()
 				setTabs()
 				ratingStar()
 

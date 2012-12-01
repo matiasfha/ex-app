@@ -30,7 +30,7 @@ content_for :main_js do %>
     <div id="ad-left">
         <span id="resource">
           <% if @resource.type == 'imagen' %>
-            <a href="/resources/<%=@resource.id %>"> <img src="<%=@resource.imagen.url(:large)%>" alt="ad1-big" width="729" ></a>
+            <a href="/resources/<%=@resource.id %>"> <img src="<%=@resource.imagen.url(:original)%>" alt="ad1-big" width="829" ></a>
             <% else %>
                 <div id="player"></div>
                 <% if @resource.provider == 'youtube' %>
@@ -44,7 +44,7 @@ content_for :main_js do %>
                           onYoutubeIframeAPIReady = function(video_id, player_id) {
                             var options;
                             options = {
-                              width: '729',
+                              width: '829',
                               height: '480',
                               videoId: video_id,
                               playerVars: {
@@ -60,7 +60,8 @@ content_for :main_js do %>
                                 disablekb: 1,
                                 modestbranding: 1,
                                 playerpiid: player_id,
-                                rel: 0
+                                rel: 0,
+                                fs:1
                               },
                               events: {
                                 'onReady': function(event) {
@@ -79,7 +80,7 @@ content_for :main_js do %>
                   video_id = @resource.url.split('/')[3]
                   %>
 
-                  <iframe src="http://player.vimeo.com/video/<%=video_id%>" width="729" height="480" frameborder="0" webkitallowfullscreen="" mozallowfullscreen="" allowfullscreen=""></iframe>
+                  <iframe src="http://player.vimeo.com/video/<%=video_id%>" width="829" height="480" frameborder="0" webkitallowfullscreen="" mozallowfullscreen="" allowfullscreen=""></iframe>
                   <% end %>
             <% end %>
         </span>

@@ -4,7 +4,6 @@
 	position:absolute;
 	top:0;
 	left:0;
-	width: 100%;
 	z-index:10000;
 	display:none;
 }
@@ -12,7 +11,6 @@
 #contenedor-modal #header{
 	z-index:12000;
 	background: url("bg-modal-header.png") left top repeat;
-
 }
 
 #contenedor-modal #nav-access .paddr10{
@@ -22,16 +20,16 @@
 /* Ventanas Modales */
 
 #modal{
-	 width: 990px;
+	 width: 1090px;
 	 overflow: hidden;	
-	 margin: 10px auto;
-
+	 margin: 5px auto;
 }
 
 
 #ad-left {
 	float: left;
-	width: 729px;
+	width: 829px;
+	
 }
 
 
@@ -159,6 +157,7 @@
   -o-border-radius: 0 0 3px 3px;
   border-radius:0 0 3px 3px;
   margin-top: -4px;
+
 }
 
 
