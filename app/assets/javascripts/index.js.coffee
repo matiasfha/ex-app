@@ -36,7 +36,8 @@ require [
 			cache: false
 
 		$('li#negocio').click (e) ->
-			$('li#negocio ul').slideToggle('fast');
+			$('li#negocio ul').toggle()
+			$('li#negocio').toggleClass('active')
 
 		$('#entry-listing').imagesLoaded () ->
 			$('#entry-listing').isotope(

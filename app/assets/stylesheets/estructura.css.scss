@@ -437,6 +437,39 @@ Contenedores
   padding-top: 15px;
   color:#fff;
   text-decoration: none;
+  &.dropdown{
+    cursor:pointer;
+    width:145px;
+    margin:0;
+    padding:15px 1px 5px 0px;
+    margin-left:10px;
+    &.active{
+      background:#fff;
+      color: #555555;
+    }
+     
+    li{
+      margin:4px;
+      padding:0;
+      display: block;
+      width:100%;
+      margin:0;
+       a{
+        color: #555555;
+        font-weight: bold;
+        text-decoration: none;
+      }
+      a:hover{
+        color: #FFFFFF;
+        text-decoration: none;
+      }
+    }
+    li:hover{
+      background:#32A0B7;
+      
+    }
+    
+  }
 }
 
 #nav-access li a{
@@ -450,27 +483,13 @@ Contenedores
 #nav-access li ul{
     display:none;
     top:35px;
-    background:url('bg-nav.png') ;
-    border-radius:3px;
-    -webkit-border-radius:3px;
-    -o-border-radius:3px;
-    -moz-border-radius:3px;
-    width:10em;
+    //background:url('bg-nav.png') ;
+    background:#FFF;
+    width:143px;
     position:absolute;
     margin:0;
     padding:10px 1px 5px 2px;
-    li{
-      margin:4px;
-      padding:0;
-      display: block;
-      a{
-        border-bottom:1px solid white;
-        color:white;
-        &:hover{
-          text-decoration: none;
-        }
-      }
-    }
+   
 }
 
 
@@ -912,4 +931,75 @@ Media Queries
 
 .ie8 .format-gallery .slides img {
   height: 300px !important;
+}
+
+
+
+/** Dropdown**/
+.dropdown 
+{
+color: #555;
+width: 143px;
+position: relative;
+height: 17px;
+text-align:left;
+float: right;
+margin-top: 8px;
+margin-right: 16px;
+}
+.submenu
+{
+position: absolute;
+top: -12px;
+left: -20px;
+z-index: 100;
+width: 135px;
+display: none;
+margin-left: 10px;
+padding: 40px 0 5px;
+}
+.dropdown li a 
+{
+color: #555555;
+display: block;
+font-family: arial;
+font-weight: bold;
+padding: 6px 15px;
+cursor: pointer;
+text-decoration:none;
+}
+
+.dropdown li a:hover
+{
+background:#32A0B7;
+color: #FFFFFF;
+text-decoration: none;
+}
+a.account 
+{
+font-size: 11px;
+line-height: 16px;
+color: #555;
+position: absolute;
+z-index: 110;
+display: block;
+padding: 11px 0 0 20px;
+height: 26px;
+width: 103px;
+text-decoration: none;
+cursor:pointer;
+text-indent: -999999px;
+overflow: hidden;
+}
+.root
+{
+list-style:none;
+margin: 9px 2px 0px 0px;
+padding:0px;
+font-size: 11px;
+padding: 11px 0 0 0px;
+background: white;
+border: 1px solid #fff;
+border-radius: 0 0 3px 3px;
+
 }
