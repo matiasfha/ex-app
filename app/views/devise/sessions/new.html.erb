@@ -5,6 +5,11 @@ content_for :main_js do
 <% end 
 content_for :css do %>
 <%= stylesheet_link_tag    "empresa", :media => "all" %> 
+<style type="text/css">
+#nav-access{
+	display: none;
+}
+</style>
 <% end %>
 
 <div id="empresas">
@@ -15,24 +20,25 @@ content_for :css do %>
 	    <h2>Ingreso de Empresas</h2>
 	  </header><!-- fin header -->
 
-	<div class="contenedor">
+	<section class="contenedor">
 		
 
 		<%= form_for(resource,:as => resource_name,:url =>session_path(resource_name),:html => {:class =>'stn-form label-inline simple formulario'}) do |f| %>
-		  <div class="field">
-		  	<%= f.label :email %>
-		  	<%= f.email_field :email, :autofocus => true %>
-		  </div>
 
 		  <div class="field">
-		  	<%= f.label :password %>
-		  	<%= f.password_field :password %>
+		  	<%= f.label :email %>
+		  	<%= f.email_field :email, :autofocus => true,:size => '25' %>
+		  </div>
+
+		  <div class="field relative">
+		  	<%= f.label :password,'Contraseña' %>
+		  	<%= f.password_field :password,:size => '10',:class => 'password' %>
 		  </div>
 
 
 		    <div class="field">
 		    	<%= f.check_box :remember_me %> 
-		    	<%= f.label :remember_me %>
+		    	<%= f.label :remember_me,'Recordarme' %>
 		    </div>
 
 
@@ -40,5 +46,6 @@ content_for :css do %>
 		  	<%= f.submit "Ingresar",:class => 'button' %>
 		  </div>
 		<% end %>
-	</div>
+	</section>
+	<a href="/" class="back">Volver a la portada</a>
 </div>
