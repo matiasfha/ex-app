@@ -54,15 +54,8 @@ require [
 			if inputs.length > 0
 				error = true
 				$(i).addClass('error') for i in inputs
-			select = $('#paso1 select#country option:selected')	
-			if select.val()==""
-				$('#paso1 select#country').addClass('error')
-				error = true
 			
-			if !$('#user_usuario_rut').rutValidate($('#user_usuario_dv').val())
-					$('#user_usuario_rut,#user_usuario_dv').addClass 'error'
-					error = true
-
+			
 			if !error #no hay errores
 				$('#recaptcha_modal').fadeIn()
 			false

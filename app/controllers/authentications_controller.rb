@@ -4,11 +4,11 @@ class AuthenticationsController < ApplicationController
 
 
   def create
-    # avatar = params[:user][:avatar_tmp]
-    # if avatar.index('facebook')
-    #   avatar_tmp = avatar.split('?')
-    #   avatar = avatar_tmp[0]+'?type=large'
-    # end
+    avatar = params[:user][:avatar_tmp]
+    if avatar.index('facebook')
+      avatar_tmp = avatar.split('?')
+      avatar = avatar_tmp[0]+'?type=large'
+    end
     params[:user][:avatar_tmp] = avatar
     #Check por el email
     u = User.where(:email => params[:user][:email]).first

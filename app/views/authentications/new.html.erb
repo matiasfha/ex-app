@@ -4,7 +4,6 @@ content_for :main_js do
   "/assets/user_index"
 <% end 
 content_for :css do %>
-<%= stylesheet_link_tag    "redmond/jquery-ui-1.9.2.custom.min", :media => "all" %>
 <style type="text/css">
 body {
     background: #f6f6f3 url(/assets/bg-dandoo.png)left top repeat;
@@ -93,7 +92,7 @@ nav {
         <%=form_for(@user, :url => "/authentications", :html => { :class => 'stn-form label-inline simple formulario', :method => :post }) do |f| %>
         <input type="hidden" name="user[provider]" id="user_provider" value="<%=@provider%>" />
         <input type="hidden" name="user[uid]" id="user_uid" value="<%=@uid%>" />
-    
+    	<input type="hidden" name="user[avatar_tmp]" value="<%=@user.avatar_tmp%>" />
         <section class="contenedor" id="paso1" >       
                 
 	        <h3>Tus Datos</h3>
