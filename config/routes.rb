@@ -1,45 +1,43 @@
 #encoding utf-8
 DandooDev::Application.routes.draw do
-  devise_for :admins
-  mount RailsAdmin::Engine => '/admin', :as => 'rails_admin'
 
-  
   #Para metadatos generales.. retornan JSON
   match 'metadata/get_states/:id'   => 'metadata#get_states'
   match 'metadata/get_communes/:id' => 'metadata#get_communes'
   match 'metadata/get_cities/:id'   => 'metadata#get_cities'
-  
-  match 'metadata/populares(/:page)' => 'resources#populares', :via => :get 
-  match 'metadata/valorados(/:page)' => 'resources#valorados', :via => :get 
 
   root :to => 'home#index'
-  # root :to => 'home#prelaunch'
-  
-  
-  devise_for :users, :controllers => { :registrations => "registrations"}
-  devise_scope :user do 
-    get '/register'                 => 'devise/registrations#new'
+  match 'ingresar' => 'home#ingresar', :via => :get
+  match 'nuevos' => 'home#recursos_nuevos',:via => :get 
+  match 'comentados' => 'home#recursos_comentados',:via => :get
+  match 'mis_contenidos' => 'home#mis_contenidos', :via => :get
+
+  devise_for :users, :controllers => { :registrations => "registrations",:sessions => 'sessions'}
+  devise_scope :user do
     delete '/logout'                => 'devise/sessions#destroy'
     get '/logout'                   => 'devise/sessions#destroy'
-    get '/user/complete_registration/:user' => 'registrations#completar'
-    put '/user/complete_registration' => 'registrations#finalizar'
+    get '/empresas/login'    => 'sessions#new'
   end
-  
-  resources :users, :only => [:show,:update]
-  
-  match 'resources/listado/:clasificacion/:tipo(/:page)' => 'resources#index', :via => :get
-  match 'resources/like/:id/:accion' => 'resources#like', :via => :post
-  resources :resources, :only => [:create,:show,:index,:destroy]
 
-  match '/resources/listado(/:clasificacion)(/:tipo)(/:page)' => 'resources#index', :via => :get
-  match '/resources/listado(/:clasificacion)(/:tipo)(/:page)(/:user_id)' => 'resources#index', :via => :get
-  match '/resources/like/:id/:accion' => 'resources#like', :via => :post
+  resources :empresas, :only => [:new, :create, :update, :destroy]
+  
+
+  resources :users, :only => [:show,:update]
+
+  
+  resources :resources, :only => [:create,:show,:index,:destroy]
+  match 'recursos/mas_votados(/:page)' => 'resources#mas_votados',:via => :get
+  match 'recursos/mas_comentados(/:page)' => 'resources#mas_comentados',:via => :get
+  match 'recursos/nuevos(/:page)' => 'resources#nuevos',:via => :get
+  match 'recursos/subir' => 'resources#subir', :via => :get
   
   resources :comments, :only => [:create,:show]
-  match '/comments/:pid/:cid' => 'comments#destroy', :via => :delete
+  #match '/comments/:pid/:cid' => 'comments#destroy', :via => :delete
   match '/votos/:pid/:valor' => 'votos#create', :via => :post
+
+  match '/auth/test' => 'authentications#test'
+  match '/auth/bienvenido' => 'authentications#bienvenido'
   match 'auth/:provider/callback'  => 'authentications#new'
-  
   resources :authentications, :only => [:index,:create,:destroy]
   match '/feedback' => 'metadata#feedback', :via => :post
 end

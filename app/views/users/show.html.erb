@@ -1,88 +1,251 @@
+<%
+content_for :main_js do 
+  %>
+  "/assets/user_index"
 <% 
-css 'redmond/jquery-ui-1.9.1.custom.min'
-content_for :main_js do %>
-  "/assets/user_index.js"
-<% end 
-content_for :header do 
-  render :partial => 'users/header'
 end 
+content_for :css do  %>
+	<%= stylesheet_link_tag    "redmond/jquery-ui-1.9.2.custom.min", :media => "all" %>
+<% end %>
+
+<div id="empresas">
+        <nav>
+        <span class="logo-dashboard">
+        <img src="/assets/dandooTV.png" alt="dandoo-dashboard" width="148" height="44">
+        </span>
+        
+			<div class="dropdown">
+				<a class="account" >sss</a>
+			
+				<div class="submenu">
+					<ul class="root">
+						<li ><a href="#Perfil" >Tu</a></li>
+						<li ><a href="#Ayuda" >Actividad</a></li>
+						<li ><a href="#Ayuda" >Subir comerciales</a></li>
+						<li ><a href="/logout">Cerrar sesión</a></li>
+						<li ><a href="" class="eliminar">Eliminar cuenta</a></li>
+					</ul>
+				</div>
+			</div>        
+        </nav><!-- fin nav -->
+        
+        
+        
+        <section id="contDashboard" class="clearfix">
+        
+        
+        <div id="izquierda">
+	    
+		    <div id="contIzquierda">    
+		    <h2 class="titUser">Este es tu avatar</h2>
+		    <span class="cambiarAvatarUsuario">
+		    	<%= image_tag @user.avatar.url , :size => '168x150' %>
+ 		    	
+		    </span>    
+		    
+		    <br>
+		    	<div class="actionrow">
+		    		<%=form_for @user do |f| %>
+					<button class="button  btnCambiar"/>Cambiar</button>
+					<%=f.file_field :avatar %>	
+				<% end %>
+					</div> 
+			<br>
+		    <p>JPG, GIF or PNG. tamaño máximo 2MB</p>    
+		    </div>
+        
+        </div>
+        
+        
+        
+        <div id="derecha">
+	        
+	        <div id="contDerecha">
+	        
+	        <ul class="idTabs menu1"> 
+			  <li class="mr40"><a href="#" ><span class="perfilOn">Hola <%=@user.usuario.nombre%></span></a></li> 
+			</ul> 
+			
+			<div id="cuenta">
+				
+	        <ul class="idTabs" id="submenu1"> 
+			  <li><a href="#uno" class="selected ml28" title="Últimas actualizaciones">Actividad</a></li> 
+			  <li><a href="#dos" class="ml28" title="Tus intereses">Intereses</a></li> 
+			  <li><a href="#tres" class="ml28" title="Tu perfil">Perfil Dandoo</a></li> 
+			  <li><a href="#cuatro" class="ml28" title="Tu perfil">Subir material</a></li> 
+			</ul> 				
+				
+			<div id="uno">
+
+			</div>
+			
+			
+			
+			<div id="dos">
+				 <form action="#" method="post" class="stn-form label-inline simple formulario3">		
+					
+					
+					<div class="field clearfix paddb21">
+						<% 
+						Interest.all.order_by([[:nombre,:asc]]).each_with_index	 do |i,j| 
+							%>
+						  <div class="intereses">
+						  	<%
+					              c = @user.usuario.usuario_interests.where(:interest_id => i.id).first
+					              if !c.nil? %>
+					                  <%= radio_button_tag "user[usuario][usuario_interests_attributes][#{j}][interest_id]",i.id,:checked => 'checked'%>
+					              <%
+					                else
+					              %>
+					              	<%= radio_button_tag "user[usuario][usuario_interests_attributes][#{j}][interest_id]",i.id%>
+					             <%
+					              end
+					              %>
+						  	<br>
+						  	<span class="checkbox2 masculino "><%=i.nombre%></span>
+						  </div>
+						  
+						  <% end %>
+					</div>  
 
 
-%>
-<input type="hidden" id="user_id" value="<%=@user.id%>" />
-<div class="user">
+			        <div class="btnAction">
+				        <a href="2-crear-cuenta.html" class="button ml210"/>Actualizar intereses</a>
+				    </div> 
+			        <br>  
+			    </form>				
+			</div>
+			
+			
+			
+			
+			<div id="tres">
+				<%=form_for @user, :html => {:class => 'stn-form label-inline simple formulario2'} do |f| %>
+				 	<%= f.fields_for @user.usuario do |u| %>
+					<div class="field">
+						<%=u.label :nombre %>
+						<%=u.text_field :nombre, :size => '20' %>
+						<span class="pruebaerror">ej: Juan </span>
+					</div>  
+					<div class="field">
+						<%=u.label :apellidos %>
+						<%=u.text_field :apellidos, :size => '20'%>
+						<span class="pruebaerror">ej: Perez Gonzales </span>
+					</div>  
+					
+					<div class="field">
+						<%=u.label :nacimiento, 'Fecha de Nacimiento' %>
+						<%=u.text_field :nacimiento, :size => '20', :class => 'date', :type => 'datetime',:value => @user.usuario.nacimiento.strftime("%d/%m/%Y") %>
+						
 
-  <div class="row">
-    <div class="four columns buttons" >
-      <a href="/users/<%=@user.id%>">
-        <div class="perfil active"></div>
-      </a>
-      <% if @user.id == current_user.id %>  
-      <!--  <div class="separador"></div>
-      <a href="#tema"><div class="tema"></div></a>-->
-      <% end %>
-        <div class="separador"></div>
-      <a href="#ranks"><div class="ranks"></div></a>
-        <div class="separador"></div>
-      <a href="#favs"><div class="favs"></div></a>
-      <% if @user.id == current_user.id %>
-        <div class="separador"></div>
-      <a href="/logout">
-        <div class="salir"></div>
-      </a>
-      <% end %>
-    </div>
-    <% if @user.id == current_user.id %>
-    <div class="two columns">
-      <a class="button small" data-reveal-id="subir_modal">Subir Recursos</a>
-    </div>
-    <% end %>
-  </div>
+					</div>  
+					
+       
+					<div class="field clearfix paddb21">
+						<%=u.label :gender, 'Genero' %>
+						<% Gender.all.each do |g| %>
+						  <div class="publicaVideo">
+						  	<%= radio_button_tag 'user[usuario][gender]',g.id%>
+						  	<!-- <input type="radio" name="option1" value="<%=g.id%>"> -->
+						  	<br>
+						  	<span class="checkbox2 <%=g.descripcion.downcase%> "><%=g.descripcion%></span>
+						  </div>
+						  <% end %>
+					</div>  
+					
+					<% end %>
+					<div class="field paddb21">
+						<label for="fname">País,Estado,Comuna: </label>
+						<%= f.select :country, options_for_select(Country.all.order_by([[:nombre,:asc]]).map{ |u| [u.nombre,u.id] },@user.country) %>
+						<%=f.fields_for @user.usuario do |u| %>
+							<%= u.select :state, options_for_select(State.all.order_by([[:nombre,:asc]]).map{ |u| [u.nombre,u.id] },@user.usuario.state) %>
+						<% end %>
+					</div>         
+					
 
-  <%= render :partial => 'users/perfil_editar' if current_user.id == @user.id %>
+					<div class="field">
+						<label for="fname">Email: </label> 
+						<input id="fname" name="fname" size="30" type="text" />
+						<span class="pruebaerror">ej: mail@usuario.com</span>
+					</div>  
+			        
+					<div class="field">
+						<label for="fname">Sitio web: </label> 
+						<input id="fname" name="fname" size="40" type="text" />
+						<span class="pruebaerror">ej: www.nombredepagina.com</span>
+					</div>  
 
-  <%= render :partial => 'users/perfil' if current_user.id != @user.id %>
-</div>
+					<div class="field">
+						<label for="fname">Bío: </label> 
+						<textarea rows="4" cols="50"></textarea>
+						<a class="tooltip ttgreen" href="#"><img src="/assets/info.gif" alt="info" width="14" height="14" border="0" />
+						<span>Escribe un breve texto sobre tu marca o servicio para que lo lean tus seguidores</span></a>
 
-<div class="row user" id="listado_container" style="display:none">
-  <% @resources = @user.resources.order_by([[:created_at,:desc]]).page(1) %>
-    <%= render :partial => 'resources/listado' %>
-</div>
+						<span class="caracteres">Te quedan 53 caracteres</span>
+					</div>  
 
-<div id="subir_modal" class="reveal-modal [expand, xlarge, large, medium, small]">
-  <div class="row">
-    <h2>Agrega tus recursos a DandooTV!!</h2>
-  </div>
-  <%=semantic_form_for @resource, :html => {:multipart => true,:remote => true} do |f| %>
-  <%=f.hidden_field :user_id, :value => @user.id %>
-  <div class="row">
-    <%=f.text_field :titulo, :placeholder => 'Titulo' %>
-  </div>
-  <div class="row">
-    <%=f.text_field :descripcion,:placeholder => 'Descripcion' %>
-  </div>
-  <div class="row">
-    <%=f.text_field :url, :placeholder => 'URL del video (Youtube o Vimeo)' %>
-  </div>
-  <div class="row">
-    <div class="two columns">
-      <div class="input_buscar"></div>
-      <!-- <input type="file" id="file_resource"> -->
-      <%=f.input :imagen,:as => :file %>
-      <br />
-      <br />
-      <br />
-      <%=f.submit 'Agregar',:class =>'button small',:id => 'agregar_resource' %>
-      <button class="button alert small" id="close">Cancelar</button>
-    </div>
-    <div class="six columns">
-      <div class="preview">
-      </div>
-    </div>
-  </div>
 
-  <% end %>
-  
-</div>
-</div>
+			        <div class="actionrow">
+				        <a href="2-crear-cuenta.html" class="button ml210"/>Actualizar datos</a>
+				    </div> 
+			        <br>  
+			    <% end %>	
+			</div>
 
+
+
+				<div id="cuatro"><!-- Cuatro -->
+				 <form action="#" method="post" class="stn-form label-inline simple ">		
+
+
+					<div class="field clearfix paddb21">
+						<label for="fname">¿Qué tipo?: </label> 
+						  <div class="publicaVideo activoRadio"><input type="radio" name="option1" value="opcion1" checked="checked"><br><span class="checkbox2 video ">Video</span></div>
+						  <div class="publicaAfiche"><input type="radio" name="option1" value="opcion1"><br><span class="checkbox2 afiche ">Afiche</span></div>
+					</div>  
+
+
+
+
+					<div class="field paddb21">
+						<label for="fname">Título del anuncio: </label> 
+						<input id="fname" name="fname" size="35" type="text" />
+						<span class="caracteres mr187 mt8">Máximo X caracteres</span>
+					</div>  
+					<br>
+					
+					
+					<div class="field">
+						<label for="fname paddb21"> 						
+						Palabras claves: </label> 
+						<input id="campo2" type="text" class="tags" value="ej: coca-cola" />
+
+					</div>  
+
+			        <div class="actionrow">
+				        <a href="2-crear-cuenta.html" class="button ml210"/>Subir comercial</a>
+				    </div> 
+
+			    
+			    <br><br><br>
+			    </form>
+				</div> <!-- Cuatro -->
+			
+			
+			
+			
+	        </div>
+        </div>   
+
+        
+        
+        </section><!-- fin section -->    
+        
+
+          
+              
+        <footer>
+        </footer><!-- fin footer -->
+    
+    
+    </div><!-- fin container -->

@@ -4,9 +4,6 @@ class User
   include Mongoid::Timestamps
   include Mongoid::Paperclip
   include Mongoid::Paranoia
-  # Include default devise modules. Others available are:
-  # :token_authenticatable, :confirmable,
-  # :lockable, :timeoutable and 
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
@@ -17,7 +14,7 @@ class User
 
   #validates_presence_of :email
   validates_presence_of :encrypted_password
-  
+
   ## Recoverable
   field :reset_password_token,   :type => String
   field :reset_password_sent_at, :type => Time
@@ -33,54 +30,38 @@ class User
   field :last_sign_in_ip,    :type => String
 
   #Relaciones
-  has_many :authentications, :dependent => :delete
-  accepts_nested_attributes_for :authentications
-  belongs_to  :gender
-  belongs_to  :civil_statu
-  belongs_to  :country
-  belongs_to  :state #Region
-  belongs_to  :commune
-  belongs_to  :city
-  belongs_to  :ocupacion
-  
-  # has_and_belongs_to_many :interests
-  has_many :user_interests
-  accepts_nested_attributes_for :user_interests
-  
   has_many :resources,:dependent => :delete
   has_many :votos,:dependent => :delete
+  
+  #Para el caso de ser un usuario
+  has_many :authentications, :dependent => :delete
+  accepts_nested_attributes_for :authentications
+  ######################################
+  belongs_to  :country
 
-  #Atributos
-  field :nombre, :type => String
-  field :apellidos, :type => String
-  field :rut, :type => String
-  field :nickname, :type => String
-  field :bio, :type => String
-  field :ocupacion, :type => String
-  field :nacimiento, :type => Date
-  field :avatar_tmp, :type => String
-  field :rut, :type => String
-  field :theme, :type => String
-  field :doos, :type => Numeric, :default => 0
+  field :tipo_usuario, :type => String, :default => 'usuario'
+  field :language, :type => String, :default => 'es'
+  embeds_one :usuario
+  embeds_one :empresa
+  #accepts_nested_attributes_for :empresa,:usuario
 
   index({ email: 1 }, { unique: true, background: true })
-  index({ nickname: 1 }, { unique: true, background: true })
-  index({rut:1},{unique:true, background:true})
-
-  attr_accessible :nombre,:email,:password,:password_confirmation, :remember_me, :created_at, :updated_at
-  attr_accessible :apellidos, :nickname, :rut,  :bio, :ocupacion, :nacimiento
-  attr_accessible :country_id, :state_id, :commune_id, :city_id, :gender_id, :civil_statu_id
-  attr_accessible :avatar, :avatar_tmp, :theme,:rut,:ocupacion_id
-  attr_accessible :user_interests_attributes
 
 
-  validates_presence_of :email, :rut
-  validates_uniqueness_of :email, :rut
+
+  attr_accessible :email,:password,:password_confirmation
+  attr_accessible :country, :remember_me, :created_at, :updated_at
+  attr_accessible :tipo_usuario, :avatar,:avatar_tmp
+  #attr_accessible :usuario_attributes, :empresa_attributes
+
+  validates_presence_of :email
+  validates_uniqueness_of :email
 
   has_mongoid_attached_file :avatar,
     :path => ':attachment/:id/:style.:extension',
     :storage => :s3,
     :bucket => 'dandoo-avatars',
+    :s3_protocol => "http",
     :s3_credentials => {
       :access_key_id =>ENV['S3_KEY_ID'],
       :secret_access_key =>ENV['S3_ACCESS_KEY']
@@ -91,23 +72,23 @@ class User
       :original => '1920x1680>'
     }
 
-  
+
   def avatar_remote_url(url_value)
     # self.avatar = URI.parse(url_value)
     self.avatar = open(url_value)
   end
-  
-  
-  def self.resource_votados(user_id,pagina)
-    resources = Array.new
-    Voto.where(:user_id => user_id).page(pagina).each do |voto|
-      p = Resource.find(voto.resource_id)
-      if !p.nil?
-        resources.push p
-      end
-    end
-    resources
-  end
-  
+
+
+  # def self.resource_votados(user_id,pagina)
+  #   resources = Array.new
+  #   Voto.where(:user_id => user_id).page(pagina).each do |voto|
+  #     p = Resource.find(voto.resource_id)
+  #     if !p.nil?
+  #       resources.push p
+  #     end
+  #   end
+  #   resources
+  # end
+
 
 end

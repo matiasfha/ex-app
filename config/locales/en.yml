@@ -2,15 +2,15 @@
 # See https://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
 
 en:
-  hello: "Hello world"
-  ciudades: "Cities"
-  ciudad: "City"
-  comuna: "Commune"
-  region: "State"
-  pais: "Country"
-  genero: "Género"
-  estado_civil: "Estado Civil"
-  captcha_error: "There was an error with the recaptcha code below. Please re-enter the code."
+  captcha_error: "Are you really human? . Try entering the code again."
   time:
-    formats: 
+    formats:
       de:"%d of %B of %Y"
+  mongoid:
+    errors:
+      models:
+        empresa:
+          attributes:
+            email:
+              taken: 'Email already registered'
+              blank: 'The email can not be empty'

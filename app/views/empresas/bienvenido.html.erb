@@ -1,0 +1,33 @@
+<div id="empresas">
+  <header>
+    <a href="<%=root_path%>">
+      <h1>Dandoo.tv</h1>
+      </a>
+    <h2>Acerca tu marca o productos <br>a tus consumidores</h2>
+  </header><!-- fin header -->
+  
+<section id="paso3" class="contenedor bienvenida clearfix" style="display:block">  
+      <h3 style="padding-top:33px;">Bienvenido <%=current_user.empresa.nombre_empresa%>!<br>
+        Crea campañas, mídelas,<br> influencia 
+        y activa tu marca.</h3>
+      
+      <br><br><br><br><br><br><br><br><br><br><br><br><br>
+      
+      <div class="actionrow">
+        <a href="#" class="button"/>Ir a perfil empresa</a>
+        <a href="<%=root_path%>" class="button"/>Ir al home</a>
+        <br>
+        <br>
+      </div>
+    </section><!-- fin section -->  
+
+    <ul class="pasos">
+      <li><div class="paso-on" id="ir_paso1"></div></li>
+      <li><div class="paso-on" id="ir_paso2"></div></li>
+      <li><div class="paso-on"></div></li>
+  </ul>
+  <footer>
+  </footer><!-- fin footer -->
+
+
+</div><!-- fin container -->

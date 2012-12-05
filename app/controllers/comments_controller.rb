@@ -1,33 +1,23 @@
 class CommentsController < ApplicationController
   before_filter :authenticate_user!
   def create
-  	@resource = Resource.find(params[:resource_id])
+  	@resource = Resource.find(params[:comment][:resource_id])
   	if !@resource.nil?
-	  	@comment = Comment.new
-	  	@comment.contenido = params[:contenido]
-	  	@comment.user_id = current_user.id
+	  	@comment = Comment.new params[:comment]
 	  	@resource.comments << @comment 
+              @resource.num_comments+=1
 	  	if @resource.save
-        @comentario = @resource.comments.last
-        respond_to  do |format|
-	  		 format.json {render :partial => 'new_comment', :formats => [:json]}
-
-       end
-      else
-        render :json => false
+                @comentario = @resource.comments.last
+                # render :json => {:success => true, :comentario => @comentario }
+                redirect_to "/resources/#{@resource.id}"
+         		 
+              else
+                    render :json => {success => false, :mensaje => @comentario.errors.full_messages}
 	  	end
 	end
   end
 
-  def show
-  	resource = resource.find(params[:id])
-  	if !resource.nil?
-  		@comentarios = resource.comments.order_by([[:created_at,:desc]])
-  		render :partial => 'list_comments', :content_type => 'text/html', :locals => {comentarios:resource.comments,resource_id:params[:id]}
-  	end
-
-  end
-
+  
   def destroy
     resource = Resource.find(params[:pid])
     if !resource.nil?

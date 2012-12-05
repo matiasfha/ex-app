@@ -1,7 +1,7 @@
 class Voto
   include Mongoid::Document
   include Mongoid::Timestamps
-  include Mongoid::Paranoia
+  
 
   belongs_to :resource
   belongs_to :user

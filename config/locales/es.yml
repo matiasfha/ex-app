@@ -1,0 +1,23 @@
+es:
+  pais: 'País'
+  region: 'Región'
+  comuna: 'Comuna'
+  ciudad: 'Ciudad'
+  genero: 'Género'
+  web: 'Sitio web'
+  bio: 'Biografía'
+  nacimiento: 'Fecha de nacimiento'
+  estado_civil: 'Estado Civil'
+  ocupacion: 'Ocupación'
+  captcha_error: "¿Realmente eres humano? . Intenta ingresar el código nuevamente."
+  time:
+    formats:
+      de:"%d of %B of %Y"
+  mongoid:
+    errors:
+      models:
+        empresa:
+          attributes:
+            email:
+              taken: 'Email ya registrado'
+              blank: 'El email no puede estar vacío'

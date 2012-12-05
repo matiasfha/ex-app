@@ -7,6 +7,6 @@ class Authentication
 
   attr_accessible :uid, :provider,:user_id
 
-  validates_presence_of :user_id, :uid, :provider
+  validates_presence_of :usuario_id, :uid, :provider
   validates_uniqueness_of :uid, :scope => :provider
 end
