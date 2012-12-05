@@ -4,8 +4,6 @@ class Usuario
 	
 
 	embedded_in :user
-	has_many :authentications, :dependent => :delete
-	accepts_nested_attributes_for :authentications
 	has_many :usuario_interests, :dependent => :delete
 	accepts_nested_attributes_for :usuario_interests
 

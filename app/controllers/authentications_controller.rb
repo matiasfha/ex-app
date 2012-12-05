@@ -14,7 +14,7 @@ class AuthenticationsController < ApplicationController
     u = User.where(:email => params[:user][:email]).first
     if !u.nil?
       #Ya existe el usuario, asociar con la nueva authentificacion
-      u.usuario.authentications << Authentication.new(:provider => params[:user][:provider], :uid => params[:user][:uid])
+      u.authentications << Authentication.new(:provider => params[:user][:provider], :uid => params[:user][:uid])
       u.save
       sign_in :user, u
       render :bienvenido
@@ -64,7 +64,7 @@ class AuthenticationsController < ApplicationController
       :nickname => nickname, :bio => bio,:nacimiento => nacimiento)
     @user.avatar_remote_url(avatar)
     @authentication = Authentication.new :uid => uid, :provider => provider
-    @user.usuario.authentications << @authentication
+    @user.authentications << @authentication
     @user
   end
 
@@ -129,12 +129,12 @@ class AuthenticationsController < ApplicationController
               current_user.save 
             else
              #Logear al usuario
-             @user.usuario.authentications << auth 
+             @user.authentications << auth 
              @user.save
              sign_in_and_redirect :user, @user 
             end
           else
-            @user.usuario.authentications << auth 
+            @user.authentications << auth 
             @user.save
             sign_in_and_redirect :user, @user
           end
@@ -142,7 +142,7 @@ class AuthenticationsController < ApplicationController
         
       else
         #La autenticacion ya existe, logear al usuario
-        @user = User.find(@authentication.usuario_id)
+        @user = User.find(@authentication.user_id)
         sign_in_and_redirect :user, @user 
       end
     else

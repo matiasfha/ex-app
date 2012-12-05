@@ -32,7 +32,11 @@ class User
   #Relaciones
   has_many :resources,:dependent => :delete
   has_many :votos,:dependent => :delete
-
+  
+  #Para el caso de ser un usuario
+  has_many :authentications, :dependent => :delete
+  accepts_nested_attributes_for :authentications
+  ######################################
   belongs_to  :country
 
   field :tipo_usuario, :type => String, :default => 'usuario'

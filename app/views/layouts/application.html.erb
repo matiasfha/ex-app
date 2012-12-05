@@ -43,19 +43,22 @@
                     </a>
                 </h1>
 
+
+                <% if user_signed_in? %>
+                <div class="dropdown">
+                    <a class="account" ><img src="<%=current_user.avatar.url%>" alt="usuario-on" width="27" height="24"></a>
+                    <div class="submenu">
+                      <ul class="root">
+                        <li ><a>Perfil</a></li>
+                        <li ><a href="/recursos/subir" >Subir comerciales</a></li>
+                        <li ><a href="/logout">Cerrar sesión</a></li>
+                        <li ><a href="" class="eliminar">Eliminar cuenta</a></li>
+                    </ul>
+                    </div>
+                </div>  
+                <% else %>
+
                 <ul id="nav-access">
-                    <% if user_signed_in? %>
-                    <li class="menu">
-                      <a href="">
-                        <%=image_tag current_user.avatar.url%> Hola <% if current_user.tipo_usuario == 'empresa' %>
-                            <%= current_user.empresa.nombre_empresa %>
-                        <% else %>
-                            <%= current_user.usuario.nombre %>
-                        <% end %>
-                        </a>
-                    </li>
-                    <li><a href="/logout">Salir</a></li>
-                    <% else %>              
                         <li>Ingresar con</li>
                         <li><a href="/auth/twitter" class="icon-small twitter">
                             <img src="/assets/t.png" alt="t" width="14" height="12" border="0" />
@@ -71,10 +74,9 @@
                                 <li><a href="/empresas/login" title="Ingresar">Ingresar</a></li>
                             </ul>
                         </li>
-                    <% end %>                        
                     <li style="display:none"><a href="#" title="Acerca de Dandoo" class="paddr10">Nosotros</a></li>
                 </ul>
-
+                <% end %>
                
             </hgroup>
 
