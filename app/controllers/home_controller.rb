@@ -1,9 +1,6 @@
 class HomeController < ApplicationController
   def index
   	@resources = Resource.mas_votadas(params[:page])
-  	if @resources.count == 0
-  		@resources = Resource.all.order_by([[:created_at,:desc]]).page(params[:page])
-  	end
   end
 
   def recursos_nuevos

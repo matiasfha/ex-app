@@ -65,9 +65,6 @@ class ResourcesController < ApplicationController
       @res = Resource.new(params[:resource])
     end
     current_user.resources << @res
-    if !current_user.save
-      flash[:error] = "No se pudo crear el nuevo recurso"
-    end
     redirect_to "/mis_contenidos"
     
   end
