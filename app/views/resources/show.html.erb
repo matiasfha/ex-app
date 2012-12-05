@@ -1,0 +1,186 @@
+<% content_for :css do %>
+<style type="text/css" rel="stylesheet">
+body {
+   background: rgba(51,51,51,0.67) url(/assets/bg-dandoo.png)left top repeat !important;
+}
+#header:not(.resource){
+  display:none;
+}
+</style>
+<% end %>
+<%
+content_for :main_js do %>
+"/assets/index"
+<% end %>
+<header id="header" class="resource">
+        <div id="site-head">
+            <div class="wrapModal group">
+                <hgroup class="logo">
+                    <h1><a href="index.html"><img src="/assets/dandooTV.png" alt="dandooTV" width="148" height="44"></a></h1>
+                    
+                    <ul id="nav-access">
+                      <li><a href="<%=root_path%>" title="Acerca de Dandoo" class="paddr10">Cerrar</a></li>
+                    </ul>
+                </hgroup>
+            </div><!-- .wrap  #header -->
+      </div><!-- #site-head -->
+</header>
+
+<div id="modal">
+    <div id="ad-left">
+        <span id="resource">
+          <% if @resource.type == 'imagen' %>
+            <a href="/resources/<%=@resource.id %>"> <img src="<%=@resource.imagen.url(:original)%>" alt="ad1-big" width="829" ></a>
+            <% else %>
+                <div id="player"></div>
+                <% if @resource.provider == 'youtube' %>
+                <script type="text/javascript">
+                  $(document).ready(function(){
+                      var video_id = "<%=@resource.url.split('=')[1]%>"
+                      var loadYoutubePlayer = function(video_id, player_id) {
+                          var done, onYoutubeIframeAPIReady, player;
+                          player = null;
+                          done = false;
+                          onYoutubeIframeAPIReady = function(video_id, player_id) {
+                            var options;
+                            options = {
+                              width: '829',
+                              height: '480',
+                              videoId: video_id,
+                              playerVars: {
+                                autoplay: 0,
+                                controls: 0,
+                                enablejsapi: 1,
+                                showinfo: 0,
+                                iv_load_policy: 3,
+                                color: 'white',
+                                theme: 'light',
+                                origin: 'http://dandoodev.herokuapp.com',
+                                autohide: 1,
+                                disablekb: 1,
+                                modestbranding: 1,
+                                playerpiid: player_id,
+                                rel: 0,
+                                fs:1
+                              },
+                              events: {
+                                'onReady': function(event) {
+                                  return event.target.playVideo();
+                                }
+                              }
+                            };
+                            player = new YT.Player(player_id, options);
+                          };
+                          onYoutubeIframeAPIReady(video_id, player_id);
+                        };
+                      loadYoutubePlayer(video_id,'player');
+                      });
+                  </script>
+                  <%else 
+                  video_id = @resource.url.split('/')[3]
+                  %>
+
+                  <iframe src="http://player.vimeo.com/video/<%=video_id%>" width="829" height="480" frameborder="0" webkitallowfullscreen="" mozallowfullscreen="" allowfullscreen=""></iframe>
+                  <% end %>
+            <% end %>
+        </span>
+        <div id="description-ad">           
+        
+            <div id="one">
+                <h1><%=@resource.titulo%></h1>
+                <p><%=@resource.descripcion%></p>
+            </div>
+        </div>  
+    </div><!--ad-left-->
+
+    <div id="ad-comment-right">
+      <div id="user-share">
+        <% user = User.find(@resource.user_id) %>
+        <div id="user-share-1"> 
+          <span >
+            <a href="<%=user_path user%>">
+            <img src="<%=user.avatar.url(:thumb)%>" alt="avatar-post" width="62" height="56" border="0">
+          </a>
+          </span>
+          <div class="detail-share">
+            <h2><a href="<%=user_path user%>" style="color: #999;"><%=user.usuario.nombre%> <br /> <%=user.usuario.apellidos%></a></h2>    
+          </div>
+        </div><!--user-share-1-->
+    </div><!--user-share-->
+
+    <ul class="idTabs tabModal">
+      <li class="onTab onWord" data-tab="#uno">Rankea</li>
+      <li class="offWord" data-tab="#dos">Comenta</li>
+    </ul>
+
+    <div id="uno"><!-- uno-->
+      <h3>La gente le puso esta nota</h3>
+      <%
+      nota = Resource.promedio_votos(@resource.id).round
+      %>
+      <div class="bigStar"><span><%=nota %></span><br><span id="votoWord"><%=@resource.votos.count%> votos</span></div>
+      
+      <br><br>
+      
+      <h3>¿Te gustó? ponle una nota</h3>
+      <% if user_signed_in? %>
+      <ul id="rating" data-id="<%=@resource.id%>">
+        <% for i in 1..nota %>
+          <li class="star"><a href="" class="starOn"><%=i%></a></li>
+        <% end %>
+        <% for i in nota...7 %>
+          <li class="star"><a href="#" class="starOff"><%=i+1%></a></li>
+        <% end %>
+
+      </ul>
+      <% else %>
+      <a href="/ingresar?back=resources/<%=@resource.id%>" title="seguir" class="buttonF ma17" >Regístrate</a>
+      <% end %>
+
+    </div><!-- UNO--> 
+
+    <div id="dos">
+      <% if user_signed_in? %>
+      <%=form_for Comment.new, :html => {:class => 'stn-form label-inline simple formulario'} do |f| %>
+        <input type="hidden" name="comment[resource_id]" id="comment_resource_id" value="<%=@resource.id%>" />
+        <input type="hidden" name="comment[user_id]" id="comment_user_id" value="<%=current_user.id%>" />
+        <div class="field">
+          <input name="comment[contenido]" id="comment_contenido" class="marl4" style="color: #727272; font-size:12px; letter-spacing:0.03em;" type="text" size="29" value="Comenta" onblur="if(this.value == '') { this.style.color='#727272'; this.value='Comenta'}" onfocus="if (this.value == 'Comenta') {this.style.color='#666';this.style.color='#666'; this.value=''}"/>     
+        </div>                  
+      <% end %>
+      <% else%>
+        <% if @comments.count == 0 %>
+          <h5 style="margin-left:30px;text-align: center;width: 180px">Se el primero y déjanos tu opinión</h5>
+          <%=image_tag 'comment.png' ,:style =>'margin-left:90px'%>
+        <% else %>
+          <h5 style="margin-left:25px;text-align: center;width: 180px">Únete y déjanos tu opinión</h5>
+        <% end %>
+      <a href="/ingresar?back=resources/<%=@resource.id%>" title="seguir" class="buttonF ma17" >Regístrate</a>
+      <% end %>
+      <div id="comments"><!-- Comentario Usuario-->
+        <%@comments.each_with_index do |comment,i| %>
+        <% 
+        user = User.find(comment.user_id)
+        clase = (i%2==0) ? 'user1' : 'user2'
+        %>
+        <div id="<%=user.id%>" class="<%=clase%>">
+          <span>
+            <a href="#">
+              <img src="<%=user.avatar.url(:thumb)%>" alt="user" width="30" height="30" border="0">
+            </a>
+          </span>
+          <div class="detail">
+            <h2><a href="#"><%= (user.tipo_usuario == 'usuario') ? user.usuario.nickname  : user.empresa.nombre_empresa %></a></h2>
+            <p><%=comment.contenido%></p>
+          </div>
+          <div class="dataUser"><%=distance_of_time_in_words_to_now comment.created_at%></div>   
+        </div><!--user-->
+        <% end %>
+        <br>
+        <% if @comments.count > 10 %>
+        <a href="#" title="seguir" class="buttonF ml39" ><%=@resource.comments.count%> en total</a>
+      <% end %>
+
+      </div><!-- Fin Comentario Usuario-->
+    </div><!--dos-->
+</div>

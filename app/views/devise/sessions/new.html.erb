@@ -1,22 +1,51 @@
-<div class="span11" style="background-color:white;border-radius:0 0 10px 10px">
- <br />
-  <div class="row">
-    <div class="span4 offset3" style="height:43px;">
-      <span style="float:left;position:relative;font-size:24px;font-weight:bold;font-family:'FBold',sans-serif, Helvetica;top:10px;">Selecciona tu cuenta para Ingresar a</span>
-    </div>
-    <div class="span1" style="margin-left:0;height:43px;width:148px;">
-      <%=image_tag 'LOGIN_04.png' ,:style => 'float:left;position:relative;height:43px;width:148px;'%>
-    </div>
-  </div><!-- ROW -->
+<%
+content_for :main_js do 
+  %>
+  "/assets/index"
+<% end 
+content_for :css do %>
+<%= stylesheet_link_tag    "empresa", :media => "all" %> 
+<style type="text/css">
+#nav-access{
+	display: none;
+}
+</style>
+<% end %>
 
-  <br />
-  <br />
-  <div class="row" style="height:200px;position:relative;">
-    <div class="span3 offset3">
-      <%=link_to image_tag('conectar_tw.png'),'/auth/twitter' %>
-    </div>
-    <div class="span3">
-      <%=link_to image_tag('conectar_fb.png'),'/auth/facebook' %>
-    </div>
-  </div>
+<div id="empresas">
+	<header>
+	    <a href="<%=root_path%>">
+	      <h1>Dandoo.tv</h1>
+	      </a>
+	    <h2>Ingreso de Empresas</h2>
+	  </header><!-- fin header -->
+
+	<section class="contenedor">
+		
+
+		<%= form_for(resource,:as => resource_name,:url =>session_path(resource_name),:html => {:class =>'stn-form label-inline simple formulario'}) do |f| %>
+
+		  <div class="field">
+		  	<%= f.label :email %>
+		  	<%= f.email_field :email, :autofocus => true,:size => '25' %>
+		  </div>
+
+		  <div class="field relative">
+		  	<%= f.label :password,'Contraseña' %>
+		  	<%= f.password_field :password,:size => '10',:class => 'password' %>
+		  </div>
+
+
+		    <div class="field">
+		    	<%= f.check_box :remember_me %> 
+		    	<%= f.label :remember_me,'Recordarme' %>
+		    </div>
+
+
+		  <div class="actionrow">
+		  	<%= f.submit "Ingresar",:class => 'button' %>
+		  </div>
+		<% end %>
+	</section>
+	<a href="/" class="back">Volver a la portada</a>
 </div>

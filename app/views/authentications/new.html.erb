@@ -1,106 +1,259 @@
-<% content_for :main_js do %>
-  "/assets/registrations.js"
+<%
+content_for :main_js do 
+  %>
+  "/assets/user_index"
+<% end 
+content_for :css do %>
+<%= stylesheet_link_tag    "redmond/jquery-ui-1.9.2.custom.min", :media => "all" %>
+<style type="text/css">
+body {
+    background: #f6f6f3 url(/assets/bg-dandoo.png)left top repeat;
+	margin:0;
+	height:100%;
+	font-weight: 100;
+}
+
+nav {
+	background: #32A0B7;
+	height: 45px;
+	width: 100%;
+}
+
+
+.publicaVideo {
+	background-color: #f8f8f8;
+	border:1px solid #e5e5e5;
+	width: 100px;
+	height: 100px;
+	text-align: center;
+	vertical-align: middle;
+	float: left;
+	border-radius: 3px;
+}
+
+.checkbox2 { font-size: 12px; color: #666; padding-top: 41px; display: block; font-weight: bold; color:#3191a5;}
+.masculino { background:  url(/assets/masculino.gif) 36px 1px no-repeat ; }
+.femenino { background:  url(/assets/femenino.gif) 36px 1px no-repeat ; }
+.mtn32 {
+	margin-top: -32px;
+}
+.cambiarAvatarUsuario {
+	border: 1px solid #fff;
+	border-radius: 3px;
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	-o-border-radius: 3px;
+	display: block;
+	text-align: center;
+	width: 168px;
+	margin-top: 12px;
+	height: 150px;
+	position:relative;
+	left:30%;
+}
+</style>
 <% end %>
-<% css 'redmond/jquery-ui-1.9.1.custom.min' %>
-<div class="twelve columns" id="register">
 
-  <div class="row">
-    <div class="imagenes">
-      <%=image_tag 'LOGIN_03.png'%>
-      <%=image_tag 'LOGIN_04.png'%>
-    </div>
-    <br />
-    <br />
-  </div>
-  
-    <%= semantic_form_for(@user, :url => "/authentications", :html => { :class => 'custom', :method => :post }) do |f| %>
-    <div class="row body">
-        <div class="three columns">
-          <div class="row">
-            <div class="avatar" style="background-image: url('<%=@user.avatar_tmp%>');">
-            </div>
-            <%=f.hidden_field :avatar_tmp %>
-            <input type="hidden" name="user[provider]" id="user_provider" value="<%=@provider%>" />
-            <input type="hidden" name="user[uid]" id="user_uid" value="<%=@uid%>" />
-            <br />
-          </div>
-          <div class="row">
-            <%= f.select :gender_id, options_for_select(Gender.all.map{|u| [u.descripcion,u.id]}),{:include_blank => 'Seleccione Género'},{:required => true} %>
-          </div>
-          <div class="row">
-            <%= f.select :civil_statu_id, CivilStatu.all.map{|u| [u.descripcion, u.id]},{:include_blank => 'Seleccione Estado Civil'},{:required => true} %>
-          </div>
-        </div>
-        <div class="four columns">
-          <div class="row">
-            <%= f.text_field :rut, :required => true, :placeholder => "Rut"%>
-          </div>
-          <div class="row">
-            <%= f.email_field :email, :required => true, :placeholder => "Email"%>
-          </div>
-          <div class="row">
-            <%= f.text_field :nombre, :required => true, :placeholder => "Nombre"%>
-          </div>
-          <div class="row">
-            <%= f.text_field :apellidos, :required => true, :placeholder => "Apellidos"%>
-          </div>
-          <div class="row">
-            <%= f.text_field :nickname, :required => true, :placeholder => "Nickname"%>
-          </div>
-          <div class="row">
-            <%= f.text_field :nacimiento, :required => true, :placeholder => "Fecha de nacimiento", :class => "date",:value => (@user.nacimiento.nil?) ? '' : @user.nacimiento.strftime('%d/%m/%Y')%>
-          </div>
-          <div class="row">
-            <%= f.text_field :bio, :required => true, :placeholder => "Biografía en 140 carácteres",:maxlength => '140'%>
-          </div>
-          <div class="row">
-           <%= f.select :ocupacion_id, (@user.ocupacion_id.nil?) ? Ocupacion.all.order_by([[:nombre,:asc]]).map{|u| [u.nombre,u.id]} : Hash.new, {:include_blank => 'Ocupación'},{:class => "span2", :required => true} %>
-          </div>
-        </div>
+<nav>
+	<span class="logo-dashboard">
+	<img src="/assets/dandooTV.png" alt="dandoo-dashboard" width="148" height="44">
+	</span>
+</nav><!-- fin nav -->
 
-        <div class="four columns">
-          <div class="row">
-            <%= f.select :country_id, Country.all.order_by([[:nombre,:asc]]).map{ |u| [u.nombre,u.id] }, {:include_blank => 'Selecciona País'},{:class => "span2", :required => true} %>
-          </div>
-          <div class="row">
-            <%= f.select :state_id, (@user.state_id?) ? State.all.order_by([[:nombre,:asc]]).map{|u| [u.nombre,u.id]} : Hash.new, {:include_blank => 'Selecciona Región'},{:class => "span2", :required => true} %>
-          </div>
-          <div class="row">
-            <%= f.select :commune_id, (@user.commune_id?) ? Commune.all.order_by([[:nombre,:asc]]).map{|u| [u.nombre,u.id]} : Hash.new, {:include_blank => 'Comuna'},{:class => "span2", :required => true} %>
-          </div>
-          <div class="row">
-            <%= f.select :city_id, (@user.city_id?) ? City.all.order_by([[:nombre,:asc]]).map{|u| [u.nombre,u.id]} : Hash.new, {:include_blank => 'Ciudad'},{:class => "span2", :required => true} %>
-          </div>
-          
-          
-        </div>
-      
-    </div>
+<div id="empresas">
+        <header class="mtn32">
+        	<!-- <h1>Dandoo.tv</h1> -->
+        	<br />
+        	<br />
+        	<h2 style="color:#999;">Confirma tus datos para ingresar</h2>
+        </header><!-- fin header -->
+        <% if flash[:error] %>
+	  <div class="mensajes error">
+	    <label>Se produjero los siguientes errores</label>
+	    <ul>
+	    <% flash.each do |type,messages| %>
+	     <% if messages.respond_to?(:each)
+	          messages.each do |m| %>
+	            <li><%= m %></li>
+	          <%end%>
+	      <% else %>
+	        <li><%= messages%></li>
+	      <% end %>
+	    <% end %>
+	    </ul>
+	  </div>
+	  <% end %>
 
-    <div class="row interest">
-      <div class="twelve columns">
-        <fieldset>
-          <legend>Tus Intereses</legend>
-          <div class="row">
-          
-          <% Interest.all.order_by([[:nombre,:asc]]).each_with_index do |i,j|
-            %>
-            <div class="three columns">
-              <label><%=i.nombre%></label>
-              <%= check_box_tag "user[user_interests_attributes][#{j}][interest_id]",i.id %>
-            </div>
-            <%
-          end
-          %>
-          </div>
-        </fieldset>
-      </div>
-    </div>
-    <div class="row">
-      <div class="fin two columns offset-by-ten">
-        <%= f.submit "Finalizar", :class => "button small",:id => 'commit' %>
-        <input type="reset" class="button secondary small" value="Cancelar" />
-      </div>
-    </div>
-  <%end%>
-</div>
+        <%=form_for(@user, :url => "/authentications", :html => { :class => 'stn-form label-inline simple formulario', :method => :post }) do |f| %>
+        <input type="hidden" name="user[provider]" id="user_provider" value="<%=@provider%>" />
+        <input type="hidden" name="user[uid]" id="user_uid" value="<%=@uid%>" />
+    
+        <section class="contenedor" id="paso1" >       
+                
+	        <h3>Datos de contacto</h3>
+	        
+
+	        <%=f.fields_for @user.usuario do |u|%>
+	        	<div class="field">
+				<%=u.label :nombre %>
+				<%= u.text_field :nombre, :size => '25' %>
+			</div>  
+
+			<div class="field">
+				<%=u.label :apellidos %>
+				<%=u.text_field :apellidos, :size =>'25' %>
+			</div> 
+
+			<div class="field">
+				<%=u.label :rut %>
+				<%=u.text_field :rut, :size => '11',:maxlength =>8, :class => 'numeric' %> - 
+				<%=u.text_field :dv, :size => '1',:maxlength => 1 %>
+				<a class="tooltip ttgreen" href="#"><img src="/assets/info.gif" alt="info" width="14" height="14" border="0" />
+				<span>El RUT se ocupara para que tu perfil pueda recibir pagos de Dandoo ;)</span></a>
+			</div> 
+		<% end %>
+					
+		<div class="field">
+			<%=f.label :email %>
+			<%=f.text_field :email, :size => '25',:placeholder => 'usuario@mail.com' %>
+			<span class="pruebaerror2">ej: usuario@mail.com</span>
+		</div>  
+
+		<div class="field">
+			<%=f.label :country, t(:pais) %>	
+			<%= f.select :country, options_for_select(Country.all.order_by([[:nombre,:asc]]).map{ |u| [u.nombre,u.id] }),{:include_blank => 'Seleccione País'},{:required => true} %>	
+		</div>         
+
+		<%=f.fields_for @user.usuario do |u| %>
+			<div class="field">
+				<%=u.label :state_id, t(:region) %>
+				<%= u.select :state_id, options_for_select(State.all.order_by([[:nombre,:asc]]).map{ |u| [u.nombre,u.id] }),{:include_blank => 'Seleccione Región'},{:required => true} %>
+			</div>         
+
+			<div class="field">
+				<%=u.label :commune_id, t(:comuna) %>
+				<%= u.select :commune_id, options_for_select(Commune.all.order_by([[:nombre,:asc]]).map{ |u| [u.nombre,u.id] }),{:include_blank => 'Seleccione Comuna'},{:required => true} %>		
+			</div>         
+
+			<div class="field">
+				<%=u.label :ciudad, t(:ciudad) %>
+				<%=u.text_field :ciudad, :size => '25' %>
+			</div>         
+			
+			<div class="field clearfix paddb21">
+				<%=u.label :gender_id, t(:genero) %>
+				  <% Gender.all.each do |g| %>
+				  <div class="publicaVideo">
+				  	<%= radio_button_tag 'user[usuario][gender_id]',g.id%>
+				  	<br>
+				  	<span class="checkbox2 <%=g.descripcion.downcase%> "><%=g.descripcion%></span>
+				  </div>
+				  <% end %>
+			</div> 
+
+			<div class="field">
+				<%=u.label :civil_statu_id, t(:estado_civil) %>
+				<%= u.select :civil_statu_id, options_for_select(CivilStatu.all.order_by([[:descripcion,:asc]]).map{ |u| [u.descripcion,u.id] }),{:include_blank => 'Seleccione Estado Civil'},{:required => true} %>		
+			</div> 
+
+		<% end %>
+						
+						
+	        <div class="actionrow">
+	        	<div id="go_paso2" class="button">Datos de perfil</div>
+		    </div> 
+	        <br>  
+	 </section><!-- fin section -->   
+
+	 <section id="paso2" class="contenedor" >       
+                
+	        <h3>Datos de perfil</h3>
+	        <div class="field relative" >
+	        	<span class="cambiarAvatarUsuario">
+	        		<%= image_tag @user.avatar_tmp , :size => '168x150' %>
+	        		<%=f.hidden_field :avatar_tmp, :value => @user.avatar_tmp %>
+	        	</span>
+	        	<div class="button small" id="cambiarAvatar" width="10">Cambiar</div>
+	        	<%=f.file_field :avatar %>
+	        </div>
+
+	        <%=f.fields_for @user.usuario do |u| %>
+        	<div class="field">
+			<%=u.label :nickname, 'Nick' %>
+			<%=u.text_field :nickname, :size => '25' %>
+		</div>  
+		<div class="field">
+			<%=u.label :nacimiento,t(:nacimiento) %>
+			<%=u.text_field :nacimiento, :size => '25',:class => 'date' %>
+			<span class="pruebaerror2">ej: @usuario</span>
+		</div>  
+
+		<div class="field">
+			<%=u.label :ocupacion_id, t(:ocupacion) %>
+			<%= u.select :ocupacion_id, options_for_select(Ocupacion.all.order_by([[:nombre,:asc]]).map{ |u| [u.nombre,u.id] }),{:include_blank => 'Seleccione Ocupacion'},{:required => true} %>		
+		</div> 
+
+		<div class="field">
+			<%=u.label :twitter %>
+			<%=u.text_field :twitter, :size => '25' %>
+			<span class="pruebaerror2">ej: @usuario</span>
+		</div>  
+		
+		<div class="field">
+			<%=u.label :facebook %>
+			<%=u.text_field :facebook, :size => '25' %>
+			<span class="pruebaerror2">ej: www.facebook.com/page/usuario</span>
+		</div>  
+        
+		<div class="field">
+			<%=u.label :web, t(:web) %>
+			<%=u.text_field :web, :size => '25' %>
+			<span class="pruebaerror2">ej: www.nombredepagina.com</span>
+		</div>  
+
+		<div class="field">
+			<%=u.label :bio, t(:bio) %>
+			<%=u.text_area(:bio,:size =>'50x4') %>
+			<!-- <a class="tooltip ttgreen" href="#"><img src="/assets/info.gif" alt="info" width="14" height="14" border="0" /> -->
+			<span>Escribe un breve y entretenido texto sobre sobre ti</span></a>
+
+			<!-- <span class="caracteres">Te quedan 53 caracteres</span> -->
+		</div>  
+	<% end %>
+
+	<!-- <div class="field relative">
+		<label for="fname">Contraseña: </label>
+		<input id="password" name="fname" size="3" maxlength="6" type="password" class="password" />
+		<span class="contrasena">elija una contraseña de <br>6 caracteres</span>
+		<br>
+		<input type="checkbox" id="show" name="valor" value="valor" style="position: absolute; right: 241px;">
+		<span class="mostrar">
+		Mostrar contraseña</span><br>
+	</div>        -->  
+				        
+
+					
+	        <div class="actionrow">
+	        	<div id="go_paso3" class="button">Guardar</div>
+		    </div> 
+	        <br>  
+        
+        </section><!-- fin section -->    
+        <div id="recaptcha_modal">
+	      <%=recaptcha_tags :ajax => true%>
+	    </div>
+
+       <% end %> 
+        
+        <ul class="pasos">
+	    <li><div class="paso-off" id="ir_paso1"></div></li>
+	    <li><div class="paso-on" id="ir_paso2"></div></li>
+	    <li><div class="paso-on"></div></li>
+	  </ul>
+
+
+	<a href="/" class="back" style="color:black">Volver a la portada</a>
+	                      
+        <footer>
+        </footer><!-- fin footer -->
+</div><!-- fin container -->

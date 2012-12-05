@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="description" content="Dandoo.tv La primera red social de publicidad en el mundo">
+      <meta name="keywords" content="Dandoo, Dandoo.tv, DandooTV, Publicidad, Puntos, Dinero" />
+     <meta name="author" content="Matías Hernández Arellano">
+      <meta name="viewport" content="width=device-width">
+      <link rel="icon" type="image/ico" href="/assets/favicon.ico" />
+      <meta property="og:title" content="Dandoo.tv - La primera red social de publicidad" />
+      <meta property="og:type" content="company" />
+      <meta property="og:site_name" content="Dandoo.tv" />
+      <meta property="og:url" content="dandoodev.herokuapp.com/auth/facebook" />
+      <meta property="og:image" content="http://devdandoo.tv/assets/logo.png" />
+      <meta property="og:description" content="Dandoo.tv es la primera red social de Publicidad. Basados en Neurociencias Perceptivas desarrollamos interfaces capaces de llevar la interacción entre marca y usuario target al siguiente nivel." />
+
+  	<title>Dandoo.tv - Subir material publicitario</title>
+  	<%=stylesheet_link_tag 'application','empresa','dashboard-usuario',:media => 'all' %>
+     <%=yield(:css)%>
+      <%= csrf_meta_tags %>
+</head>
+
+
+
+ 
+<body class="bodySubir">
+        <nav class="nav2">
+        <span class="logo-dashboard">
+        	<a href="<%=root_path%>">
+	        <img src="/assets/dandooTV.png" alt="dandoo-dashboard" width="148" height="44">
+      		</a>
+        </span>
+        
+        <a href="<%=root_path%>" title="Cancelar" class="noSubir">Cancelar</a>
+        
+        </nav><!-- fin nav -->
+        
+        
+        
+        <section class="clearfix subir">
+	        <span class="imgSubir">
+		        <img src="/assets/iconoSubir.png" alt="iconoSubir" width="184" height="132" />
+		        <br>
+		        <strong>Sube tu comercial favorito</strong>
+		        <br><br><br>
+	        </span>
+	        <%=form_for @resource do |f| %>		
+					
+			<div class="field2 clearfix paddb21">
+				
+				<label for="fname"><strong>¿Qué tipo?:</strong><br></label><br> 
+				
+				<% 
+				activo = 'imagen'
+				if @resource.type == 'video'	
+					clase = 'activoRadio'
+					activo = 'video'
+				end
+				%>
+
+				<div class="publicaVideo <%=clase%>">
+					<%= radio_button_tag :type,'video',:checked => 'checked'%>
+					<br>
+					<span class="checkbox2 video "><strong>Video</strong></span>
+				</div>
+			  	<% 
+				if @resource.type == 'imagen'	
+					clase = 'activoRadio'
+
+				end
+				%>
+			    	<div class="publicaAfiche <%=clase%>">
+			    		<%= radio_button_tag :type,'imagen',:checked => 'checked'%>
+			    		<br>
+			    		<span class="checkbox2 afiche "><strong>Afiche</strong></span>
+			    	</div>
+			</div>  
+
+			<div class="field2 paddb21 padt5 video"  <% if (activo != 'video') %> style="display:none" <% end %>>
+				<label for="fname"><strong>URL del video:</strong> </label> <br>
+				<%=f.text_field :url, :size => '49', :placeholder => 'http://' %>
+			</div>
+
+			<div class="field2 paddb21 padt5 relative imagen" <% if (activo != 'imagen') %> style="display:none" <% end %>>
+				<label for="fname"><strong>Archivo:</strong> </label> <br>
+				<button class="button small" style="padding:6px">Seleccionar</button>
+				<%=f.file_field :imagen %>
+				<div class="preview">
+				</div>
+			</div>
+
+			<div class="field2 paddb21 padt5">
+				<label for="fname"><strong>Título del comercial:</strong> </label> <br>
+				<%=f.text_field :titulo, :size => '49' %>
+			</div>  
+			
+			<div class="field2 padt5">
+				<label for="fname"><strong>Cuentanos algo de este comercial:</strong> </label> 
+				<%=f.text_area(:descripcion,:size =>'50x4') %>
+			</div>  
+			<div class="actionrow">
+				<input type="submit" class="button min229" value="Subir comercial" style="margin-left:-80px !important"/>
+			</div> 
+	    <% end %>
+      </section><!-- fin section -->    
+        <!--[if (gte IE 6)&(lte IE 8)]><script type="text/javascript" src="/assets/selectivizr-min.js"></script><![endif]-->
+  <script type="text/javascript" src="/assets/require.js" data-main="/assets/subir"></script>
+</body>
+</html>

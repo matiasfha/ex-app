@@ -1,134 +1,19 @@
 <%
 @resources.each do |resource|
-	user = User.find(resource.user_id)
-%>	
-	<div class="item" id="<%=resource.id%>">
-		<div class="holder">
-			<div class="thi">
-			
-				<%
-				imagen = resource.thumbnail
-				if resource.type == 'imagen'
-					imagen = resource.imagen.url(:medium)
-				end %>
-				<%= image_tag imagen %>
-			
-				<div class="overlay">
-					<div class="social">
-						<% like = (!current_user.nil?) ? resource.likers.where(:id => current_user.id).count : 0
-						  style=""
-						  if like > 0
-						    style="active"
-						  end %> 
-						<div class="like <%=style%>"></div>
+    %>
+<article id="<%=resource.id%>" class="post-1 category-blog-posts entry box format-video">
+    <div class="entry-content-cnt">
+        <div class="entry-content">
+            <img src="<%=resource.imagen.url(:medium)%>" class="attachment-ci_listing_thumb" alt="Dandoo" title="Dandoo" data-large="<%=resource.imagen.url(:large)%>">
+        </div>
+    </div>
 
-						<div class="comment"></div>
-						
-						<a href="https://twitter.com/share?url=<%="#{request.protocol}#{request.host_with_port}#{request.fullpath}resources/#{resource.id}"%>&text=<%=resource.titulo%>&via=Dandootv&lang=es&related=Dandootv&count=none&hashtags=#Dandoo" target="_blank">
-							<div class="twitter"></div>
-						</a>
-    					<a href="https://www.facebook.com/dialog/feed?app_id=<%=ENV['FACEBOOK_KEY']%>&link=<%="#{request.protocol}#{request.host_with_port}#{request.fullpath}resources/#{resource.id}"%>&resource=<%=resource.imagen.url(:medium)%>&name=<%=resource.titulo%>&caption=Dandoo.tv&description=<%=resource.descripcion%>&redirect_uri=<%="#{request.protocol}#{request.host_with_port}#{request.fullpath}"%>">
-    						<div class="facebook"></div>
-    					</a>
-
-					</div>
-				</div><!--overlay-->
-				<% if resource.type == 'video' %>
-				<%= image_tag "PLAY.png",:class => 'play' %>
-				<%  end %>
-			</div>
-		</div>
-		<div class="description">
-			<div class="titulo">
-				<%= resource.titulo%>
-				<span class="more">
-					<%= image_tag "ver+.gif"%>
-				</span>
-			</div>
-			<%= resource.descripcion%>
-			<br /><br />
-			<div class="separador"></div>
-		</div>
-		<div class="botonera">
-			<div class="left">
-				<%= image_tag "LIKE.gif"%>
-				<span class="like_count"><%= resource.likers.count%></span>
-				<%= image_tag "COMMENT.gif"%>
-				<span class="comment_count"><%= resource.comments.count%></span>
-			</div>
-			<div class="rigth">
-				<span class="votos_count">
-					<%
-					nota = Resource.promedio_votos(resource.id).round %>
-					<%= nota %>/
-					<%= resource.votos.count%>
-				</span>
-				<span class="estrellas">
-				<% for i in 1..nota %>
-				<%= image_tag "STAR_ON.gif" %>
-				<% end %>
-				<% for i in nota...5 %>
-				<%= image_tag "STAR_OFF.gif" %>
-				<% end %>
-				</span>
-			</div>
-		</div>
-		<div class="comentarios">
-			<div class="separador"></div>
-			<div class="descripcion">
-				<div class="avatar">
-					
-						<%= link_to image_tag(user.avatar.url(:thumb),:size => "40x40"), "/users/#{user.id}" %>
-					
-				</div>
-				<div class="autor">
-					<%= link_to user.nickname,"/users/#{user.id}" %>
-				</div>
-				<div class="texto">
-				<%= resource.descripcion %>
-				</div>
-			</div>
-			<div class="separador"></div>
-			<div class="nuevos_comentarios">
-				<% comentarios = resource.comments.order_by([[:created_at,:desc]]).limit(2)
-				comentarios = comentarios.to_a.reverse
-				comentarios.each do |comentario| 
-					u = User.find(comentario.user_id) %>
-				<div class="fila" id="comentario-<%=comentario.id%>">
-					<div class="avatar">
-						<%= link_to image_tag(u.avatar.url(:thumb),:size => "40x40"),"/users/#{user.id}"%>
-						
-					</div>
-					<div class="autor">
-						<%= link_to u.nickname,"/users/#{user.id}"%>
-					</div>
-					<div class="texto">
-					<%= comentario.contenido%>
-					</div>
-				</div>
-				<div class="separador"></div>
-				<% end %>
-			</div>
-			<!-- <div class="separador"></div> -->
-			<% if user_signed_in? %>
-			<div class="form">
-				<div class="avatar">
-					<a href="#">
-						<%= image_tag current_user.avatar.url(:thumb),:size => "40x40"%>
-					</a>
-				</div>
-				<div class="autor">
-					<%= current_user.nickname%>
-				</div>
-				<div class="texto">
-					<%= form_for Comment.new do |f|%>
-					<%= f.text_field :contenido, :class => 'text_comentario',:placeholder => 'Escribe tu comentario' %>
-					
-					<%= image_tag "comentar.gif",:class => "comentar"%>
-					<% end %>
-				</div>
-			</div>
-			<% end %>
-		</div>
-	</div>
+    <div class="entry-desc">
+        <h1><a href="#" title="Titulo"><%=resource.titulo%></a></h1>
+        <div class="entry-meta group">
+         <a class="comments-no" href="#"><%=resource.comments.count%></a> <a data-post-id="213" class="heart-this loved" href="#" title="Me gusta">
+         <span class="heart-no"><%=Resource.promedio_votos(resource.id).round %> / <%=resource. votos.count%></span></a>
+        </div>
+    </div>
+</article>
 <% end %>

@@ -12,7 +12,6 @@ class VotosController < ApplicationController
 				voto.valor 		 = params[:valor]
 				voto.user_id     = current_user.id 
 				voto.resource_id = resource.id 
-				voto.type        = resource.type
 				voto.save
 				total 			 = resource.votos.count
 				suma 			 = 0
