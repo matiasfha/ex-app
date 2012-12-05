@@ -16,6 +16,15 @@ class HomeController < ApplicationController
   	render :layout => 'application'
   end
 
+  def mis_contenidos
+    if user_signed_in?
+      @resources =  current_user.resources
+      render :layout => 'application'
+    else 
+      redirect_to root_path
+    end
+  end
+
   def ingresar
   	if user_signed_in?
   		redirect_to root_path

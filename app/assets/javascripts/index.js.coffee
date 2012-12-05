@@ -11,7 +11,8 @@ require.config
 			deps:['underscore-min']
 			exports:'Backbone'
 		'jquery.infinitescroll.min':['jquery']
-		
+		'dropdown':['jquery']
+		'jquery.serializeObject':['jquery']
 
 require [
 	'jquery'
@@ -22,7 +23,9 @@ require [
 	'modernizr'
 	'froogaloop2.min'
 	'jquery.infinitescroll.min'
-],($,_,Backbone,Isotope,domReady,M,T,F,S) ->
+	'dropdown'
+	'jquery.serializeObject'
+],($,_,Backbone,Isotope,domReady,M,T,F,S,D,Ser) ->
 	domReady () ->
 		$.fn.reset = ->
 			$(this).each () ->
@@ -87,8 +90,6 @@ require [
 		setTabs()
 
 		ratingStar =  ->
-			'mouseenter .rating .star':'ratingON'
-			'mouseleave .rating .star':'ratingOFF'
 			$('#rating .star').live 'mouseenter', (e) ->
 				lis = $(e.currentTarget).prevAll().andSelf().children()
 				lis.addClass('starOn').removeClass('starOff')
@@ -105,16 +106,21 @@ require [
 				elems = elems.children('.starOn')
 				elems.addClass 'voted'
 				nota = $(e.currentTarget).children().html()
-				resource_id = $('#rating').attr('id')
+				resource_id = $('#rating').attr('data-id')
 				$.ajax
 					url: "/votos/#{resource_id}/#{nota}"
 					type:'POST'
 					success: (data) ->
-						console.log data
-						#TODO ACTUALIZAR VOTOS
+						total = data.total
+						promedio = data.promedio
+
+						$('div.bigStar span').text promedio
+						$('#votoWord').text "#{total} votos"
 					error:(d) ->
-						alert d.responseText
+						alert 'Error'
+						console.log d.responseText
 				false
+		ratingStar()
 
 		#OnClick en un element
 		$('article').live 'click', (e) ->
@@ -134,40 +140,7 @@ require [
 			$('#contenedor-modal').fadeOut().empty();
 			false
 
-		#Eventos del Home
-		# $('#mas_votados').click (e) ->
-		# 	$.get "/recursos/mas_votados",(data) ->
-		# 		items = $('#entry-listing article')
-		# 		items.imagesLoaded () ->
-		# 			$('#entry-listing').isotope 'insert',$(data), () ->
-		# 				$('#entry-listing').isotope 'remove', items	
-		# 				$('#entry-listing') .isotope('reLayout')
-		# 				$('#navigation li div').removeClass 'active'
-		# 				$('#mas_votados').addClass 'active'
-		# 				$('#navSelector #nextpage').attr 'href', "/recursos/mas_votados/1"
-
-		# $('#mas_comentados').click (e) ->
-		# 	$.get "/recursos/mas_comentados",(data) ->
-		# 		items = $('#entry-listing article')
-		# 		items.imagesLoaded () ->
-		# 			$('#entry-listing').isotope 'insert',$(data), () ->
-		# 				$('#entry-listing').isotope 'remove', items	
-		# 				$('#entry-listing') .isotope('reLayout')
-		# 				$('#navigation li div').removeClass 'active'
-		# 				$('#mas_comentados').addClass 'active'
-		# 				$('#navSelector #nextpage').attr 'href', "/recursos/mas_comentados/1"
-
-		# $('#nuevos').click (e) ->
-		# 	$.get "/recursos/nuevos",(data) ->
-		# 		items = $('#entry-listing article')
-		# 		items.imagesLoaded () ->
-		# 			$('#entry-listing').isotope 'insert',$(data), () ->
-		# 				$('#entry-listing').isotope 'remove', items	
-		# 				$('#entry-listing') .isotope('reLayout')
-		# 				$('#navigation li div').removeClass 'active'
-		# 				$('#nuevos').addClass 'active'
-		# 				$('#navSelector #nextpage').attr 'href', "/recursos/nuevos/1"
-
+		
 		$('#entry-listing').infinitescroll
 			navSelector:'#navSelector'
 			nextSelector:'#nextpage'
@@ -181,8 +154,12 @@ require [
 			$(data).imagesLoaded () ->
 				$('#entry-listing').isotope('appended',$(data)).isotope('reLayout')
 		
-
-		
+		$('#comment_descripcion').keypress (e) ->
+			if e.which == 13
+				data = $('#new_comment').serializeObject
+				console.log data
+				e.preventDefault()
+				e.stopPropagation()
 
 		
 					

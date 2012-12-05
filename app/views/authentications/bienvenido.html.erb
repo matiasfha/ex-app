@@ -1,0 +1,60 @@
+<% content_for :css do %>
+<style type="text/css">
+body {
+    background: #f6f6f3 url(/assets/bg-dandoo.png)left top repeat;
+	margin:0;
+	height:100%;
+	font-weight: 100;
+}
+
+nav {
+	background: #32A0B7;
+	height: 45px;
+	width: 100%;
+}
+
+.mtn32 {
+	margin-top: -32px;
+}
+</style>
+<% end %>
+<nav>
+        <span class="logo-dashboard">
+        <img src="/assets/dandooTV.png" alt="dandoo-dashboard" width="148" height="44">
+    	</span>
+</nav><!-- fin nav -->
+
+<div id="empresas">
+        <header class="mtn32">
+        	<br />
+        	<br />
+        	<br />
+        	<h2 style="color:#999;">Bienvenido, disfruta<br>la mejor publicidad del mundo</h2>
+        </header><!-- fin header -->
+        
+        <section class="clearfix contenedor">       
+        	<img src="/assets/bienvenida.png" alt="bienvenida" width="348" height="607" border="0"  style="margin-left:28px;"/>
+        <br><br>
+        
+        <div class="actionrow">
+	        <a href="/users/<%=current_user.id%>" class="button">Ir a mi perfil</a><br>
+	    <br>
+	    </div>
+        
+        </section><!-- fin section -->    
+        
+        
+        <ul class="pasos">
+	    <li><div class="paso-on" id="ir_paso1"></div></li>
+	    <li><div class="paso-on" id="ir_paso2"></div></li>
+	    <li><div class="paso-on"></div></li>
+	  </ul>
+
+
+          
+              
+        <footer>
+        </footer><!-- fin footer -->
+    
+    
+    </div><!-- fin container -->

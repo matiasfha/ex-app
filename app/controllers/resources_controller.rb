@@ -1,19 +1,14 @@
 class ResourcesController < ApplicationController
 	layout :get_layout
-	before_filter :authenticate_user!, :only => [:create,:destroy]
+	before_filter :authenticate_user!, :only => [:create,:destroy,:subir]
 	respond_to :html
 
 
 	def show
 		@resource = Resource.find(params[:id])
-		# @resource.num_views+=1;
+		#@resource.num_views+=1;
 		# @resource.save
 		@comments = @resource.comments.limit(10)
-		
-		# respond_with(@resource) do |format|
-  # 			format.html
-  # 			format.json {render :partial => 'resources/item',:formats => [:json]}
-		# end
 	end
 
 	def mas_votados
@@ -36,6 +31,46 @@ class ResourcesController < ApplicationController
   			format.html {render :partial => 'resources/listado'}
 		end
 	end
+
+	def subir
+		@resource = Resource.new
+		render :layout => nil
+	end
+
+	#Crea un nuevo recurso
+  #Retorna el recurso creado
+  def create
+    if !params[:resource][:url].blank?
+      u = URI.parse(params[:resource][:url])
+      url = params[:resource][:url]
+      if !u.scheme
+        url = "http://#{url}"
+      end
+
+      res = OEmbed::Providers.get(url)
+      params[:resource][:thumbnail] = res.thumbnail_url
+      url = res.request_url
+      if not url !~/&/i
+        url = url.split('&')
+        url = url[0]
+      end
+      params[:resource][:url] = url
+      params[:resource][:type] = 'video'
+      params[:resource][:html] = res.html
+      provider  = res.provider_name.downcase
+      @res = Resource.new(params[:resource])
+      @res.provider = provider
+      @res.imagen   = open res.thumbnail_url
+    else
+      @res = Resource.new(params[:resource])
+    end
+    current_user.resources << @res
+    if !current_user.save
+      flash[:error] = "No se pudo crear el nuevo recurso"
+    end
+    redirect_to "/mis_contenidos"
+    
+  end
 
 	protected
 	def get_layout

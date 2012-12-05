@@ -45,11 +45,14 @@
 
                 <ul id="nav-access">
                     <% if user_signed_in? %>
-                    <li>Hola <% if current_user.tipo_usuario == 'empresa' %>
-                                        <%= current_user.empresa.nombre_empresa %>
-                                    <% else %>
-                                        <%= current_user.usuario.nombre %>
-                                    <% end %>
+                    <li class="menu">
+                      <a href="">
+                        <%=image_tag current_user.avatar.url%> Hola <% if current_user.tipo_usuario == 'empresa' %>
+                            <%= current_user.empresa.nombre_empresa %>
+                        <% else %>
+                            <%= current_user.usuario.nombre %>
+                        <% end %>
+                        </a>
                     </li>
                     <li><a href="/logout">Salir</a></li>
                     <% else %>              
@@ -91,7 +94,7 @@
   <script type="text/javascript">
   if (!window['YT']) {var YT = {};}if (!YT.Player) {(function(){var s = 'http:' + '//s.ytimg.com/yt/jsbin/www-widgetapi-vflU5wlSl.js';var a = document.createElement('script');a.src = s;a.async = true;var b = document.getElementsByTagName('script')[0];b.parentNode.insertBefore(a, b);YT.embed_template = "\u003ciframe width=\"425\" height=\"344\" src=\"\" frameborder=\"0\" allowfullscreen\u003e\u003c\/iframe\u003e";})();}
   </script>
-  <!--[if (gte IE 6)&(lte IE 8)]><script type="text/javascript" src="js/selectivizr-min.js"></script><![endif]-->
+  <!--[if (gte IE 6)&(lte IE 8)]><script type="text/javascript" src="/assets/selectivizr-min.js"></script><![endif]-->
   <script type="text/javascript" src="/assets/require.js" data-main=<%=yield(:main_js)%>></script>
   <script type="text/javascript">
     var _gaq = _gaq || [];

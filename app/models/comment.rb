@@ -5,4 +5,6 @@ class Comment
 
   field :contenido, :type => String
   field :user_id, :type => String
+
+  attr_accessible :user_id, :contenido
 end

@@ -22,7 +22,7 @@
      
         <!-- CSS -->
         <%=stylesheet_link_tag 'application','empresa',:media => 'all' %>
-        <script type="text/javascript" src="/assets/require.js" data-main=<%=yield(:main_js)%>></script>
+        <%=yield(:css) %>
         <%= csrf_meta_tags %>
     </head>
     <body>
@@ -41,5 +41,6 @@
                 </div>
             </div>
         </div>
+        <script type="text/javascript" src="/assets/require.js" data-main=<%=yield(:main_js)%>></script>
     </body>
 </html>

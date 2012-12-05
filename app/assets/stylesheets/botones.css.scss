@@ -66,6 +66,9 @@ Version: 1.0
 	 text-shadow: 0px 1px 0px #359eb3; 
 	 filter: dropshadow(color=#359eb3, offx=0, offy=1); 
 	 behavior:url('PIE.htc');
+	 &.small{
+	 	padding:6px 0px;
+	 }
 }
 .button:hover{
 	 background:#49c4dd; 

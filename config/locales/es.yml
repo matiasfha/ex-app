@@ -1,4 +1,14 @@
 es:
+  pais: 'País'
+  region: 'Región'
+  comuna: 'Comuna'
+  ciudad: 'Ciudad'
+  genero: 'Género'
+  web: 'Sitio web'
+  bio: 'Biografía'
+  nacimiento: 'Fecha de nacimiento'
+  estado_civil: 'Estado Civil'
+  ocupacion: 'Ocupación'
   captcha_error: "¿Realmente eres humano? . Intenta ingresar el código nuevamente."
   time:
     formats:

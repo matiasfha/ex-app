@@ -120,8 +120,8 @@ require [
 					error = true
 
 			if !error #no hay errores
-				$('#paso1').slideUp 'slow',(e) ->
-					$('#paso2').fadeIn()
+				$('#paso1').fadeOut 'slow',(e) ->
+					$('#paso2').fadeIn('slow')
 					$('ul.pasos li:nth-child(2) div').removeClass('paso-off').addClass('paso-on')
 		
 		checkPaso2 = (e) ->
@@ -159,13 +159,22 @@ require [
 		$('#ir_paso1').click (e) ->
 			if !$('#paso1').is(':visible') && $('#paso2').is(':visible')
 				$('#paso2').fadeOut 'slow',(e) ->
-					$('#paso1').slideDown()
+					$('#paso1').fadeIn 'slow'
 					$('ul.pasos li:nth-child(2) div').removeClass('paso-on').addClass('paso-off')
 
 		$('#ir_paso2').click (e) ->
 			if !$('#paso2').is(':visible')
-				$('#paso1').slideUp 'slow',(e) ->
-					$('#paso2').fadeIn()
+				$('#paso1').fadeOut 'slow',() ->
+					$('#paso2').fadeIn 'slow'
 					$('ul.pasos li:nth-child(2) div').removeClass('paso-off').addClass('paso-on')
+				# $('#paso1').animate
+				# 	left:'5%'
+				# 	opacity:0
+				# ,'slow', () ->
+				# 	$('#paso2').animate
+				# 		right:'34%'
+				# 		width:'show'	
+				# 	,'slow'
+				
 
 		

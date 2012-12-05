@@ -10,6 +10,7 @@ DandooDev::Application.routes.draw do
   match 'ingresar' => 'home#ingresar', :via => :get
   match 'nuevos' => 'home#recursos_nuevos',:via => :get 
   match 'comentados' => 'home#recursos_comentados',:via => :get
+  match 'mis_contenidos' => 'home#mis_contenidos', :via => :get
 
   devise_for :users, :controllers => { :registrations => "registrations",:sessions => 'sessions'}
   devise_scope :user do
@@ -19,7 +20,7 @@ DandooDev::Application.routes.draw do
   end
 
   resources :empresas, :only => [:new, :create, :update, :destroy]
-  #match '/empresas' => 'registrations#create', :via => :post
+  
 
   resources :users, :only => [:show,:update]
 
@@ -28,11 +29,14 @@ DandooDev::Application.routes.draw do
   match 'recursos/mas_votados(/:page)' => 'resources#mas_votados',:via => :get
   match 'recursos/mas_comentados(/:page)' => 'resources#mas_comentados',:via => :get
   match 'recursos/nuevos(/:page)' => 'resources#nuevos',:via => :get
+  match 'recursos/subir' => 'resources#subir', :via => :get
   
-  #resources :comments, :only => [:create,:show]
+  resources :comments, :only => [:create,:show]
   #match '/comments/:pid/:cid' => 'comments#destroy', :via => :delete
   match '/votos/:pid/:valor' => 'votos#create', :via => :post
 
+  match '/auth/test' => 'authentications#test'
+  match '/auth/bienvenido' => 'authentications#bienvenido'
   match 'auth/:provider/callback'  => 'authentications#new'
   resources :authentications, :only => [:index,:create,:destroy]
   match '/feedback' => 'metadata#feedback', :via => :post

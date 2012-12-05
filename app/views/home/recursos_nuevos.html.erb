@@ -17,6 +17,11 @@ content_for :main_js do %>
                 <li class="current_page_item">
                     <a href="/nuevos" id="nuevos" class="active">Nuevos</a>
                 </li>
+                <% if user_signed_in?%>
+                <li>
+                    <a href="/mis_contenidos" id="nuevos">Mis contenidos</a>
+                </li>
+                <% end %>
             </ul>
         </div><!-- .wrap < nav -->
     </nav>

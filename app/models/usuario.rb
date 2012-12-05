@@ -13,28 +13,32 @@ class Usuario
 	belongs_to  :civil_statu
 	belongs_to  :state #Region
 	belongs_to  :commune
-	belongs_to  :city
 	belongs_to  :ocupacion
 
 	#Atributos
 	field :nombre, :type => String
 	field :apellidos, :type => String
 	field :rut, :type => String
+	field :dv, :type => String
 	field :nickname, :type => String
 	field :bio, :type => String
 	field :nacimiento, :type => Date
 	field :avatar_tmp, :type => String
 	field :doos, :type => Numeric, :default => 0
+	field :ciudad, :type => String
+	field :twitter, :type => String
+	field :facebook, :type => String
+	field :web, :type => String
 
 	index({ nickname: 1 }, { unique: true, background: true })
-	index({rut:1},{unique:true, background:true})
+	index({rut:1},{background:true})
 
 	attr_accessible :nombre,:nacimiento
-	attr_accessible :apellidos, :nickname, :rut,  :bio
-	attr_accessible :state_id, :commune_id, :city_id, :gender_id, :civil_statu_id,:ocupacion_id
-	attr_accessible :avatar, :avatar_tmp,:rut
+	attr_accessible :apellidos, :nickname, :rut, :dv, :bio
+	attr_accessible :state_id, :commune_id,  :gender_id, :civil_statu_id,:ocupacion_id
+	attr_accessible :avatar, :avatar_tmp,:rut,:ciudad,:twitter,:facebook, :web
 	attr_accessible :user_interests_attributes
 
-	validates_presence_of :rut, :nickname,:nombre,:apellidos,:nacimiento
-	validates_uniqueness_of :rut
+	validates :rut, :uniqueness => {:scope => :dv}
+	validates_uniqueness_of :nickname
 end

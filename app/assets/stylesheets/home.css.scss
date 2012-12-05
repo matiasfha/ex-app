@@ -2,3 +2,20 @@
 @import  "estructura";
 @import  "botones";
 @import "modal";
+
+
+#nav-access{
+	li.menu{
+		width:90px;
+		height: 20px;
+		text-align:right;
+		position:relative;
+		img{
+			width:30px;
+			position:absolute;
+			top:5px;
+			left:0px;
+		}
+	}	
+}
+

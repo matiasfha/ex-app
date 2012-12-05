@@ -98,10 +98,12 @@ content_for :main_js do %>
         <% user = User.find(@resource.user_id) %>
         <div id="user-share-1"> 
           <span >
+            <a href="<%=user_path user%>">
             <img src="<%=user.avatar.url(:thumb)%>" alt="avatar-post" width="62" height="56" border="0">
+          </a>
           </span>
           <div class="detail-share">
-            <h2><%=user.usuario.nombre%></h2>    
+            <h2><a href="<%=user_path user%>" style="color: #999;"><%=user.usuario.nombre%> <br /> <%=user.usuario.apellidos%></a></h2>    
           </div>
         </div><!--user-share-1-->
     </div><!--user-share-->
@@ -124,7 +126,7 @@ content_for :main_js do %>
       <% if user_signed_in? %>
       <ul id="rating" data-id="<%=@resource.id%>">
         <% for i in 1..nota %>
-          <li class="star"><a href="" class="starOn"><%=i+1%></a></li>
+          <li class="star"><a href="" class="starOn"><%=i%></a></li>
         <% end %>
         <% for i in nota...7 %>
           <li class="star"><a href="#" class="starOff"><%=i+1%></a></li>
@@ -139,11 +141,13 @@ content_for :main_js do %>
 
     <div id="dos">
       <% if user_signed_in? %>
-      <form action="#" method="post" class="stn-form label-inline simple formulario">   
+      <%=form_for Comment.new, :html => {:class => 'stn-form label-inline simple formulario'} do |f| %>
+        <input type="hidden" name="comment[resource_id]" id="comment_resource_id" value="<%=@resource.id%>" />
+        <input type="hidden" name="comment[user_id]" id="comment_user_id" value="<%=current_user.id%>" />
         <div class="field">
-          <input class="marl4" style="color: #727272; font-size:12px; letter-spacing:0.03em;" type="text" size="37" value="Comenta" onblur="if(this.value == '') { this.style.color='#727272'; this.value='Comenta'}" onfocus="if (this.value == 'Comenta') {this.style.color='#666';this.style.color='#666'; this.value=''}"/>     
+          <input name="comment[contenido]" id="comment_contenido" class="marl4" style="color: #727272; font-size:12px; letter-spacing:0.03em;" type="text" size="29" value="Comenta" onblur="if(this.value == '') { this.style.color='#727272'; this.value='Comenta'}" onfocus="if (this.value == 'Comenta') {this.style.color='#666';this.style.color='#666'; this.value=''}"/>     
         </div>                  
-      </form>
+      <% end %>
       <% else%>
         <% if @comments.count == 0 %>
           <h5 style="margin-left:30px;text-align: center;width: 180px">Se el primero y déjanos tu opinión</h5>
@@ -166,10 +170,10 @@ content_for :main_js do %>
             </a>
           </span>
           <div class="detail">
-            <h2><a href="#"><%=Faker::Name.name%></a></h2>
-            <p><%=Faker::Lorem.sentence(10)%></p>
+            <h2><a href="#"><%= (user.tipo_usuario == 'usuario') ? user.usuario.nickname  : user.empresa.nombre_empresa %></a></h2>
+            <p><%=comment.contenido%></p>
           </div>
-        <div class="dataUser">hoy</div>   
+          <div class="dataUser"><%=distance_of_time_in_words_to_now comment.created_at%></div>   
         </div><!--user-->
         <% end %>
         <br>

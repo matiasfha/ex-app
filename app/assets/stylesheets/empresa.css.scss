@@ -113,6 +113,7 @@ body {
 	width: 70px;
 	padding-top: 30px;
 	overflow: hidden;
+	position:relative;
 }
 
 .pasos li {
@@ -172,6 +173,15 @@ body {
 	font-size: 11px;
 	display: block;
 	padding-left: 148px;
+	padding-top: 9px;
+	color: #666;
+}
+
+.pruebaerror2 {
+	font-style: italic;
+	font-size: 11px;
+	display: block;
+	padding-left: 125px;
 	padding-top: 9px;
 	color: #666;
 }

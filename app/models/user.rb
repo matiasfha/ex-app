@@ -46,8 +46,8 @@ class User
 
 
   attr_accessible :email,:password,:password_confirmation
-  attr_accessible :country_id, :remember_me, :created_at, :updated_at
-  attr_accessible :tipo_usuario, :avatar
+  attr_accessible :country, :remember_me, :created_at, :updated_at
+  attr_accessible :tipo_usuario, :avatar,:avatar_tmp
   #attr_accessible :usuario_attributes, :empresa_attributes
 
   validates_presence_of :email
