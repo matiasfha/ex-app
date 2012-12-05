@@ -986,5 +986,36 @@ padding: 11px 0 0 0px;
 background: white;
 border: 1px solid #fff;
 border-radius: 0 0 3px 3px;
+}
 
+
+/* Feedback tab*/
+#feedback{
+  #tab{
+    background: url(bg-nav.png) left top repeat;
+    color:#FFF;
+    cursor:pointer;
+    height: 120px;
+    right:0;
+    overflow:hidden;
+    position:fixed;
+    text-indent: -100000px;
+    top:310px;
+    width:44px;
+    z-index:90000;
+  }
+  #contentForm{
+    background-color:white;
+    height:370px;
+    margin-top:-160px;
+    overflow:hidden;
+    padding-left:30px;
+    position:fixed;
+    top:200px;
+    z-index:99;
+    border:1px solid #000;
+    margin-right:-10px;
+    width:300px;
+    right:0;
+  }
 }
