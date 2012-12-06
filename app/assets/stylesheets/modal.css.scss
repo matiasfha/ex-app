@@ -6,6 +6,21 @@
 	left:0;
 	z-index:10000;
 	display:none;
+	overflow-x:hidden;
+}
+
+#theMask{
+	background: rgba(51,51,51,0.67);// url(bg-dandoo.png)left top repeat !important;
+	position:absolute;
+	top:0;
+	left:0;
+	z-index:-10;
+	width:100%;
+	height:100%;
+	cursor:zoom-out;
+	cursor:-webkit-zoom-out;
+	cursor:-moz-zoom-out;
+	overflow-x:hidden;
 }
 
 #contenedor-modal #header{

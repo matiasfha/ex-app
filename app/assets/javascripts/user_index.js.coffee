@@ -44,9 +44,6 @@ require [
 		$('div.mensajes').delay(2000).fadeOut()
 		
 		
-
-		
-
 		checkPaso1 = (e) ->
 			#obtener todos los inputs dentro de #paso1 y buscar si hay alguno vacio
 			error = false
@@ -58,6 +55,7 @@ require [
 			
 			if !error #no hay errores
 				$('#recaptcha_modal').fadeIn()
+				$('#recaptcha_response_field').focus();
 			false
 		
 		

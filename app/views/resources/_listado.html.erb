@@ -4,7 +4,11 @@
 <article id="<%=resource.id%>" class="post-1 category-blog-posts entry box format-video">
     <div class="entry-content-cnt">
         <div class="entry-content">
-            <img src="<%=resource.imagen.url(:medium)%>" class="attachment-ci_listing_thumb" alt="Dandoo" title="Dandoo" data-large="<%=resource.imagen.url(:large)%>">
+            <div class="zoomOverlay"></div>
+            <img src="<%=resource.imagen.url(:medium)%>" class="attachment-ci_listing_thumb" alt="Dandoo" title="Dandoo" >
+            <%if resource.type=='video' %>
+                <%=image_tag 'play_03.png' , :class => 'play_image'%>
+            <% end %>       
         </div>
     </div>
 

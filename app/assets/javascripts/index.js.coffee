@@ -13,6 +13,7 @@ require.config
 		'jquery.infinitescroll.min':['jquery']
 		'dropdown':['jquery']
 		'jquery.serializeObject':['jquery']
+		
 
 require [
 	'jquery'
@@ -60,10 +61,15 @@ require [
 			$('#entry-listing').fadeIn()
 			$('#entry-listing').isotope 'insert',items, () ->
 				$('#entry-listing').isotope('reLayout')
+		$('#feedback-panel #tab').on 'click',(e) ->
+			if $(e.currentTarget).hasClass 'active'
+				left = '96%';
+			else
+				left = '66%';
+			$('#feedback-panel').animate({left:left})
+			$(e.currentTarget).toggleClass 'active'
 
-		$(window).resize(setContainerWidth)
 		box = $(".box")
-		
 		setContainerWidth =  ->
 			columnNumber = parseInt(($(window).width() + 15) / box.outerWidth(true))
 			containerWidth = (columnNumber * box.outerWidth(true)) - 15
@@ -72,9 +78,13 @@ require [
 		    		$("#box-container").css("width",containerWidth+'px')
 			else
 				$("#box-container").css("width", "90%")
-
 		setContainerWidth();
+		$(window).resize(setContainerWidth)
 
+		$('.entry-content').live 'mouseenter', (e) ->
+			$(e.currentTarget).find('.zoomOverlay').fadeIn();
+		.live 'mouseleave',(e) ->
+			$(e.currentTarget).find('.zoomOverlay').fadeOut();
 		#Eventos para la ventana modal
 		#Tabs 
 		setTabs = () ->
@@ -128,10 +138,14 @@ require [
 			$.get  "/resources/#{id}", (data) ->
 				h = $(document).height()+'30'
 				w = $(document).width()
+				$('#theMask').css 
+					'height':h
+					'width':w
 				$('#contenedor-modal').css 
 					'height':h
 					'width':w
 				.html(data).fadeIn()
+				
 				setTabs()
 				ratingStar()
 
@@ -139,7 +153,10 @@ require [
 			e.preventDefault()
 			$('#contenedor-modal').fadeOut().empty();
 			false
-
+		$('#theMask').live 'click',(e) ->
+			e.preventDefault()
+			$('#contenedor-modal').fadeOut().empty();
+			false
 		
 		$('#entry-listing').infinitescroll
 			navSelector:'#navSelector'
