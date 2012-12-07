@@ -1059,12 +1059,12 @@ img.play_image{
   background: #fff url(mensaje.png) center top repeat;
   width: 100%;
   height: 100px;
-  clear: both;
+  //clear: both;
   text-indent: -9999px;
-  overflow: hidden;
+  //overflow: hidden;
   text-align: center;
   position:relative;
-  top:-13px;
+  top:0px;
 }
 
 

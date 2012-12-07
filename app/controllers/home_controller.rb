@@ -24,7 +24,7 @@ class HomeController < ApplicationController
 
   def mis_contenidos
     if user_signed_in?
-      @resources =  current_user.resources.page
+      @resources =  current_user.resources.order_by([[:created_at,:desc]]).page(params[:page])
       @nuevos       = Resource.nuevos.count
       @votados      = Resource.mas_votadas.count
       @comentados = Resource.mas_comentados.count

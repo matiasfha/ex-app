@@ -33,7 +33,7 @@ class ResourcesController < ApplicationController
 	end
 
 	def mis_contenidos
-		@resources =  current_user.resources.page(params[:page])
+		@resources =  current_user.resources.order_by([[:created_at,:desc]]).page(params[:page])
 		respond_with(@resource) do |format|
   			format.html {render :partial => 'resources/listado'}
 		end
