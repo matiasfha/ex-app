@@ -57,11 +57,11 @@ class Resource
 	    resources = Array.new
 	    
 	    	if pagina.nil?
-	    		Voto.where(:valor.gte => avg).order_by([[:created_at,:desc],[:valor,:desc]]).each do |v|
+	    		Voto.where(:valor.gte => avg).order_by([[:valor,:desc],[:created_at,:desc]]).each do |v|
 		      		resources.push self.find(v.resource_id)
 		    	end
 	    	else
-		    Voto.where(:valor.gte => avg).order_by([[:created_at,:desc],[:valor,:desc]]).page(pagina).each do |v|
+		    Voto.where(:valor.gte => avg).order_by([[:valor,:desc],[:created_at,:desc]]).page(pagina).each do |v|
 		      resources.push self.find(v.resource_id)
 		    end
 		end
