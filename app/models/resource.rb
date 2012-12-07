@@ -70,6 +70,9 @@ class Resource
 
 	def self.mas_comentados(pagina=nil)
 		avg = self.avg(:num_comments).round
+		if avg == 0
+			avg = 1
+		end
 		if pagina.nil?
 			self.where(:num_comments.gte => avg).order_by([[:created_at,:desc],[:num_comments,:desc]])
 		else
