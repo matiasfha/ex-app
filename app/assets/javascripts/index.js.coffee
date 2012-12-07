@@ -195,8 +195,14 @@ require [
 			if e.which == 13
 				data = $('#new_comment').serializeObject()
 				$.post $('#new_comment').attr('action'),data,(res) ->
-					html = commentTPL(res)
-					$('#comments').append html #Hacer scroll al nuevo elemento y highlight
+					$('#comment_contenido').val('')
+					html = $(commentTPL(res))
+					html.addClass('highlight')
+					$('#comments').append html 
+					$('#comments').animate({scrollTop: $('#comments').prop("scrollHeight")}, 500);
+					setTimeout () ->
+						html.removeClass('highlight')
+					,1200
 
 				e.preventDefault()
 				e.stopPropagation()

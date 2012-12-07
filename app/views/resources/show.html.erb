@@ -192,11 +192,10 @@ content_for :main_js do %>
         </div><!--user-->
         <% end %>
         <br>
-        <% if @resource.comments.count > 10 %>
+      </div><!-- Fin Comentario Usuario-->
+      <% if @resource.comments.count > 10 %>
         <a href="#" title="seguir" class="buttonF ml39 ver_mas" ><%=@resource.comments.count%> en total</a>
       <% end %>
-
-      </div><!-- Fin Comentario Usuario-->
     </div><!--dos-->
 </div>
 

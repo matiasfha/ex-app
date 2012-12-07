@@ -136,11 +136,25 @@
 	height: 78px;
 }
 
+.highlight{
+	background-color:yellow !important;
+}
+
+#dos{
+	position:relative;
+}
+.ver_mas{
+	position:absolute;
+	bottom:0;
+	left:20%;
+}
 
 .user1, .user2 {
 	position: relative;
 	border-bottom: 1px solid #eaeaea;
-	height:52px;
+	max-height:75px;
+	min-height:52px;
+	height:auto;
 }
 
 .dataUser{

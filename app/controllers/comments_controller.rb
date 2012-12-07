@@ -16,6 +16,10 @@ class CommentsController < ApplicationController
 	end
   end
 
+  def index
+    @comments = Resource.find(params[:resource_id]).comments 
+    render :partial => 'listado_comment.json'
+  end
   
   def destroy
     resource = Resource.find(params[:pid])

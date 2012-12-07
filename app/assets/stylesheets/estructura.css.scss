@@ -999,7 +999,7 @@ img.play_image{
     overflow:hidden;
     width:31px;
     outline:none;
-    z-index:400;
+    z-index:9999999;
     top:46px;
 
     @include border-radius(3px 0 0 3px);
