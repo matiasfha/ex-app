@@ -3,11 +3,13 @@ class ResourcesController < ApplicationController
 	before_filter :authenticate_user!, :only => [:create,:destroy,:subir]
 	respond_to :html
 
+	
 
 	def show
 		@resource = Resource.find(params[:id])
 		#@resource.num_views+=1;
 		# @resource.save
+		session[:last_page] = if(refered_from_our_site?) http_referer_uri || root_path
 		@comments = @resource.comments.order_by([[:created_at,:desc]]).limit(10).reverse
 	end
 

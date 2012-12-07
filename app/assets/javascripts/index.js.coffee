@@ -137,7 +137,7 @@ require [
 				false
 		ratingStar()
 
-		#OnClick en un element
+		#OnClick en un element mostrar el modal
 		$('article .entry-content').live 'click', (e) ->
 			id = $(e.currentTarget).closest('article').attr('id')
 			$.get  "/resources/#{id}", (data) ->
@@ -150,10 +150,11 @@ require [
 					'height':h
 					'width':w
 				.html(data).fadeIn()
-				
+				$('body').animate({scrollTop: 0}, 500);
 				setTabs()
 				ratingStar()
 
+		#Cerrar el modal con el recursos
 		$('#contenedor-modal .paddr10').live 'click', (e) ->
 			e.preventDefault()
 			$('#contenedor-modal').fadeOut().empty();
@@ -163,6 +164,7 @@ require [
 			$('#contenedor-modal').fadeOut().empty();
 			false
 		
+		#Cargar contenidos con scroll infinito
 		$('#entry-listing').infinitescroll
 			navSelector:'#navSelector'
 			nextSelector:'#nextpage'
@@ -176,6 +178,8 @@ require [
 			$(data).imagesLoaded () ->
 				$('#entry-listing').isotope('appended',$(data)).isotope('reLayout')
 		
+
+		#Template para comentario nuevo
 		commentTPL = _.template( """
 		<div id="<%=user_id%>" class="<%=clase%>">
 	          <span>
@@ -190,7 +194,7 @@ require [
 	          <div class="dataUser"><%=fecha%></div>   
 	        </div>
 		""")
-
+		#Enviar comentario al servidor
 		$('#comment_contenido').live 'keypress', (e) ->
 			if e.which == 13
 				data = $('#new_comment').serializeObject()
