@@ -41,6 +41,7 @@ gem "aws-s3",            :require => "aws/s3"
 gem "aws-sdk"
 gem 'recaptcha',			:require => 'recaptcha/rails'
 gem 'rails-i18n'
+gem 'bitly'
 
 group :development do
   gem 'rb-fsevent'

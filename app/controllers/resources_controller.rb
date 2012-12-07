@@ -1,7 +1,9 @@
+require 'bitly'
 class ResourcesController < ApplicationController
 	layout :get_layout
 	before_filter :authenticate_user!, :only => [:create,:destroy,:subir]
 	respond_to :html
+	Bitly.use_api_version_3
 
 	def http_referer_uri
 	  request.env["HTTP_REFERER"] && URI.parse(request.env["HTTP_REFERER"])

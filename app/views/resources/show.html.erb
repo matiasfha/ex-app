@@ -94,12 +94,17 @@ content_for :main_js do %>
                   <ul>
                     <li style="padding-right:10px;">Compartir</li>
                     <li>
-                      <a href="https://twitter.com/share?url=<%="#{request.protocol}#{request.host_with_port}#{request.fullpath}resources/#{@resource.id}"%>&text=<%=@resource.titulo%>&via=Dandootv&lang=es&related=Dandootv&count=none&hashtags=#Dandoo" class="icon-small ctwitter">
+                      <%
+                        bitly = Bitly.new(ENV['BITLY_USER'],ENV['BITLY_KEY']) 
+                        page_url = bitly.shorten("#{request.protocol}#{request.host_with_port}#{request.fullpath}resources/#{@resource.id}") 
+                        shorten_url = page_url.short_url
+                      %>
+                      <a href="https://twitter.com/share?url=<%=shorten_url%>&text=<%=@resource.titulo%>&via=Dandootv&lang=es&related=Dandootv&count=none&hashtags=#Dandoo" class="icon-small ctwitter">
                         <img src="/assets/twitter3.png" width="32" height="32" alt="">
                       </a>
                     </li>
                     <li>
-                      <a href="https://www.facebook.com/dialog/feed?app_id=<%=ENV['FACEBOOK_KEY']%>&link=<%="#{request.protocol}#{request.host_with_port}#{request.fullpath}resources/#{@resource.id}"%>&resource=<%=@resource.imagen.url(:medium)%>&name=<%=@resource.titulo%>&caption=Dandoo.tv&description=<%=@resource.descripcion%>&redirect_uri=<%="#{request.protocol}#{request.host_with_port}#{request.fullpath}"%>" class="icon-small cfacebook">
+                      <a href="https://www.facebook.com/dialog/feed?app_id=<%=ENV['FACEBOOK_KEY']%>&link=<%=shorten_url%>&resource=<%=@resource.imagen.url(:medium)%>&name=<%=@resource.titulo%>&caption=Dandoo.tv&description=<%=@resource.descripcion%>&redirect_uri=<%="#{request.protocol}#{request.host_with_port}#{request.fullpath}"%>" class="icon-small cfacebook">
                         <img src="/assets/facebook2.png" width="32" height="32" alt="">
                       </a>
                     </li>
