@@ -303,23 +303,23 @@ margin-left: 0px !important;
 
 
 	&.subir {
-		background-image: -webkit-linear-gradient(top, rgb(253, 166, 53), rgb(253, 143, 0));
-		background-image: -moz-linear-gradient(top, rgb(253, 166, 53), rgb(253, 143, 0));
-		background-image: -o-linear-gradient(top, rgb(253, 166, 53), rgb(253, 143, 0));
-		background-image: -ms-linear-gradient(top, rgb(253, 166, 53), rgb(253, 143, 0));
-		background-image: linear-gradient(top, rgb(253, 166, 53), rgb(253, 143, 0));
-		filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0,StartColorStr='#fda635', EndColorStr='#fd8f00');
+		background-image: -webkit-linear-gradient(top, rgb(117, 224, 246), rgb(70, 191, 215));
+		background-image: -moz-linear-gradient(top, rgb(117, 224, 246), rgb(70, 191, 215));
+		background-image: -o-linear-gradient(top, rgb(117, 224, 246), rgb(70, 191, 215));
+		background-image: -ms-linear-gradient(top, rgb(117, 224, 246), rgb(70, 191, 215));
+		background-image: linear-gradient(top, rgb(117, 224, 246), rgb(70, 191, 215));
+		filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0,StartColorStr='#75e0f6', EndColorStr='#46bfd7');
 		border:1px solid #2fabc4;
 
 		text-shadow: 0px 1px 0px rgba(8,83,111,.47);
 	}
 	&.subir:hover {
-		background-image: -webkit-linear-gradient(top, rgb(253, 143, 0), rgb(253, 166, 53));
-		background-image: -moz-linear-gradient(top, rgb(253, 143, 0), rgb(253, 166, 53));
-		background-image: -o-linear-gradient(top, rgb(253, 143, 0), rgb(253, 166, 53));
-		background-image: -ms-linear-gradient(top, rgb(253, 143, 0), rgb(253, 166, 53));
-		background-image: linear-gradient(top, rgb(253, 143, 0), rgb(253, 166, 53));
-		filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0,StartColorStr='#fd8f00', EndColorStr='#fda635');
+		background-image: -webkit-linear-gradient(top, rgb(70, 191, 215), rgb(117, 224, 246));
+		background-image: -moz-linear-gradient(top, rgb(70, 191, 215), rgb(117, 224, 246));
+		background-image: -o-linear-gradient(top, rgb(70, 191, 215), rgb(117, 224, 246));
+		background-image: -ms-linear-gradient(top, rgb(70, 191, 215), rgb(117, 224, 246));
+		background-image: linear-gradient(top, rgb(70, 191, 215), rgb(117, 224, 246));
+		filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0,StartColorStr='#46bfd7', EndColorStr='#75e0f6');
 		text-decoration: none !important;
 	}
 	

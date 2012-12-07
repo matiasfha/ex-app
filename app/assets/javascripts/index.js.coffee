@@ -239,15 +239,17 @@ require [
 			e.preventDefault()
 			data = $('#new_feedback').serializeObject()
 			html = '<img src="/assets/ajax-loader.gif" class="load"/>'
-			content = $('#contentForm').html() 
+			content = $('#contentForm').html()
 			$('#contentForm').empty().html html
 			$.post  '/feedback',data, (resp) ->
 				if resp.success == true
 					htm = '<label class="load">Gracias por tus comentarios</label>'
 					$('#contentForm').empty().html html
-					$('#feedback-panel').delay(2000)
-					.animate({left:'96%'})
+					$('#feedback-panel').delay(3000)
+					.animate({right:'-245px'})
 					$('#feedback-panel #tab').toggleClass 'active'
+					$('#contentForm').html content
+					$('#new_feedback').reset()
 				else
 					$('#contentForm').html content
 					$('#new_feedback').reset()
