@@ -25,6 +25,13 @@
         li:nth-child(<%=child%>){
             text-decoration: underline;
         }
+        <%if !user_signed_in? %>
+        .menu{
+            margin-left:30%;
+            top:-30px;
+            position:relative;
+        }
+        <% end %>
     </style> 
     <div class="mensajeB"><h1>Comenta, rankea y comparte la mejor publicidad </h1></div>
     <ul class="menu">
@@ -45,7 +52,7 @@
         </li>     
         <% if user_signed_in? %>
         <li>
-            <a href="/mis_contenidos">Mis contenido</a>
+            <a href="/mis_contenidos">Mi contenido</a>
         </li>     
         <% end%>
         <li>
