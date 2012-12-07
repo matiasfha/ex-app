@@ -66,17 +66,12 @@ class Resource
 	    avg = (avg.nil?)? 0 : avg.round
 	    resources = Array.new
 	    
-	    	if pagina.nil?
-	    		Voto.where(:valor.gte => avg).order_by([[:valor,:desc],[:created_at,:desc]]).each do |v|
-	    			r = self.find(v.resource_id)
-		      		resources.push(r) unless  resources.include? r
-		    	end
-	    	else
-		    Voto.where(:valor.gte => avg).order_by([[:valor,:desc],[:created_at,:desc]]).page(pagina).each do |v|
-		      r = self.find(v.resource_id)
-		      	resources.push(r) unless  resources.include? r
-		    end
-		end
+	    	
+	    Voto.where(:valor.gte => avg).order_by([[:valor,:desc],[:created_at,:desc]]).page(pagina).distinct(:resource_id).each do |v|
+	      r = self.find(v)
+	      	resources.push(r)
+	    end
+		
 	    resources
 	end
 
