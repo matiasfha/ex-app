@@ -86,9 +86,24 @@ content_for :main_js do %>
         </span>
         <div id="description-ad">           
         
-            <div id="one">
+            <div id="one" style="position:relative">
                 <h1><%=@resource.titulo%></h1>
                 <p><%=@resource.descripcion%></p>
+                <div id="compartirAD" >
+                  <ul>
+                    <li style="padding-right:10px;">Compartir</li>
+                    <li>
+                      <a href="https://twitter.com/share?url=<%="#{request.protocol}#{request.host_with_port}#{request.fullpath}resources/#{@resource.id}"%>&text=<%=@resource.titulo%>&via=Dandootv&lang=es&related=Dandootv&count=none&hashtags=#Dandoo" class="icon-small ctwitter">
+                        <img src="/assets/twitter3.png" width="32" height="32" alt="">
+                      </a>
+                    </li>
+                    <li>
+                      <a href="https://www.facebook.com/dialog/feed?app_id=<%=ENV['FACEBOOK_KEY']%>&link=<%="#{request.protocol}#{request.host_with_port}#{request.fullpath}resources/#{@resource.id}"%>&resource=<%=@resource.imagen.url(:medium)%>&name=<%=@resource.titulo%>&caption=Dandoo.tv&description=<%=@resource.descripcion%>&redirect_uri=<%="#{request.protocol}#{request.host_with_port}#{request.fullpath}"%>" class="icon-small cfacebook">
+                        <img src="/assets/facebook2.png" width="32" height="32" alt="">
+                      </a>
+                    </li>
+                  </ul>
+                </div>
             </div>
         </div>  
     </div><!--ad-left-->
@@ -177,8 +192,8 @@ content_for :main_js do %>
         </div><!--user-->
         <% end %>
         <br>
-        <% if @comments.count > 10 %>
-        <a href="#" title="seguir" class="buttonF ml39" ><%=@resource.comments.count%> en total</a>
+        <% if @resource.comments.count > 10 %>
+        <a href="#" title="seguir" class="buttonF ml39 ver_mas" ><%=@resource.comments.count%> en total</a>
       <% end %>
 
       </div><!-- Fin Comentario Usuario-->

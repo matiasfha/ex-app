@@ -8,7 +8,7 @@ class ResourcesController < ApplicationController
 		@resource = Resource.find(params[:id])
 		#@resource.num_views+=1;
 		# @resource.save
-		@comments = @resource.comments.limit(10)
+		@comments = @resource.comments.order_by([[:created_at,:desc]]).limit(10).reverse
 	end
 
 	def mas_votados
@@ -32,6 +32,17 @@ class ResourcesController < ApplicationController
 		end
 	end
 
+	def mis_contenidos
+		@resources =  current_user.resources.page(params[:page])
+		respond_with(@resource) do |format|
+  			format.html {render :partial => 'resources/listado'}
+		end
+	end
+
+	def todos
+		@resources  =  Resource.all.order_by([[:created_at,:desc]]).page(params[:page])
+    		@nuevos       = Resource.nuevos.count
+	end
 	def subir
 		@resource = Resource.new
 		render :layout => nil

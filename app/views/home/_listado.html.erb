@@ -10,10 +10,12 @@
                     <article id="<%=resource.id%>" class="post-1 category-blog-posts entry box format-video">
                         <div class="entry-content-cnt">
                             <div class="entry-content">
-                                <div class="zoomOverlay"></div>
+                                
                                     <img src="<%=resource.imagen.url(:medium)%>" class="attachment-ci_listing_thumb" alt="Dandoo" title="Dandoo" >
                                     <%if resource.type=='video' %>
                                         <%=image_tag 'play_03.png' , :class => 'play_image'%>
+                                    <% else %>
+                                        <div class="zoomOverlay"></div>
                                     <% end %>
                             </div>
                         </div>
@@ -23,7 +25,7 @@
                             <div class="entry-meta group">
                              <a class="comments-no" href="#"><%=resource.comments.count%></a> 
                              <a data-post-id="213" class="heart-this loved" href="#" title="Me gusta">
-                             <span class="heart-no"><%=Resource.promedio_votos(resource.id).round %> / <%=resource. votos.count%>  Votos</span></a>
+                             <span class="heart-no" data-total="<%=resource.votos.count %>"><%=Resource.promedio_votos(resource.id).round %> / <%=pluralize resource.votos.count , "Voto"%></span></a>
                             </div>
                         </div>
                     </article>

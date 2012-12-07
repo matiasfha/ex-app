@@ -15,13 +15,16 @@ content_for :main_js do %>
                     <a  href="/comentados"id="mas_comentados"  class="active">Los más comentados</a>
                 </li>
                 <li>
-                    <a href="/nuevos" id="nuevos">Nuevos (<%=@resources.count%>)</a>
+                    <a href="/nuevos" id="nuevos">Nuevos (<%=@nuevos%>)</a>
                 </li>
                 <% if user_signed_in?%>
                 <li>
                     <a href="/mis_contenidos" id="nuevos">Mis contenidos</a>
                 </li>
                 <% end %>
+                <li >
+                    <a href="/todos" id="todos" >Todos</a>
+                </li>
             </ul>
         </div><!-- .wrap < nav -->
     </nav>

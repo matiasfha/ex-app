@@ -15,10 +15,13 @@ content_for :main_js do %>
                     <a  href="/comentados"id="mas_comentados"  class="active">Los más comentados</a>
                 </li>
                 <li>
-                    <a href="/nuevos" id="nuevos">Nuevos (<%=@resources.count%>)</a>
+                    <a href="/nuevos" id="nuevos">Nuevos (<%=@nuevos%>)</a>
                 </li>
                 <li class="current_page_item"> 
                     <a href="/mis_contenidos" id="nuevos">Mis contenidos</a>
+                </li>
+                <li >
+                    <a href="/todos" id="todos" >Todos</a>
                 </li>
             </ul>
         </div><!-- .wrap < nav -->
@@ -27,7 +30,7 @@ content_for :main_js do %>
 
 <%=render :partial => 'listado' %>
 <div class="nav" id="navSelector">
-    <a id="nextpage" href="/recursos/mas_comentados/2">Next Page</a>
+    <a id="nextpage" href="/recursos/mis_contenidos/2">Next Page</a>
 </div>
 
 

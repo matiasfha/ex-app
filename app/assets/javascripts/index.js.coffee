@@ -13,6 +13,7 @@ require.config
 		'jquery.infinitescroll.min':['jquery']
 		'dropdown':['jquery']
 		'jquery.serializeObject':['jquery']
+		'jquery.easing.1.3':['jquery']
 		
 
 require [
@@ -26,7 +27,8 @@ require [
 	'jquery.infinitescroll.min'
 	'dropdown'
 	'jquery.serializeObject'
-],($,_,Backbone,Isotope,domReady,M,T,F,S,D,Ser) ->
+	'jquery.easing.1.3'
+],($,_,Backbone,Isotope,domReady,M,T,F,S,D,Ser,E) ->
 	domReady () ->
 		$.fn.reset = ->
 			$(this).each () ->
@@ -39,6 +41,7 @@ require [
 				xhr.setRequestHeader('X-CSRF-Token', token);
 			cache: false
 
+		
 		$('li#negocio').click (e) ->
 			$('li#negocio ul').toggle()
 			$('li#negocio').toggleClass('active')
@@ -61,12 +64,14 @@ require [
 			$('#entry-listing').fadeIn()
 			$('#entry-listing').isotope 'insert',items, () ->
 				$('#entry-listing').isotope('reLayout')
+		#Mostrar feedback Panel
 		$('#feedback-panel #tab').on 'click',(e) ->
 			if $(e.currentTarget).hasClass 'active'
 				left = '96%';
 			else
 				left = '66%';
 			$('#feedback-panel').animate({left:left})
+
 			$(e.currentTarget).toggleClass 'active'
 
 		box = $(".box")
@@ -133,8 +138,8 @@ require [
 		ratingStar()
 
 		#OnClick en un element
-		$('article').live 'click', (e) ->
-			id = $(e.currentTarget).attr('id')
+		$('article .entry-content').live 'click', (e) ->
+			id = $(e.currentTarget).closest('article').attr('id')
 			$.get  "/resources/#{id}", (data) ->
 				h = $(document).height()+'30'
 				w = $(document).width()
@@ -171,15 +176,57 @@ require [
 			$(data).imagesLoaded () ->
 				$('#entry-listing').isotope('appended',$(data)).isotope('reLayout')
 		
-		$('#comment_descripcion').keypress (e) ->
+		commentTPL = _.template( """
+		<div id="<%=user_id%>" class="<%=clase%>">
+	          <span>
+	            <a href="#">
+	              <img src="<%=avatar%>" alt="user" width="30" height="30" border="0">
+	            </a>
+	          </span>
+	          <div class="detail">
+	            <h2><a href="#"><%user_nickname%></a></h2>
+	            <p><%=contenido%></p>
+	          </div>
+	          <div class="dataUser"><%=fecha%></div>   
+	        </div>
+		""")
+
+		$('#comment_contenido').live 'keypress', (e) ->
 			if e.which == 13
-				data = $('#new_comment').serializeObject
-				console.log data
+				data = $('#new_comment').serializeObject()
+				$.post $('#new_comment').attr('action'),data,(res) ->
+					html = commentTPL(res)
+					$('#comments').append html #Hacer scroll al nuevo elemento y highlight
+
 				e.preventDefault()
 				e.stopPropagation()
-
+		$('.ver_mas').live 'click',(e) ->
+			target = $(e.currentTarget)
+			#target.find()  Mostrar el resto de los comentarios.. ir a buscarlos a la BD
 		
-					
+		$('#new_feedback').submit (e) ->
+			e.stopPropagation()
+			e.preventDefault()
+			data = $('#new_feedback').serializeObject()
+			html = '<img src="/assets/ajax-loader.gif" class="load"/>'
+			content = $('#contentForm').html() 
+			$('#contentForm').empty().html html
+			$.post  '/feedback',data, (resp) ->
+				if resp.success == true
+					htm = '<label class="load">Gracias por tus comentarios</label>'
+					$('#contentForm').empty().html html
+					$('#feedback-panel').delay(2000)
+					.animate({left:'96%'})
+					$('#feedback-panel #tab').toggleClass 'active'
+				else
+					$('#contentForm').html content
+					$('#new_feedback').reset()
+					Recaptcha.reload();
+					if resp.mensaje == 'recaptcha'
+						$('#recaptcha_response_field').addClass 'error'
+					else if resp.mensaje == 'email'
+						$('#email').addClass 'error'
+
 
 
 

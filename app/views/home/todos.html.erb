@@ -22,7 +22,7 @@ content_for :main_js do %>
                     <a href="/mis_contenidos" id="nuevos">Mis contenidos</a>
                 </li>
                 <% end %>
-                <li >
+                <li class="current_page_item">
                     <a href="/todos" id="todos" >Todos</a>
                 </li>
             </ul>
@@ -33,7 +33,7 @@ content_for :main_js do %>
 <%=render :partial => 'listado' %>
 
 <div class="nav" id="navSelector">
-    <a id="nextpage" href="/recursos/mas_votados/2">Next Page</a>
+    <a id="nextpage" href="/recursos/todos/2">Next Page</a>
 </div>
 
 

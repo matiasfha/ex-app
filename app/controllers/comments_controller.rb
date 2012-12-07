@@ -1,5 +1,6 @@
 class CommentsController < ApplicationController
   before_filter :authenticate_user!
+  respond_to :html, :json
   def create
   	@resource = Resource.find(params[:comment][:resource_id])
   	if !@resource.nil?
@@ -8,9 +9,7 @@ class CommentsController < ApplicationController
               @resource.num_comments+=1
 	  	if @resource.save
                 @comentario = @resource.comments.last
-                # render :json => {:success => true, :comentario => @comentario }
-                redirect_to "/resources/#{@resource.id}"
-         		 
+                render :partial => 'new_comment.json'
               else
                     render :json => {success => false, :mensaje => @comentario.errors.full_messages}
 	  	end

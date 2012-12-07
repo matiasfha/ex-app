@@ -10,6 +10,10 @@ es:
   estado_civil: 'Estado Civil'
   ocupacion: 'Ocupación'
   captcha_error: "¿Realmente eres humano? . Intenta ingresar el código nuevamente."
+  votos:
+    zero: 'Votos'
+    one: 'Voto'
+    other: 'Votos'
   time:
     formats:
       de:"%d of %B of %Y"

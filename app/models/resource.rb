@@ -86,4 +86,14 @@ class Resource
 	      return total
 	    end
 	end
+
+	def self.nuevos(pagina=nil)
+		time = Time.now - 5.days
+		if page.nil?
+			Resource.where(:created_at.gte => time).order_by([[:created_at,:desc]])
+		else
+			Resource.where(:created_at.gte => time).order_by([[:created_at,:desc]]).page(pagina)
+		end
+	end
+
 end

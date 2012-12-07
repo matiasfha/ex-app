@@ -93,29 +93,30 @@
    
 <div id="feedback-panel">
   <div id="tab">
-    Sugerencias
+    <%=image_tag 'btn-sugerencias.png' %>
   </div>
   <div id="contentForm">
-        <form class="stn-form label-inline simple formulario" id="new_feedback">
+        <form class="stn-form label-inline simple formulario" id="new_feedback" method="post" action="/feedback">
             <br />
-              <div class="field">
-                <input type="text" placeholder="Nombre" id="nombre" name="nombre"/>
-              </div>
-              <div class="field">
-                <input type="text" placeholder="Email" id="email" name="email"/>
-              </div>
-              <div class="field">
-                <textarea placeholder="Comentario" id="comentario" name="comentario"></textarea>
-              </div>
+            <div class="field">
+              <input type="text" placeholder="Nombre" id="nombre" name="nombre"/>
+            </div>
+            <br />
+            <div class="field">
+              <input type="text" placeholder="Email" id="email" name="email"/>
+            </div>
+            <br />
+            <div class="field">
+              <textarea placeholder="Comentario" id="comentario" name="comentario"></textarea>
+            </div>
               <br />
-              <div class="field">
-                <%=recaptcha_tags :display => {:theme => 'white'}, :ajax => true%>
-              </div>
+              <%=recaptcha_tags :display => {:theme => 'white'}, :ajax => true%>
               <br />
               <div class="actionrow">
                 <input type="submit" value="Enviar" class="small button" style="align:rigth" id="feedback_send" />
               </div>
       </form>
+      
   </div>
 </div>
 
