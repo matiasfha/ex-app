@@ -14,7 +14,7 @@ body {
 #page {
   min-height: 100%;
   position: relative;
-  margin-top:-30px;
+  margin-top:-10px;
 }
 
 p {
@@ -1063,13 +1063,15 @@ img.play_image{
   text-indent: -9999px;
   overflow: hidden;
   text-align: center;
+  position:relative;
+  top:-13px;
 }
 
 
 //Nuevo current-menu-item
 
 .menu{
-  padding: 20px 0 0;
+  // padding: 20px 0 0;
   margin-left:25%;
 }
 .menu li{

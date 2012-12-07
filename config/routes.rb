@@ -22,8 +22,6 @@ DandooDev::Application.routes.draw do
   end
 
   resources :empresas, :only => [:new, :create, :update, :destroy]
-  
-
   resources :users, :only => [:show,:update]
 
   
@@ -35,7 +33,7 @@ DandooDev::Application.routes.draw do
   match 'recursos/todos(/:page)' => 'resources#nuevos',:via => :get
   match 'recursos/subir' => 'resources#subir', :via => :get
   
-  resources :comments, :only => [:create,:show]
+  resources :comments, :only => [:create,:show,:index]
   #match '/comments/:pid/:cid' => 'comments#destroy', :via => :delete
   match '/votos/:pid/:valor' => 'votos#create', :via => :post
 

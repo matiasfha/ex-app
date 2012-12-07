@@ -208,7 +208,14 @@ require [
 				e.stopPropagation()
 		$('.ver_mas').live 'click',(e) ->
 			target = $(e.currentTarget)
-			#target.find()  Mostrar el resto de los comentarios.. ir a buscarlos a la BD
+			resource_id = target.attr('data-resource')
+			target.html('Cargando....')
+			$.get '/comments',{resource_id:resource_id}, (e) ->
+				$('#comments').fadeOut () ->
+					$(this).html (e)
+					$(this).fadeIn () ->
+						target.remove()
+			
 		
 		$('#new_feedback').submit (e) ->
 			e.stopPropagation()
