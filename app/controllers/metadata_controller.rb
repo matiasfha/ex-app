@@ -20,12 +20,12 @@ class MetadataController < ApplicationController
                 if !validar.nil?
                         if validate_email_domain(from)
 
-                                if verify_recaptcha
-	                                Emailer.feedback_email(autor,from,comentario).deliver
-	                                render :json => {:success => true}
-                                else
-                                         render :json => {:success => false, :mensaje => 'recaptcha'}
-                                 end
+                                #if verify_recaptcha
+                                Emailer.feedback_email(autor,from,comentario).deliver
+                                render :json => {:success => true}
+                                # else
+                                #          render :json => {:success => false, :mensaje => 'recaptcha'}
+                                #  end
                         else
                                 render :json => {:success => false, :mensaje => 'email'}
                         end

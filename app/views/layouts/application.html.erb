@@ -110,8 +110,8 @@
               <textarea placeholder="Comentario" id="comentario" name="comentario"></textarea>
             </div>
               <br />
-              <%=recaptcha_tags :display => {:theme => 'white'}, :ajax => true%>
-              <br />
+              <%recaptcha_tags :display => {:theme => 'white'}, :ajax => true%>
+              <!-- <br /> -->
               <div class="actionrow">
                 <input type="submit" value="Enviar" class="small button" style="align:rigth" id="feedback_send" />
               </div>
