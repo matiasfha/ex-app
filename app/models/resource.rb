@@ -45,10 +45,20 @@ class Resource
 
     attr_accessible :imagen,  :descripcion, :titulo, :num_views
     attr_accessible :thumbnail, :url, :type,:html,:provider
-
+    
+    validates_attachment_presence :imagen
+    validates_presence_of  :titulo
+    validates_presence_of :url, :allow_blank => 'true', :if => :is_imagen?
+    
     index "comments.id" => 1
 
-	
+    def is_video?
+    	type == 'video'
+    end
+
+    def is_imagen?
+    	type == 'imagen'
+    end
 
 	#Retorna las mas votadas respecto al rating de votos
 	def self.mas_votadas(pagina=nil)

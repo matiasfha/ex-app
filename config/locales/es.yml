@@ -25,3 +25,5 @@ es:
             email:
               taken: 'Email ya registrado'
               blank: 'El email no puede estar vacío'
+  resources:
+    url_error:'La url del video no puede estar vacía'  

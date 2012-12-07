@@ -21,6 +21,7 @@ require [
 			beforeSend: (xhr) ->
 				xhr.setRequestHeader('X-CSRF-Token', token);
 			cache: false
+		$('div.mensajes').delay(2000).fadeOut()
 		$('input[type="radio"]').on 'change',(e) ->
 			if $(e.currentTarget).is(':checked') 
 				$('.activoRadio').removeClass('activoRadio')

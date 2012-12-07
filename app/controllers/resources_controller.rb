@@ -75,8 +75,15 @@ class ResourcesController < ApplicationController
     else
       @res = Resource.new(params[:resource])
     end
-    current_user.resources << @res
-    redirect_to "/mis_contenidos"
+    if !@res.valid?
+    		@resource = @res
+    		flash[:error] = @res.errors.full_messages
+    		render :subir, :layout => nil
+     else
+     		current_user.resources << @res
+		redirect_to "/mis_contenidos"	
+     end	
+    
     
   end
 
