@@ -67,10 +67,10 @@ require [
 		#Mostrar feedback Panel
 		$('#feedback-panel #tab').on 'click',(e) ->
 			if $(e.currentTarget).hasClass 'active'
-				left = '96%';
+				right = '-245px'
 			else
-				left = '66%';
-			$('#feedback-panel').animate({left:left})
+				right = '134px';
+			$('#feedback-panel').animate({right:right})
 
 			$(e.currentTarget).toggleClass 'active'
 

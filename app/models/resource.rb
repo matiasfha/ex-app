@@ -51,21 +51,30 @@ class Resource
 	
 
 	#Retorna las mas votadas respecto al rating de votos
-	def self.mas_votadas(pagina)
+	def self.mas_votadas(pagina=nil)
 	    avg = Voto.avg(:valor)
 	    avg = (avg.nil?)? 0 : avg.round
 	    resources = Array.new
 	    
-	    Voto.where(:valor.gte => avg).order_by([[:created_at,:desc],[:valor,:desc]]).page(pagina).each do |v|
-	      resources.push self.find(v.resource_id)
-	    end
-		
+	    	if pagina.nil?
+	    		Voto.where(:valor.gte => avg).order_by([[:created_at,:desc],[:valor,:desc]]).each do |v|
+		      		resources.push self.find(v.resource_id)
+		    	end
+	    	else
+		    Voto.where(:valor.gte => avg).order_by([[:created_at,:desc],[:valor,:desc]]).page(pagina).each do |v|
+		      resources.push self.find(v.resource_id)
+		    end
+		end
 	    resources
 	end
 
-	def self.mas_comentados(pagina)
+	def self.mas_comentados(pagina=nil)
 		avg = self.avg(:num_comments).round
-		self.where(:num_comments.gte => avg).order_by([[:created_at,:desc],[:num_comments,:desc]]).page(pagina)
+		if pagina.nil?
+			self.where(:num_comments.gte => avg).order_by([[:created_at,:desc],[:num_comments,:desc]])
+		else
+			self.where(:num_comments.gte => avg).order_by([[:created_at,:desc],[:num_comments,:desc]]).page(pagina)
+		end
 	end
 	
 	#Retorna todos los comentarios existentes

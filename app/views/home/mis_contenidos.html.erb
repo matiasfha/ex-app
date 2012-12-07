@@ -5,27 +5,7 @@ content_for :main_js do %>
 
 
 <% content_for :header_nav do %>
-    <nav>
-        <div class="group">
-            <ul id="navigation" class="group">
-                <li >
-                    <a href="<%=root_path%>" id="mas_votados">Los mejores</a>
-                </li>
-                <li >
-                    <a  href="/comentados"id="mas_comentados"  class="active">Los más comentados</a>
-                </li>
-                <li>
-                    <a href="/nuevos" id="nuevos">Nuevos (<%=@nuevos%>)</a>
-                </li>
-                <li class="current_page_item"> 
-                    <a href="/mis_contenidos" id="nuevos">Mis contenidos</a>
-                </li>
-                <li >
-                    <a href="/todos" id="todos" >Todos</a>
-                </li>
-            </ul>
-        </div><!-- .wrap < nav -->
-    </nav>
+    <%= render :partial => 'menu', :locals => {:child => '4'} %>
 <% end %>
 
 <%=render :partial => 'listado' %>

@@ -1,0 +1,54 @@
+<!-- <nav>
+        <div class="group">
+            <ul id="navigation" class="group">
+                <li class="current_page_item">
+                    <a href="<%=root_path%>" id="mas_votados" >Los mejores</a>
+                </li>
+                <li>
+                    <a  href="/comentados"id="mas_comentados">Los más comentados</a>
+                </li>
+                <li>
+                    <a href="/nuevos" id="nuevos">Nuevos (<%=@nuevos%>)</a>
+                </li>
+                <% if user_signed_in?%>
+                <li>
+                    <a href="/mis_contenidos" id="nuevos">Mis contenidos</a>
+                </li>
+                <% end %>
+                <li >
+                    <a href="/todos" id="todos" >Todos</a>
+                </li>
+            </ul>
+        </div>
+    </nav> -->
+    <style type="text/css">
+        li:nth-child(<%=child%>){
+            text-decoration: underline;
+        }
+    </style> 
+    <ul class="menu">
+        <li >
+            <a href="<%=root_path%>">Los mejores
+                <span class="notificacion rojo"><%=@votados%></span>
+            </a>
+        </li>
+        <li>
+            <a href="/comentados">Los más comentados
+                <span class="notificacion amarillo"><%=@comentados%></span>
+            </a>
+        </li>
+        <li>
+            <a href="/nuevos">Nuevos
+                <span class="notificacion azul"><%=@nuevos%></span>
+            </a>
+        </li>     
+        <% if user_signed_in? %>
+        <li>
+            <a href="/mis_contenidos">Mis contenido</a>
+        </li>     
+        <% end%>
+        <li>
+            <a href="/todos">Todos</a>
+        </li>     
+    </ul>
+    <div class="mensajeB"><h1>Comenta, rankea y comparte la mejor publicidad </h1></div>

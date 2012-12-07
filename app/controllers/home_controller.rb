@@ -2,17 +2,23 @@ class HomeController < ApplicationController
   def index
   	@resources = Resource.mas_votadas(params[:page])
       @nuevos       = Resource.nuevos.count
+      @votados      = Resource.mas_votadas.count
+      @comentados = Resource.mas_comentados.count
   end
 
   def recursos_nuevos
       @resources = Resource.nuevos(params[:page])
       @nuevos       = Resource.nuevos.count
+      @votados      = Resource.mas_votadas.count
+      @comentados = Resource.mas_comentados.count
       render :layout => 'application'
   end
 
   def recursos_comentados
   	@resources =  Resource.mas_comentados(params[:page])
       @nuevos       = Resource.nuevos.count
+      @votados      = Resource.mas_votadas.count
+      @comentados = Resource.mas_comentados.count
   	render :layout => 'application'
   end
 
@@ -20,6 +26,8 @@ class HomeController < ApplicationController
     if user_signed_in?
       @resources =  current_user.resources.page
       @nuevos       = Resource.nuevos.count
+      @votados      = Resource.mas_votadas.count
+      @comentados = Resource.mas_comentados.count
       render :layout => 'application'
     else 
       redirect_to root_path
@@ -29,6 +37,8 @@ class HomeController < ApplicationController
   def todos
     @resources  =  Resource.all.order_by([[:created_at,:desc]]).page(params[:page])
     @nuevos       = Resource.nuevos.count
+    @votados      = Resource.mas_votadas.count
+      @comentados = Resource.mas_comentados.count
   end
 
   def ingresar
