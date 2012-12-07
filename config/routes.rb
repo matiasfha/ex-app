@@ -7,7 +7,11 @@ DandooDev::Application.routes.draw do
   match 'metadata/get_cities/:id'   => 'metadata#get_cities'
   match '/feedback' => 'metadata#feedback', :via => :post
 
+  authenticated :user do 
+    root :to => 'home#index'
+  end
   root :to => 'home#index'
+
   match 'ingresar' => 'home#ingresar', :via => :get
   match 'nuevos' => 'home#recursos_nuevos',:via => :get 
   match 'comentados' => 'home#recursos_comentados',:via => :get
