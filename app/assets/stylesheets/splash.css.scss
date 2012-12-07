@@ -1,5 +1,5 @@
 
-body{ background: url(bg-dandoo.png) repeat; margin: 0px;}
+body{ background: #F6F6F3 url(bg-dandoo.png) repeat; margin: 0px;}
 
 .wrap {
 margin: 0 auto;
@@ -844,6 +844,7 @@ right: 90px;
 }
 
 #nav-access li {
+  font-family:arial;
   display: inline;
   float: left;
   list-style: none;

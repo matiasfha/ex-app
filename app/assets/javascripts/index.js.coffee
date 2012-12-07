@@ -40,7 +40,19 @@ require [
 			beforeSend: (xhr) ->
 				xhr.setRequestHeader('X-CSRF-Token', token);
 			cache: false
+		showMask = () ->
+			part = window.location.href.split('/')[3]
+			if part == "resources"
+				h = $(document).height()+'30'
+				w = $(document).width()
+				$('#theMask').css 
+					'height':h
+					'width':w
+				
 
+
+				
+		showMask()
 		
 		$('li#negocio').click (e) ->
 			$('li#negocio ul').toggle()
@@ -146,6 +158,7 @@ require [
 				$('#theMask').css 
 					'height':h
 					'width':w
+				
 				$('#contenedor-modal').css 
 					'height':h
 					'width':w

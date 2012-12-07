@@ -45,6 +45,7 @@
 
 
                 <% if user_signed_in? %>
+
                 <div class="dropdown">
                     <a class="account" ><img src="<%=current_user.avatar.url%>" alt="usuario-on" width="27" height="24"></a>
                     <div class="submenu">
@@ -56,6 +57,9 @@
                     </ul>
                     </div>
                 </div>  
+                <ul id="nav-access" style="margin-right:-45px">
+                    <li><a href="/recursos/subir" class="btnsubir subir">Subir Comerciales</a></li>
+                </ul>
                 <% else %>
 
                 <ul id="nav-access">
@@ -126,6 +130,7 @@
   </script>
   <!--[if (gte IE 6)&(lte IE 8)]><script type="text/javascript" src="/assets/selectivizr-min.js"></script><![endif]-->
   <script type="text/javascript" src="/assets/require.js" data-main=<%=yield(:main_js)%>></script>
+  <%=yield :javascript %>
   <script type="text/javascript">
     var _gaq = _gaq || [];
     _gaq.push(['_setAccount', "<%=ENV['GOOGLEANALYTICS']%>"]);

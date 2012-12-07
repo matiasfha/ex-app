@@ -54,6 +54,7 @@ class ResourcesController < ApplicationController
 	end
 	def subir
 		@resource = Resource.new
+		session[:last_page] = (refered_from_our_site?)  ? http_referer_uri : root_path
 		render :layout => nil
 	end
 
