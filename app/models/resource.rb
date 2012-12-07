@@ -74,9 +74,9 @@ class Resource
 			avg = 1
 		end
 		if pagina.nil?
-			self.where(:num_comments.gte => avg).order_by([[:created_at,:desc],[:num_comments,:desc]])
+			self.where(:num_comments.gte => avg).order_by([[:num_comments,:desc],[:created_at,:desc]])
 		else
-			self.where(:num_comments.gte => avg).order_by([[:created_at,:desc],[:num_comments,:desc]]).page(pagina)
+			self.where(:num_comments.gte => avg).order_by([[:num_comments,:desc],[:created_at,:desc]]).page(pagina)
 		end
 	end
 	
