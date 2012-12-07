@@ -68,11 +68,13 @@ class Resource
 	    
 	    	if pagina.nil?
 	    		Voto.where(:valor.gte => avg).order_by([[:valor,:desc],[:created_at,:desc]]).each do |v|
-		      		resources.push self.find(v.resource_id)
+	    			r = self.find(v.resource_id)
+		      		resources.push(r) unless  resources.include? r
 		    	end
 	    	else
 		    Voto.where(:valor.gte => avg).order_by([[:valor,:desc],[:created_at,:desc]]).page(pagina).each do |v|
-		      resources.push self.find(v.resource_id)
+		      r = self.find(v.resource_id)
+		      	resources.push(r) unless  resources.include? r
 		    end
 		end
 	    resources
