@@ -10,7 +10,7 @@ DandooDev::Application.routes.draw do
   authenticated :user do 
     root :to => 'home#index'
   end
-  root :to => 'home#index'
+  root :to => 'home#splash'
 
   match 'ingresar' => 'home#ingresar', :via => :get
   match 'nuevos' => 'home#recursos_nuevos',:via => :get 

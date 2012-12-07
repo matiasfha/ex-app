@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+		<meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"> 
+
+
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+
+
+        <%= stylesheet_link_tag    "splash", :media => "all" %>
+        
+
+		
+
+
+    </head>
+    <body>
+        
+        
+           <div style="margin-top: -21px;">
+            <div class="wrap group">
+                <hgroup class="logo">
+                    <h1>
+                    	<a href="<%=root_path%>">
+                        <img src="/assets/dandooTV.png" alt="dandooTV" width="148" height="44">
+                    </a>
+                    </h1>
+                    
+                </hgroup>
+                <ul id="nav-access">
+                        <li>Ingresar con</li>
+                        <li><a href="/auth/twitter" class="icon-small twitter">
+                            <img src="/assets/t.png" alt="t" width="14" height="12" border="0" />
+                        </a></li>
+                        <li>o</li>
+                        <li><a href="/auth/facebook" class="icon-small facebook">
+                            <img src="/assets/f.png" alt="f" width="14" height="12" border="0"/>
+                          </a>
+                        </li>
+                        <!-- <li  id="negocio" class="dropdown">
+                            ¿Tienes un negocio?
+                            <ul>
+                                <li><a href="<%=new_empresa_path%>" title="Ingresar">Registrarse</a></li>
+                                <li><a href="/empresas/login" title="Ingresar">Ingresar</a></li>
+                            </ul>
+                        </li> -->
+                    <li style="display:none"><a href="#" title="Acerca de Dandoo" class="paddr10">Nosotros</a></li>
+                </ul>
+
+            </div>
+        </div>
+     
+        
+        
+        <div class="container demo-2">
+           
+           
+           
+            <div id="slider" class="sl-slider-wrapper" style="display:none">
+				
+				<div class="sl-slider">
+				
+				
+				
+					<div class="sl-slide" data-orientation="horizontal" data-slice1-rotation="-25" data-slice2-rotation="-25" data-slice1-scale="2" data-slice2-scale="2">
+					
+					
+						<div class="sl-slide-inner">
+							
+							<div style="text-aling:center; background:#000;">
+							
+							<div style="width:1198px; margin:0 auto;"> 
+								
+								<img src="/assets/bienvenida.jpg" alt="bienvenida" width="1198" height="299" />
+							</div>
+							
+							
+							</div>
+							
+						</div>
+					</div>
+
+				
+				
+				
+					<div class="sl-slide" data-orientation="horizontal" data-slice1-rotation="-25" data-slice2-rotation="-25" data-slice1-scale="2" data-slice2-scale="2">
+					
+					
+						<div class="sl-slide-inner">
+							
+							<div style="width:900px; margin:0 auto; position:relative;">
+							<h2>Comenta,</h2>
+							<span class="imgComenta"><img src="/assets/comenta-dandoo.png" alt="comenta-dandoo" width="347" height="288" /></span>
+							</div>
+							
+							
+						</div>
+					</div>
+
+
+					
+					<div class="sl-slide" data-orientation="vertical" data-slice1-rotation="10" data-slice2-rotation="-15" data-slice1-scale="1.5" data-slice2-scale="1.5">
+						<div class="sl-slide-inner">
+						
+							<div style="width:900px; margin:0 auto; position:relative;">
+							<h2 style="font-size:60px;">rankea y comparte...</h2>
+							<span class="imgRankea"><img src="/assets/rankea-dandoo.png" alt="rankea-dandoo" width="370" height="216" /></span>
+							</div>
+						</div>
+					</div>
+
+
+					
+
+					<div class="sl-slide" data-orientation="horizontal" data-slice1-rotation="-25" data-slice2-rotation="-25" data-slice1-scale="2" data-slice2-scale="2">
+					
+					
+						<div class="sl-slide-inner">
+							
+							<div style="width:900px; margin:0 auto; position:relative;">
+							<h2 style="font-size:60px;">Ingresa con</h2>
+
+
+
+				<ul class="clicker">				
+					<li id="tw"><a href="/auth/twitter" class="medium twitter ml15"><img src="/assets/twitter2.png" width="41" height="41" alt="">Twitter</a></li>
+					<li class="oespacio"><strong>o</strong></li>
+					<li id="fb"><a href="/auth/facebook" class="medium facebook ml17"><img src="/assets/facebook1.png" width="41" height="41" alt="">Facebook</a></li>
+				</ul>
+
+
+
+							</div>
+							
+							
+						</div>
+					</div>
+
+
+				</div><!-- /sl-slider -->
+
+
+
+				<nav id="nav-dots" class="nav-dots">
+					<span class="nav-dot-current"></span>
+					<span></span>
+					<span></span>
+					<span></span>
+				</nav>
+				
+</div><!-- /slider-wrapper -->
+</div>
+
+		
+		<script type="text/javascript" src="/assets/require.js" data-main="/assets/splash.js"></script>
+		
+	</body>
+</html>

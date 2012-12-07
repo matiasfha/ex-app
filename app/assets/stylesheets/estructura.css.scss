@@ -1197,3 +1197,13 @@ img.play_image{
   background: linear-gradient(top, #c2ecfa 0%, #71cef3 100%);
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#c2ecfa', endColorstr='#71cef3',GradientType=0 );
 }
+
+#infscr-loading{
+  position:absolute;
+  top:-100px;
+  left:-200px;
+  z-index:-900;
+  background:transparent;
+  color:transparent;
+
+}

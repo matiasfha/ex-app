@@ -6,6 +6,11 @@ class HomeController < ApplicationController
       @comentados = Resource.mas_comentados.count
   end
 
+  def splash
+    render :layout => nil
+  end
+
+
   def recursos_nuevos
       @resources = Resource.nuevos(params[:page])
       @nuevos       = Resource.nuevos.count
