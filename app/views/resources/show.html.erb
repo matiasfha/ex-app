@@ -137,7 +137,7 @@ content_for :main_js do %>
     <div id="uno"><!-- uno-->
       <h3>La gente le puso esta nota</h3>
       <%
-      nota = Resource.promedio_votos(@resource.id).round
+      nota = Resource.promedio_votos(@resource.id)
       %>
       <div class="bigStar"><span><%=nota %></span><br><span id="votoWord"><%=@resource.votos.count%> votos</span></div>
       
@@ -149,7 +149,7 @@ content_for :main_js do %>
         <% for i in 1..nota %>
           <li class="star"><a href="" class="starOn"><%=i%></a></li>
         <% end %>
-        <% for i in nota...7 %>
+        <% for i in nota...5 %>
           <li class="star"><a href="#" class="starOff"><%=i+1%></a></li>
         <% end %>
 

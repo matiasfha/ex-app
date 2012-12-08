@@ -804,11 +804,7 @@ right: 90px;
 	background-image: linear-gradient(top, rgb(95, 190, 229), rgb(136, 213, 238));
 	filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0,StartColorStr='#5fbee5', EndColorStr='#88d5ee');
 }
-.twitter img {
-	box-shadow: 
-		1px 0px 0px rgba(255,255,255,.55),
-		2px 0px 0px #4d9ebe;
-}
+
 
 
 .facebook {
@@ -829,11 +825,6 @@ right: 90px;
 	background-image: -ms-linear-gradient(top, rgb(52, 118, 178), rgb(95, 151, 202));
 	background-image: linear-gradient(top, rgb(52, 118, 178), rgb(95, 151, 202));
 	filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0,StartColorStr='#3476b2', EndColorStr='#5f97ca');
-}
-.facebook img {
-	box-shadow: 
-		1px 0px 0px rgba(255,255,255,.55),
-		2px 0px 0px #256299;
 }
 
 #nav-access {
