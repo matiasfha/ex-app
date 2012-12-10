@@ -1205,12 +1205,29 @@ img.play_image{
   //   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#c2ecfa', endColorstr='#71cef3',GradientType=0 );
 }
 
-#infscr-loading{
-  position:absolute;
-  top:-100px;
-  left:-200px;
-  z-index:-900;
-  background:transparent;
-  color:transparent;
+// #infscr-loading{
+//   position:absolute;
+//   top:-100px;
+//   left:-200px;
+//   z-index:-900;
+//   background:transparent;
+//   color:transparent;
+// }
 
+#infscr-loading {
+  position: fixed;
+  text-align: center;
+  bottom: 30px;
+  left: 42%;
+  z-index: 100;
+  background: white;
+  background: hsla( 0, 0%, 100%, 0.9 );
+  padding: 20px;
+  color: #222;
+  font-size: 15px;
+  font-weight: bold;
+  -webkit-border-radius: 10px;
+     -moz-border-radius: 10px;
+          border-radius: 10px;
 }
+

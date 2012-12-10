@@ -293,6 +293,7 @@ DEPENDENCIES
   guard-livereload
   handlebars_assets
   jquery-rails
+  json
   kaminari
   launchy
   mongoid
@@ -314,5 +315,6 @@ DEPENDENCIES
   unicorn
   valid_email
   version
+  xml-simple
   yajl-ruby
   yui-compressor

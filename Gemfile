@@ -34,6 +34,8 @@ gem 'omniauth-twitter'
 gem 'omniauth-facebook'
 gem 'remotipart',"~> 1.0"
 gem 'kaminari'
+gem 'xml-simple'
+gem 'json'
 gem 'ruby-oembed'
 gem 'valid_email'
 gem "mongoid-paperclip", :require => "mongoid_paperclip", :git => "git://github.com/meskyanichi/mongoid-paperclip.git"
