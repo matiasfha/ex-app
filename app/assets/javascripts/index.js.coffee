@@ -89,8 +89,8 @@ require [
 				msgText:"<em>Cargando recursos..</em>"
 			
 		, (data) ->
-			# $(data).imagesLoaded () ->
-			$('#entry-listing').isotope('appended',$(data)).isotope('reLayout')
+			$(data).imagesLoaded () ->
+				$('#entry-listing').isotope('appended',$(data)).isotope('reLayout')
 		
 
 		#Para que el contenedor sea responsive
