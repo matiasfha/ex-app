@@ -58,6 +58,7 @@ require [
 			$('li#negocio ul').toggle()
 			$('li#negocio').toggleClass('active')
 
+		#Carga grilla isotope
 		$('#entry-listing').imagesLoaded () ->
 			$('#entry-listing').isotope(
 				animationOptions: 
@@ -76,16 +77,23 @@ require [
 			$('#entry-listing').fadeIn()
 			$('#entry-listing').isotope 'insert',items, () ->
 				$('#entry-listing').isotope('reLayout')
-		#Mostrar feedback Panel
-		$('#feedback-panel #tab').on 'click',(e) ->
-			if $(e.currentTarget).hasClass 'active'
-				right = '-245px'
-			else
-				right = '134px';
-			$('#feedback-panel').animate({right:right})
+		
+		#Cargar contenidos con scroll infinito
+		$('#entry-listing').infinitescroll
+			navSelector:'#navSelector'
+			nextSelector:'#nextpage'
+			itemSelector:'article.entry'
+			loading:
+				img:"/assets/ajax-loader.gif"
+				finishedMsg:"Ya no quedan más elementos..."
+				msgText:"<em>Cargando recursos..</em>"
+			
+		, (data) ->
+			# $(data).imagesLoaded () ->
+			$('#entry-listing').isotope('appended',$(data)).isotope('reLayout')
+		
 
-			$(e.currentTarget).toggleClass 'active'
-
+		#Para que el contenedor sea responsive
 		box = $(".box")
 		setContainerWidth =  ->
 			columnNumber = parseInt(($(window).width() + 15) / box.outerWidth(true))
@@ -98,6 +106,7 @@ require [
 		setContainerWidth();
 		$(window).resize(setContainerWidth)
 
+		#Muestra el overlay sobre los items al pasar el mouse
 		$('.entry-content').live 'mouseenter', (e) ->
 			$(e.currentTarget).find('.zoomOverlay').fadeIn();
 		.live 'mouseleave',(e) ->
@@ -177,19 +186,6 @@ require [
 			$('#contenedor-modal').fadeOut().empty();
 			false
 		
-		#Cargar contenidos con scroll infinito
-		$('#entry-listing').infinitescroll
-			navSelector:'#navSelector'
-			nextSelector:'#nextpage'
-			itemSelector:'article.entry'
-			loading:
-				img:"/assets/ajax-loader.gif"
-				finishedMsg:"Ya no quedan más elementos..."
-				msgText:"<em>Cargando recursos..</em>"
-			
-		, (data) ->
-			$(data).imagesLoaded () ->
-				$('#entry-listing').isotope('appended',$(data)).isotope('reLayout')
 		
 
 		#Template para comentario nuevo
@@ -232,7 +228,16 @@ require [
 					$(this).html (e)
 					$(this).fadeIn () ->
 						target.remove()
-			
+		
+		#Mostrar feedback Panel
+		$('#feedback-panel #tab').on 'click',(e) ->
+			if $(e.currentTarget).hasClass 'active'
+				right = '-245px'
+			else
+				right = '134px';
+			$('#feedback-panel').animate({right:right})
+
+			$(e.currentTarget).toggleClass 'active'
 		
 		$('#new_feedback').submit (e) ->
 			e.stopPropagation()
