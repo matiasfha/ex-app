@@ -4,7 +4,7 @@ class Resource
   include Mongoid::Timestamps
   include Mongoid::Paperclip
 
-  paginates_per 8
+  paginates_per 12
 
   embeds_many :comments
   
