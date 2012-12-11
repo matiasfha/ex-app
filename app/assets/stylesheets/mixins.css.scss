@@ -1,0 +1,50 @@
+/** Mixinx **/
+@mixin opacity ( $value: 0.5 ) {
+  opacity: $value;
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=" $value * 100 ")";
+  filter: alpha(opacity= $value * 100 );
+  zoom: 1;
+  -moz-opacity:0;
+  -khtml-opacity: 0;
+}
+
+@mixin gradient($values...){
+  background-image: -moz-linear-gradient($values);
+  background-image: -o-linear-gradient($values);
+  background-image: -webkit-linear-gradient($values);
+  background-image: linear-gradient($values);
+}
+
+
+@mixin transition($values...){
+  -moz-transition: $values;
+  -webkit-transition: $values;
+  -o-transition: $values;
+  transition: $values;
+}
+
+@mixin transform($values...){
+  -ms-transform: $values;
+  -webkit-transform: $values;
+  -o-transform: $values;
+  -moz-transform: $values;
+  transform:$values;
+}
+
+@mixin border-radius ( $values...) {
+  -webkit-border-radius: $values;
+  -moz-border-radius: $values;
+  border-radius: $values;
+
+  // keeps background from busting out of border 
+  -webkit-background-clip: padding-box;
+  -moz-background-clip: padding;
+  background-clip: padding-box;
+}
+
+@mixin box-shadow( $shadows...){
+  -webkit-box-shadow: $shadows;
+  -moz-box-shadow: $shadows;
+  -o-box-shadow: $shadows;
+  box-shadow: $shadows;
+}

@@ -1,0 +1,13 @@
+{
+        <% user = User.find(@comentario.user_id)
+        cant = @resource.comments.count
+        nombre = (user.tipo_usuario == 'usuario') ? user.usuario.nickname : user.empresa.nombre_empresa
+         %>
+        "id":"<%=@comentario.id%>",
+        "avatar":"<%=user.avatar.url(:thumb)%>",
+        "user_nickname":"nombre",
+        "fecha":"<%=distance_of_time_in_words_to_now @comentario.created_at%>",
+        "contenido":"<%=@comentario.contenido%>",
+        "user_id":"<%=user.id%>",
+        "clase": "<%=(cant%2==0)? 'user1':'user2' %>"
+}

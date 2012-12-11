@@ -147,22 +147,13 @@ padding-left: 3px;
 padding-top: 4px;
 }
 
+
+
 .facebook {
 margin-left: 0px !important;
 }
 
-#nav-access .twitter, #nav-access .facebook  {
-	-webkit-box-shadow:
-		inset 0px 1px 0px rgba(255,255,255,.75),
-		0px 1px 1px rgba(0,0,0,.15);
-	-moz-box-shadow:
-		inset 0px 1px 0px rgba(255,255,255,.75),
-		0px 1px 1px rgba(0,0,0,.15);
-	box-shadow:
-		inset 0px 1px 0px rgba(255,255,255,.75),
-		0px 1px 1px rgba(0,0,0,.15);
-	behavior:url('PIE.htc');
-}
+
 #nav-access a img { float:left; }
 
 .container a {
@@ -276,4 +267,53 @@ margin-left: 0px !important;
 		1px 0px 0px rgba(255,255,255,.55),
 		2px 0px 0px #256299;
 }
+
+#nav-access .btnsubir {
+	width:112px;
+	height:20px;
+	float:left;
+	-webkit-border-radius: 2px;
+	-moz-border-radius: 2px;
+	border-radius: 2px;
+	margin-left: 10px;
+	margin-top:-5px;
+	padding-left: 10px; 
+	padding-top: 5px;
+	color: #fff;
+	&.subir  {
+		-webkit-box-shadow:
+			inset 0px 1px 0px rgba(255,255,255,.75),
+			0px 1px 1px rgba(0,0,0,.15);
+		-moz-box-shadow:
+			inset 0px 1px 0px rgba(255,255,255,.75),
+			0px 1px 1px rgba(0,0,0,.15);
+		box-shadow:
+			inset 0px 1px 0px rgba(255,255,255,.75),
+			0px 1px 1px rgba(0,0,0,.15);
+	}
+
+
+	&.subir {
+		background-image: -webkit-linear-gradient(top, rgb(117, 224, 246), rgb(70, 191, 215));
+		background-image: -moz-linear-gradient(top, rgb(117, 224, 246), rgb(70, 191, 215));
+		background-image: -o-linear-gradient(top, rgb(117, 224, 246), rgb(70, 191, 215));
+		background-image: -ms-linear-gradient(top, rgb(117, 224, 246), rgb(70, 191, 215));
+		background-image: linear-gradient(top, rgb(117, 224, 246), rgb(70, 191, 215));
+		filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0,StartColorStr='#75e0f6', EndColorStr='#46bfd7');
+		border:1px solid #2fabc4;
+
+		text-shadow: 0px 1px 0px rgba(8,83,111,.47);
+	}
+	&.subir:hover {
+		background-image: -webkit-linear-gradient(top, rgb(70, 191, 215), rgb(117, 224, 246));
+		background-image: -moz-linear-gradient(top, rgb(70, 191, 215), rgb(117, 224, 246));
+		background-image: -o-linear-gradient(top, rgb(70, 191, 215), rgb(117, 224, 246));
+		background-image: -ms-linear-gradient(top, rgb(70, 191, 215), rgb(117, 224, 246));
+		background-image: linear-gradient(top, rgb(70, 191, 215), rgb(117, 224, 246));
+		filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0,StartColorStr='#46bfd7', EndColorStr='#75e0f6');
+		text-decoration: none !important;
+	}
+	
+}
+
 

@@ -1,14 +1,25 @@
+require 'bitly'
 class ResourcesController < ApplicationController
 	layout :get_layout
 	before_filter :authenticate_user!, :only => [:create,:destroy,:subir]
 	respond_to :html
+	Bitly.use_api_version_3
 
+	def http_referer_uri
+	  request.env["HTTP_REFERER"] && URI.parse(request.env["HTTP_REFERER"])
+	end
+
+	def refered_from_our_site?
+	  if uri = http_referer_uri
+	    uri.host == request.host
+	  end
+	end
+	
 
 	def show
 		@resource = Resource.find(params[:id])
-		#@resource.num_views+=1;
-		# @resource.save
-		@comments = @resource.comments.limit(10)
+		session[:last_page] = (refered_from_our_site?)  ? http_referer_uri : root_path
+		@comments = @resource.comments.order_by([[:created_at,:desc]]).limit(10).reverse
 	end
 
 	def mas_votados
@@ -32,8 +43,20 @@ class ResourcesController < ApplicationController
 		end
 	end
 
+	def mis_contenidos
+		@resources =  current_user.resources.order_by([[:created_at,:desc]]).page(params[:page])
+		respond_with(@resource) do |format|
+  			format.html {render :partial => 'resources/listado'}
+		end
+	end
+
+	def todos
+		@resources  =  Resource.all.order_by([[:created_at,:desc]]).page(params[:page])
+    		@nuevos       = Resource.nuevos.count
+	end
 	def subir
 		@resource = Resource.new
+		session[:last_page] = (refered_from_our_site?)  ? http_referer_uri : root_path
 		render :layout => nil
 	end
 
@@ -64,8 +87,15 @@ class ResourcesController < ApplicationController
     else
       @res = Resource.new(params[:resource])
     end
-    current_user.resources << @res
-    redirect_to "/mis_contenidos"
+    if !@res.valid?
+    		@resource = @res
+    		flash[:error] = @res.errors.full_messages
+    		render :subir, :layout => nil
+     else
+     		current_user.resources << @res
+		redirect_to "/mis_contenidos"	
+     end	
+    
     
   end
 

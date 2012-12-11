@@ -4,7 +4,6 @@ content_for :main_js do
   "/assets/user_index"
 <% end 
 content_for :css do %>
-<%= stylesheet_link_tag    "redmond/jquery-ui-1.9.2.custom.min", :media => "all" %>
 <style type="text/css">
 body {
     background: #f6f6f3 url(/assets/bg-dandoo.png)left top repeat;
@@ -57,7 +56,7 @@ nav {
 <nav>
 	<span class="logo-dashboard">
 		<a href="<%=root_path%>">
-		<img src="/assets/dandooTV.png" alt="dandoo-dashboard" width="148" height="44">
+			<img src="/assets/dandooTV.png" alt="dandoo-dashboard" width="148" height="44">
 		</a>
 	</span>
 </nav><!-- fin nav -->
@@ -65,6 +64,10 @@ nav {
 <div id="empresas">
         <header class="mtn32">
         	<!-- <h1>Dandoo.tv</h1> -->
+        	<br />
+        	<br />
+        	<br />
+        	<br />
         	<br />
         	<br />
         	<h2 style="color:#999;">Confirma tus datos para ingresar</h2>
@@ -89,10 +92,10 @@ nav {
         <%=form_for(@user, :url => "/authentications", :html => { :class => 'stn-form label-inline simple formulario', :method => :post }) do |f| %>
         <input type="hidden" name="user[provider]" id="user_provider" value="<%=@provider%>" />
         <input type="hidden" name="user[uid]" id="user_uid" value="<%=@uid%>" />
-    
+    	<input type="hidden" name="user[avatar_tmp]" value="<%=@user.avatar_tmp%>" />
         <section class="contenedor" id="paso1" >       
                 
-	        <h3>Datos de contacto</h3>
+	        <h3>Tus Datos</h3>
 	        
 
 	        <%=f.fields_for @user.usuario do |u|%>
@@ -106,13 +109,6 @@ nav {
 				<%=u.text_field :apellidos, :size =>'25' %>
 			</div> 
 
-			<div class="field">
-				<%=u.label :rut %>
-				<%=u.text_field :rut, :size => '11',:maxlength =>8, :class => 'numeric' %> - 
-				<%=u.text_field :dv, :size => '1',:maxlength => 1 %>
-				<a class="tooltip ttgreen" href="#"><img src="/assets/info.gif" alt="info" width="14" height="14" border="0" />
-				<span>El RUT se ocupara para que tu perfil pueda recibir pagos de Dandoo ;)</span></a>
-			</div> 
 		<% end %>
 					
 		<div class="field">
@@ -120,141 +116,24 @@ nav {
 			<%=f.text_field :email, :size => '25',:placeholder => 'usuario@mail.com' %>
 			<span class="pruebaerror2">ej: usuario@mail.com</span>
 		</div>  
-
-		<div class="field">
-			<%=f.label :country, t(:pais) %>	
-			<%= f.select :country, options_for_select(Country.all.order_by([[:nombre,:asc]]).map{ |u| [u.nombre,u.id] }),{:include_blank => 'Seleccione País'},{:required => true} %>	
-		</div>         
-
-		<%=f.fields_for @user.usuario do |u| %>
-			<div class="field">
-				<%=u.label :state_id, t(:region) %>
-				<%= u.select :state_id, options_for_select(State.all.order_by([[:nombre,:asc]]).map{ |u| [u.nombre,u.id] }),{:include_blank => 'Seleccione Región'},{:required => true} %>
-			</div>         
-
-			<div class="field">
-				<%=u.label :commune_id, t(:comuna) %>
-				<%= u.select :commune_id, options_for_select(Commune.all.order_by([[:nombre,:asc]]).map{ |u| [u.nombre,u.id] }),{:include_blank => 'Seleccione Comuna'},{:required => true} %>		
-			</div>         
-
-			<div class="field">
-				<%=u.label :ciudad, t(:ciudad) %>
-				<%=u.text_field :ciudad, :size => '25' %>
-			</div>         
-			
-			<div class="field clearfix paddb21">
-				<%=u.label :gender_id, t(:genero) %>
-				  <% Gender.all.each do |g| %>
-				  <div class="publicaVideo">
-				  	<%= radio_button_tag 'user[usuario][gender_id]',g.id%>
-				  	<br>
-				  	<span class="checkbox2 <%=g.descripcion.downcase%> "><%=g.descripcion%></span>
-				  </div>
-				  <% end %>
-			</div> 
-
-			<div class="field">
-				<%=u.label :civil_statu_id, t(:estado_civil) %>
-				<%= u.select :civil_statu_id, options_for_select(CivilStatu.all.order_by([[:descripcion,:asc]]).map{ |u| [u.descripcion,u.id] }),{:include_blank => 'Seleccione Estado Civil'},{:required => true} %>		
-			</div> 
-
-		<% end %>
-						
-						
-	        <div class="actionrow">
-	        	<div id="go_paso2" class="button">Datos de perfil</div>
-		    </div> 
+	    
+	       <div class="actionrow">
+	        	<div id="go_paso2" class="button">Ingresar</div>
+		</div> 
 	        <br>  
 	 </section><!-- fin section -->   
-
-	 <section id="paso2" class="contenedor" >       
-                
-	        <h3>Datos de perfil</h3>
-	        <div class="field relative" >
-	        	<span class="cambiarAvatarUsuario">
-	        		<%= image_tag @user.avatar_tmp , :size => '168x150' %>
-	        		<%=f.hidden_field :avatar_tmp, :value => @user.avatar_tmp %>
-	        	</span>
-	        	<div class="button small" id="cambiarAvatar" width="10">Cambiar</div>
-	        	<%=f.file_field :avatar %>
-	        </div>
-
-	        <%=f.fields_for @user.usuario do |u| %>
-        	<div class="field">
-			<%=u.label :nickname, 'Nick' %>
-			<%=u.text_field :nickname, :size => '25' %>
-		</div>  
-		<div class="field">
-			<%=u.label :nacimiento,t(:nacimiento) %>
-			<%=u.text_field :nacimiento, :size => '25',:class => 'date' %>
-			<span class="pruebaerror2">ej: @usuario</span>
-		</div>  
-
-		<div class="field">
-			<%=u.label :ocupacion_id, t(:ocupacion) %>
-			<%= u.select :ocupacion_id, options_for_select(Ocupacion.all.order_by([[:nombre,:asc]]).map{ |u| [u.nombre,u.id] }),{:include_blank => 'Seleccione Ocupacion'},{:required => true} %>		
-		</div> 
-
-		<div class="field">
-			<%=u.label :twitter %>
-			<%=u.text_field :twitter, :size => '25' %>
-			<span class="pruebaerror2">ej: @usuario</span>
-		</div>  
-		
-		<div class="field">
-			<%=u.label :facebook %>
-			<%=u.text_field :facebook, :size => '25' %>
-			<span class="pruebaerror2">ej: www.facebook.com/page/usuario</span>
-		</div>  
-        
-		<div class="field">
-			<%=u.label :web, t(:web) %>
-			<%=u.text_field :web, :size => '25' %>
-			<span class="pruebaerror2">ej: www.nombredepagina.com</span>
-		</div>  
-
-		<div class="field">
-			<%=u.label :bio, t(:bio) %>
-			<%=u.text_area(:bio,:size =>'50x4') %>
-			<!-- <a class="tooltip ttgreen" href="#"><img src="/assets/info.gif" alt="info" width="14" height="14" border="0" /> -->
-			<span>Escribe un breve y entretenido texto sobre sobre ti</span></a>
-
-			<!-- <span class="caracteres">Te quedan 53 caracteres</span> -->
-		</div>  
-	<% end %>
-
-	<!-- <div class="field relative">
-		<label for="fname">Contraseña: </label>
-		<input id="password" name="fname" size="3" maxlength="6" type="password" class="password" />
-		<span class="contrasena">elija una contraseña de <br>6 caracteres</span>
-		<br>
-		<input type="checkbox" id="show" name="valor" value="valor" style="position: absolute; right: 241px;">
-		<span class="mostrar">
-		Mostrar contraseña</span><br>
-	</div>        -->  
-				        
-
-					
-	        <div class="actionrow">
-	        	<div id="go_paso3" class="button">Guardar</div>
-		    </div> 
-	        <br>  
-        
-        </section><!-- fin section -->    
-        <div id="recaptcha_modal">
+	<div id="recaptcha_modal">
 	      <%=recaptcha_tags :ajax => true%>
-	    </div>
-
-       <% end %> 
+	</div>
+ <% end %> 
         
-        <ul class="pasos">
+       <ul class="pasos" style="position:relative;left:2%">
 	    <li><div class="paso-off" id="ir_paso1"></div></li>
-	    <li><div class="paso-on" id="ir_paso2"></div></li>
 	    <li><div class="paso-on"></div></li>
-	  </ul>
+	 </ul>
 
 
-	<a href="/" class="back" style="color:black">Volver a la portada</a>
+	<a href="/" class="back" style="color:black;position:relative;left:1%">Volver a la portada</a>
 	                      
         <footer>
         </footer><!-- fin footer -->

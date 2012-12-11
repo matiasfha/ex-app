@@ -34,6 +34,8 @@ gem 'omniauth-twitter'
 gem 'omniauth-facebook'
 gem 'remotipart',"~> 1.0"
 gem 'kaminari'
+gem 'xml-simple'
+gem 'json'
 gem 'ruby-oembed'
 gem 'valid_email'
 gem "mongoid-paperclip", :require => "mongoid_paperclip", :git => "git://github.com/meskyanichi/mongoid-paperclip.git"
@@ -41,6 +43,7 @@ gem "aws-s3",            :require => "aws/s3"
 gem "aws-sdk"
 gem 'recaptcha',			:require => 'recaptcha/rails'
 gem 'rails-i18n'
+gem 'bitly'
 
 group :development do
   gem 'rb-fsevent'
@@ -48,6 +51,7 @@ group :development do
   gem 'faker'
   gem 'terminal-notifier-guard'
   gem 'yajl-ruby'
+  gem 'bullet'
 end
 
 group :test do

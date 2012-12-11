@@ -5,59 +5,10 @@ content_for :main_js do %>
 
 
 <% content_for :header_nav do %>
-    <nav>
-        <div class="group">
-            <ul id="navigation" class="group">
-                <li >
-                    <a href="<%=root_path%>" id="mas_votados">Los mejores</a>
-                </li>
-                <li class="current_page_item">
-                    <a  href="/comentados"id="mas_comentados"  class="active">Los más comentados</a>
-                </li>
-                <li>
-                    <a href="/nuevos" id="nuevos">Nuevos</a>
-                </li>
-                <% if user_signed_in?%>
-                <li>
-                    <a href="/mis_contenidos" id="nuevos">Mis contenidos</a>
-                </li>
-                <% end %>
-            </ul>
-        </div><!-- .wrap < nav -->
-    </nav>
+    <%= render :partial => 'menu', :locals => {:child => '2'} %>
 <% end %>
 
-<div id="page">
-    <section id="main">
-        <div class="group">
-           <div id="box-container">
-                <div id="entry-listing" class="group" style="display:none">
-                    
-                    <%
-                    @resources.each do |resource|
-                        %>
-                    <article id="<%=resource.id%>" class="post-1 category-blog-posts entry box format-video">
-                        <div class="entry-content-cnt">
-                            <div class="entry-content">
-                                <img src="<%=resource.imagen.url(:medium)%>" class="attachment-ci_listing_thumb" alt="Dandoo" title="Dandoo" data-large="<%=resource.imagen.url(:large)%>">
-                            </div>
-                        </div>
-
-                        <div class="entry-desc">
-                            <h1><a href="#" title="Titulo"><%=resource.titulo%></a></h1>
-                            <div class="entry-meta group">
-                             <a class="comments-no" href="#"><%=resource.comments.count%></a> <a data-post-id="213" class="heart-this loved" href="#" title="Me gusta">
-                             <span class="heart-no"><%=Resource.promedio_votos(resource.id).round %> / <%=resource. votos.count%></span></a>
-                            </div>
-                        </div>
-                    </article>
-                    <% end %>
-                </div><!-- #entry-listing -->
-                
-           </div><!-- #box-container-->
-        </div><!-- group -->
-    </section><!--  #main -->
-</div><!-- #page -->
+<%=render :partial => 'listado' %>
 <div class="nav" id="navSelector">
     <a id="nextpage" href="/recursos/mas_comentados/2">Next Page</a>
 </div>

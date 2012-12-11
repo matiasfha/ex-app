@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
@@ -20,7 +21,9 @@
 
   	<title>Dandoo.tv Home</title>
   	<%= stylesheet_link_tag    "application","home", :media => "all" %>
+    
      <%=yield(:css)%>
+  
       <%= csrf_meta_tags %>
 </head>
 <body>
@@ -45,17 +48,23 @@
 
 
                 <% if user_signed_in? %>
+
                 <div class="dropdown">
-                    <a class="account" ><img src="<%=current_user.avatar.url%>" alt="usuario-on" width="27" height="24"></a>
+                    <a class="account" >
+                      <img src="<%=current_user.avatar.url(:thumb)%>" alt="usuario-on" width="27" height="24" />
+                    </a>
                     <div class="submenu">
                       <ul class="root">
-                        <li ><a>Perfil</a></li>
+                        <!-- <li ><a>Perfil</a></li> -->
                         <li ><a href="/recursos/subir" >Subir comerciales</a></li>
                         <li ><a href="/logout">Cerrar sesión</a></li>
-                        <li ><a href="" class="eliminar">Eliminar cuenta</a></li>
+                        <!-- <li ><a href="" class="eliminar">Eliminar cuenta</a></li> -->
                     </ul>
                     </div>
                 </div>  
+                <ul id="nav-access" style="margin-right:-45px">
+                    <li><a href="/recursos/subir" class="btnsubir subir">Subir Comerciales</a></li>
+                </ul>
                 <% else %>
 
                 <ul id="nav-access">
@@ -66,14 +75,15 @@
                         <li>o</li>
                         <li><a href="/auth/facebook" class="icon-small facebook">
                             <img src="/assets/f.png" alt="f" width="14" height="12" border="0"/>
-                        </a></li>
-                        <li  id="negocio" class="dropdown">
+                          </a>
+                        </li>
+                        <!-- <li  id="negocio" class="dropdown">
                             ¿Tienes un negocio?
                             <ul>
                                 <li><a href="<%=new_empresa_path%>" title="Ingresar">Registrarse</a></li>
                                 <li><a href="/empresas/login" title="Ingresar">Ingresar</a></li>
                             </ul>
-                        </li>
+                        </li> -->
                     <li style="display:none"><a href="#" title="Acerca de Dandoo" class="paddr10">Nosotros</a></li>
                 </ul>
                 <% end %>
@@ -89,8 +99,35 @@
 </header>
     <%=yield%>
 
-   
-
+  
+<div id="feedback-panel">
+  <div id="tab">
+    <%=image_tag 'btn-sugerencias.png',:size =>'26x97' %>
+  </div>
+  <div id="contentForm">
+        <form class="stn-form label-inline simple formulario" id="new_feedback" method="post" action="/feedback">
+            <br />
+            <div class="field">
+              <input type="text" placeholder="Nombre" id="nombre" name="nombre"/>
+            </div>
+            <br />
+            <div class="field">
+              <input type="text" placeholder="Email" id="email" name="email"/>
+            </div>
+            <br />
+            <div class="field">
+              <textarea placeholder="Comentario" id="comentario" name="comentario"></textarea>
+            </div>
+              <br />
+              <%recaptcha_tags :display => {:theme => 'white'}, :ajax => true%>
+              <!-- <br /> -->
+              <div class="actionrow">
+                <input type="submit" value="Enviar" class="small button" style="align:rigth" id="feedback_send" />
+              </div>
+      </form>
+      
+  </div>
+</div>
 
 
   <script type="text/javascript">
@@ -98,9 +135,10 @@
   </script>
   <!--[if (gte IE 6)&(lte IE 8)]><script type="text/javascript" src="/assets/selectivizr-min.js"></script><![endif]-->
   <script type="text/javascript" src="/assets/require.js" data-main=<%=yield(:main_js)%>></script>
+  <%=yield :javascript %>
   <script type="text/javascript">
     var _gaq = _gaq || [];
-    _gaq.push(['_setAccount', 'UA-35427461-2']);
+    _gaq.push(['_setAccount', "<%=ENV['GOOGLEANALYTICS']%>"]);
     _gaq.push(['_trackPageview']);
 
     (function() {

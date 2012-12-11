@@ -35,7 +35,7 @@
       		</a>
         </span>
         
-        <a href="<%=root_path%>" title="Cancelar" class="noSubir">Cancelar</a>
+        <a href="<%=session[:last_page] %>" title="Cancelar" class="noSubir">Cancelar</a>
         
         </nav><!-- fin nav -->
         
@@ -48,6 +48,22 @@
 		        <strong>Sube tu comercial favorito</strong>
 		        <br><br><br>
 	        </span>
+	        <% if flash[:error] %>
+		  <div class="mensajes error">
+		    <label>Se produjero los siguientes errores</label>
+		    <ul>
+		    <% flash.each do |type,messages| %>
+		     <% if messages.respond_to?(:each)
+		          messages.each do |m| %>
+		            <li><%= m %></li>
+		          <%end%>
+		      <% else %>
+		        <li><%= messages%></li>
+		      <% end %>
+		    <% end %>
+		    </ul>
+		  </div>
+		  <% end %>
 	        <%=form_for @resource do |f| %>		
 					
 			<div class="field2 clearfix paddb21">
