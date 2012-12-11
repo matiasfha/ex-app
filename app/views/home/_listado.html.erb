@@ -10,8 +10,8 @@
                     <article id="<%=resource.id%>" class="post-1 category-blog-posts entry box format-video">
                         <div class="entry-content-cnt">
                             <div class="entry-content">
-                                
-                                    <img src="<%=resource.imagen.url(:large)%>" class="attachment-ci_listing_thumb" alt="Dandoo" title="Dandoo"  width="244px">
+                                    <% dimensions = Paperclip::Geometry.from_file(resource.imagen.url(:large)) %>
+                                    <%=image_tag resource.imagen.url(:large), :class =>"attachment-ci_listing_thumb", :width =>dimensions.width,:height =>dimensions.height %>
                                     <%if resource.type=='video' %>
                                         <img src="/assets/play_03.png" class="play_image" width="45px" height="45px"/>
                                     <% else %>
