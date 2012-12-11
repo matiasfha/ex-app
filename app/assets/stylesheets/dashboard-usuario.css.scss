@@ -341,8 +341,7 @@ font-size: 16px;
 .radio { font-size: 12px; color: #666;  margin-top: 6px; padding-right: 18px;}
 .checkbox { font-size: 12px; color: #666;  margin-top: 6px; padding-right: 13px;}
 .checkbox2 { font-size: 12px; color: #666; padding-top: 41px; display: block; font-weight: bold; color:#3191a5;}
-.video { background:  url(video-campana.gif) 36px 1px no-repeat ; z-index:900;}
-.afiche { background:  url(img-campana.gif) 36px 1px no-repeat ; z-index:900;}
+
 .masculino { background:  url(masculino.gif) 36px 1px no-repeat ; z-index:900; }
 .femenino { background:  url(femenino.gif) 36px 1px no-repeat ;z-index:900; }
 .ambos { background:  url(ambas.gif) 36px 1px no-repeat ; z-index:900;}
@@ -424,6 +423,8 @@ margin-top: 8px;
 	vertical-align: middle;
 	float: left;
 	border-radius: 3px;
+	.video { background:  url(video-campana.gif) 36px 1px no-repeat ; z-index:900;}
+
 	
 }
 
@@ -450,6 +451,7 @@ margin-top: 8px;
 	margin-left: 26px;
 	border-radius: 3px;
 	background: #f8f8f8;
+	.afiche { background:  url(img-campana.gif) 36px 1px no-repeat ; z-index:900;}
 
 }
 

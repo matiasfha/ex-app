@@ -4,7 +4,7 @@ class Resource
   include Mongoid::Timestamps
   include Mongoid::Paperclip
 
-  paginates_per 8
+  paginates_per 12
 
   embeds_many :comments
   
@@ -28,10 +28,12 @@ class Resource
       :secret_access_key =>ENV['S3_ACCESS_KEY']
       },
     :styles => {
-      :thumb => '32x32>',
-      :medium => '333x',
-      :large => '700x',
-      :original => '1920x1680>'
+      :large => ['244x',:jpg],
+      :original => ['1920>',:jpg]
+    },
+    :convert_options => {
+    	:large => "-quality 100",
+    	:original => "-quality 100"
     }
 
     
@@ -45,27 +47,46 @@ class Resource
 
     attr_accessible :imagen,  :descripcion, :titulo, :num_views
     attr_accessible :thumbnail, :url, :type,:html,:provider
-
+    
+    validates_attachment_presence :imagen
+    validates_presence_of  :titulo
+    validates_presence_of :url, :allow_blank => 'true', :if => :is_imagen?
+    
     index "comments.id" => 1
 
-	
+    def is_video?
+    	type == 'video'
+    end
+
+    def is_imagen?
+    	type == 'imagen'
+    end
 
 	#Retorna las mas votadas respecto al rating de votos
-	def self.mas_votadas(pagina)
+	def self.mas_votadas(pagina=nil)
 	    avg = Voto.avg(:valor)
 	    avg = (avg.nil?)? 0 : avg.round
 	    resources = Array.new
 	    
-	    Voto.where(:valor.gte => avg).order_by([[:created_at,:desc],[:valor,:desc]]).page(pagina).each do |v|
-	      resources.push self.find(v.resource_id)
+	    	
+	    Voto.where(:valor.gte => avg).order_by([[:valor,:desc],[:created_at,:desc]]).distinct(:resource_id).each do |v|
+	      r = self.find(v)
+	      	resources.push(r)
 	    end
 		
 	    resources
 	end
 
-	def self.mas_comentados(pagina)
+	def self.mas_comentados(pagina=nil)
 		avg = self.avg(:num_comments).round
-		self.where(:num_comments.gte => avg).order_by([[:created_at,:desc],[:num_comments,:desc]]).page(pagina)
+		if avg == 0
+			avg = 1
+		end
+		if pagina.nil?
+			self.where(:num_comments.gte => avg).order_by([[:num_comments,:desc],[:created_at,:desc]])
+		else
+			self.where(:num_comments.gte => avg).order_by([[:num_comments,:desc],[:created_at,:desc]]).page(pagina)
+		end
 	end
 	
 	#Retorna todos los comentarios existentes
@@ -86,4 +107,14 @@ class Resource
 	      return total
 	    end
 	end
+
+	def self.nuevos(pagina=nil)
+		time = Time.now - 5.days
+		if page.nil?
+			Resource.where(:created_at.gte => time).order_by([[:created_at,:desc]])
+		else
+			Resource.where(:created_at.gte => time).order_by([[:created_at,:desc]]).page(pagina)
+		end
+	end
+
 end

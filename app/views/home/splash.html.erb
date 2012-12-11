@@ -1,0 +1,130 @@
+<% cache do %>
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+<head>
+
+    <meta charset="utf-8">
+    <meta name="description" content="Dandoo.tv La primera red social de publicidad en el mundo">
+    <meta name="keywords" content="Dandoo, Dandoo.tv, DandooTV, Publicidad, Puntos, Dinero" />
+   <meta name="author" content="Matías Hernández Arellano">
+    <meta name="viewport" content="width=device-width">
+    <link rel="icon" type="image/ico" href="/assets/favicon.ico" />
+    <meta property="og:title" content="Dandoo.tv - La primera red social de publicidad" />
+    <meta property="og:type" content="company" />
+    <meta property="og:site_name" content="Dandoo.tv" />
+    <meta property="og:url" content="dandoodev.herokuapp.com/auth/facebook" />
+    <meta property="og:image" content="http://devdandoo.tv/assets/logo.png" />
+    <meta property="og:description" content="Dandoo.tv es la primera red social de Publicidad. Basados en Neurociencias Perceptivas desarrollamos interfaces capaces de llevar la interacción entre marca y usuario target al siguiente nivel." />
+
+    <title>Dandoo.tv</title>
+    <%= stylesheet_link_tag    "splash", :media => "all" %>
+
+    
+    
+</head>
+
+<body>
+
+
+<nav>
+	<h1><a href="index.html"><img src="/assets/dandooTV.png" alt="dandooTV" width="148" height="44"></a></h1>
+                    
+    <ul id="nav-access">
+         <li>Ingresar con</li>
+         <li>
+         	<a href="/auth/twitter" class="icon-small ctwitter"><img src="/assets/t.png" alt="f" width="14" height="12" border="0"/></a></li>
+         <li>o</li>
+         <li class="paddln12">
+         	<a href="/auth/facebook" class="icon-small cfacebook"><img src="/assets/f.png" alt="f" width="14" height="12" border="0"/></a></li>
+     </ul>
+</nav>
+
+
+
+<section class="bg">
+	<div id="slogan">
+		<img src="/assets/slogan.png" alt="slogan" width="725" height="324">
+		
+	</div>
+</section>
+
+
+
+<section>
+	<div id="details">
+		<div id="canjea">
+			<h2 class="verdeD f27">  <img src="/assets/canjea.png" alt="canjea" width="439" height="32"></h2>
+			<ul>
+				<li><img src="/assets/llamadas.png" alt="llamadas" width="121" height="89"><span class="verdeD">Telefonía móvil <br>(Bolsas de minutos)</span></li>
+				<li><img src="/assets/internet.png" alt="internet" width="121" height="89"><span class="verdeD">Telefonía minutos <br>(Bolsas de minutos)</span></li>
+				<li><img src="/assets/tarjeta-bip.png" alt="tarjeta-bip" width="121" height="89"><span class="verdeD">Tarjeta Bip! <br>(Recargas)</span></li>
+				<li><img src="/assets/apps.png" alt="apps" width="121" height="89"><span class="verdeD">Aplicaciones para <br>tu Smartphone</span></li>
+				<li><img src="/assets/cine.png" alt="cine" width="121" height="89"><span class="verdeD">Entradas al cine<br>y teatro</span></li>
+			</ul>
+		</div>
+	</div>
+</section>
+
+
+
+<section>
+	<div id="details">
+		<div id="spot1" class="mtn30">
+			<img src="/assets/spot1.png" alt="spot1" width="462" height="324">
+		</div>
+		<div id="spot2" class="mtn30">
+			<h2 class="verdeD"><img src="/assets/tit1.jpg" alt="tit1" width="281" height="63"></h2>
+			<p>Disfruta, vota y comparte las publicidades más creativas y geniales del planeta.</p>
+		</div>
+	</div>
+</section>
+
+
+
+<section>
+	<div id="details">
+		<div id="spot3">
+			<h2 class="verdeD"><img src="/assets/tit2.jpg" alt="tit2" width="336" height="69"></h2>
+			<p>Cada día recibiras publicidades según tus intereses: Cine, deportes, tecnología ... tu eliges! Vota y gana sus puntos. <br><strong>(1 pto. = $ 1 peso chileno)</strong></p>
+		</div>
+		<div id="spot4">
+			<img src="/assets/spot2.png" alt="spot2" width="377" height="324">
+		</div>
+	</div>
+</section>
+
+
+
+<section>
+	<div id="details">
+		<div id="spot6">
+			<img src="/assets/spot3.png" alt="spot3" width="390" height="286">
+		</div>
+		<div id="spot5" class="mtn35">
+			<h2 class="verdeD"><img src="/assets/tit3.png" alt="tit3" width="482" height="73"></h2>
+			<p>Junta puntos viendo publicidades patrocinadas: Luego canjea estos puntos de forma simple y rápida. Recarga sín cargas mínimas y de forma automática a tu celular o tarjeta Bip!</p>
+		</div>
+	</div>
+</section>
+
+
+
+<section>
+	<div id="login" class="clearfix">
+		<div id="acceso">
+			<h4 class="f29">Crea tu cuenta ,es gratis!</h4>
+		
+						<ul>				
+							<li><a href="/auth/twitter" class="medium twitter ml15"><img src="/assets/twitter3.png" width="41" height="41" alt="">Twitter</a></li>
+							<li class="oespacio"><strong>o</strong></li>
+							<li><a href="/auth/facebook" class="medium facebook ml17"><img src="/assets/facebook1.png" width="41" height="41" alt="">Facebook</a></li>
+						</ul>
+		</div>
+	</div>
+</section>
+</body>
+</html>
+<% end %>

@@ -13,6 +13,8 @@ require.config
 		'jquery.infinitescroll.min':['jquery']
 		'dropdown':['jquery']
 		'jquery.serializeObject':['jquery']
+		'jquery.easing.1.3':['jquery']
+		
 
 require [
 	'jquery'
@@ -25,7 +27,8 @@ require [
 	'jquery.infinitescroll.min'
 	'dropdown'
 	'jquery.serializeObject'
-],($,_,Backbone,Isotope,domReady,M,T,F,S,D,Ser) ->
+	'jquery.easing.1.3'
+],($,_,Backbone,Isotope,domReady,M,T,F,S,D,Ser,E) ->
 	domReady () ->
 		$.fn.reset = ->
 			$(this).each () ->
@@ -37,11 +40,25 @@ require [
 			beforeSend: (xhr) ->
 				xhr.setRequestHeader('X-CSRF-Token', token);
 			cache: false
+		showMask = () ->
+			part = window.location.href.split('/')[3]
+			if part == "resources"
+				h = $(document).height()+'30'
+				w = $(document).width()
+				$('#theMask').css 
+					'height':h
+					'width':w
+				
 
+
+				
+		showMask()
+		
 		$('li#negocio').click (e) ->
 			$('li#negocio ul').toggle()
 			$('li#negocio').toggleClass('active')
 
+		#Carga grilla isotope
 		$('#entry-listing').imagesLoaded () ->
 			$('#entry-listing').isotope(
 				animationOptions: 
@@ -56,14 +73,27 @@ require [
 				animationEngine:'jquery'
 			)
 			items = $('#entry-listing article.entry')
-			$('#entry-listing').empty()
-			$('#entry-listing').fadeIn()
+			$('#entry-listing').empty().fadeIn()
 			$('#entry-listing').isotope 'insert',items, () ->
 				$('#entry-listing').isotope('reLayout')
-
-		$(window).resize(setContainerWidth)
-		box = $(".box")
 		
+		#Cargar contenidos con scroll infinito
+		$('#entry-listing').infinitescroll
+			navSelector:'#navSelector'
+			nextSelector:'#nextpage'
+			itemSelector:'article.entry'
+			loading:
+				img:"/assets/ajax-loader.gif"
+				finishedMsg:"Ya no quedan más elementos..."
+				msgText:"<em>Cargando recursos..</em>"
+			
+		, (data) ->
+			$(data).imagesLoaded () ->
+				$('#entry-listing').isotope('appended',$(data)).isotope('reLayout')
+		
+
+		#Para que el contenedor sea responsive
+		box = $(".box")
 		setContainerWidth =  ->
 			columnNumber = parseInt(($(window).width() + 15) / box.outerWidth(true))
 			containerWidth = (columnNumber * box.outerWidth(true)) - 15
@@ -72,9 +102,14 @@ require [
 		    		$("#box-container").css("width",containerWidth+'px')
 			else
 				$("#box-container").css("width", "90%")
-
 		setContainerWidth();
+		$(window).resize(setContainerWidth)
 
+		#Muestra el overlay sobre los items al pasar el mouse
+		$('.entry-content').live 'mouseenter', (e) ->
+			$(e.currentTarget).find('.zoomOverlay').fadeIn();
+		.live 'mouseleave',(e) ->
+			$(e.currentTarget).find('.zoomOverlay').fadeOut();
 		#Eventos para la ventana modal
 		#Tabs 
 		setTabs = () ->
@@ -122,47 +157,112 @@ require [
 				false
 		ratingStar()
 
-		#OnClick en un element
-		$('article').live 'click', (e) ->
-			id = $(e.currentTarget).attr('id')
+		#OnClick en un element mostrar el modal
+		$('article .entry-content').live 'click', (e) ->
+			id = $(e.currentTarget).closest('article').attr('id')
 			$.get  "/resources/#{id}", (data) ->
 				h = $(document).height()+'30'
 				w = $(document).width()
+				$('#theMask').css 
+					'height':h
+					'width':w
+				
 				$('#contenedor-modal').css 
 					'height':h
 					'width':w
 				.html(data).fadeIn()
+				$('body').animate({scrollTop: 0}, 500);
 				setTabs()
 				ratingStar()
 
+		#Cerrar el modal con el recursos
 		$('#contenedor-modal .paddr10').live 'click', (e) ->
 			e.preventDefault()
 			$('#contenedor-modal').fadeOut().empty();
 			false
+		$('#theMask').live 'click',(e) ->
+			e.preventDefault()
+			$('#contenedor-modal').fadeOut().empty();
+			false
+		
+		
 
-		
-		$('#entry-listing').infinitescroll
-			navSelector:'#navSelector'
-			nextSelector:'#nextpage'
-			itemSelector:'article.entry'
-			loading:
-				img:"/assets/ajax-loader.gif"
-				finishedMsg:"Ya no quedan más elementos..."
-				msgText:"<em>Cargando recursos..</em>"
-			
-		, (data) ->
-			$(data).imagesLoaded () ->
-				$('#entry-listing').isotope('appended',$(data)).isotope('reLayout')
-		
-		$('#comment_descripcion').keypress (e) ->
+		#Template para comentario nuevo
+		commentTPL = _.template( """
+		<div id="<%=user_id%>" class="<%=clase%>">
+	          <span>
+	            <a href="#">
+	              <img src="<%=avatar%>" alt="user" width="30" height="30" border="0">
+	            </a>
+	          </span>
+	          <div class="detail">
+	            <h2><a href="#"><%user_nickname%></a></h2>
+	            <p><%=contenido%></p>
+	          </div>
+	          <div class="dataUser"><%=fecha%></div>   
+	        </div>
+		""")
+		#Enviar comentario al servidor
+		$('#comment_contenido').live 'keypress', (e) ->
 			if e.which == 13
-				data = $('#new_comment').serializeObject
-				console.log data
+				data = $('#new_comment').serializeObject()
+				$.post $('#new_comment').attr('action'),data,(res) ->
+					$('#comment_contenido').val('')
+					html = $(commentTPL(res))
+					html.addClass('highlight')
+					$('#comments').append html 
+					$('#comments').animate({scrollTop: $('#comments').prop("scrollHeight")}, 500);
+					setTimeout () ->
+						html.removeClass('highlight')
+					,1200
+
 				e.preventDefault()
 				e.stopPropagation()
-
+		$('.ver_mas').live 'click',(e) ->
+			target = $(e.currentTarget)
+			resource_id = target.attr('data-resource')
+			target.html('Cargando....')
+			$.get '/comments',{resource_id:resource_id}, (e) ->
+				$('#comments').fadeOut () ->
+					$(this).html (e)
+					$(this).fadeIn () ->
+						target.remove()
 		
-					
+		#Mostrar feedback Panel
+		$('#feedback-panel #tab').on 'click',(e) ->
+			if $(e.currentTarget).hasClass 'active'
+				right = '-245px'
+			else
+				right = '134px';
+			$('#feedback-panel').animate({right:right})
+
+			$(e.currentTarget).toggleClass 'active'
+		
+		$('#new_feedback').submit (e) ->
+			e.stopPropagation()
+			e.preventDefault()
+			data = $('#new_feedback').serializeObject()
+			html = '<img src="/assets/ajax-loader.gif" class="load"/>'
+			content = $('#contentForm').html()
+			$('#contentForm').empty().html html
+			$.post  '/feedback',data, (resp) ->
+				if resp.success == true
+					htm = '<label class="load">Gracias por tus comentarios</label>'
+					$('#contentForm').empty().html html
+					$('#feedback-panel').delay(3000)
+					.animate({right:'-245px'})
+					$('#feedback-panel #tab').toggleClass 'active'
+					$('#contentForm').html content
+					$('#new_feedback').reset()
+				else
+					$('#contentForm').html content
+					$('#new_feedback').reset()
+					Recaptcha.reload();
+					if resp.mensaje == 'recaptcha'
+						$('#recaptcha_response_field').addClass 'error'
+					else if resp.mensaje == 'email'
+						$('#email').addClass 'error'
+
 
 
 

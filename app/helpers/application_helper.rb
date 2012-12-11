@@ -1,33 +1,13 @@
 module ApplicationHelper
 
-	def bootstrap_type(type)
-		case type
-		when :alert
-			"alert-block"
-		when :error
-			"alert-error"
-		when :notice
-			"alert-info"
-		when :success
-			"alert-success"
-		else
-			type.to_s
-		end
+	def http_referer_uri
+	  request.env["HTTP_REFERER"] && URI.parse(request.env["HTTP_REFERER"])
 	end
 
-	def notify_type(type)
-		case type
-		when :alert
-			"notice"
-		when :error
-			"error"
-		when :notice
-			"info"
-		when :success
-			"success"
-		else
-			type.to_s
-		end
+	def refered_from_our_site?
+	  if uri = http_referer_uri
+	    uri.host == request.host
+	  end
 	end
 
 	def javascript(*files)
