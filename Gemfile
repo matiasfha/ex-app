@@ -51,6 +51,7 @@ group :development do
   gem 'faker'
   gem 'terminal-notifier-guard'
   gem 'yajl-ruby'
+  gem 'bullet'
 end
 
 group :test do

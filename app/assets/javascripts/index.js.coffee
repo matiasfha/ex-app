@@ -74,8 +74,8 @@ require [
 			)
 			items = $('#entry-listing article.entry')
 			$('#entry-listing').empty()
-			$('#entry-listing').fadeIn()
-			$('#entry-listing').isotope 'insert',items, () ->
+			.fadeIn()
+			.isotope 'insert',items, () ->
 				$('#entry-listing').isotope('reLayout')
 		
 		#Cargar contenidos con scroll infinito
