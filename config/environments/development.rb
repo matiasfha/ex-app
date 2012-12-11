@@ -45,15 +45,15 @@ DandooDev::Application.configure do
   config.logger.level = Logger.const_get(ENV['LOG_LEVEL'] ? ENV['LOG_LEVEL'].upcase : 'DEBUG')
 
   #Bullet gem
-  config.after_initialize do
-    Bullet.enable = true
-    Bullet.alert = true
-    Bullet.bullet_logger = false
-    Bullet.console = false
-    Bullet.growl = false
-    Bullet.rails_logger = false
-    Bullet.airbrake = false
-    Bullet.disable_browser_cache = true
-  end
+  # config.after_initialize do
+  #   Bullet.enable = true
+  #   Bullet.alert = true
+  #   Bullet.bullet_logger = false
+  #   Bullet.console = false
+  #   Bullet.growl = false
+  #   Bullet.rails_logger = false
+  #   Bullet.airbrake = false
+  #   Bullet.disable_browser_cache = true
+  # end
 
 end

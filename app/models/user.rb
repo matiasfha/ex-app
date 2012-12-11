@@ -67,8 +67,7 @@ class User
       :secret_access_key =>ENV['S3_ACCESS_KEY']
       },
     :styles => {
-      :thumb => '40x40#',
-      :medium => '200x200#',
+      :thumb => '27x24#',
       :original => '1920x1680>'
     }
 

@@ -73,9 +73,8 @@ require [
 				animationEngine:'jquery'
 			)
 			items = $('#entry-listing article.entry')
-			$('#entry-listing').empty()
-			.fadeIn()
-			.isotope 'insert',items, () ->
+			$('#entry-listing').empty().fadeIn()
+			$('#entry-listing').isotope 'insert',items, () ->
 				$('#entry-listing').isotope('reLayout')
 		
 		#Cargar contenidos con scroll infinito

@@ -1,4 +1,4 @@
-<% cache do %>
+
 <!DOCTYPE html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
@@ -21,9 +21,9 @@
 
   	<title>Dandoo.tv Home</title>
   	<%= stylesheet_link_tag    "application","home", :media => "all" %>
-    <% end %>
+    
      <%=yield(:css)%>
-  <% cache do %>   
+  
       <%= csrf_meta_tags %>
 </head>
 <body>
@@ -50,7 +50,9 @@
                 <% if user_signed_in? %>
 
                 <div class="dropdown">
-                    <a class="account" ><img src="<%=current_user.avatar.url%>" alt="usuario-on" width="27" height="24"></a>
+                    <a class="account" >
+                      <img src="<%=current_user.avatar.url(:thumb)%>" alt="usuario-on" width="27" height="24" />
+                    </a>
                     <div class="submenu">
                       <ul class="root">
                         <!-- <li ><a>Perfil</a></li> -->
@@ -92,12 +94,12 @@
 
         </div><!-- .wrap  #header -->
     </div><!-- #site-head -->
-<% end %>
+
     <%=yield(:header_nav) %>
 </header>
     <%=yield%>
 
-  <% cache do %> 
+  
 <div id="feedback-panel">
   <div id="tab">
     <%=image_tag 'btn-sugerencias.png',:size =>'26x97' %>
@@ -148,4 +150,3 @@
 
 </body>
 </html>
-<% end %>
