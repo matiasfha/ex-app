@@ -1,4 +1,6 @@
 class HomeController < ApplicationController
+  caches_page :splash
+
   def index
   	@resources = Resource.mas_votadas(params[:page])
       @nuevos       = Resource.nuevos.count
