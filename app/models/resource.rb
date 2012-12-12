@@ -30,11 +30,12 @@ class Resource
     :styles => {
       :large => ['244x',:png],
       :original => ['1920>',:png]
-    },
-    :convert_options => {
-    	:large => "-quality 100",
-    	:original => "-quality 100"
     }
+    # ,
+    # :convert_options => {
+    # 	:large => "-quality 100",
+    # 	:original => "-quality 100"
+    # }
 
     
 
