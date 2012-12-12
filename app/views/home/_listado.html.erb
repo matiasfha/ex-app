@@ -21,26 +21,13 @@
                                         <img src="/assets/play_03.png" class="play_image" width="45px" height="45px"/>
                                     <% end %>
                                         <div class="zoomOverlay <%=clase%>" >
-                                            <div id="compartirAD" >
+
+                                            <!-- <div id="compartirAD" >
                                               <ul>
-                                                <li style="padding-right:10px;">Compartir</li>
-                                                <li>
-                                                  <%
-                                                    bitly = Bitly.new(ENV['BITLY_USER'],ENV['BITLY_KEY']) 
-                                                    page_url = bitly.shorten("#{request.protocol}#{request.host_with_port}#{request.fullpath}resources/#{resource.id}") 
-                                                    shorten_url = page_url.short_url
-                                                  %>
-                                                  <a href="https://twitter.com/share?url=<%=shorten_url%>&text=Mira este comercial!! Está buenísimo!! ||<%=resource.titulo%>&via=Dandootv&lang=es&related=Dandootv&count=none&hashtags=#Dandoo" class="icon-small ctwitter">
-                                                    <img src="/assets/twitter3.png" width="32" height="32" alt="">
-                                                  </a>
-                                                </li>
-                                                <li>
-                                                  <a href="https://www.facebook.com/dialog/feed?app_id=<%=ENV['FACEBOOK_KEY']%>&link=<%=shorten_url%>&picture=<%=resource.imagen.url(:large)%>&name=Mira este comercial!! Está buenísimo!! ||<%=resource.titulo%>&caption=Dandoo.tv&description=<%=resource.descripcion%>&redirect_uri=<%="#{request.protocol}#{request.host_with_port}#{request.fullpath}"%>" class="icon-small cfacebook">
-                                                    <img src="/assets/facebook2.png" width="32" height="32" alt="">
-                                                  </a>
-                                                </li>
+                                                <li style="padding-right:10px;"><button class="button small">Compartir</button></li>
+                                                
                                               </ul>
-                                            </div>
+                                            </div> -->
                                         </div>
                             </div>
                         </div>
