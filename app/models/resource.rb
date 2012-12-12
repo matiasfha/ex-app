@@ -30,8 +30,7 @@ class Resource
     :styles => {
       :large => '244x',
       :original => '1920>'
-    }
-    ,
+    },
     :convert_options => {
     	:large => "-quality 75 -strip",
     	:original => "-quality 100"
