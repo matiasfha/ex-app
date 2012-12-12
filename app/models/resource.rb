@@ -20,7 +20,7 @@ class Resource
 
   #Campos para imagenes
   has_mongoid_attached_file :imagen,
-    :path => ':attachment/:id/:style.:extension',
+    :path => ':attachment/:id/:style.jpg', #:path => ':attachment/:id/:style.:extension',
     :storage => :s3,
     :bucket => 'dandoo-pictures',
     :s3_credentials => {
@@ -28,8 +28,8 @@ class Resource
       :secret_access_key =>ENV['S3_ACCESS_KEY']
       },
     :styles => {
-      :large => '244x',
-      :original => '1920>'
+      :large => ['244x',:jpg],
+      :original => ['1920>',:jpg]
     },
     :convert_options => {
     	:large => "-quality 75 -strip",
