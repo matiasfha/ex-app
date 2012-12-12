@@ -76,7 +76,7 @@ class Resource
 	    # end
 		
 	    # resources
-	    resources = Resource.where(:promedio.gte => avg)
+	    resources = Resource.where(:promedio.gte => avg).order_by([[:promedio,:desc],[:created_at,:desc]])
 	end
 
 	def self.mas_comentados(pagina=nil)
