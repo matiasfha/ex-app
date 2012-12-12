@@ -17,6 +17,7 @@ class Resource
   field :titulo, :type => String
   field :num_comments, :type => Integer, :default => 0
   field :type, :type => String, :default => 'imagen'
+  field :promedio, :type => Float, :default => 0.0
 
   #Campos para imagenes
   has_mongoid_attached_file :imagen,
@@ -103,7 +104,7 @@ class Resource
 	        suma+=v.valor
 	      end
 	      res = suma.to_f/total.to_f
-	      return sprintf('%.1f',res)
+	      return sprintf('%.2f',res)
 	    else
 	      return total
 	    end
