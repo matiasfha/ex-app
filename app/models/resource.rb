@@ -69,7 +69,7 @@ class Resource
 	    resources = Array.new
 	    
 	    	
-	    Voto.where(:valor.gte => avg).order_by([[:valor,:desc],[:created_at,:desc]]).distinct(:resource_id).each do |v|
+	    Voto.where(:valor.gte => avg).order_by([[:valor,:desc]]).distinct(:resource_id).each do |v|
 	      r = self.find(v)
 	      	resources.push(r)
 	    end
