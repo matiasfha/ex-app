@@ -67,15 +67,16 @@ class Resource
 	def self.mas_votadas(pagina=nil)
 	    avg = Voto.avg(:valor)
 	    avg = (avg.nil?)? 0 : avg.round
-	    resources = Array.new
+	    # resources = Array.new
 	    
 	    	
-	    Voto.where(:valor.gte => avg).order_by([[:valor,:desc]]).distinct(:resource_id).each do |v|
-	      r = self.find(v)
-	      	resources.push(r)
-	    end
+	    # Voto.where(:valor.gte => avg).order_by([[:valor,:desc]]).distinct(:resource_id).each do |v|
+	    #   r = self.find(v)
+	    #   	resources.push(r)
+	    # end
 		
-	    resources
+	    # resources
+	    resources = Resource.where(:promedio.gte => avg)
 	end
 
 	def self.mas_comentados(pagina=nil)
