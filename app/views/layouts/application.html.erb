@@ -66,7 +66,7 @@
                     <li><a href="/recursos/subir" class="btnsubir subir">Subir Comerciales</a></li>
                 </ul>
                 <% else %>
-                <% cache do %>
+                
                 <ul id="nav-access">
                         <li>Ingresar con</li>
                         <li><a href="/auth/twitter" class="icon-small twitter">
@@ -131,9 +131,7 @@
 </div>
 
 
-  <script type="text/javascript">
-  if (!window['YT']) {var YT = {};}if (!YT.Player) {(function(){var s = 'http:' + '//s.ytimg.com/yt/jsbin/www-widgetapi-vflU5wlSl.js';var a = document.createElement('script');a.src = s;a.async = true;var b = document.getElementsByTagName('script')[0];b.parentNode.insertBefore(a, b);YT.embed_template = "\u003ciframe width=\"425\" height=\"344\" src=\"\" frameborder=\"0\" allowfullscreen\u003e\u003c\/iframe\u003e";})();}
-  </script>
+  
   <!--[if (gte IE 6)&(lte IE 8)]><script type="text/javascript" src="/assets/selectivizr-min.js"></script><![endif]-->
   <script type="text/javascript" src="/assets/require.js" data-main=<%=yield(:main_js)%>></script>
   <%=yield :javascript %>
