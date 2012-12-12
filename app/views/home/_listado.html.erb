@@ -14,10 +14,13 @@
                                 img = resource.imagen.url(:large)
                                 dimensions = Paperclip::Geometry.from_file(img) %>
                                 <%=image_tag img, :class =>"attachment-ci_listing_thumb", :width =>dimensions.width,:height =>dimensions.height %>
-                                    <%if resource.type=='video' %>
+                                    <%
+                                    clase=""
+                                    if resource.type=='video' 
+                                        clase="video"%>
                                         <img src="/assets/play_03.png" class="play_image" width="45px" height="45px"/>
-                                    <% else %>
-                                        <div class="zoomOverlay">
+                                    <% end %>
+                                        <div class="zoomOverlay <%=clase%>" >
                                             <div id="compartirAD" >
                                               <ul>
                                                 <li style="padding-right:10px;">Compartir</li>
@@ -39,7 +42,6 @@
                                               </ul>
                                             </div>
                                         </div>
-                                    <% end %>
                             </div>
                         </div>
 
