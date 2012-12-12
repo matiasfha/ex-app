@@ -4,5 +4,5 @@ OmniAuth.config.on_failure = Proc.new { |env|
 
 Rails.application.config.middleware.use OmniAuth::Builder do
   provider :twitter , ENV['TWITTER_KEY'], ENV['TWITTER_SECRET']
-  provider :facebook, ENV['FACEBOOK_KEY'], ENV['FACEBOOK_SECRET'], :scope =>'email,user_birthday,publish_stream',:image_size =>'large'
+  provider :facebook, ENV['FACEBOOK_KEY'], ENV['FACEBOOK_SECRET'], :scope =>'email,user_birthday',:image_size =>'large'
 end

@@ -56,7 +56,7 @@ class AuthenticationsController < ApplicationController
       avatar_tmp = avatar_tmp[0]+'?type=normal'
     else
       avatar_tmp = avatar.split("_normal")
-      avatar_tmp = avatar_tmp[0]+"_bigger.png"
+      avatar_tmp = avatar_tmp[0]+"_bigger"+avatar_tmp[1]
     end
     @user = User.new(:avatar_tmp => avatar_tmp,
       :email => email,:password => password, :password_confirmation => password)

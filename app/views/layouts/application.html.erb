@@ -1,4 +1,4 @@
-
+<% cache do %>
 <!DOCTYPE html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
@@ -21,10 +21,11 @@
 
   	<title>Dandoo.tv Home</title>
   	<%= stylesheet_link_tag    "application","home", :media => "all" %>
-    
+  <% end %>  
      <%=yield(:css)%>
   
       <%= csrf_meta_tags %>
+<% cache do %>
 </head>
 <body>
 	<!--[if lt IE 7]>
@@ -45,8 +46,7 @@
                         <img src="/assets/dandooTV.png" alt="dandooTV" width="148" height="44">
                     </a>
                 </h1>
-
-
+<% end %><!--cache-->
                 <% if user_signed_in? %>
 
                 <div class="dropdown">
@@ -66,7 +66,7 @@
                     <li><a href="/recursos/subir" class="btnsubir subir">Subir Comerciales</a></li>
                 </ul>
                 <% else %>
-
+                <% cache do %>
                 <ul id="nav-access">
                         <li>Ingresar con</li>
                         <li><a href="/auth/twitter" class="icon-small twitter">
@@ -86,6 +86,7 @@
                         </li> -->
                     <li style="display:none"><a href="#" title="Acerca de Dandoo" class="paddr10">Nosotros</a></li>
                 </ul>
+                <% end %><!--cache-->
                 <% end %>
                
             </hgroup>
@@ -129,7 +130,7 @@
   </div>
 </div>
 
-
+<% cache do %>
   <script type="text/javascript">
   if (!window['YT']) {var YT = {};}if (!YT.Player) {(function(){var s = 'http:' + '//s.ytimg.com/yt/jsbin/www-widgetapi-vflU5wlSl.js';var a = document.createElement('script');a.src = s;a.async = true;var b = document.getElementsByTagName('script')[0];b.parentNode.insertBefore(a, b);YT.embed_template = "\u003ciframe width=\"425\" height=\"344\" src=\"\" frameborder=\"0\" allowfullscreen\u003e\u003c\/iframe\u003e";})();}
   </script>
@@ -150,3 +151,4 @@
 
 </body>
 </html>
+<% end %>

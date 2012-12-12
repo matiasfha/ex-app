@@ -1,3 +1,4 @@
+<% cache do %>
 <!DOCTYPE html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
@@ -23,10 +24,11 @@
         <!-- CSS -->
         <%=stylesheet_link_tag 'application','empresa','dashboard-usuario',:media => 'all' %>
         <%=yield(:css) %>
-        
+ <% end %><!--cache-->       
         <%= csrf_meta_tags %>
     </head>
     <body>
+
         <!--[if lt IE 7]>
             <p class="chromeframe">Estas usando un navegador muy antiguo. Te proponemos <a href="http://browsehappy.com/">Actualizar tu navegador hoy</a> o <a href="http://www.google.com/chromeframe/?redirect=true">instalar Google Chrome Frame</a> Para mejorar la experiencia en este sitio.</p>
         <![endif]-->
@@ -42,6 +44,8 @@
                 </div>
             </div>
         </div>
+        <% cache do %>
         <script type="text/javascript" src="/assets/require.js" data-main=<%=yield(:main_js)%>></script>
     </body>
 </html>
+<% end %>

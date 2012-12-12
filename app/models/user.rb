@@ -73,7 +73,7 @@ class User
 
 
   def avatar_remote_url(url_value)
-    # self.avatar = URI.parse(url_value)
+    #self.avatar = URI.parse(url_value)
     self.avatar = open(url_value)
   end
 

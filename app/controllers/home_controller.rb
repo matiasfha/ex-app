@@ -1,5 +1,5 @@
 class HomeController < ApplicationController
-  #caches_page :splash
+  caches_action :splash
 
   def index
   	@resources = Resource.mas_votadas(params[:page])
