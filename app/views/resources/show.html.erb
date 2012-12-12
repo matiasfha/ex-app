@@ -1,4 +1,4 @@
-
+<% cache do %>
 <% content_for :css do %>
 <style type="text/css" rel="stylesheet">
 body {
@@ -9,11 +9,12 @@ body {
 }
 </style>
 <% end %>
+<script type="text/javascript" src="/assets/jquery.js" /></script>
 <%
 content_for :main_js do %>
 "/assets/index"
 <% end  %>
-
+<% end %><!--cache-->
 <header id="header" class="resource">
         <div id="site-head">
             <div class="wrapModal group">
