@@ -112,11 +112,9 @@ content_for :main_js do %>
       <h3>¿Te gustó? ponle una nota</h3>
       <% if user_signed_in? %>
       <ul id="rating" data-id="<%=@resource.id%>">
-        <% for i in 1..nota %>
-          <li class="star"><a href="" class="starOn"><%=i%></a></li>
-        <% end %>
-        <% for i in nota...5 %>
-          <li class="star"><a href="#" class="starOff"><%=i+1%></a></li>
+        
+        <% for i in 1..5 %>
+          <li class="star"><a href="#" class="starOff"><%=i%></a></li>
         <% end %>
 
       </ul>
