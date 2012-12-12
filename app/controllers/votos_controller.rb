@@ -14,21 +14,13 @@ class VotosController < ApplicationController
 				voto.resource_id = resource.id 
 				voto.save
 				total 			 = resource.votos.count
-				suma 			 = 0
-				resource.votos.each do |v|
-					suma+=v.valor
-				end
-				promedio = (total!=0)? suma/total : 0
+				promedio = Resource.promedio_votos(params[:pid])
 			else
 				#Ya fue votado se debe actualizar el voto
 				voto.valor 	= params[:valor]
 				voto.save
 				total 		= resource.votos.count
-				suma 		= 0
-				resource.votos.each do |v|
-					suma+=v.valor
-				end
-				promedio = (total!=0)? suma/total : 0
+				promedio = Resource.promedio_votos(params[:pid])
 			end
 			render :json => {:result => true,:total => resource.votos.count,:promedio => promedio}
 		else

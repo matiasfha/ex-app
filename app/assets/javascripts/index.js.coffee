@@ -149,8 +149,8 @@ require [
 
 						$('div.bigStar span').text promedio
 						$('#votoWord').text "#{total} votos"
+						$("article##{resource_id}").find('.heart-no').html(promedio+'/'+total+' votos')
 					error:(d) ->
-						alert 'Error'
 						console.log d.responseText
 				false
 		ratingStar()

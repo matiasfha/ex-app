@@ -102,7 +102,8 @@ class Resource
 	      resource.votos.each do |v|
 	        suma+=v.valor
 	      end
-	      return suma/total
+	      res = suma.to_f/total.to_f
+	      return sprintf('%.1f',res)
 	    else
 	      return total
 	    end
