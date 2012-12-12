@@ -28,8 +28,8 @@ class Resource
       :secret_access_key =>ENV['S3_ACCESS_KEY']
       },
     :styles => {
-      :large => ['244x',:jpg],
-      :original => ['1920>',:jpg]
+      :large => '244x',
+      :original => '1920>'
     },
     :convert_options => {
     	:large => "-quality 100",
