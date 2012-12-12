@@ -1,8 +1,8 @@
 class HomeController < ApplicationController
-  #caches_page :splash
-
+  #caches_action :splash
+before_filter :check_login!, :only => [:index,:recursos_nuevos,:recursos_comentados,:mis_contenidos,:todos]
   def index
-  	@resources = Resource.mas_votadas(params[:page])
+    	@resources = Resource.mas_votadas(params[:page])
       @nuevos       = Resource.nuevos.count
       @votados      = Resource.mas_votadas.count
       @comentados = Resource.mas_comentados.count
@@ -56,4 +56,10 @@ class HomeController < ApplicationController
   	render :layout => nil
   end
 
+  private
+  def check_login!
+    if !user_signed_in?
+      redirect_to '/'
+    end
+  end
 end

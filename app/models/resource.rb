@@ -17,10 +17,11 @@ class Resource
   field :titulo, :type => String
   field :num_comments, :type => Integer, :default => 0
   field :type, :type => String, :default => 'imagen'
+  field :promedio, :type => Float, :default => 0.0
 
   #Campos para imagenes
   has_mongoid_attached_file :imagen,
-    :path => ':attachment/:id/:style.:extension',
+    :path => ':attachment/:id/:style.jpg', #:path => ':attachment/:id/:style.:extension',
     :storage => :s3,
     :bucket => 'dandoo-pictures',
     :s3_credentials => {
@@ -32,7 +33,7 @@ class Resource
       :original => ['1920>',:jpg]
     },
     :convert_options => {
-    	:large => "-quality 100",
+    	:large => "-quality 75 -strip",
     	:original => "-quality 100"
     }
 
@@ -66,15 +67,16 @@ class Resource
 	def self.mas_votadas(pagina=nil)
 	    avg = Voto.avg(:valor)
 	    avg = (avg.nil?)? 0 : avg.round
-	    resources = Array.new
+	    # resources = Array.new
 	    
 	    	
-	    Voto.where(:valor.gte => avg).order_by([[:valor,:desc],[:created_at,:desc]]).distinct(:resource_id).each do |v|
-	      r = self.find(v)
-	      	resources.push(r)
-	    end
+	    # Voto.where(:valor.gte => avg).order_by([[:valor,:desc]]).distinct(:resource_id).each do |v|
+	    #   r = self.find(v)
+	    #   	resources.push(r)
+	    # end
 		
-	    resources
+	    # resources
+	    resources = Resource.where(:promedio.gte => avg).order_by([[:promedio,:desc],[:created_at,:desc]])
 	end
 
 	def self.mas_comentados(pagina=nil)
@@ -102,7 +104,8 @@ class Resource
 	      resource.votos.each do |v|
 	        suma+=v.valor
 	      end
-	      return suma/total
+	      res = suma.to_f/total.to_f
+	      return sprintf('%.2f',res)
 	    else
 	      return total
 	    end

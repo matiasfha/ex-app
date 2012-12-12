@@ -13,7 +13,6 @@ require.config
 		'jquery.infinitescroll.min':['jquery']
 		'dropdown':['jquery']
 		'jquery.serializeObject':['jquery']
-		'jquery.easing.1.3':['jquery']
 		
 
 require [
@@ -27,8 +26,7 @@ require [
 	'jquery.infinitescroll.min'
 	'dropdown'
 	'jquery.serializeObject'
-	'jquery.easing.1.3'
-],($,_,Backbone,Isotope,domReady,M,T,F,S,D,Ser,E) ->
+],($,_,Backbone,Isotope,domReady,M,T,F,S,D,Ser) ->
 	domReady () ->
 		$.fn.reset = ->
 			$(this).each () ->
@@ -151,8 +149,8 @@ require [
 
 						$('div.bigStar span').text promedio
 						$('#votoWord').text "#{total} votos"
+						$("article##{resource_id}").find('.heart-no').html(promedio+'/'+total+' votos')
 					error:(d) ->
-						alert 'Error'
 						console.log d.responseText
 				false
 		ratingStar()

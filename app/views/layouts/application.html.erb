@@ -19,12 +19,13 @@
       <meta property="og:image" content="http://devdandoo.tv/assets/logo.png" />
       <meta property="og:description" content="Dandoo.tv es la primera red social de Publicidad. Basados en Neurociencias Perceptivas desarrollamos interfaces capaces de llevar la interacción entre marca y usuario target al siguiente nivel." />
 
-  	<title>Dandoo.tv Home</title>
+  	<title>Dandoo.tv - Beta!</title>
   	<%= stylesheet_link_tag    "application","home", :media => "all" %>
-    
+  
      <%=yield(:css)%>
   
       <%= csrf_meta_tags %>
+
 </head>
 <body>
 	<!--[if lt IE 7]>
@@ -46,7 +47,6 @@
                     </a>
                 </h1>
 
-
                 <% if user_signed_in? %>
 
                 <div class="dropdown">
@@ -66,7 +66,7 @@
                     <li><a href="/recursos/subir" class="btnsubir subir">Subir Comerciales</a></li>
                 </ul>
                 <% else %>
-
+                
                 <ul id="nav-access">
                         <li>Ingresar con</li>
                         <li><a href="/auth/twitter" class="icon-small twitter">
@@ -86,6 +86,7 @@
                         </li> -->
                     <li style="display:none"><a href="#" title="Acerca de Dandoo" class="paddr10">Nosotros</a></li>
                 </ul>
+                
                 <% end %>
                
             </hgroup>
@@ -130,10 +131,11 @@
 </div>
 
 
+  
+  <!--[if (gte IE 6)&(lte IE 8)]><script type="text/javascript" src="/assets/selectivizr-min.js"></script><![endif]-->
   <script type="text/javascript">
   if (!window['YT']) {var YT = {};}if (!YT.Player) {(function(){var s = 'http:' + '//s.ytimg.com/yt/jsbin/www-widgetapi-vflU5wlSl.js';var a = document.createElement('script');a.src = s;a.async = true;var b = document.getElementsByTagName('script')[0];b.parentNode.insertBefore(a, b);YT.embed_template = "\u003ciframe width=\"425\" height=\"344\" src=\"\" frameborder=\"0\" allowfullscreen\u003e\u003c\/iframe\u003e";})();}
   </script>
-  <!--[if (gte IE 6)&(lte IE 8)]><script type="text/javascript" src="/assets/selectivizr-min.js"></script><![endif]-->
   <script type="text/javascript" src="/assets/require.js" data-main=<%=yield(:main_js)%>></script>
   <%=yield :javascript %>
   <script type="text/javascript">

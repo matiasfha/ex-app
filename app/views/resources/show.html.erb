@@ -1,4 +1,3 @@
-<% cache do %>
 <% content_for :css do %>
 <style type="text/css" rel="stylesheet">
 body {
@@ -9,6 +8,7 @@ body {
 }
 </style>
 <% end %>
+<script type="text/javascript" src="/assets/jquery.js" /></script>
 <%
 content_for :main_js do %>
 "/assets/index"
@@ -27,7 +27,7 @@ content_for :main_js do %>
             </div><!-- .wrap  #header -->
       </div><!-- #site-head -->
 </header>
-<% end %><!--cache -->
+
 <div id="modal">
     <div id="ad-left">
         <span id="resource">
@@ -36,48 +36,13 @@ content_for :main_js do %>
             <% else %>
                 <div id="player"></div>
                 <% if @resource.provider == 'youtube' %>
-                <script type="text/javascript">
-                  $(document).ready(function(){
-                      var video_id = "<%=@resource.url.split('=')[1]%>"
-                      var loadYoutubePlayer = function(video_id, player_id) {
-                          var done, onYoutubeIframeAPIReady, player;
-                          player = null;
-                          done = false;
-                          onYoutubeIframeAPIReady = function(video_id, player_id) {
-                            var options;
-                            options = {
-                              width: '829',
-                              height: '480',
-                              videoId: video_id,
-                              playerVars: {
-                                autoplay: 0,
-                                controls: 0,
-                                enablejsapi: 1,
-                                showinfo: 0,
-                                iv_load_policy: 3,
-                                color: 'white',
-                                theme: 'light',
-                                origin: 'http://dandoodev.herokuapp.com',
-                                autohide: 1,
-                                disablekb: 1,
-                                modestbranding: 1,
-                                playerpiid: player_id,
-                                rel: 0,
-                                fs:1
-                              },
-                              events: {
-                                'onReady': function(event) {
-                                  return event.target.playVideo();
-                                }
-                              }
-                            };
-                            player = new YT.Player(player_id, options);
-                          };
-                          onYoutubeIframeAPIReady(video_id, player_id);
-                        };
-                      loadYoutubePlayer(video_id,'player');
-                      });
-                  </script>
+                <% 
+                video_id = @resource.url.split('=')[1]
+                url = "http://www.youtube.com/embed/#{video_id}"
+                %>
+                  <iframe id="player" type="text/html" width="829" height="480"
+  src="<%=url%>?enablejsapi=1&origin=http://www.dandoo.tv&width=829&height=480&iv_load_policy=3&controls=1&autoplay=1&autohide=1&disablekb=1&modestbranding=1&color=white&theme=light&showinfo=0"
+  frameborder="0"></iframe>
                   <%else 
                   video_id = @resource.url.split('/')[3]
                   %>
@@ -100,12 +65,12 @@ content_for :main_js do %>
                         page_url = bitly.shorten("#{request.protocol}#{request.host_with_port}#{request.fullpath}resources/#{@resource.id}") 
                         shorten_url = page_url.short_url
                       %>
-                      <a href="https://twitter.com/share?url=<%=shorten_url%>&text=<%=@resource.titulo%>&via=Dandootv&lang=es&related=Dandootv&count=none&hashtags=#Dandoo" class="icon-small ctwitter">
+                      <a target="_blank" href="https://twitter.com/share?url=<%=shorten_url%>&text=Mira este comercial!! Está buenísimo!! ||<%=@resource.titulo%>&via=Dandootv&lang=es&related=Dandootv&count=none&hashtags=#Dandoo" class="icon-small ctwitter">
                         <img src="/assets/twitter3.png" width="32" height="32" alt="">
                       </a>
                     </li>
                     <li>
-                      <a href="https://www.facebook.com/dialog/feed?app_id=<%=ENV['FACEBOOK_KEY']%>&link=<%=shorten_url%>&resource=<%=@resource.imagen.url(:medium)%>&name=<%=@resource.titulo%>&caption=Dandoo.tv&description=<%=@resource.descripcion%>&redirect_uri=<%="#{request.protocol}#{request.host_with_port}#{request.fullpath}"%>" class="icon-small cfacebook">
+                      <a target="_blank" href="https://www.facebook.com/dialog/feed?app_id=<%=ENV['FACEBOOK_KEY']%>&link=<%=shorten_url%>&picture=<%=@resource.imagen.url(:large)%>&name=Mira este comercial!! Está buenísimo!! ||<%=@resource.titulo%>&caption=Dandoo.tv&description=<%=@resource.descripcion%>&redirect_uri=<%="#{request.protocol}www.#{request.host_with_port}#{request.fullpath}"%>" class="icon-small cfacebook">
                         <img src="/assets/facebook2.png" width="32" height="32" alt="">
                       </a>
                     </li>
@@ -147,11 +112,9 @@ content_for :main_js do %>
       <h3>¿Te gustó? ponle una nota</h3>
       <% if user_signed_in? %>
       <ul id="rating" data-id="<%=@resource.id%>">
-        <% for i in 1..nota %>
-          <li class="star"><a href="" class="starOn"><%=i%></a></li>
-        <% end %>
-        <% for i in nota...5 %>
-          <li class="star"><a href="#" class="starOff"><%=i+1%></a></li>
+        
+        <% for i in 1..5 %>
+          <li class="star"><a href="#" class="starOff"><%=i%></a></li>
         <% end %>
 
       </ul>
