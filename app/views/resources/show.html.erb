@@ -62,17 +62,24 @@ content_for :main_js do %>
                     <li>
                       <%
                         bitly = Bitly.new(ENV['BITLY_USER'],ENV['BITLY_KEY']) 
-                        page_url = bitly.shorten("#{request.protocol}#{request.host_with_port}#{request.fullpath}resources/#{@resource.id}") 
+                        orig_url = "#{request.protocol}#{request.host_with_port}#{request.fullpath}resources/#{@resource.id}"
+                        page_url = bitly.shorten(orig_url) 
                         shorten_url = page_url.short_url
                       %>
-                      <a target="_blank" href="https://twitter.com/share?url=<%=shorten_url%>&text=Mira este comercial!! Está buenísimo!! ||<%=@resource.titulo%>&via=Dandootv&lang=es&related=Dandootv&count=none&hashtags=#Dandoo" class="icon-small ctwitter">
-                        <img src="/assets/twitter3.png" width="32" height="32" alt="">
+
+                         <a href="http://twitter.com/share?lang=es&via=Dandootv &url=<%=shorten_url%>&text=Mira este comercial!! Está buenísimo!! - <%=@resource.titulo%>&related=Dandootv&counturl=<%=orig_url%>&hashtags=Dandoo" class="icon-small ctwitter"> 
+                          <img src="/assets/twitter3.png" width="32" height="32" alt="">
+                         </a>
+                         
+ 
+                        
                       </a>
                     </li>
                     <li>
-                      <a target="_blank" href="https://www.facebook.com/dialog/feed?app_id=<%=ENV['FACEBOOK_KEY']%>&link=<%=shorten_url%>&picture=<%=@resource.imagen.url(:large)%>&name=Mira este comercial!! Está buenísimo!! ||<%=@resource.titulo%>&caption=Dandoo.tv&description=<%=@resource.descripcion%>&redirect_uri=<%="#{request.protocol}www.#{request.host_with_port}#{request.fullpath}"%>" class="icon-small cfacebook">
+                      <a href="https://www.facebook.com/dialog/feed?app_id=<%=ENV['FACEBOOK_KEY']%>&link=<%=shorten_url%>&picture=<%=@resource.imagen.url(:large)%>&name=Mira este comercial!! Está buenísimo!! ||<%=@resource.titulo%>&caption=Dandoo.tv&description=<%=@resource.descripcion%>&redirect_uri=<%="#{request.protocol}www.#{request.host_with_port}#{request.fullpath}"%>" class="icon-small cfacebook">
                         <img src="/assets/facebook2.png" width="32" height="32" alt="">
                       </a>
+                      
                     </li>
                   </ul>
                 </div>

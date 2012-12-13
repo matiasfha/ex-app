@@ -183,7 +183,17 @@ require [
 			$('#contenedor-modal').fadeOut().empty();
 			false
 		
-		
+		$('a.ctwitter,a.cfacebook').live 'click',(e) ->
+			e.preventDefault()
+			e.stopPropagation()
+			url = $(this).attr('href')
+			width  = 775
+			height = 400
+			left   = ($(window).width()  - width)  / 2
+			top    = ($(window).height() - height) / 2
+			opts   = "status=1,width=#{width},height=#{height},top=#{top},left=#{left}"
+			window.open(url, 'Comparte en Twitter', opts);
+			false
 
 		#Template para comentario nuevo
 		commentTPL = _.template( """
