@@ -30,7 +30,7 @@
         <div class="entry-meta group">
          <a class="comments-no" href="#"><%=resource.comments.count%></a> 
          <a data-post-id="213" class="heart-this loved" href="#" title="Me gusta">
-         <span class="heart-no" data-total="<%=resource.votos.count %>"><%=Resource.promedio_votos(resource.id).round %> / <%=pluralize resource.votos.count , "Voto"%></span></a>
+         <span class="heart-no" data-total="<%=resource.votos.count %>"><%=Resource.promedio_votos(resource.id)%> / <%=pluralize resource.votos.count , "Voto"%></span></a>
         </div>
     </div>
 </article>
