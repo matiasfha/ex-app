@@ -1,4 +1,4 @@
-<% cache do %>
+
 <%
 content_for :main_js do 
   %>
@@ -73,7 +73,7 @@ nav {
         	<br />
         	<h2 style="color:#999;">Confirma tus datos para ingresar</h2>
         </header><!-- fin header -->
- <% end %><!--cache -->
+ 
 
         <% if flash[:error] %>
 	  <div class="mensajes error">
@@ -130,7 +130,7 @@ nav {
 	</div>
  <% end %> 
  
- <% cache do %>
+ 
        <ul class="pasos" style="position:relative;left:2%">
 	    <li><div class="paso-off" id="ir_paso1"></div></li>
 	    <li><div class="paso-on"></div></li>
@@ -142,4 +142,3 @@ nav {
         <footer>
         </footer><!-- fin footer -->
 </div><!-- fin container -->
-<% end %>
