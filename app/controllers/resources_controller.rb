@@ -30,7 +30,8 @@ class ResourcesController < ApplicationController
 	end
 
 	def nuevos
-		@resources = Resource.all.order_by([[:created_at,:desc]]).page(params[:page])
+		#@resources = Resource.all.order_by([[:created_at,:desc]]).page(params[:page])
+		@resources       = Resource.nuevos(current_user,params[:page])
 		respond_with(@resource) do |format|
   			format.html {render :partial => 'resources/listado'}
 		end
@@ -52,8 +53,11 @@ class ResourcesController < ApplicationController
 
 	def todos
 		@resources  =  Resource.all.order_by([[:created_at,:desc]]).page(params[:page])
-    		@nuevos       = Resource.nuevos.count
-	end
+		respond_with(@resource) do |format|
+  			format.html {render :partial => 'resources/listado'}
+		end
+    	end
+
 	def subir
 		@resource = Resource.new
 		session[:last_page] = (refered_from_our_site?)  ? http_referer_uri : root_path

@@ -34,7 +34,7 @@ DandooDev::Application.routes.draw do
   match 'recursos/mas_comentados(/:page)' => 'resources#mas_comentados',:via => :get
   match 'recursos/nuevos(/:page)' => 'resources#nuevos',:via => :get
   match 'recursos/mis_contenidos(/:page)' => 'resources#nuevos',:via => :get
-  match 'recursos/todos(/:page)' => 'resources#nuevos',:via => :get
+  match 'recursos/todos(/:page)' => 'resources#todos',:via => :get
   match 'recursos/subir' => 'resources#subir', :via => :get
   
   resources :comments, :only => [:create,:show,:index]

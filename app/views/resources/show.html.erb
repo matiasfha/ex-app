@@ -110,7 +110,7 @@ content_for :main_js do %>
     <div id="uno"><!-- uno-->
       <h3>La gente le puso esta nota</h3>
       <%
-      nota = Resource.promedio_votos(@resource.id)
+      nota = @resource.promedio
       %>
       <div class="bigStar"><span><%=nota %></span><br><span id="votoWord"><%=@resource.votos.count%> votos</span></div>
       

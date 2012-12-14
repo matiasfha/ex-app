@@ -5,6 +5,7 @@ class Resource
   include Mongoid::Paperclip
   include Mongoid::Rating
 
+
   paginates_per 12
 
   embeds_many :comments
@@ -38,7 +39,20 @@ class Resource
     	:original => "-quality 100"
     }
 
-    
+    field :image_width, :type => Integer, :default => 0
+    field :image_height, :type => Integer, :default => 0
+    # after_save do |document|
+    # 	dim = Paperclip::Geometry.from_file(document.imagen.url(:large))
+    # 	document.width  = dim.width
+    # 	document.height = dim.height
+    # 	#document.save
+    # end
+    after_post_process do |document|
+    	geo = Paperclip::Geometry.from_file(imagen.queued_for_write[:large])
+    	self.image_width = geo.width
+    	self.image_height = geo.height
+    end
+
 
     #Campos para videos
     field :thumbnail, :type => String
@@ -111,5 +125,6 @@ class Resource
 			Resource.where(:created_at.gte => time).order_by([[:created_at,:desc]]).page(pagina)
 		end
 	end
+
 
 end

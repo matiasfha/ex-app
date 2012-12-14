@@ -12,8 +12,8 @@
                             <div class="entry-content">
                                     <% 
                                 img = resource.imagen.url(:large)
-                                dimensions = Paperclip::Geometry.from_file(img) %>
-                                <%=image_tag img, :class =>"attachment-ci_listing_thumb", :width =>dimensions.width,:height =>dimensions.height %>
+                                #dimensions = Paperclip::Geometry.from_file(img) %>
+                                <%=image_tag img, :class =>"attachment-ci_listing_thumb", :width =>resource.image_width,:height =>resource.image_height %>
                                     <%
                                     clase=""
                                     if resource.type=='video' 
