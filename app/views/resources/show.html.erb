@@ -1,3 +1,4 @@
+<% cache do %>
 <% content_for :css do %>
 <style type="text/css" rel="stylesheet">
 body {
@@ -27,6 +28,8 @@ content_for :main_js do %>
             </div><!-- .wrap  #header -->
       </div><!-- #site-head -->
 </header>
+
+<% end %><!--cache-->
 
 <div id="modal">
     <div id="ad-left">
@@ -60,14 +63,9 @@ content_for :main_js do %>
                   <ul>
                     <li style="padding-right:10px;">Compartir</li>
                     <li>
-                      <%
-                        bitly = Bitly.new(ENV['BITLY_USER'],ENV['BITLY_KEY']) 
-                        orig_url = "#{request.protocol}#{request.host_with_port}#{request.fullpath}resources/#{@resource.id}"
-                        page_url = bitly.shorten(orig_url) 
-                        shorten_url = page_url.short_url
-                      %>
+                     
 
-                         <a href="http://twitter.com/share?lang=es&via=Dandootv &url=<%=shorten_url%>&text=Mira este comercial!! Está buenísimo!! - <%=@resource.titulo%>&related=Dandootv&counturl=<%=orig_url%>&hashtags=Dandoo" class="icon-small ctwitter"> 
+                         <a href="http://twitter.com/share?lang=es&via=Dandootv &url=<%=@shorten_url%>&text=Mira este comercial!! Está buenísimo!! - <%=@resource.titulo%>&related=Dandootv&counturl=<%=@orig_url%>&hashtags=Dandoo" class="icon-small ctwitter"> 
                           <img src="/assets/twitter3.png" width="32" height="32" alt="">
                          </a>
                          
@@ -76,7 +74,7 @@ content_for :main_js do %>
                       </a>
                     </li>
                     <li>
-                      <a href="https://www.facebook.com/dialog/feed?app_id=<%=ENV['FACEBOOK_KEY']%>&link=<%=shorten_url%>&picture=<%=@resource.imagen.url(:large)%>&name=Mira este comercial!! Está buenísimo!! ||<%=@resource.titulo%>&caption=Dandoo.tv&description=<%=@resource.descripcion%>&redirect_uri=<%="#{request.protocol}www.#{request.host_with_port}#{request.fullpath}"%>" class="icon-small cfacebook">
+                      <a href="https://www.facebook.com/dialog/feed?app_id=<%=ENV['FACEBOOK_KEY']%>&link=<%=@shorten_url%>&picture=<%=@resource.imagen.url(:large)%>&name=Mira este comercial!! Está buenísimo!! ||<%=@resource.titulo%>&caption=Dandoo.tv&description=<%=@resource.descripcion%>&redirect_uri=<%="#{request.protocol}www.#{request.host_with_port}#{request.fullpath}"%>" class="icon-small cfacebook">
                         <img src="/assets/facebook2.png" width="32" height="32" alt="">
                       </a>
                       
@@ -112,7 +110,7 @@ content_for :main_js do %>
       <%
       nota = @resource.promedio
       %>
-      <div class="bigStar"><span><%=nota %></span><br><span id="votoWord"><%=@resource.votos.count%> votos</span></div>
+      <div class="bigStar"><span><%=nota %></span><br><span id="votoWord"><%=@resource.rates_count%> votos</span></div>
       
       <br><br>
       

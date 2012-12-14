@@ -1,11 +1,13 @@
 class HomeController < ApplicationController
   #caches_action :splash
-before_filter :check_login!, :only => [:index,:recursos_nuevos,:recursos_comentados,:mis_contenidos,:todos]
+  before_filter :check_login!, :only => [:index,:recursos_nuevos,:recursos_comentados,:mis_contenidos,:todos]
+  layout 'application'
   def index
     	@resources = Resource.mas_votadas(params[:page])
       @nuevos       = Resource.nuevos(current_user).count
       @votados      = Resource.mas_votadas.count
       @comentados = Resource.mas_comentados.count
+      return unless stale? :etag => [@resources,@nuevos,@votados,@comentados]
   end
 
   def splash
@@ -18,7 +20,8 @@ before_filter :check_login!, :only => [:index,:recursos_nuevos,:recursos_comenta
       @nuevos       = Resource.nuevos(current_user).count
       @votados      = Resource.mas_votadas.count
       @comentados = Resource.mas_comentados.count
-      render :layout => 'application'
+      return unless stale? :etag => [@resources,@nuevos,@votados,@comentados]
+      #render :layout => 'application'
   end
 
   def recursos_comentados
@@ -26,7 +29,8 @@ before_filter :check_login!, :only => [:index,:recursos_nuevos,:recursos_comenta
       @nuevos       = Resource.nuevos(current_user).count
       @votados      = Resource.mas_votadas.count
       @comentados = Resource.mas_comentados.count
-  	render :layout => 'application'
+      return unless stale? :etag => [@resources,@nuevos,@votados,@comentados]
+  	#render :layout => 'application'
   end
 
   def mis_contenidos
@@ -35,7 +39,8 @@ before_filter :check_login!, :only => [:index,:recursos_nuevos,:recursos_comenta
       @nuevos       = Resource.nuevos(current_user).count
       @votados      = Resource.mas_votadas.count
       @comentados = Resource.mas_comentados.count
-      render :layout => 'application'
+      return unless stale? :etag => [@resources,@nuevos,@votados,@comentados]
+      #render :layout => 'application'
     else 
       redirect_to root_path
     end
@@ -45,7 +50,8 @@ before_filter :check_login!, :only => [:index,:recursos_nuevos,:recursos_comenta
     @resources  =  Resource.all.order_by([[:created_at,:desc]]).page(params[:page])
     @nuevos       = Resource.nuevos(current_user).count
     @votados      = Resource.mas_votadas.count
-      @comentados = Resource.mas_comentados.count
+    @comentados = Resource.mas_comentados.count
+    return unless stale? :etag => [@resources,@nuevos,@votados,@comentados]
   end
 
   def ingresar

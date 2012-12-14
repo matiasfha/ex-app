@@ -1,4 +1,4 @@
-
+<% cache do %>
 <!DOCTYPE html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
@@ -21,7 +21,7 @@
 
   	<title>Dandoo.tv - Beta!</title>
   	<%= stylesheet_link_tag    "application","home", :media => "all" %>
-  
+  <% end %> <!--cache -->
      <%=yield(:css)%>
   
       <%= csrf_meta_tags %>
@@ -100,7 +100,7 @@
 </header>
     <%=yield%>
 
-  
+<% cache do %>  
 <div id="feedback-panel">
   <div id="tab">
     <%=image_tag 'btn-sugerencias.png',:size =>'26x97' %>
@@ -136,9 +136,7 @@
   <script type="text/javascript">
   if (!window['YT']) {var YT = {};}if (!YT.Player) {(function(){var s = 'http:' + '//s.ytimg.com/yt/jsbin/www-widgetapi-vflU5wlSl.js';var a = document.createElement('script');a.src = s;a.async = true;var b = document.getElementsByTagName('script')[0];b.parentNode.insertBefore(a, b);YT.embed_template = "\u003ciframe width=\"425\" height=\"344\" src=\"\" frameborder=\"0\" allowfullscreen\u003e\u003c\/iframe\u003e";})();}
   </script>
-  <script type="text/javascript" src="/assets/require.js" data-main=<%=yield(:main_js)%>></script>
-  <%=yield :javascript %>
-  <script type="text/javascript">
+   <script type="text/javascript">
     var _gaq = _gaq || [];
     _gaq.push(['_setAccount', "<%=ENV['GOOGLEANALYTICS']%>"]);
     _gaq.push(['_trackPageview']);
@@ -149,6 +147,10 @@
       var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
     })();
   </script>
-
+  <% end %>
+  
+ 
+  <script type="text/javascript" src="/assets/require.js" data-main=<%=yield(:main_js)%>></script>
+  <%=yield :javascript %>
 </body>
 </html>
