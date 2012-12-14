@@ -3,7 +3,7 @@ class HomeController < ApplicationController
 before_filter :check_login!, :only => [:index,:recursos_nuevos,:recursos_comentados,:mis_contenidos,:todos]
   def index
     	@resources = Resource.mas_votadas(params[:page])
-      @nuevos       = Resource.nuevos.count
+      @nuevos       = Resource.nuevos(current_user).count
       @votados      = Resource.mas_votadas.count
       @comentados = Resource.mas_comentados.count
   end
@@ -14,8 +14,8 @@ before_filter :check_login!, :only => [:index,:recursos_nuevos,:recursos_comenta
 
 
   def recursos_nuevos
-      @resources = Resource.nuevos(params[:page])
-      @nuevos       = Resource.nuevos.count
+      @resources = Resource.nuevos(current_user,params[:page])
+      @nuevos       = Resource.nuevos(current_user).count
       @votados      = Resource.mas_votadas.count
       @comentados = Resource.mas_comentados.count
       render :layout => 'application'
@@ -23,7 +23,7 @@ before_filter :check_login!, :only => [:index,:recursos_nuevos,:recursos_comenta
 
   def recursos_comentados
   	@resources =  Resource.mas_comentados(params[:page])
-      @nuevos       = Resource.nuevos.count
+      @nuevos       = Resource.nuevos(current_user).count
       @votados      = Resource.mas_votadas.count
       @comentados = Resource.mas_comentados.count
   	render :layout => 'application'
@@ -32,7 +32,7 @@ before_filter :check_login!, :only => [:index,:recursos_nuevos,:recursos_comenta
   def mis_contenidos
     if user_signed_in?
       @resources =  current_user.resources.order_by([[:created_at,:desc]]).page(params[:page])
-      @nuevos       = Resource.nuevos.count
+      @nuevos       = Resource.nuevos(current_user).count
       @votados      = Resource.mas_votadas.count
       @comentados = Resource.mas_comentados.count
       render :layout => 'application'
@@ -43,7 +43,7 @@ before_filter :check_login!, :only => [:index,:recursos_nuevos,:recursos_comenta
 
   def todos
     @resources  =  Resource.all.order_by([[:created_at,:desc]]).page(params[:page])
-    @nuevos       = Resource.nuevos.count
+    @nuevos       = Resource.nuevos(current_user).count
     @votados      = Resource.mas_votadas.count
       @comentados = Resource.mas_comentados.count
   end
