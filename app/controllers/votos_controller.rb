@@ -6,7 +6,7 @@ class VotosController < ApplicationController
 		if !resource.nil?
 			resource.rate(:by => current_user,:value => params[:valor].to_i).save
 			total = resource.rates_count
-			resource.promedio = resource.rates_average
+			resource.promedio = sprintf '%.2f',resource.rates_average
 			resource.save
 			render :json => {:result => true,:total => total,:promedio => resource.promedio}
 		else
