@@ -4,6 +4,9 @@ class Emailer < ActionMailer::Base
 		mail(:to => 'soporte@dandoo.tv',
 			:subject => "Feedback [#{autor}]",
 			:from =>  from
-		)
+		) do |format|
+			  format.text { render :text => @comentario}
+  			  format.html { render :text => @comentario }
+		end
 	end
 end
