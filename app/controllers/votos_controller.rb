@@ -4,29 +4,11 @@ class VotosController < ApplicationController
 	def create
 		resource = Resource.find(params[:pid])
 		if !resource.nil?
-			voto = Voto.where(:user_id => current_user.id, :resource_id => resource.id).first
-			promedio = 0
-			if voto.nil?
-				#Agregar un nuevo voto
-				voto 		     = Voto.new
-				voto.valor 		 = params[:valor]
-				voto.user_id     = current_user.id 
-				voto.resource_id = resource.id 
-				voto.save
-				total 			 = resource.votos.count
-				promedio = Resource.promedio_votos(params[:pid])
-				resource.promedio = promedio
-				resource.save
-			else
-				#Ya fue votado se debe actualizar el voto
-				voto.valor 	= params[:valor]
-				voto.save
-				total 		= resource.votos.count
-				promedio = Resource.promedio_votos(params[:pid])
-				resource.promedio = promedio
-				resource.save
-			end
-			render :json => {:result => true,:total => resource.votos.count,:promedio => promedio}
+			resource.rate(:by => current_user,:value => params[:valor].to_i).save
+			total = resource.rates_count
+			resource.promedio = sprintf '%.2f',resource.rates_average
+			resource.save
+			render :json => {:result => true,:total => total,:promedio => resource.promedio}
 		else
 			render :json => {:result => false}
 		end
