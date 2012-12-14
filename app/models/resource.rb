@@ -66,17 +66,7 @@ class Resource
 
 	#Retorna las mas votadas respecto al rating de votos
 	def self.mas_votadas(pagina=nil)
-	    avg = Voto.avg(:valor)
-	    avg = (avg.nil?)? 0 : avg.round
-	    # resources = Array.new
-	    
-	    	
-	    # Voto.where(:valor.gte => avg).order_by([[:valor,:desc]]).distinct(:resource_id).each do |v|
-	    #   r = self.find(v)
-	    #   	resources.push(r)
-	    # end
-		
-	    # resources
+	    avg = Resource.avg(:promedio)
 	    resources = Resource.where(:promedio.gte => avg).order_by([[:promedio,:desc],[:created_at,:desc]])
 	end
 
@@ -112,8 +102,9 @@ class Resource
 	    end
 	end
 
-	def self.nuevos(pagina=nil)
-		time = Time.now - 5.days
+	#Obtener los mas nuevos desde el último ingreso del usuario
+	def self.nuevos(user,pagina=nil)
+		time = user.last_sign_in_at
 		if page.nil?
 			Resource.where(:created_at.gte => time).order_by([[:created_at,:desc]])
 		else

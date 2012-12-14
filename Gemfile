@@ -44,7 +44,7 @@ gem "aws-sdk"
 gem 'recaptcha',			:require => 'recaptcha/rails'
 gem 'rails-i18n'
 gem 'bitly'
-gem 'mongoid-rating'
+gem 'mongoid-rating',:git => 'git://github.com/lukaszsliwa/mongoid-rating.git'
 
 group :development do
   gem 'rb-fsevent'
