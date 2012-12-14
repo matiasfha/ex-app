@@ -30,7 +30,8 @@ class ResourcesController < ApplicationController
 	end
 
 	def nuevos
-		@resources = Resource.all.order_by([[:created_at,:desc]]).page(params[:page])
+		#@resources = Resource.all.order_by([[:created_at,:desc]]).page(params[:page])
+		@resources       = Resource.nuevos(current_user,params[:page])
 		respond_with(@resource) do |format|
   			format.html {render :partial => 'resources/listado'}
 		end
