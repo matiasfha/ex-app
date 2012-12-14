@@ -3,6 +3,7 @@ class Resource
   include Mongoid::Document
   include Mongoid::Timestamps
   include Mongoid::Paperclip
+  include Mongoid::Rating
 
   paginates_per 12
 
