@@ -43,16 +43,16 @@ DandooDev::Application.configure do
 
   # Use a different cache store in production
   # config.cache_store = :mem_cache_store
-  config.cache_store = :dalli_store
+   config.cache_store = :dalli_store
 
   # Enable serving of images, stylesheets, and JavaScripts from an asset server
   # config.action_controller.asset_host = "http://assets.example.com"
-  config.action_controller.asset_host = "//#{ENV['FOG_DIRECTORY']}.s3.amazonaws.com"
+  #config.action_controller.asset_host = "//#{ENV['FOG_DIRECTORY']}.s3.amazonaws.com"
 
   
   # Precompile additional assets (application.js, application.css, and all non-JS/CSS are already added)
   #config.assets.precompile += %w(*.js,,active_admin.js,active_admin.css)
-  #config.assets.precompile += %w(templates/*,collections/*,models/*,views/*,*.js,images/*)
+  config.assets.precompile += %w(templates/*,collections/*,models/*,views/*,*.js,images/*)
   # Disable delivery errors, bad email addresses will be ignored
   # config.action_mailer.raise_delivery_errors = false
 
