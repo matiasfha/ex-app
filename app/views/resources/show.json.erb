@@ -11,7 +11,7 @@
 		"img_large":    	"<%=@resource.imagen.url(:large)%>",
 		<% if @resource.type == "video"
 			if @resource.provider == "youtube" %>
-				"url":			"http://www.youtube.com/embed/<%=@resource.url.split('=')[1]%>",
+				"url":			"<%=@resource.url%>",
 			<% else %>
 				"url":			"http://player.vimeo.com/video/<%=@resource.url.split('/')[3]%>",
 			<% end
