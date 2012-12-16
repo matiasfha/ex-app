@@ -16,15 +16,13 @@ require.config
 
 require [
 	'jquery'
-	'underscore-min'
-	'backbone-min'
 	'domReady'
 	'jquery.numeric'
 	'File/FileAPI.min'
 	'jquery.serializeObject'
 	'jquery.rutvalidate'
 	'jquery.isotope'
-],($,_,Backbone,domReady,N,F,S,R,I) ->
+],($,domReady,N,F,S,R,I) ->
 	domReady () ->
 		
 

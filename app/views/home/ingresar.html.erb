@@ -1,0 +1,79 @@
+<% cache do %>
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="description" content="Dandoo.tv La primera red social de publicidad en el mundo">
+    <meta name="keywords" content="Dandoo, Dandoo.tv, DandooTV, Publicidad, Puntos, Dinero" />
+    <meta name="author" content="Matías Hernández Arellano">
+    <meta name="viewport" content="width=device-width">
+    <link rel="icon" type="image/ico" href="/assets/favicon.ico" />
+    <meta property="og:title" content="Dandoo.tv - La primera red social de publicidad" />
+    <meta property="og:type" content="company" />
+    <meta property="og:site_name" content="Dandoo.tv" />
+    <meta property="og:url" content="dandoodev.herokuapp.com/auth/facebook" />
+    <meta property="og:image" content="http://devdandoo.tv/assets/logo.png" />
+    <meta property="og:description" content="Dandoo.tv es la primera red social de Publicidad. Basados en Neurociencias Perceptivas desarrollamos interfaces capaces de llevar la interacción entre marca y usuario target al siguiente nivel." />
+    <title>Dandoo.tv - Beta! - Ingresar</title>
+
+ 
+    <!-- CSS -->
+    <%= stylesheet_link_tag    "application","botones","login-usuario", :media => "all" %>
+    <!-- JS -->
+    
+
+
+</head>
+ 
+<body>
+    <div id="empresas">
+    
+    
+        <div id="site-head">
+            <div class="wrap group">
+                <hgroup class="logo">
+                    <h1><a href="index.html"><img src="/assets/dandooTV.png" alt="dandooTV" width="148" height="44"></a></h1>
+                </hgroup>
+
+            </div>
+        </div>   
+    
+    
+        <header>
+	        <br><br><br>
+	        <h2>Regístrate y disfruta la <br> mejor publicidad del mundo</h2>
+        </header><!-- fin header -->
+        
+        
+        
+        <section id="contenedor" class="clearfix">       
+        <h3>Puedes hacerlo con:</h3>
+        <br><br>
+        
+				<div class="two columns">
+				
+				<div class="container">
+				<ul>                
+                                                        <li><a href="/auth/twitter" class="medium twitter ml15"><img src="/assets/twitter3.png" width="41" height="41" alt="">Twitter</a></li>
+                                                        <li class="oespacio"><strong>o</strong></li>
+                                                        <li><a href="/auth/facebook" class="medium facebook ml17"><img src="/assets/facebook1.png" width="41" height="41" alt="">Facebook</a></li>
+                                                    </ul>
+				</div>	
+				
+				
+				</div>        
+        </section>   
+        
+
+	    <a href="<%=@back%>" class="back">Regresar donde estaba</a>
+    
+    </div>
+ 
+ 
+</body>
+</html>
+<% end %>

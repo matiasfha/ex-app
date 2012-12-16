@@ -7,10 +7,7 @@ class Resource
 
 
   paginates_per 12
-
   embeds_many :comments
-  
-  has_many :votos, :dependent => :delete
   belongs_to :user
 
   #Campos generales Imagenes y Videos
@@ -41,12 +38,8 @@ class Resource
 
     field :image_width, :type => Integer, :default => 0
     field :image_height, :type => Integer, :default => 0
-    # after_save do |document|
-    # 	dim = Paperclip::Geometry.from_file(document.imagen.url(:large))
-    # 	document.width  = dim.width
-    # 	document.height = dim.height
-    # 	#document.save
-    # end
+    
+
     after_post_process do |document|
     	geo = Paperclip::Geometry.from_file(imagen.queued_for_write[:large])
     	self.image_width = geo.width
@@ -55,14 +48,12 @@ class Resource
 
 
     #Campos para videos
-    field :thumbnail, :type => String
     field :url, :type => String
-    field :html, :type => String
     field :provider, :type => String
 
 
     attr_accessible :imagen,  :descripcion, :titulo, :num_views
-    attr_accessible :thumbnail, :url, :type,:html,:provider
+    attr_accessible :url, :type, :provider
     
     validates_attachment_presence :imagen
     validates_presence_of  :titulo
@@ -126,5 +117,6 @@ class Resource
 		end
 	end
 
+      
 
 end

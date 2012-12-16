@@ -20,6 +20,7 @@
       <meta property="og:description" content="Dandoo.tv es la primera red social de Publicidad. Basados en Neurociencias Perceptivas desarrollamos interfaces capaces de llevar la interacción entre marca y usuario target al siguiente nivel." />
 
   	<title>Dandoo.tv - Beta!</title>
+
   	<%= stylesheet_link_tag    "application","home", :media => "all" %>
   
      <%=yield(:css)%>
@@ -100,7 +101,7 @@
 </header>
     <%=yield%>
 
-  
+<% cache do %>  
 <div id="feedback-panel">
   <div id="tab">
     <%=image_tag 'btn-sugerencias.png',:size =>'26x97' %>
@@ -131,14 +132,17 @@
 </div>
 
 
+
+
+
+
+
   
   <!--[if (gte IE 6)&(lte IE 8)]><script type="text/javascript" src="/assets/selectivizr-min.js"></script><![endif]-->
   <script type="text/javascript">
   if (!window['YT']) {var YT = {};}if (!YT.Player) {(function(){var s = 'http:' + '//s.ytimg.com/yt/jsbin/www-widgetapi-vflU5wlSl.js';var a = document.createElement('script');a.src = s;a.async = true;var b = document.getElementsByTagName('script')[0];b.parentNode.insertBefore(a, b);YT.embed_template = "\u003ciframe width=\"425\" height=\"344\" src=\"\" frameborder=\"0\" allowfullscreen\u003e\u003c\/iframe\u003e";})();}
   </script>
-  <script type="text/javascript" src="/assets/require.js" data-main=<%=yield(:main_js)%>></script>
-  <%=yield :javascript %>
-  <script type="text/javascript">
+   <script type="text/javascript">
     var _gaq = _gaq || [];
     _gaq.push(['_setAccount', "<%=ENV['GOOGLEANALYTICS']%>"]);
     _gaq.push(['_trackPageview']);
@@ -149,6 +153,10 @@
       var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
     })();
   </script>
-
+  <% end %>
+  <%=javascript_include_tag 'handlebars.runtime' %>
+ 
+  <script type="text/javascript" src="/assets/require.js" data-main=<%=yield(:main_js)%>></script>
+  <%=yield :javascript %>
 </body>
 </html>
