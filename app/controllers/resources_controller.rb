@@ -26,13 +26,12 @@ class ResourcesController < ApplicationController
 		@shorten_url = page_url.short_url
 		
 		@user = User.find(@resource.user_id)
-		
-		respond_to do |format|
-			format.html
-			format.json #{render :partial => 'show.json'}
+		if stale?(:etag => [@resource,@comments,@shorten_url])
+			respond_to do |format|
+				format.html
+				format.json #{render :partial => 'show.json'}
+			end
 		end
-		
-
 	end
 
 	def render_resources(resources)
