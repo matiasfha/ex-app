@@ -52,7 +52,7 @@ DandooDev::Application.configure do
   
   # Precompile additional assets (application.js, application.css, and all non-JS/CSS are already added)
   #config.assets.precompile += %w(*.js,,active_admin.js,active_admin.css)
-  config.assets.precompile += %w(templates/*,collections/*,models/*,views/*,*.js,images/*)
+  #config.assets.precompile += %w(templates/*,collections/*,models/*,views/*,*.js,images/*)
   # Disable delivery errors, bad email addresses will be ignored
   # config.action_mailer.raise_delivery_errors = false
 
