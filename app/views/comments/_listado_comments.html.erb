@@ -1,19 +1,21 @@
-<%@comments.each_with_index do |comment,i| %>
-  <% 
-  user = User.find(comment.user_id)
-  clase = (i%2==0) ? 'user1' : 'user2'
-  %>
-  <div id="<%=user.id%>" class="<%=clase%>">
-    <span>
-      <a href="#">
-        <img src="<%=user.avatar.url(:thumb)%>" alt="user" width="30" height="30" border="0">
-      </a>
-    </span>
-    <div class="detail">
-      <h2><a href="#"><%= (user.tipo_usuario == 'usuario') ? user.usuario.nickname  : user.empresa.nombre_empresa %></a></h2>
-      <p><%=comment.contenido%></p>
-    </div>
-    <div class="dataUser"><%=distance_of_time_in_words_to_now comment.created_at%></div>   
-  </div><!--user-->
-  <% end %>
-  <br>
+<% cache ['v1_listcomment',@comments] do %>
+  <%@comments.each_with_index do |comment,i| %>
+    <% 
+    user = User.find(comment.user_id)
+    clase = (i%2==0) ? 'user1' : 'user2'
+    %>
+    <div id="<%=user.id%>" class="<%=clase%>">
+      <span>
+        <a href="#">
+          <img src="<%=user.avatar.url(:thumb)%>" alt="user" width="30" height="30" border="0">
+        </a>
+      </span>
+      <div class="detail">
+        <h2><a href="#"><%= (user.tipo_usuario == 'usuario') ? user.usuario.nickname  : user.empresa.nombre_empresa %></a></h2>
+        <p><%=comment.contenido%></p>
+      </div>
+      <div class="dataUser"><%=distance_of_time_in_words_to_now comment.created_at%></div>   
+    </div><!--user-->
+    <% end %>
+    <br>
+<% end %>
