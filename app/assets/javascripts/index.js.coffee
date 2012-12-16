@@ -40,7 +40,7 @@ require [
 			ret = ""
 			if inicio <= fin 
 				for i in [inicio..fin]
-					ret = ret + options.fn(_.extend({},i,{i:i,iPlus1:i+1}));
+					ret = ret + options.fn($.extend({},i,{i:i,iPlus1:i+1}));
 			return ret 
 
 		Handlebars.registerHelper 'compare', (lvalue, rvalue, options)  ->
