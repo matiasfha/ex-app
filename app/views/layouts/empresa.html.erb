@@ -41,6 +41,6 @@
                 </div>
             </div>
         </div>
-        <script type="text/javascript" src="/assets/require.js" data-main=<%=yield(:main_js)%>></script>
+        <%= requirejs_include_tag yield(:main_js)%>
     </body>
 </html>
