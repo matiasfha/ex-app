@@ -2,7 +2,7 @@ DandooDev::Application.configure do
   # Settings specified here will take precedence over those in config/application.rb
 
   # Code is not reloaded between requests
-  config.cache_classes = false
+  config.cache_classes = true #Remove?
 
   # Full error reports are disabled and caching is turned on
   config.consider_all_requests_local       = false
@@ -43,7 +43,7 @@ DandooDev::Application.configure do
 
   # Use a different cache store in production
   # config.cache_store = :mem_cache_store
-  # config.cache_store = :dalli_store
+  config.cache_store = :dalli_store
 
   # Enable serving of images, stylesheets, and JavaScripts from an asset server
   # config.action_controller.asset_host = "http://assets.example.com"
@@ -52,7 +52,7 @@ DandooDev::Application.configure do
   
   # Precompile additional assets (application.js, application.css, and all non-JS/CSS are already added)
   #config.assets.precompile += %w(*.js,,active_admin.js,active_admin.css)
-  config.assets.precompile += %w(templates/*,collections/*,models/*,views/*,*.js,images/*)
+  #config.assets.precompile += %w(templates/*,collections/*,models/*,views/*,*.js,images/*)
   # Disable delivery errors, bad email addresses will be ignored
   # config.action_mailer.raise_delivery_errors = false
 
@@ -75,9 +75,9 @@ DandooDev::Application.configure do
   config.action_mailer.raise_delivery_errors = false
   config.action_mailer.default :charset => "utf-8"
 
-  # config.action_dispatch.rack_cache = {
-  #   :metastore    => Dalli::Client.new,
-  #   :entitystore  => 'file:/tmp/cache/rack/body',
-  #   :allow_reload => false
-  # }
+  config.action_dispatch.rack_cache = {
+    :metastore    => Dalli::Client.new,
+    :entitystore  => 'file:/tmp/cache/rack/body',
+    :allow_reload => false
+  }
 end
