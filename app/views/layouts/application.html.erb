@@ -99,6 +99,10 @@
 
     <%=yield(:header_nav) %>
 </header>
+  <div id="loader">
+    Cargando contenido... <br />
+    <%=image_tag 'ajax-loader.gif' %>
+  </div>
     <%=yield%>
 
 <% cache do %>  
