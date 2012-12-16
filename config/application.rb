@@ -60,7 +60,7 @@ module DandooDev
 
     # Enable the asset pipeline
     config.assets.enabled = true
-    config.assets.paths+=['templates']
+    #config.assets.paths+=['templates']
     #For Heroku
     config.assets.initialize_on_precompile = false
     config.static_cache_control="public, max-age=2592000"
