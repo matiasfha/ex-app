@@ -47,6 +47,7 @@ gem 'bitly'
 gem 'mongoid-rating',:git => 'git://github.com/lukaszsliwa/mongoid-rating.git'
 gem 'dalli'
 gem 'libxml-ruby'
+gem 'jbuilder'
 
 group :development do
   gem 'rb-fsevent'

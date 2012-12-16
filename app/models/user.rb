@@ -5,7 +5,7 @@ class User
   include Mongoid::Paperclip
   include Mongoid::Paranoia
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable
+         :recoverable,  :trackable, :validatable #, :rememberable
 
 
   ## Database authenticatable

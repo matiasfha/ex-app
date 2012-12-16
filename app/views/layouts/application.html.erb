@@ -132,6 +132,11 @@
 </div>
 
 
+
+
+
+
+
   
   <!--[if (gte IE 6)&(lte IE 8)]><script type="text/javascript" src="/assets/selectivizr-min.js"></script><![endif]-->
   <script type="text/javascript">
@@ -149,7 +154,7 @@
     })();
   </script>
   <% end %>
-  
+  <%=javascript_include_tag 'handlebars.runtime' %>
  
   <script type="text/javascript" src="/assets/require.js" data-main=<%=yield(:main_js)%>></script>
   <%=yield :javascript %>

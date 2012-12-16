@@ -5,7 +5,7 @@
          %>
         "id":"<%=@comentario.id%>",
         "avatar":"<%=user.avatar.url(:thumb)%>",
-        "user_nickname":"nombre",
+        "user_nickname":"<%=nombre%>",
         "fecha":"<%=distance_of_time_in_words_to_now @comentario.created_at%>",
         "contenido":"<%=@comentario.contenido%>",
         "user_id":"<%=user.id%>",

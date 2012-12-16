@@ -2,7 +2,7 @@ require 'bitly'
 class ResourcesController < ApplicationController
 	layout :get_layout
 	before_filter :authenticate_user!, :only => [:create,:destroy,:subir]
-	respond_to :html
+	respond_to :html,:json
 	Bitly.use_api_version_3
 
 	def http_referer_uri
@@ -24,7 +24,15 @@ class ResourcesController < ApplicationController
 		@orig_url = "#{request.protocol}#{request.host_with_port}#{request.fullpath}resources/#{@resource.id}"
 		page_url = bitly.shorten(@orig_url) 
 		@shorten_url = page_url.short_url
-		return unless stale? :etag => [@resources,@comments,@orig_url,@shorten_url]
+		
+		@user = User.find(@resource.user_id)
+		
+		respond_to do |format|
+			format.html
+			format.json #{render :partial => 'show.json'}
+		end
+		
+
 	end
 
 	def render_resources(resources)
