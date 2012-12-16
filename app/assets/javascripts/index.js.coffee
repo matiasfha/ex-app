@@ -97,6 +97,7 @@ require [
 			$('#entry-listing').empty().fadeIn()
 			$('#entry-listing').isotope 'insert',items, () ->
 				$('#entry-listing').isotope('reLayout')
+				$('#loader').hide()
 		
 		#Cargar contenidos con scroll infinito
 		$('#entry-listing').infinitescroll
