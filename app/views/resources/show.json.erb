@@ -1,0 +1,60 @@
+{
+	"current_user":"<%=current_user.id%>",
+	"FACEBOOK": "<%=ENV['FACEBOOK_KEY']%>",
+	"last_page": "<%=session[:last_page]%>",
+	"root_path":"<%=root_path%>",
+	"resource":{
+		"type":			"<%=@resource.type%>",
+		"provider": 		"<%=@resource.provider%>",
+		"id":				"<%=@resource.id%>",
+		"img_original":	"<%=@resource.imagen.url(:original)%>",
+		"img_large":    	"<%=@resource.imagen.url(:large)%>",
+		<% if @resource.type == "video"
+			if @resource.provider == "youtube" %>
+				"url":			"http://www.youtube.com/embed/<%=@resource.url.split('=')[1]%>",
+			<% else %>
+				"url":			"http://player.vimeo.com/video/<%=@resource.url.split('/')[3]%>",
+			<% end
+		end %>
+		"titulo":			"<%=@resource.titulo%>",
+		"descripcion":	"<%=@resource.descripcion%>",
+		"shorten_url":	"<%=@shorten_url%>",
+		"orig_url":"<%=@orig_url%>",
+		"redirect_uri":"www.dandoo.tv",
+		<% user = User.find(@resource.user_id) %>
+		"user":{
+			"id":"<%=user.id%>",
+			"avatar":"<%=user.avatar.url(:thumb)%>",
+			<% if user.tipo_usuario=="usuario" %>
+			"nombre":"<%=user.usuario.nombre%>",
+			"apellidos":"<%=user.usuario.apellidos%>"
+			<% else %>
+			"nombre":"<%=user.empresa.nombre_empresa%>",
+			"apellidos":""
+			<% end %>
+			,"signed_in":"<%=user_signed_in?%>"
+		},
+		"nota":"<%=@resource.promedio%>",
+		"total_votos":"<%=pluralize @resource.rates_count , 'Voto'%>",
+		"comentarios":[
+			<%@comments.each_with_index do |comment,i| 
+			        user = User.find(comment.user_id)
+			        %>
+			        {
+			        "autor_id":"<%=user.id%>",
+			        "clase":"<%=(i%2==0) ? 'user1' : 'user2'%>",
+			        "autor_avatar":"<%=user.avatar.url(:thumb)%>",
+			        "autor_nombre":"<%= (user.tipo_usuario == 'usuario') ? user.usuario.nickname  : user.empresa.nombre_empresa %>",
+			        "contenido":"<%=comment.contenido%>",
+			        "fecha":"<%=distance_of_time_in_words_to_now comment.created_at%>"
+			      	}
+			      	<% if i!=@comments.count - 1 %>
+			      	,
+			      	<% end %>
+		        <% end%>
+		],
+		"total_comentarios":"<%=@resource.comments.count %>"
+	}
+}
+
+	

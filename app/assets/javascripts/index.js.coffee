@@ -3,30 +3,26 @@ require.config
 		'modernizr':
 			exports:'Modernizr'
 		'jquery.isotope':['jquery']
-		'jquery.fitvids':['jquery']
-		'jquery.flexislider-min':['jquery']
 		'underscore-min':
 			exports:'_'
-		'backbone-min':
-			deps:['underscore-min']
-			exports:'Backbone'
 		'jquery.infinitescroll.min':['jquery']
 		'dropdown':['jquery']
 		'jquery.serializeObject':['jquery']
+		'handlebars.runtime':
+			exports:'Handlebars'
 		
 
 require [
 	'jquery'
-	'underscore-min'
-	'backbone-min'
 	'jquery.isotope'
 	'domReady'
-	'modernizr'
 	'froogaloop2.min'
 	'jquery.infinitescroll.min'
 	'dropdown'
 	'jquery.serializeObject'
-],($,_,Backbone,Isotope,domReady,M,T,F,S,D,Ser) ->
+	'text!templates/show.hbs'
+	'text!templates/comentario.hbs'
+],($,Isotope,domReady,F,S,D,Ser,TPL,CTPL) ->
 	domReady () ->
 		$.fn.reset = ->
 			$(this).each () ->
@@ -38,6 +34,37 @@ require [
 			beforeSend: (xhr) ->
 				xhr.setRequestHeader('X-CSRF-Token', token);
 			cache: false
+		
+		TPL = eval(TPL)
+		Handlebars.registerHelper 'iter', (inicio,fin,options) ->
+			ret = ""
+			if inicio <= fin 
+				for i in [inicio..fin]
+					ret = ret + options.fn($.extend({},i,{i:i,iPlus1:i+1}));
+			return ret 
+
+		Handlebars.registerHelper 'compare', (lvalue, rvalue, options)  ->
+			if  arguments.length < 3
+		       	throw new Error("Handlerbars Helper 'compare' needs 2 parameters")
+			operator = options.hash.operator || "=="
+			operators = 
+				'==':      (l,r)  -> l == r
+				'!=':      (l,r) ->   l != r
+				'<':       (l,r) ->   l < r 
+				'>':       (l,r) ->   l > r;
+				'<=':      (l,r) ->   l <= r
+				'>=':      (l,r) ->   l >= r 
+				'typeof':   (l,r) ->   typeof l == r
+
+			if  !operators[operator]
+				throw new Error("Handlerbars Helper 'compare' doesn't know the operator "+operator);
+			result = operators[operator](lvalue,rvalue);
+			if result
+				options.fn(this)
+			else
+				options.inverse(this)
+		    
+
 		showMask = () ->
 			part = window.location.href.split('/')[3]
 			if part == "resources"
@@ -46,10 +73,6 @@ require [
 				$('#theMask').css 
 					'height':h
 					'width':w
-				
-
-
-				
 		showMask()
 		
 		$('li#negocio').click (e) ->
@@ -138,7 +161,7 @@ require [
 				elems = $(e.currentTarget).siblings().andSelf()
 				elems = elems.children('.starOn')
 				elems.addClass 'voted'
-				nota = $(e.currentTarget).children().html()
+				nota = $('a.voted').length
 				resource_id = $('#rating').attr('data-id')
 				$.ajax
 					url: "/votos/#{resource_id}/#{nota}"
@@ -150,15 +173,14 @@ require [
 						$('div.bigStar span').text promedio
 						$('#votoWord').text "#{total} votos"
 						$("article##{resource_id}").find('.heart-no').html(promedio+'/'+total+' votos')
-					error:(d) ->
-						console.log d.responseText
 				false
 		ratingStar()
 
 		#OnClick en un element mostrar el modal
 		$('article .entry-content').live 'click', (e) ->
 			id = $(e.currentTarget).closest('article').attr('id')
-			$.get  "/resources/#{id}", (data) ->
+			$.get  "/resources/#{id}.json", (data) ->
+				html = TPL(data)
 				h = $(document).height()+'30'
 				w = $(document).width()
 				$('#theMask').css 
@@ -168,7 +190,8 @@ require [
 				$('#contenedor-modal').css 
 					'height':h
 					'width':w
-				.html(data).fadeIn()
+				.html(html).fadeIn()
+
 				$('body').animate({scrollTop: 0}, 500);
 				setTabs()
 				ratingStar()
@@ -196,20 +219,7 @@ require [
 			false
 
 		#Template para comentario nuevo
-		commentTPL = _.template( """
-		<div id="<%=user_id%>" class="<%=clase%>">
-	          <span>
-	            <a href="#">
-	              <img src="<%=avatar%>" alt="user" width="30" height="30" border="0">
-	            </a>
-	          </span>
-	          <div class="detail">
-	            <h2><a href="#"><%user_nickname%></a></h2>
-	            <p><%=contenido%></p>
-	          </div>
-	          <div class="dataUser"><%=fecha%></div>   
-	        </div>
-		""")
+		commentTPL = eval(CTPL)
 		#Enviar comentario al servidor
 		$('#comment_contenido').live 'keypress', (e) ->
 			if e.which == 13

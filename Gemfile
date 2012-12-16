@@ -20,6 +20,7 @@ group :assets do
   gem 'yui-compressor'
   gem 'jquery-rails'
   gem 'handlebars_assets'
+  
 
 end
 
@@ -45,6 +46,9 @@ gem 'recaptcha',			:require => 'recaptcha/rails'
 gem 'rails-i18n'
 gem 'bitly'
 gem 'mongoid-rating',:git => 'git://github.com/lukaszsliwa/mongoid-rating.git'
+gem 'dalli'
+gem 'libxml-ruby'
+gem 'jbuilder'
 
 group :development do
   gem 'rb-fsevent'
@@ -52,6 +56,7 @@ group :development do
   gem 'faker'
   gem 'terminal-notifier-guard'
   gem 'yajl-ruby'
+  gem 'bullet'
 end
 
 group :test do
