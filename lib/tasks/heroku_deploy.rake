@@ -3,6 +3,6 @@ Rake::Task["assets:precompile"].enhance do
   # Rake::Task["assets:environment"].invoke if Rake::Task.task_defined?("assets:environment")
 
   # Clear cache on deploy
-  print "Clearing the rails memcached cache\n"
-  Rails.cache.clear
+  print "Clearing the rails memcached cache - Recuerda correr Rails.cache.clear\n"
+  #Rails.cache.clear
 end
