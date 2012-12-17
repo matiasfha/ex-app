@@ -155,8 +155,9 @@
     </script>
    <% end %><!--cache-->
 
-   <%=javascript_include_tag 'handlebars.runtime' %>
-  <%= requirejs_include_tag yield(:main_js)%>
+   <%javascript_include_tag 'handlebars.runtime' %>
+  <% requirejs_include_tag yield(:main_js)%>
+  <%=javascript_include_tag 'application.js'%>
 
   <%=yield :javascript %>
 </body>

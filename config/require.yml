@@ -1,0 +1,4 @@
+modules:
+	- name: 'index'
+	- name: 'empresa_index'
+	- name: 'user_index'
