@@ -49,6 +49,7 @@ gem 'mongoid-rating',:git => 'git://github.com/lukaszsliwa/mongoid-rating.git'
 gem 'dalli'
 gem 'libxml-ruby'
 gem 'requirejs-rails'
+gem 'rack-pjax'
 
 group :development do
   gem 'rb-fsevent'

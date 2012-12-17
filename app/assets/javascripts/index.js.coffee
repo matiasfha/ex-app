@@ -10,6 +10,7 @@ require.config
 		'jquery.serializeObject':['jquery']
 		'handlebars.runtime':
 			exports:'Handlebars'
+		'jquery.pjax':['jquery']
 		
 
 require [
@@ -22,7 +23,8 @@ require [
 	'jquery.serializeObject'
 	'text!templates/show.hbs'
 	'text!templates/comentario.hbs'
-],($,Isotope,domReady,F,S,D,Ser,TPL,CTPL) ->
+	'jquery.pjax'
+],($,Isotope,domReady,F,S,D,Ser,TPL,CTPL,pjax) ->
 	domReady () ->
 		$.fn.reset = ->
 			$(this).each () ->
@@ -35,6 +37,8 @@ require [
 				xhr.setRequestHeader('X-CSRF-Token', token);
 			cache: false
 		
+		#console.log $('ul.menu a').pjax('[data-pjax-container]')
+
 		TPL = eval(TPL)
 		Handlebars.registerHelper 'iter', (inicio,fin,options) ->
 			ret = ""
