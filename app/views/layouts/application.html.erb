@@ -1,4 +1,4 @@
-
+<% cache ['v1_layout',current_user] do %>
 <!DOCTYPE html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
@@ -107,62 +107,58 @@
   
     <%=yield%>
 
-<% cache do %>  
-<div id="feedback-panel">
-  <div id="tab">
-    <%=image_tag 'btn-sugerencias.png',:size =>'26x97' %>
-  </div>
-  <div id="contentForm">
-        <form class="stn-form label-inline simple formulario" id="new_feedback" method="post" action="/feedback">
-            <br />
-            <div class="field">
-              <input type="text" placeholder="Nombre" id="nombre" name="nombre"/>
-            </div>
-            <br />
-            <div class="field">
-              <input type="text" placeholder="Email" id="email" name="email"/>
-            </div>
-            <br />
-            <div class="field">
-              <textarea placeholder="Comentario" id="comentario" name="comentario"></textarea>
-            </div>
+<% cache ['v1_feedback'] do %>  
+  <div id="feedback-panel">
+    <div id="tab">
+      <%=image_tag 'btn-sugerencias.png',:size =>'26x97' %>
+    </div>
+    <div id="contentForm">
+          <form class="stn-form label-inline simple formulario" id="new_feedback" method="post" action="/feedback">
               <br />
-              <%recaptcha_tags :display => {:theme => 'white'}, :ajax => true%>
-              <!-- <br /> -->
-              <div class="actionrow">
-                <input type="submit" value="Enviar" class="small button" style="align:rigth" id="feedback_send" />
+              <div class="field">
+                <input type="text" placeholder="Nombre" id="nombre" name="nombre"/>
               </div>
-      </form>
-      
+              <br />
+              <div class="field">
+                <input type="text" placeholder="Email" id="email" name="email"/>
+              </div>
+              <br />
+              <div class="field">
+                <textarea placeholder="Comentario" id="comentario" name="comentario"></textarea>
+              </div>
+                <br />
+                <%recaptcha_tags :display => {:theme => 'white'}, :ajax => true%>
+                <!-- <br /> -->
+                <div class="actionrow">
+                  <input type="submit" value="Enviar" class="small button" style="align:rigth" id="feedback_send" />
+                </div>
+        </form>
+        
+    </div>
   </div>
-</div>
 
+    
+    <!--[if (gte IE 6)&(lte IE 8)]><script type="text/javascript" src="/assets/selectivizr-min.js"></script><![endif]-->
+    <script type="text/javascript">
+    if (!window['YT']) {var YT = {};}if (!YT.Player) {(function(){var s = 'http:' + '//s.ytimg.com/yt/jsbin/www-widgetapi-vflU5wlSl.js';var a = document.createElement('script');a.src = s;a.async = true;var b = document.getElementsByTagName('script')[0];b.parentNode.insertBefore(a, b);YT.embed_template = "\u003ciframe width=\"425\" height=\"344\" src=\"\" frameborder=\"0\" allowfullscreen\u003e\u003c\/iframe\u003e";})();}
+    </script>
+     <script type="text/javascript">
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', "<%=ENV['GOOGLEANALYTICS']%>"]);
+      _gaq.push(['_trackPageview']);
 
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+    </script>
+   <% end %><!--cache-->
 
-
-
-
-
-  
-  <!--[if (gte IE 6)&(lte IE 8)]><script type="text/javascript" src="/assets/selectivizr-min.js"></script><![endif]-->
-  <script type="text/javascript">
-  if (!window['YT']) {var YT = {};}if (!YT.Player) {(function(){var s = 'http:' + '//s.ytimg.com/yt/jsbin/www-widgetapi-vflU5wlSl.js';var a = document.createElement('script');a.src = s;a.async = true;var b = document.getElementsByTagName('script')[0];b.parentNode.insertBefore(a, b);YT.embed_template = "\u003ciframe width=\"425\" height=\"344\" src=\"\" frameborder=\"0\" allowfullscreen\u003e\u003c\/iframe\u003e";})();}
-  </script>
-   <script type="text/javascript">
-    var _gaq = _gaq || [];
-    _gaq.push(['_setAccount', "<%=ENV['GOOGLEANALYTICS']%>"]);
-    _gaq.push(['_trackPageview']);
-
-    (function() {
-      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-    })();
-  </script>
-   <% end %>
    <%=javascript_include_tag 'handlebars.runtime' %>
   <%= requirejs_include_tag yield(:main_js)%>
 
   <%=yield :javascript %>
 </body>
 </html>
+<% end %>

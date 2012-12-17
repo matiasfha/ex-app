@@ -89,12 +89,17 @@ class ResourcesController < ApplicationController
 	      url = url.split('&')
 	      url = url[0]
 	    end
-	    params[:resource][:url] = url
-	    params[:resource][:type] = 'video'
 	    provider  = res.provider_name.downcase
+	    params[:resource][:url] = url
+	    if provider == 'youtube'
+	    	params[:resource][:url] = "http://www.youtube.com/embed/#{youtube_embed(url)}"
+	    end
+	    
+	    params[:resource][:type] = 'video'
+	    
+	    params[:resource][:provider] = provider
+	    params[:resource][:imagen] = open res.thumbnail_url
 	    @res = Resource.new(params[:resource])
-	    @res.provider = provider
-	    @res.imagen   = open res.thumbnail_url
 	  else
 	    @res = Resource.new(params[:resource])
 	  end
@@ -103,7 +108,7 @@ class ResourcesController < ApplicationController
 	  		flash[:error] = @res.errors.full_messages
 	  		render :subir, :layout => nil
 	   else
-	   		current_user.resources << @res
+	   	current_user.resources << @res
 		redirect_to "/mis_contenidos"	
 	   end	
 	end
@@ -117,5 +122,17 @@ class ResourcesController < ApplicationController
 		end	
 	end
 
+	def youtube_embed(youtube_url)
+	  if youtube_url[/youtu\.be\/([^\?]*)/]
+	    youtube_id = $1
+	  else
+	    # Regex from # http://stackoverflow.com/questions/3452546/javascript-regex-how-to-get-youtube-video-id-from-url/4811367#4811367
+	    youtube_url[/^.*((v\/)|(embed\/)|(watch\?))\??v?=?([^\&\?]*).*/]
+	    youtube_id = $5
+	  end
+	end
 	
 end
+
+
+

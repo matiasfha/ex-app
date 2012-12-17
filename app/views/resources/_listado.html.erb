@@ -1,32 +1,34 @@
- <%
-@resources.each do |resource|
-    %>
-<article id="<%=resource.id%>" class="post-1 category-blog-posts entry box format-video">
-    <div class="entry-content-cnt">
-        <div class="entry-content">
-                <% 
-            img = resource.imagen.url(:large)
-            #dimensions = Paperclip::Geometry.from_file(img) %>
-            <%=image_tag img, :class =>"attachment-ci_listing_thumb", :width =>resource.image_width,:height =>resource.image_height %>
-                <%
-                clase=""
-                if resource.type=='video' 
-                    clase="video"%>
-                    <img src="/assets/play_03.png" class="play_image" width="45px" height="45px"/>
-                <% end %>
-                    <div class="zoomOverlay <%=clase%>" >
-                        
-                    </div>
+<% cache ['v1_listado2',@resources] do %>
+     <%
+    @resources.each do |resource|
+        %>
+    <article id="<%=resource.id%>" class="post-1 category-blog-posts entry box format-video">
+        <div class="entry-content-cnt">
+            <div class="entry-content">
+                    <% 
+                img = resource.imagen.url(:large)
+                #dimensions = Paperclip::Geometry.from_file(img) %>
+                <%=image_tag img, :class =>"attachment-ci_listing_thumb", :width =>resource.image_width,:height =>resource.image_height %>
+                    <%
+                    clase=""
+                    if resource.type=='video' 
+                        clase="video"%>
+                        <img src="/assets/play_03.png" class="play_image" width="45px" height="45px"/>
+                    <% end %>
+                        <div class="zoomOverlay <%=clase%>" >
+                            
+                        </div>
+            </div>
         </div>
-    </div>
 
-    <div class="entry-desc">
-        <h1><a href="#" title="Titulo"><%=resource.titulo%></a></h1>
-        <div class="entry-meta group">
-         <a class="comments-no" href="#"><%=resource.comments.count%></a> 
-         <a data-post-id="213" class="heart-this loved" href="#" title="Me gusta">
-         <span class="heart-no" data-total="<%=resource.rates_count %>"><%=resource.promedio%> / <%=pluralize resource.rates_count , "Voto"%></span></a>
+        <div class="entry-desc">
+            <h1><a href="#" title="Titulo"><%=resource.titulo%></a></h1>
+            <div class="entry-meta group">
+             <a class="comments-no" href="#"><%=resource.comments.count%></a> 
+             <a data-post-id="213" class="heart-this loved" href="#" title="Me gusta">
+             <span class="heart-no" data-total="<%=resource.rates_count %>"><%=resource.promedio%> / <%=pluralize resource.rates_count , "Voto"%></span></a>
+            </div>
         </div>
-    </div>
-</article>
-<% end %>
+    </article>
+    <% end %>
+    <% end %>

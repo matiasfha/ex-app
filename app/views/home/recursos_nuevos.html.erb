@@ -1,18 +1,20 @@
-<%
-content_for :main_js do %>
-"/assets/index"
+<% cache ["v1_nuevos",@resources] do %>
+	<%
+	content_for :main_js do %>
+	"/assets/index"
+	<% end %>
+
+
+	<% content_for :header_nav do %>
+	    <%= render :partial => 'menu', :locals => {:child => '3'} %>
+	<% end %>
+
+	<%=render :partial => 'listado' %>
+
+	<div class="nav" id="navSelector">
+	    <a id="nextpage" href="/recursos/nuevos/2">Next Page</a>
+	</div>
+
+
+	<div id="contenedor-modal"></div>
 <% end %>
-
-
-<% content_for :header_nav do %>
-    <%= render :partial => 'menu', :locals => {:child => '3'} %>
-<% end %>
-
-<%=render :partial => 'listado' %>
-
-<div class="nav" id="navSelector">
-    <a id="nextpage" href="/recursos/nuevos/2">Next Page</a>
-</div>
-
-
-<div id="contenedor-modal"></div>
