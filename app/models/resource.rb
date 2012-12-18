@@ -6,7 +6,7 @@ class Resource
   include Mongoid::Rating
 
 
-  paginates_per 2
+  paginates_per 12
   embeds_many :comments
   belongs_to :user
 
