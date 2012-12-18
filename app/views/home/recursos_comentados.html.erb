@@ -1,7 +1,7 @@
-<% cache ["v1_comentados",@resources] do %>
+<% cache ["v1.1_comentados",@resources] do %>
 	<%
 	content_for :main_js do %>
-	"/assets/index"
+	"/assets/application.js"
 	<% end %>
 
 
@@ -10,9 +10,7 @@
 	<% end %>
 
 	<%=render :partial => 'listado' %>
-	<div class="nav" id="navSelector">
-	    <a id="nextpage" href="/recursos/mas_comentados/2">Next Page</a>
-	</div>
+	
 
 
 	<div id="contenedor-modal"></div>

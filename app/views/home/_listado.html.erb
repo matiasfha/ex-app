@@ -1,11 +1,11 @@
-<% cache ['v1_listado',@resources] do %>
+<% cache ['v1.1_listado',@resources] do %>
     <div id="page">
         <section id="main">
             <div class="group">
                <div id="box-container">
                     <div id="entry-listing" class="group" style="display:none">
                         <% @resources.each do |resource|
-                            cache ['v1_article',resource] do %>
+                            cache ['v1.1_article',resource] do %>
                                 <article id="<%=resource.id%>" class="post-1 category-blog-posts entry box format-video">
                                     <div class="entry-content-cnt">
                                         <div class="entry-content">
@@ -38,4 +38,9 @@
             </div><!-- group -->
         </section><!--  #main -->
     </div><!-- #page -->
+    
+    <div class="nav" id="navSelector">
+        <a id="nextpage" href="/recursos/<%=@seccion%>/2">Next Page</a>
+    </div>
+    
 <% end %>

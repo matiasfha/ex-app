@@ -8,6 +8,7 @@
 #=require backbone-min
 #=require namespace.min
 #=require postman.min
+#=require jquery.pjax
 
 #Templates
 #=require handlebars.runtime
@@ -16,27 +17,13 @@
 #=require templates/comentario.hbs
 
 #Carga de modulos
+#=require helpers/setup
 #=require modulos/grilla
 #=require modulos/feedback
+#=require modulos/modal
 
 (namespace 'Dandoo').VERSION = 1.0
 
-
-class (namespace 'Dandoo').Setup
-	resetForm:  =>
-		$.fn.reset = ->
-			$(this).each () ->
-				this.reset 
-	ajaxSetup: =>
-		token = $('meta[name="csrf-token"]').attr('content')
-		param = $('meta[name="csrf-param"]').attr('content')
-		$.ajaxSetup
-			beforeSend: (xhr) ->
-				xhr.setRequestHeader('X-CSRF-Token', token);
-			cache: true
-	constructor: ->
-		@resetForm()
-		@ajaxSetup()
 
 
 
@@ -47,8 +34,42 @@ $(document).ready () ->
 	app = (namespace 'Dandoo')
 	new app.Setup()
 	new app.Grilla()
-	# new app.Feedback()
+	new app.Feedback()
 	
-	# postman.receive 'modal-activo',() ->
-	# 	new app.Modal()
+	
+	loader = $('#loader')
+	$(document).pjax('.menu a', '#pjax-container')
+	.on 'pjax:start', () ->
+	  	loader.show()
+	.on 'pjax:end', (e,d) ->
+		container = $('#entry-listing')
+		container.imagesLoaded () ->
+			container.isotope
+				animationOptions:
+					duration:	550
+					easing:		'linear'
+					queue:		false
+				itemSelector:	'article.entry'
+				transformsEnabled: false
+				layoutMode:	'masonry'
+				resizeContainer:	true
+
+			items	= $('#entry-listing article.entry')
+			container.empty().fadeIn().css('margin-left','76px')
+			container.isotope 'insert',items, () ->
+				container.isotope 'reLayout'
+				loader.hide()
+
+
+	part = window.location.href.split('/')[3]
+	if part == "resources"
+		h = $(document).height()+'30'
+		w = $(document).width()
+		$('#theMask').css 
+			'height':h
+			'width':w
+		new app.Modal({el:$('#modal'),model:null})
+
+	postman.receive 'modal-activo',(data) ->
+		new app.Modal({el:$('#contenedor-modal'),model:data})
 		

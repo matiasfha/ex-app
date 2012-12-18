@@ -5,11 +5,11 @@ class AuthenticationsController < ApplicationController
 
   def create
     avatar = params[:user][:avatar_tmp]
-    if avatar.index('facebook')
-      avatar_tmp = avatar.split('?')
-      avatar = avatar_tmp[0]+'?type=large'
-    end
-    params[:user][:avatar_tmp] = avatar
+    # if avatar.index('facebook')
+    #   avatar_tmp = avatar.split('?')
+    #   avatar = avatar_tmp[0]+'?type=large'
+    # end
+    #params[:user][:avatar_tmp] = avatar
     #Check por el email
     u = User.where(:email => params[:user][:email]).first
     if !u.nil?
@@ -32,7 +32,13 @@ class AuthenticationsController < ApplicationController
         flash[:error] = @error_messages
         render :new
       else
-        @user.avatar_remote_url(params[:user][:avatar_tmp])
+        if !avatar.index('C:')
+          @user.avatar_remote_url(params[:user][:avatar_tmp])
+        else
+          @user.avatar = params[:user][:avatar]
+        end
+
+        
         password = Devise.friendly_token.first(10)
         @user.password = password
         @user.password_confirmation = password
@@ -52,11 +58,12 @@ class AuthenticationsController < ApplicationController
   def crear_usuario(nickname,name,apellidos,email,avatar,bio,nacimiento,provider,uid)
     password = Devise.friendly_token.first(10)
     if provider=='facebook'
-      avatar_tmp = avatar.split('?')
-      avatar_tmp = avatar_tmp[0]+'?type=normal'
+      url= avatar.split('?')
+      avatar_tmp = url[0]+'?type=square'
     else
       avatar_tmp = avatar.split("_normal")
-      avatar_tmp = avatar_tmp[0]+"_bigger"+avatar_tmp[1]
+      avatar_tmp = avatar_tmp[0]+"_normal"+avatar_tmp[1]
+      
     end
     @user = User.new(:avatar_tmp => avatar_tmp,
       :email => email,:password => password, :password_confirmation => password)
@@ -74,11 +81,7 @@ class AuthenticationsController < ApplicationController
     end
   end
 
-  def test
-    @user = User.new :avatar_tmp => "http://a0.twimg.com/profile_images/1529997995/perfil_bigger.png"
-    @user.usuario = Usuario.new
-    render :new
-  end
+  
 
   def new
     auth         = request.env['omniauth.auth']

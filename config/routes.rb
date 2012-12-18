@@ -44,6 +44,7 @@ DandooDev::Application.routes.draw do
   match '/auth/test' => 'authentications#test'
   match '/auth/bienvenido' => 'authentications#bienvenido'
   match 'auth/:provider/callback'  => 'authentications#new'
+  match 'auth/failure' => 'authentications#failure'
   resources :authentications, :only => [:index,:create,:destroy]
   match '/feedback' => 'metadata#feedback', :via => :post
 end

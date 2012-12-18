@@ -64,18 +64,5 @@ class (namespace 'Dandoo').Grilla extends Backbone.View
 		id = $(e.currentTarget).closest('article').attr('id')
 		
 		$.get  "/resources/#{id}.json", (data) ->
-			html = HandlebarsTemplates['show'](data)
-			h = $(document).height()+'30'
-			w = $(document).width()
-			$('#theMask').css 
-				'height':h
-				'width':w
-			
-			$('#contenedor-modal').css 
-				'height':h
-				'width':w
-			.html(html).fadeIn()
-
-			$('body').animate({scrollTop: 0}, 500);
-			postmain.deliver('modal-activo')
+			postman.deliver('modal-activo',[data])
 	
