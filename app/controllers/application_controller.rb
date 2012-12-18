@@ -16,4 +16,4 @@ class ApplicationController < ActionController::Base
   def set_must_revalidate
     response.headers["Cache-Control"] = "must-revalidate"
   end
-end
+end 
