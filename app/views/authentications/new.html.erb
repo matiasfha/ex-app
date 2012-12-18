@@ -1,144 +1,151 @@
+<% cache ['v1_new_user',@user] do %>
+	<%
+	content_for :main_js do 
+	  %>
+	  "/assets/user_application"
+	<% end 
+	content_for :css do %>
+	<style type="text/css">
+	body {
+	    background: #f6f6f3 url(/assets/bg-dandoo.png)left top repeat;
+		margin:0;
+		height:100%;
+		font-weight: 100;
+	}
 
-<%
-content_for :main_js do 
-  %>
-  "/assets/user_index"
-<% end 
-content_for :css do %>
-<style type="text/css">
-body {
-    background: #f6f6f3 url(/assets/bg-dandoo.png)left top repeat;
-	margin:0;
-	height:100%;
-	font-weight: 100;
-}
-
-nav {
-	background: #32A0B7;
-	height: 45px;
-	width: 100%;
-}
+	nav {
+		background: #32A0B7;
+		height: 45px;
+		width: 100%;
+	}
 
 
-.publicaVideo {
-	background-color: #f8f8f8;
-	border:1px solid #e5e5e5;
-	width: 100px;
-	height: 100px;
-	text-align: center;
-	vertical-align: middle;
-	float: left;
-	border-radius: 3px;
-}
+	.publicaVideo {
+		background-color: #f8f8f8;
+		border:1px solid #e5e5e5;
+		width: 100px;
+		height: 100px;
+		text-align: center;
+		vertical-align: middle;
+		float: left;
+		border-radius: 3px;
+	}
 
-.checkbox2 { font-size: 12px; color: #666; padding-top: 41px; display: block; font-weight: bold; color:#3191a5;}
-.masculino { background:  url(/assets/masculino.gif) 36px 1px no-repeat ; }
-.femenino { background:  url(/assets/femenino.gif) 36px 1px no-repeat ; }
-.mtn32 {
-	margin-top: -32px;
-}
-.cambiarAvatarUsuario {
-	border: 1px solid #fff;
-	border-radius: 3px;
-	-webkit-border-radius: 3px;
-	-moz-border-radius: 3px;
-	-o-border-radius: 3px;
-	display: block;
-	text-align: center;
-	width: 168px;
-	margin-top: 12px;
-	height: 150px;
-	position:relative;
-	left:30%;
-}
-</style>
-<% end %>
+	.checkbox2 { font-size: 12px; color: #666; padding-top: 41px; display: block; font-weight: bold; color:#3191a5;}
+	.masculino { background:  url(/assets/masculino.gif) 36px 1px no-repeat ; }
+	.femenino { background:  url(/assets/femenino.gif) 36px 1px no-repeat ; }
+	.mtn32 {
+		margin-top: -32px;
+	}
+	.cambiarAvatarUsuario {
+		border: 1px solid #fff;
+		border-radius: 3px;
+		-webkit-border-radius: 3px;
+		-moz-border-radius: 3px;
+		-o-border-radius: 3px;
+		display: block;
+		text-align: center;
+		width: 168px;
+		margin-top: 12px;
+		height: 150px;
+		position:relative;
+		left:30%;
+	}
+	</style>
+	<% end %>
 
-<nav>
-	<span class="logo-dashboard">
-		<a href="<%=root_path%>">
-			<img src="/assets/dandooTV.png" alt="dandoo-dashboard" width="148" height="44">
-		</a>
-	</span>
-</nav><!-- fin nav -->
+	<nav>
+		<span class="logo-dashboard">
+			<a href="<%=root_path%>">
+				<img src="/assets/dandooTV.png" alt="dandoo-dashboard" width="148" height="44">
+			</a>
+		</span>
+	</nav><!-- fin nav -->
 
-<div id="empresas">
-        <header class="mtn32">
-        	<!-- <h1>Dandoo.tv</h1> -->
-        	<br />
-        	<br />
-        	<br />
-        	<br />
-        	<br />
-        	<br />
-        	<h2 style="color:#999;">Confirma tus datos para ingresar</h2>
-        </header><!-- fin header -->
- 
+	<div id="empresas">
+	        <header class="mtn32">
+	        	<!-- <h1>Dandoo.tv</h1> -->
+	        	<br />
+	        	<br />
+	        	<br />
+	        	<br />
+	        	<br />
+	        	<br />
+	        	<h2 style="color:#999;">Confirma tus datos para ingresar</h2>
+	        </header><!-- fin header -->
+	 
 
-        <% if flash[:error] %>
-	  <div class="mensajes error">
-	    <label>Se produjero los siguientes errores</label>
-	    <ul>
-	    <% flash.each do |type,messages| %>
-	     <% if messages.respond_to?(:each)
-	          messages.each do |m| %>
-	            <li><%= m %></li>
-	          <%end%>
-	      <% else %>
-	        <li><%= messages%></li>
-	      <% end %>
-	    <% end %>
-	    </ul>
-	  </div>
-	  <% end %>
+	        <% if flash[:error] %>
+		  <div class="mensajes error">
+		    <label>Se produjero los siguientes errores</label>
+		    <ul>
+		    <% flash.each do |type,messages| %>
+		     <% if messages.respond_to?(:each)
+		          messages.each do |m| %>
+		            <li><%= m %></li>
+		          <%end%>
+		      <% else %>
+		        <li><%= messages%></li>
+		      <% end %>
+		    <% end %>
+		    </ul>
+		  </div>
+		  <% end %>
 
-        <%=form_for(@user, :url => "/authentications", :html => { :class => 'stn-form label-inline simple formulario', :method => :post }) do |f| %>
-        <input type="hidden" name="user[provider]" id="user_provider" value="<%=@provider%>" />
-        <input type="hidden" name="user[uid]" id="user_uid" value="<%=@uid%>" />
-    	<input type="hidden" name="user[avatar_tmp]" value="<%=@user.avatar_tmp%>" />
-        <section class="contenedor" id="paso1" >       
-                
-	        <h3>Tus Datos</h3>
-	        
+	        <%=form_for(@user, :url => "/authentications", :html => { :class => 'stn-form label-inline simple formulario', :method => :post ,:multipart => true}) do |f| %>
+	        <input type="hidden" name="user[provider]" id="user_provider" value="<%=@provider%>" />
+	        <input type="hidden" name="user[uid]" id="user_uid" value="<%=@uid%>" />
+	    	<input type="hidden" name="user[avatar_tmp]" value="<%=@user.avatar_tmp%>" id="user_avatar_tmp"/>
+	  <section class="contenedor" id="paso1" >       
+	                
+		        <h3>Tus Datos</h3>
+		        
 
-	        <%=f.fields_for @user.usuario do |u|%>
-	        	<div class="field">
-				<%=u.label :nombre %>
-				<%= u.text_field :nombre, :size => '25' %>
-			</div>  
+		        <%=f.fields_for @user.usuario do |u|%>
+			       <div class="field">
+					<%=u.label :nombre %>
+					<%= u.text_field :nombre, :size => '25' %>
+				</div>  
 
+				<div class="field">
+					<%=u.label :apellidos %>
+					<%=u.text_field :apellidos, :size =>'25' %>
+				</div> 
+
+			<% end %>
+						
 			<div class="field">
-				<%=u.label :apellidos %>
-				<%=u.text_field :apellidos, :size =>'25' %>
+				<%=f.label :email %>
+				<%=f.text_field :email, :size => '25',:placeholder => 'usuario@mail.com' %>
+				<span class="pruebaerror2">ej: usuario@mail.com</span>
+			</div>  
+		    	
+		    	<div class="field imagen relative" >
+		       	<div class="cont"  style="margin-left:200px"></div>
+		       	<div id="cambiar_avatar" class="button small" >Cambiar?</div>
+		       	<input type="file" name="user[avatar]" id="file" />
+		       </div>
+
+		       <div class="actionrow">
+		        	<div id="go_paso2" class="button">Ingresar</div>
 			</div> 
-
-		<% end %>
-					
-		<div class="field">
-			<%=f.label :email %>
-			<%=f.text_field :email, :size => '25',:placeholder => 'usuario@mail.com' %>
-			<span class="pruebaerror2">ej: usuario@mail.com</span>
-		</div>  
-	    
-	       <div class="actionrow">
-	        	<div id="go_paso2" class="button">Ingresar</div>
-		</div> 
-	        <br>  
-	 </section><!-- fin section -->   
-	<div id="recaptcha_modal">
-	      <%=recaptcha_tags :ajax => true%>
-	</div>
- <% end %> 
- 
- 
-       <ul class="pasos" style="position:relative;left:2%">
-	    <li><div class="paso-off" id="ir_paso1"></div></li>
-	    <li><div class="paso-on"></div></li>
-	 </ul>
+		        <br>  
+		 </section><!-- fin section -->   
+		<div id="recaptcha_modal">
+		      <%=recaptcha_tags :ajax => true%>
+		</div>
+	 <% end %> 
+	 
+	 
+	       <ul class="pasos" style="position:relative;left:2%">
+		    <li><div class="paso-off" id="ir_paso1"></div></li>
+		    <li><div class="paso-on"></div></li>
+		 </ul>
 
 
-	<a href="/" class="back" style="color:black;position:relative;left:1%">Volver a la portada</a>
-	                      
-        <footer>
-        </footer><!-- fin footer -->
-</div><!-- fin container -->
+		<a href="/" class="back" style="color:black;position:relative;left:1%">Volver a la portada</a>
+		                      
+	        <footer>
+	        </footer><!-- fin footer -->
+	</div><!-- fin container -->
+<% end %>

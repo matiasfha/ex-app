@@ -1,4 +1,4 @@
-<% cache ['v1_listcomment',@comments] do %>
+<% cache ['v1.1_listcomment',@comments] do %>
   <%@comments.each_with_index do |comment,i| %>
     <% 
     user = User.find(comment.user_id)

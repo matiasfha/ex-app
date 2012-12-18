@@ -31,7 +31,7 @@ class User
 
   #Relaciones
   has_many :resources,:dependent => :delete
-  has_many :votos,:dependent => :delete
+  
   
   #Para el caso de ser un usuario
   has_many :authentications, :dependent => :delete
@@ -45,13 +45,13 @@ class User
   embeds_one :empresa
   #accepts_nested_attributes_for :empresa,:usuario
 
-  index({ email: 1 }, { unique: true, background: true })
+  #index({ email: 1 }, { unique: true, background: true })
 
 
 
   attr_accessible :email,:password,:password_confirmation
   attr_accessible :country, :remember_me, :created_at, :updated_at
-  attr_accessible :tipo_usuario, :avatar,:avatar_tmp
+  attr_accessible :tipo_usuario, :avatar,:avatar_tmp, :avatar_large, :avatar_large_tmp
   #attr_accessible :usuario_attributes, :empresa_attributes
 
   validates_presence_of :email
@@ -71,23 +71,14 @@ class User
       :original => '1920x1680>'
     }
 
+    
 
   def avatar_remote_url(url_value)
-    #self.avatar = URI.parse(url_value)
     self.avatar = open(url_value)
   end
 
 
-  # def self.resource_votados(user_id,pagina)
-  #   resources = Array.new
-  #   Voto.where(:user_id => user_id).page(pagina).each do |voto|
-  #     p = Resource.find(voto.resource_id)
-  #     if !p.nil?
-  #       resources.push p
-  #     end
-  #   end
-  #   resources
-  # end
+
 
 
 end

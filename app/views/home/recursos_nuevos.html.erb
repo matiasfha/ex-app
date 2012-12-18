@@ -1,7 +1,7 @@
-<% cache ["v1_nuevos",@resources] do %>
+<% cache ["v1.1_nuevos",@resources] do %>
 	<%
 	content_for :main_js do %>
-	"/assets/index"
+	"/assets/application.js"
 	<% end %>
 
 
@@ -11,9 +11,6 @@
 
 	<%=render :partial => 'listado' %>
 
-	<div class="nav" id="navSelector">
-	    <a id="nextpage" href="/recursos/nuevos/2">Next Page</a>
-	</div>
 
 
 	<div id="contenedor-modal"></div>

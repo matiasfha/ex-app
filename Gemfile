@@ -50,6 +50,7 @@ gem 'dalli'
 gem 'libxml-ruby'
 gem 'requirejs-rails'
 
+
 group :development do
   gem 'rb-fsevent'
   gem 'guard-livereload'
@@ -57,6 +58,10 @@ group :development do
   gem 'terminal-notifier-guard'
   gem 'yajl-ruby'
   gem 'bullet'
+end
+
+group :production do 
+  gem 'newrelic_rpm'
 end
 
 group :test do

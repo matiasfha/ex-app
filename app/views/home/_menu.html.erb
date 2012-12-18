@@ -1,4 +1,4 @@
-<% cache do %>
+<% cache ["v1.1_menu",child] do %>
     <style type="text/css">
         ul.menu li:nth-child(<%=child%>){
             text-decoration: underline;
@@ -11,7 +11,7 @@
         }
         <% end %>
     </style> 
- <% end %><!--cache-->   
+ 
     <div class="mensajeB"><h1>Comenta, rankea y comparte la mejor publicidad </h1></div>
     
     <ul class="menu">
@@ -39,3 +39,4 @@
             <a href="/todos">Todos</a>
         </li>     
     </ul>
+<% end %><!--cache-->   

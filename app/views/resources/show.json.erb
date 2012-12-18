@@ -25,7 +25,7 @@
 		<% user = User.find(@resource.user_id) %>
 		"user":{
 			"id":"<%=user.id%>",
-			"avatar":"<%=user.avatar.url(:thumb)%>",
+			"avatar":"<%=user.avatar.url(:original)%>",
 			<% if user.tipo_usuario=="usuario" %>
 			"nombre":"<%=user.usuario.nombre%>",
 			"apellidos":"<%=user.usuario.apellidos%>"

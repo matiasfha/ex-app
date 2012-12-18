@@ -19,6 +19,7 @@ end
 module DandooDev
   class Application < Rails::Application
     config.logger = Logger.new(STDOUT)
+    #config.middleware.use Rack::Pjax
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.
@@ -60,7 +61,7 @@ module DandooDev
 
     # Enable the asset pipeline
     config.assets.enabled = true
-    #config.assets.paths+=['templates']
+    config.assets.paths+=['templates']
     #For Heroku
     config.assets.initialize_on_precompile = false
     config.static_cache_control="public, max-age=2592000"
@@ -69,7 +70,7 @@ module DandooDev
     # Version of your assets, change this if you want to expire all your assets
     config.assets.version = '1.8.1'
 
-    # config.requirejs.logical_asset_filter += [/\.hbs$/]
+    config.requirejs.logical_asset_filter += [/\.hbs$/]
     
     config.generators do |g|
         g.view_specs false
