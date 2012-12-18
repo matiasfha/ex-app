@@ -24,7 +24,7 @@
 
 (namespace 'Dandoo').VERSION = 1.0
 
-
+(namespace 'Dandoo').urlForScroll = $('#navSeccion').attr('data-seccion')
 
 
 
@@ -33,9 +33,8 @@
 $(document).ready () ->
 	app = (namespace 'Dandoo')
 	new app.Setup()
-	new app.Grilla()
+	grilla = new app.Grilla()
 	new app.Feedback()
-	
 	
 	loader = $('#loader')
 	$(document).pjax('.menu a', '#pjax-container')
@@ -59,6 +58,7 @@ $(document).ready () ->
 			container.isotope 'insert',items, () ->
 				container.isotope 'reLayout'
 				loader.hide()
+				
 
 
 	part = window.location.href.split('/')[3]

@@ -1,4 +1,28 @@
-<% cache ['v1.1_listado',@resources] do %>
+<% cache ['v1.3_listado',@resources,@seccion] do %>
+    <style type="text/css">
+        <% 
+        case @seccion
+            when 'mas_votadas'
+                child = 1
+            when 'mas_comentados'
+                child = 2
+            when 'nuevos'
+                child = 3
+            when 'mis_contenidos'
+                child = 4
+            when 'todos'
+                child = 5
+        end
+        %>
+        ul.menu li{
+            text-decoration: none !important;
+        }
+        ul.menu li:nth-child(<%=child%>){
+            text-decoration: underline !important;
+        }
+    </style> 
+    
+
     <div id="page">
         <section id="main">
             <div class="group">
@@ -37,10 +61,14 @@
                </div><!-- #box-container-->
             </div><!-- group -->
         </section><!--  #main -->
+        <div style="width:140px;position:absolute;bottom:40px;left:43%" id="ver_mas_container">
+            <div class="button small" id="ver_mas" data-seccion="/recursos/<%=@seccion%>/1">
+                Ver más
+            </div>
+        </div>
     </div><!-- #page -->
     
-    <div class="nav" id="navSelector">
-        <a id="nextpage" href="/recursos/<%=@seccion%>/2">Next Page</a>
-    </div>
     
+
+
 <% end %>

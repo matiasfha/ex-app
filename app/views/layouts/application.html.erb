@@ -106,9 +106,14 @@
     <%=image_tag 'ajax-loader.gif' %>
   </div>
   
-  
+  <div id="infscr-loading" >
+    <label id="mensaje"></label><br />
+    <%=image_tag 'ajax-loader.gif' %>
+  </div>
   <%=yield%>
   
+  
+
 <div id="theMask"></div>
 <% cache ['v1_feedback'] do %>  
   <div id="feedback-panel">

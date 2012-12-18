@@ -5,6 +5,7 @@ class HomeController < ApplicationController
 
   def index
     	@resources = Resource.mas_votadas(params[:page])
+      @seccion   = 'mas_votadas'
       get_menu_counter()
       if request.headers['X-PJAX']
         if stale?(:etag => [@resources])

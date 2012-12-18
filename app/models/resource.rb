@@ -6,7 +6,7 @@ class Resource
   include Mongoid::Rating
 
 
-  paginates_per 12
+  paginates_per 2
   embeds_many :comments
   belongs_to :user
 
@@ -72,7 +72,7 @@ class Resource
 	#Retorna las mas votadas respecto al rating de votos
 	def self.mas_votadas(pagina=nil)
 	    avg = Resource.avg(:promedio)
-	    resources = Resource.where(:promedio.gte => avg).order_by([[:promedio,:desc],[:created_at,:desc]])
+	    resources = Resource.where(:promedio.gte => avg).order_by([[:promedio,:desc],[:created_at,:desc]]).page(pagina)
 	end
 
 	def self.mas_comentados(pagina=nil)

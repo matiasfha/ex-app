@@ -1,17 +1,11 @@
-<% cache ["v1.1_menu",child] do %>
+ <% cache ["v1.3_menu",child] do %>
+    <% content_for :css do %>
     <style type="text/css">
         ul.menu li:nth-child(<%=child%>){
             text-decoration: underline;
         }
-        <%if !user_signed_in? %>
-        .menu{
-            margin-left:30%;
-            top:-30px;
-            position:relative;
-        }
-        <% end %>
     </style> 
- 
+    <% end %>
     <div class="mensajeB"><h1>Comenta, rankea y comparte la mejor publicidad </h1></div>
     
     <ul class="menu">
