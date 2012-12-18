@@ -1,34 +1,31 @@
 namespace :deploy do
+	PRODUCTION_APP = 'dandootv'
+	DEVELOP_APP		= 'dandoodev'
 
-    task :production do |t,args| 
-        puts "deploying to production"
-        system "git add . && git commit -am #{args[:mensaje]}"
-        system "git push origin master"
-        puts "clearing cache"
-        #system "heroku console Rails.cache.clear --app dandootv"
-        #system "heroku console Dalli::Client.new.flush"
-        puts "done"
-    end
+	desc 'Deploy to Test'
+	task :test, :branch, :mensaje do |t, args| 
+		system 'git add .'
+		system "git commit -am #{args.mensaje}"
+		system "git push dev #{args.branch}:master"
+		system 'echo "Rails.cache.clear; exit" | heroku run console --app dandoodev'
+	end
 
-    task :develop do |t,args|
-    	puts "deploying to develop to production"
-    	system "git add . && git commit -am #{args[:mensaje]}"
-       system "git push origin develop:master"
-       puts "clearing cache"
-       #system "heroku console Rails.cache.clear --app dandootv"
-       #system "heroku console Dalli::Client.new.flush"
-       puts "done"
-    end
+	desc 'Deploy develop to production'
+	task :develop, :mensaje do |t, args|
+		system 'git add .'
+		system "git commit -am #{args.mensaje}"
+		system "git push origin dev:master"
+		system 'echo "Rails.cache.clear; exit" | heroku run console --app dandootv'
+	end
 
-    task :test, :branch do  |t,args|
-    	puts "deploying to test"
-    	system "git add . && git commit -am #{args[:mensaje]}"
-       system "git push  dev #{args[:branch]}:master"
-       puts "clearing cache"
-       #system "heroku console Rails.cache.clear --app dandoodev"
-       #system "heroku console Dalli::Client.new.flush"
-       puts "done"
-    end
+	desc  'Deploy production'
+	task :production, :mensaje do |t, args|
+		system 'rake version:bump'
+		system 'git add .'
+		system "git commit -am #{args.mensaje}"
+		system "git push origin master"
+		system 'echo "Rails.cache.clear; exit" | heroku run console --app dandootv'
+	end
 
 
 
