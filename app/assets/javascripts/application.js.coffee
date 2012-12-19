@@ -58,7 +58,12 @@ $(document).ready () ->
 			container.isotope 'insert',items, () ->
 				container.isotope 'reLayout'
 				loader.hide()
-				
+	.on 'pjax:error',(e,d) ->
+		console.log [e,d]
+		false	
+	.on 'pjax:timeout',(e,d) ->
+		console.log [e,d]
+		false	
 
 
 	part = window.location.href.split('/')[3]

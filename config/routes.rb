@@ -29,7 +29,7 @@ DandooDev::Application.routes.draw do
   resources :users, :only => [:show,:update]
 
   
-  resources :resources, :only => [:create,:show,:index,:destroy]
+  resources :resources, :only => [:commentsreate,:show,:index,:destroy]
   match 'recursos/mas_votadas(/:page)' => 'resources#mas_votados',:via => :get
   match 'recursos/mas_comentados(/:page)' => 'resources#mas_comentados',:via => :get
   match 'recursos/nuevos(/:page)' => 'resources#nuevos',:via => :get
