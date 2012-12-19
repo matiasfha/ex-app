@@ -1,4 +1,4 @@
-<% cache ["v1.1_comentados",@resources] do %>
+<% cache ["v1.2_comentados",@resources] do %>
 	<%
 	content_for :main_js do %>
 	"/assets/application.js"
@@ -9,9 +9,10 @@
 	    <%= render :partial => 'menu', :locals => {:child => '2'} %>
 	<% end %>
 
-	<div id="pjax-container">
-	<%=render :partial => 'listado' %>
+	<div data-pjax-container>
+		<%=render :partial => 'listado' %>
 	</div>
+	
 	
 	
 

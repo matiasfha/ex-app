@@ -37,7 +37,7 @@ $(document).ready () ->
 	new app.Feedback()
 	
 	loader = $('#loader')
-	$(document).pjax('.menu a', '#pjax-container')
+	$(document).pjax('.menu a', '[data-pjax-container]')
 	.on 'pjax:start', () ->
 	  	loader.show()
 	.on 'pjax:end', (e,d) ->
@@ -58,7 +58,12 @@ $(document).ready () ->
 			container.isotope 'insert',items, () ->
 				container.isotope 'reLayout'
 				loader.hide()
-				
+	.on 'pjax:error',(e,d) ->
+		console.log [e,d]
+		false	
+	.on 'pjax:timeout',(e,d) ->
+		console.log [e,d]
+		false	
 
 
 	part = window.location.href.split('/')[3]
@@ -68,7 +73,8 @@ $(document).ready () ->
 		$('#theMask').css 
 			'height':h
 			'width':w
-		new app.Modal({el:$('#modal'),model:null})
+		postmain.deliver 'modal-activo',null
+		#new app.Modal({el:$('#modal'),model:null})
 
 	postman.receive 'modal-activo',(data) ->
 		new app.Modal({el:$('#contenedor-modal'),model:data})

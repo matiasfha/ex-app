@@ -1,0 +1,147 @@
+# Logfile created on 2012-12-19 00:00:38 -0300 by logger.rb/31641
+[12/19/12 00:00:38 -0300 msdarkbook (65031)] INFO : Dispatcher: unicorn
+[12/19/12 00:00:38 -0300 msdarkbook (65031)] ERROR : Unable to determine application name. Please set the application name in your newrelic.yml or in a NEW_RELIC_APP_NAME environment variable.
+[12/19/12 00:00:38 -0300 msdarkbook (65031)] ERROR : Invalid license key: 
+[12/19/12 00:00:38 -0300 msdarkbook (65031)] INFO : New Relic Ruby Agent 3.5.3 Initialized: pid = 65031
+[12/19/12 00:00:38 -0300 msdarkbook (65031)] INFO : Agent Log at /Users/msdark/Development/dandootv/log/newrelic_agent.log
+[12/19/12 00:00:38 -0300 msdarkbook (65031)] INFO : Detected Unicorn, please see additional documentation: https://newrelic.com/docs/troubleshooting/im-using-unicorn-and-i-dont-see-any-data
+[12/19/12 00:00:42 -0300 msdarkbook (65071)] INFO : Starting the worker thread in 65071 after forking.
+[12/19/12 00:00:42 -0300 msdarkbook (65072)] INFO : Starting the worker thread in 65072 after forking.
+[12/19/12 00:00:42 -0300 msdarkbook (65073)] INFO : Starting the worker thread in 65073 after forking.
+[12/19/12 00:00:52 -0300 msdarkbook (65071)] ERROR : Error establishing connection with New Relic Service at collector.newrelic.com:80: Recoverable error connecting to the server: getaddrinfo: nodename nor servname provided, or not known
+[12/19/12 00:00:52 -0300 msdarkbook (65071)] INFO : Will re-attempt in 60 seconds
+[12/19/12 00:00:52 -0300 msdarkbook (65072)] ERROR : Error establishing connection with New Relic Service at collector.newrelic.com:80: Recoverable error connecting to the server: getaddrinfo: nodename nor servname provided, or not known
+[12/19/12 00:00:52 -0300 msdarkbook (65072)] INFO : Will re-attempt in 60 seconds
+[12/19/12 00:00:52 -0300 msdarkbook (65073)] ERROR : Error establishing connection with New Relic Service at collector.newrelic.com:80: Recoverable error connecting to the server: getaddrinfo: nodename nor servname provided, or not known
+[12/19/12 00:00:52 -0300 msdarkbook (65073)] INFO : Will re-attempt in 60 seconds
+[12/19/12 00:01:02 -0300 msdarkbook (65072)] ERROR : Error establishing connection with New Relic Service at collector.newrelic.com:80: Recoverable error connecting to the server: getaddrinfo: nodename nor servname provided, or not known
+[12/19/12 00:01:02 -0300 msdarkbook (65071)] ERROR : Error establishing connection with New Relic Service at collector.newrelic.com:80: Recoverable error connecting to the server: getaddrinfo: nodename nor servname provided, or not known
+[12/19/12 00:01:02 -0300 msdarkbook (65072)] INFO : Will re-attempt in 120 seconds
+[12/19/12 00:01:02 -0300 msdarkbook (65071)] INFO : Will re-attempt in 120 seconds
+[12/19/12 00:01:02 -0300 msdarkbook (65073)] ERROR : Error establishing connection with New Relic Service at collector.newrelic.com:80: Recoverable error connecting to the server: getaddrinfo: nodename nor servname provided, or not known
+[12/19/12 00:01:02 -0300 msdarkbook (65073)] INFO : Will re-attempt in 120 seconds
+[12/19/12 00:01:12 -0300 msdarkbook (65071)] ERROR : Error establishing connection with New Relic Service at collector.newrelic.com:80: Recoverable error connecting to the server: getaddrinfo: nodename nor servname provided, or not known
+[12/19/12 00:01:12 -0300 msdarkbook (65071)] INFO : Will re-attempt in 180 seconds
+[12/19/12 00:01:12 -0300 msdarkbook (65072)] ERROR : Error establishing connection with New Relic Service at collector.newrelic.com:80: Recoverable error connecting to the server: getaddrinfo: nodename nor servname provided, or not known
+[12/19/12 00:01:12 -0300 msdarkbook (65072)] INFO : Will re-attempt in 180 seconds
+[12/19/12 00:01:12 -0300 msdarkbook (65073)] ERROR : Error establishing connection with New Relic Service at collector.newrelic.com:80: Recoverable error connecting to the server: getaddrinfo: nodename nor servname provided, or not known
+[12/19/12 00:01:12 -0300 msdarkbook (65073)] INFO : Will re-attempt in 180 seconds
+[12/19/12 00:01:22 -0300 msdarkbook (65071)] ERROR : Error establishing connection with New Relic Service at collector.newrelic.com:80: Recoverable error connecting to the server: getaddrinfo: nodename nor servname provided, or not known
+[12/19/12 00:01:22 -0300 msdarkbook (65072)] ERROR : Error establishing connection with New Relic Service at collector.newrelic.com:80: Recoverable error connecting to the server: getaddrinfo: nodename nor servname provided, or not known
+[12/19/12 00:01:22 -0300 msdarkbook (65072)] INFO : Will re-attempt in 240 seconds
+[12/19/12 00:01:22 -0300 msdarkbook (65071)] INFO : Will re-attempt in 240 seconds
+[12/19/12 00:01:22 -0300 msdarkbook (65073)] ERROR : Error establishing connection with New Relic Service at collector.newrelic.com:80: Recoverable error connecting to the server: getaddrinfo: nodename nor servname provided, or not known
+[12/19/12 00:01:22 -0300 msdarkbook (65073)] INFO : Will re-attempt in 240 seconds
+[12/19/12 00:01:32 -0300 msdarkbook (65071)] ERROR : Error establishing connection with New Relic Service at collector.newrelic.com:80: Recoverable error connecting to the server: getaddrinfo: nodename nor servname provided, or not known
+[12/19/12 00:01:32 -0300 msdarkbook (65071)] INFO : Will re-attempt in 300 seconds
+[12/19/12 00:01:32 -0300 msdarkbook (65072)] ERROR : Error establishing connection with New Relic Service at collector.newrelic.com:80: Recoverable error connecting to the server: getaddrinfo: nodename nor servname provided, or not known
+[12/19/12 00:01:32 -0300 msdarkbook (65072)] INFO : Will re-attempt in 300 seconds
+[12/19/12 00:01:32 -0300 msdarkbook (65073)] ERROR : Error establishing connection with New Relic Service at collector.newrelic.com:80: Recoverable error connecting to the server: getaddrinfo: nodename nor servname provided, or not known
+[12/19/12 00:01:32 -0300 msdarkbook (65073)] INFO : Will re-attempt in 300 seconds
+[12/19/12 00:01:42 -0300 msdarkbook (65072)] ERROR : Error establishing connection with New Relic Service at collector.newrelic.com:80: Recoverable error connecting to the server: getaddrinfo: nodename nor servname provided, or not known
+[12/19/12 00:01:42 -0300 msdarkbook (65072)] INFO : Will re-attempt in 360 seconds
+[12/19/12 00:01:42 -0300 msdarkbook (65071)] ERROR : Error establishing connection with New Relic Service at collector.newrelic.com:80: Recoverable error connecting to the server: getaddrinfo: nodename nor servname provided, or not known
+[12/19/12 00:01:42 -0300 msdarkbook (65071)] INFO : Will re-attempt in 360 seconds
+[12/19/12 00:01:42 -0300 msdarkbook (65073)] ERROR : Error establishing connection with New Relic Service at collector.newrelic.com:80: Recoverable error connecting to the server: getaddrinfo: nodename nor servname provided, or not known
+[12/19/12 00:01:42 -0300 msdarkbook (65073)] INFO : Will re-attempt in 360 seconds
+[12/19/12 00:01:52 -0300 msdarkbook (65072)] ERROR : Error establishing connection with New Relic Service at collector.newrelic.com:80: Recoverable error connecting to the server: getaddrinfo: nodename nor servname provided, or not known
+[12/19/12 00:01:52 -0300 msdarkbook (65072)] INFO : Will re-attempt in 600 seconds
+[12/19/12 00:01:52 -0300 msdarkbook (65071)] ERROR : Error establishing connection with New Relic Service at collector.newrelic.com:80: Recoverable error connecting to the server: getaddrinfo: nodename nor servname provided, or not known
+[12/19/12 00:01:52 -0300 msdarkbook (65071)] INFO : Will re-attempt in 600 seconds
+[12/19/12 00:01:52 -0300 msdarkbook (65073)] ERROR : Error establishing connection with New Relic Service at collector.newrelic.com:80: Recoverable error connecting to the server: getaddrinfo: nodename nor servname provided, or not known
+[12/19/12 00:01:52 -0300 msdarkbook (65073)] INFO : Will re-attempt in 600 seconds
+[12/19/12 00:02:02 -0300 msdarkbook (65071)] ERROR : Error establishing connection with New Relic Service at collector.newrelic.com:80: Recoverable error connecting to the server: getaddrinfo: nodename nor servname provided, or not known
+[12/19/12 00:02:02 -0300 msdarkbook (65072)] ERROR : Error establishing connection with New Relic Service at collector.newrelic.com:80: Recoverable error connecting to the server: getaddrinfo: nodename nor servname provided, or not known
+[12/19/12 00:02:02 -0300 msdarkbook (65072)] INFO : Will re-attempt in 600 seconds
+[12/19/12 00:02:02 -0300 msdarkbook (65071)] INFO : Will re-attempt in 600 seconds
+[12/19/12 00:02:02 -0300 msdarkbook (65073)] ERROR : Error establishing connection with New Relic Service at collector.newrelic.com:80: Recoverable error connecting to the server: getaddrinfo: nodename nor servname provided, or not known
+[12/19/12 00:02:02 -0300 msdarkbook (65073)] INFO : Will re-attempt in 600 seconds
+[12/19/12 00:02:12 -0300 msdarkbook (65072)] ERROR : Error establishing connection with New Relic Service at collector.newrelic.com:80: Recoverable error connecting to the server: getaddrinfo: nodename nor servname provided, or not known
+[12/19/12 00:02:12 -0300 msdarkbook (65072)] INFO : Will re-attempt in 600 seconds
+[12/19/12 00:02:12 -0300 msdarkbook (65071)] ERROR : Error establishing connection with New Relic Service at collector.newrelic.com:80: Recoverable error connecting to the server: getaddrinfo: nodename nor servname provided, or not known
+[12/19/12 00:02:12 -0300 msdarkbook (65071)] INFO : Will re-attempt in 600 seconds
+[12/19/12 00:02:12 -0300 msdarkbook (65073)] ERROR : Error establishing connection with New Relic Service at collector.newrelic.com:80: Recoverable error connecting to the server: getaddrinfo: nodename nor servname provided, or not known
+[12/19/12 00:02:12 -0300 msdarkbook (65073)] INFO : Will re-attempt in 600 seconds
+[12/19/12 00:02:22 -0300 msdarkbook (65071)] ERROR : Error establishing connection with New Relic Service at collector.newrelic.com:80: Recoverable error connecting to the server: getaddrinfo: nodename nor servname provided, or not known
+[12/19/12 00:02:22 -0300 msdarkbook (65072)] ERROR : Error establishing connection with New Relic Service at collector.newrelic.com:80: Recoverable error connecting to the server: getaddrinfo: nodename nor servname provided, or not known
+[12/19/12 00:02:22 -0300 msdarkbook (65071)] INFO : Will re-attempt in 600 seconds
+[12/19/12 00:02:22 -0300 msdarkbook (65072)] INFO : Will re-attempt in 600 seconds
+[12/19/12 00:02:22 -0300 msdarkbook (65073)] ERROR : Error establishing connection with New Relic Service at collector.newrelic.com:80: Recoverable error connecting to the server: getaddrinfo: nodename nor servname provided, or not known
+[12/19/12 00:02:22 -0300 msdarkbook (65073)] INFO : Will re-attempt in 600 seconds
+[12/19/12 00:02:32 -0300 msdarkbook (65071)] ERROR : Error establishing connection with New Relic Service at collector.newrelic.com:80: Recoverable error connecting to the server: getaddrinfo: nodename nor servname provided, or not known
+[12/19/12 00:02:32 -0300 msdarkbook (65072)] ERROR : Error establishing connection with New Relic Service at collector.newrelic.com:80: Recoverable error connecting to the server: getaddrinfo: nodename nor servname provided, or not known
+[12/19/12 00:02:32 -0300 msdarkbook (65072)] INFO : Will re-attempt in 600 seconds
+[12/19/12 00:02:32 -0300 msdarkbook (65071)] INFO : Will re-attempt in 600 seconds
+[12/19/12 00:02:32 -0300 msdarkbook (65073)] ERROR : Error establishing connection with New Relic Service at collector.newrelic.com:80: Recoverable error connecting to the server: getaddrinfo: nodename nor servname provided, or not known
+[12/19/12 00:02:32 -0300 msdarkbook (65073)] INFO : Will re-attempt in 600 seconds
+[12/19/12 00:02:42 -0300 msdarkbook (65072)] ERROR : Error establishing connection with New Relic Service at collector.newrelic.com:80: Recoverable error connecting to the server: getaddrinfo: nodename nor servname provided, or not known
+[12/19/12 00:02:42 -0300 msdarkbook (65072)] INFO : Will re-attempt in 600 seconds
+[12/19/12 00:02:42 -0300 msdarkbook (65071)] ERROR : Error establishing connection with New Relic Service at collector.newrelic.com:80: Recoverable error connecting to the server: getaddrinfo: nodename nor servname provided, or not known
+[12/19/12 00:02:42 -0300 msdarkbook (65071)] INFO : Will re-attempt in 600 seconds
+[12/19/12 00:02:42 -0300 msdarkbook (65073)] ERROR : Error establishing connection with New Relic Service at collector.newrelic.com:80: Recoverable error connecting to the server: getaddrinfo: nodename nor servname provided, or not known
+[12/19/12 00:02:42 -0300 msdarkbook (65073)] INFO : Will re-attempt in 600 seconds
+[12/19/12 00:02:52 -0300 msdarkbook (65071)] ERROR : Error establishing connection with New Relic Service at collector.newrelic.com:80: Recoverable error connecting to the server: getaddrinfo: nodename nor servname provided, or not known
+[12/19/12 00:02:52 -0300 msdarkbook (65071)] INFO : Will re-attempt in 600 seconds
+[12/19/12 00:02:52 -0300 msdarkbook (65072)] ERROR : Error establishing connection with New Relic Service at collector.newrelic.com:80: Recoverable error connecting to the server: getaddrinfo: nodename nor servname provided, or not known
+[12/19/12 00:02:52 -0300 msdarkbook (65072)] INFO : Will re-attempt in 600 seconds
+[12/19/12 00:02:52 -0300 msdarkbook (65073)] ERROR : Error establishing connection with New Relic Service at collector.newrelic.com:80: Recoverable error connecting to the server: getaddrinfo: nodename nor servname provided, or not known
+[12/19/12 00:02:52 -0300 msdarkbook (65073)] INFO : Will re-attempt in 600 seconds
+[12/19/12 00:03:02 -0300 msdarkbook (65071)] ERROR : Error establishing connection with New Relic Service at collector.newrelic.com:80: Recoverable error connecting to the server: getaddrinfo: nodename nor servname provided, or not known
+[12/19/12 00:03:02 -0300 msdarkbook (65071)] INFO : Will re-attempt in 600 seconds
+[12/19/12 00:03:02 -0300 msdarkbook (65072)] ERROR : Error establishing connection with New Relic Service at collector.newrelic.com:80: Recoverable error connecting to the server: getaddrinfo: nodename nor servname provided, or not known
+[12/19/12 00:03:02 -0300 msdarkbook (65072)] INFO : Will re-attempt in 600 seconds
+[12/19/12 00:03:02 -0300 msdarkbook (65073)] ERROR : Error establishing connection with New Relic Service at collector.newrelic.com:80: Recoverable error connecting to the server: getaddrinfo: nodename nor servname provided, or not known
+[12/19/12 00:03:02 -0300 msdarkbook (65073)] INFO : Will re-attempt in 600 seconds
+[12/19/12 00:03:12 -0300 msdarkbook (65071)] ERROR : Error establishing connection with New Relic Service at collector.newrelic.com:80: Recoverable error connecting to the server: getaddrinfo: nodename nor servname provided, or not known
+[12/19/12 00:03:12 -0300 msdarkbook (65071)] INFO : Will re-attempt in 600 seconds
+[12/19/12 00:03:12 -0300 msdarkbook (65072)] ERROR : Error establishing connection with New Relic Service at collector.newrelic.com:80: Recoverable error connecting to the server: getaddrinfo: nodename nor servname provided, or not known
+[12/19/12 00:03:12 -0300 msdarkbook (65072)] INFO : Will re-attempt in 600 seconds
+[12/19/12 00:03:12 -0300 msdarkbook (65073)] ERROR : Error establishing connection with New Relic Service at collector.newrelic.com:80: Recoverable error connecting to the server: getaddrinfo: nodename nor servname provided, or not known
+[12/19/12 00:03:12 -0300 msdarkbook (65073)] INFO : Will re-attempt in 600 seconds
+[12/19/12 00:03:22 -0300 msdarkbook (65071)] ERROR : Error establishing connection with New Relic Service at collector.newrelic.com:80: Recoverable error connecting to the server: getaddrinfo: nodename nor servname provided, or not known
+[12/19/12 00:03:22 -0300 msdarkbook (65071)] INFO : Will re-attempt in 600 seconds
+[12/19/12 00:03:22 -0300 msdarkbook (65072)] ERROR : Error establishing connection with New Relic Service at collector.newrelic.com:80: Recoverable error connecting to the server: getaddrinfo: nodename nor servname provided, or not known
+[12/19/12 00:03:22 -0300 msdarkbook (65072)] INFO : Will re-attempt in 600 seconds
+[12/19/12 00:03:22 -0300 msdarkbook (65073)] ERROR : Error establishing connection with New Relic Service at collector.newrelic.com:80: Recoverable error connecting to the server: getaddrinfo: nodename nor servname provided, or not known
+[12/19/12 00:03:22 -0300 msdarkbook (65073)] INFO : Will re-attempt in 600 seconds
+[12/19/12 00:03:32 -0300 msdarkbook (65071)] ERROR : Error establishing connection with New Relic Service at collector.newrelic.com:80: Recoverable error connecting to the server: getaddrinfo: nodename nor servname provided, or not known
+[12/19/12 00:03:32 -0300 msdarkbook (65071)] INFO : Will re-attempt in 600 seconds
+[12/19/12 00:03:32 -0300 msdarkbook (65072)] ERROR : Error establishing connection with New Relic Service at collector.newrelic.com:80: Recoverable error connecting to the server: getaddrinfo: nodename nor servname provided, or not known
+[12/19/12 00:03:32 -0300 msdarkbook (65072)] INFO : Will re-attempt in 600 seconds
+[12/19/12 00:03:32 -0300 msdarkbook (65073)] ERROR : Error establishing connection with New Relic Service at collector.newrelic.com:80: Recoverable error connecting to the server: getaddrinfo: nodename nor servname provided, or not known
+[12/19/12 00:03:32 -0300 msdarkbook (65073)] INFO : Will re-attempt in 600 seconds
+[12/19/12 00:03:42 -0300 msdarkbook (65071)] ERROR : Error establishing connection with New Relic Service at collector.newrelic.com:80: Recoverable error connecting to the server: getaddrinfo: nodename nor servname provided, or not known
+[12/19/12 00:03:42 -0300 msdarkbook (65071)] INFO : Will re-attempt in 600 seconds
+[12/19/12 00:03:42 -0300 msdarkbook (65072)] ERROR : Error establishing connection with New Relic Service at collector.newrelic.com:80: Recoverable error connecting to the server: getaddrinfo: nodename nor servname provided, or not known
+[12/19/12 00:03:42 -0300 msdarkbook (65072)] INFO : Will re-attempt in 600 seconds
+[12/19/12 00:03:42 -0300 msdarkbook (65073)] ERROR : Error establishing connection with New Relic Service at collector.newrelic.com:80: Recoverable error connecting to the server: getaddrinfo: nodename nor servname provided, or not known
+[12/19/12 00:03:42 -0300 msdarkbook (65073)] INFO : Will re-attempt in 600 seconds
+[12/19/12 00:04:22 -0300 msdarkbook (65071)] ERROR : Error establishing connection with New Relic Service at collector.newrelic.com:80: Recoverable error connecting to the server: getaddrinfo: nodename nor servname provided, or not known
+[12/19/12 00:04:22 -0300 msdarkbook (65071)] INFO : Will re-attempt in 600 seconds
+[12/19/12 00:04:22 -0300 msdarkbook (65072)] ERROR : Error establishing connection with New Relic Service at collector.newrelic.com:80: Recoverable error connecting to the server: getaddrinfo: nodename nor servname provided, or not known
+[12/19/12 00:04:22 -0300 msdarkbook (65072)] INFO : Will re-attempt in 600 seconds
+[12/19/12 00:04:22 -0300 msdarkbook (65073)] ERROR : Error establishing connection with New Relic Service at collector.newrelic.com:80: Recoverable error connecting to the server: getaddrinfo: nodename nor servname provided, or not known
+[12/19/12 00:04:22 -0300 msdarkbook (65073)] INFO : Will re-attempt in 600 seconds
+[12/19/12 00:05:02 -0300 msdarkbook (65071)] ERROR : Error establishing connection with New Relic Service at collector.newrelic.com:80: Recoverable error connecting to the server: getaddrinfo: nodename nor servname provided, or not known
+[12/19/12 00:05:02 -0300 msdarkbook (65071)] INFO : Will re-attempt in 600 seconds
+[12/19/12 00:05:02 -0300 msdarkbook (65072)] ERROR : Error establishing connection with New Relic Service at collector.newrelic.com:80: Recoverable error connecting to the server: getaddrinfo: nodename nor servname provided, or not known
+[12/19/12 00:05:02 -0300 msdarkbook (65072)] INFO : Will re-attempt in 600 seconds
+[12/19/12 00:05:02 -0300 msdarkbook (65073)] ERROR : Error establishing connection with New Relic Service at collector.newrelic.com:80: Recoverable error connecting to the server: getaddrinfo: nodename nor servname provided, or not known
+[12/19/12 00:05:02 -0300 msdarkbook (65073)] INFO : Will re-attempt in 600 seconds
+[12/19/12 00:05:13 -0300 msdarkbook (65072)] ERROR : Error establishing connection with New Relic Service at collector.newrelic.com:80: Unexpected response from server (301): Moved Permanently
+[12/19/12 00:05:13 -0300 msdarkbook (65072)] INFO : Will re-attempt in 600 seconds
+[12/19/12 00:05:13 -0300 msdarkbook (65073)] ERROR : Invalid license key, please contact support@newrelic.com
+[12/19/12 00:05:13 -0300 msdarkbook (65073)] INFO : Visit NewRelic.com to obtain a valid license key, or to upgrade your account.
+[12/19/12 00:05:13 -0300 msdarkbook (65071)] ERROR : Invalid license key, please contact support@newrelic.com
+[12/19/12 00:05:13 -0300 msdarkbook (65071)] INFO : Visit NewRelic.com to obtain a valid license key, or to upgrade your account.
+[12/19/12 00:05:23 -0300 msdarkbook (65072)] ERROR : Invalid license key, please contact support@newrelic.com
+[12/19/12 00:05:23 -0300 msdarkbook (65072)] INFO : Visit NewRelic.com to obtain a valid license key, or to upgrade your account.
+[12/19/12 00:11:30 -0300 msdarkbook (65747)] INFO : Starting the worker thread in 65747 after forking.
+[12/19/12 00:11:30 -0300 msdarkbook (65748)] INFO : Starting the worker thread in 65748 after forking.
+[12/19/12 00:11:30 -0300 msdarkbook (65749)] INFO : Starting the worker thread in 65749 after forking.
+[12/19/12 00:11:41 -0300 msdarkbook (65747)] ERROR : Invalid license key, please contact support@newrelic.com
+[12/19/12 00:11:41 -0300 msdarkbook (65747)] INFO : Visit NewRelic.com to obtain a valid license key, or to upgrade your account.
+[12/19/12 00:11:41 -0300 msdarkbook (65749)] ERROR : Invalid license key, please contact support@newrelic.com
+[12/19/12 00:11:41 -0300 msdarkbook (65749)] INFO : Visit NewRelic.com to obtain a valid license key, or to upgrade your account.
+[12/19/12 00:11:42 -0300 msdarkbook (65748)] ERROR : Invalid license key, please contact support@newrelic.com
+[12/19/12 00:11:42 -0300 msdarkbook (65748)] INFO : Visit NewRelic.com to obtain a valid license key, or to upgrade your account.

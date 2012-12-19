@@ -6,13 +6,12 @@ class HomeController < ApplicationController
   def index
     	@resources = Resource.mas_votadas(params[:page])
       @seccion   = 'mas_votadas'
-      get_menu_counter()
-      if request.headers['X-PJAX']
-        #if stale?(:etag => [@resources])
-          render :partial => 'listado', :layout => nil
-        #end
-      # else
-      #   return unless stale? :etag => [@resources]
+      if stale?(:etag => [@resources])
+        if request.headers['X-PJAX']
+          render :partial => 'listado',:layout => nil
+        else
+          get_menu_counter()
+        end
       end
   end
 
@@ -24,26 +23,24 @@ class HomeController < ApplicationController
   def recursos_nuevos
       @resources = Resource.nuevos(current_user,params[:page])
       @seccion = 'nuevos'
-      get_menu_counter()
-      if request.headers['X-PJAX']
-       # if stale?(:etag => [@resources])
-          render :partial => 'listado', :layout => nil
-      #   end
-      # else
-      #   return unless stale?(:etag => [@resources])
+      if stale?(:etag => [@resources])
+        if request.headers['X-PJAX']
+          render :partial => 'listado',:layout => nil
+        else
+          get_menu_counter()
+        end
       end
   end
 
   def recursos_comentados
   	@resources =  Resource.mas_comentados(params[:page])
       @seccion = 'mas_comentados'
-      get_menu_counter()
-      if request.headers['X-PJAX']
-        #if stale?(:etag => [@resources])
-          render :partial => 'listado', :layout => nil
-      #   end
-      # else
-      #   return unless stale? :etag => [@resources]
+      if stale?(:etag => [@resources])
+        if request.headers['X-PJAX']
+          render :partial => 'listado',:layout => nil
+        else
+          get_menu_counter()
+        end
       end
   end
 
@@ -51,13 +48,12 @@ class HomeController < ApplicationController
     if user_signed_in?
       @resources =  current_user.resources.order_by([[:created_at,:desc]]).page(params[:page])
       @seccion = "mis_contenidos"
-      get_menu_counter()
-      if request.headers['X-PJAX']
-        #if stale?(:etag => [@resources])
-          render :partial => 'listado', :layout => nil
-      #   end
-      # else
-      #   return unless stale? :etag => [@resources]
+      if stale?(:etag => [@resources])
+        if request.headers['X-PJAX']
+          render :partial => 'listado',:layout => nil
+        else
+          get_menu_counter()
+        end
       end
     else 
       redirect_to root_path
@@ -67,14 +63,13 @@ class HomeController < ApplicationController
   def todos
     @resources  =  Resource.all.order_by([[:created_at,:desc]]).page(params[:page])
     @seccion = 'todos'
-    get_menu_counter()
-    if request.headers['X-PJAX']
-      # if stale?(:etag => [@resources])
-        render :partial => 'listado', :layout => nil
-    #   end
-    # else
-    #   return unless stale? :etag => [@resources]
-    end
+    if stale?(:etag => [@resources])
+        if request.headers['X-PJAX']
+          render :partial => 'listado',:layout => nil
+        else
+          get_menu_counter()
+        end
+      end
   end
 
   def ingresar
@@ -86,15 +81,15 @@ class HomeController < ApplicationController
   end
 
   private
-  def get_menu_counter
-    @nuevos       = Resource.nuevos(current_user).count
-    @votados      = Resource.mas_votadas.count
-    @comentados = Resource.mas_comentados.count
-  end
-
-  def check_login!
-    if !user_signed_in?
-      redirect_to '/'
+    def get_menu_counter
+      @nuevos       = Resource.nuevos(current_user).count
+      @votados      = Resource.mas_votadas.count
+      @comentados = Resource.mas_comentados.count
     end
-  end
+
+    def check_login!
+      if !user_signed_in?
+        redirect_to '/'
+      end
+    end
 end

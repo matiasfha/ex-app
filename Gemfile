@@ -48,7 +48,7 @@ gem 'bitly'
 gem 'mongoid-rating',:git => 'git://github.com/lukaszsliwa/mongoid-rating.git'
 gem 'dalli'
 gem 'libxml-ruby'
-#gem 'requirejs-rails'
+gem 'pjax_rails', :git => 'git://github.com/rails/pjax_rails.git'
 
 
 group :development do

@@ -1,3 +1,4 @@
+@import "mixins";
 html {
   height: 100%;
 }
@@ -10,6 +11,7 @@ body {
   height: 100%;
   //background: #f6f6f3 url(bg-dandoo.png) left top repeat;
   background: #f6f6f3
+
 }
 
 #page {

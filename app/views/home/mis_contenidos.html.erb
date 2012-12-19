@@ -1,4 +1,4 @@
-<% cache ["v1.1_contenidos",@resources] do %>
+<% cache ["v1.3_contenidos",@resources,current_user] do %>
 	<%
 	content_for :main_js do %>
 	"/assets/application.js"
@@ -9,14 +9,10 @@
 	    <%= render :partial => 'menu', :locals => {:child => '4'} %>
 	<% end %>
 
-	<div id="pjax-container">
 	<%=render :partial => 'listado' %>
-	</div>
+	
 	
 
-	<div class="nav" id="navSelector">
-	    <a id="nextpage" href="/recursos/mis_contenidos/2">Next Page</a>
-	</div>
 
 	<div id="contenedor-modal"></div>
 <% end %>

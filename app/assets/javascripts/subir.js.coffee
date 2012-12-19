@@ -9,6 +9,7 @@
 #Modulos
 #=require helpers/setup
 #=require modulos/recursos/subir
+#=require_self
 
 $(document).ready () ->
 	app = (namespace 'Dandoo')
