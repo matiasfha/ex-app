@@ -11,7 +11,7 @@
 #Modulos
 #=require helpers/setup
 #=require modulos/user/register
-
+#=require_self
 
 
 $(document).ready () ->
