@@ -1,45 +1,74 @@
+<% cache ['v1.3_listado',@resources,@seccion] do %>
+    <style type="text/css">
+        <% 
+        case @seccion
+            when 'mas_votadas'
+                child = 1
+            when 'mas_comentados'
+                child = 2
+            when 'nuevos'
+                child = 3
+            when 'mis_contenidos'
+                child = 4
+            when 'todos'
+                child = 5
+        end
+        %>
+        ul.menu li{
+            text-decoration: none !important;
+        }
+        ul.menu li:nth-child(<%=child%>){
+            text-decoration: underline !important;
+        }
+    </style> 
+    
 
-<div id="page">
-    <section id="main">
-        <div class="group">
-           <div id="box-container">
-                <div id="entry-listing" class="group" style="display:none">
-                    
-                    <%
-                    @resources.each do |resource|
-                        %>
-                    <article id="<%=resource.id%>" class="post-1 category-blog-posts entry box format-video">
-                        <div class="entry-content-cnt">
-                            <div class="entry-content">
-                                    <% 
-                                img = resource.imagen.url(:large)
-                                #dimensions = Paperclip::Geometry.from_file(img) %>
-                                <%=image_tag img, :class =>"attachment-ci_listing_thumb", :width =>resource.image_width,:height =>resource.image_height %>
-                                    <%
-                                    clase=""
-                                    if resource.type=='video' 
-                                        clase="video"%>
-                                        <img src="/assets/play_03.png" class="play_image" width="45px" height="45px"/>
-                                    <% end %>
-                                        <div class="zoomOverlay <%=clase%>" >
-                                            
+    <div id="page">
+        <section id="main">
+            <div class="group">
+               <div id="box-container">
+                    <div id="entry-listing" class="group" style="display:none">
+                        <% @resources.each do |resource|
+                            cache ['v1.1_article',resource] do %>
+                                <article id="<%=resource.id%>" class="post-1 category-blog-posts entry box format-video">
+                                    <div class="entry-content-cnt">
+                                        <div class="entry-content">
+                                            <% img = resource.imagen.url(:large) %>
+                                            <%=image_tag img, :class =>"attachment-ci_listing_thumb", :width =>resource.image_width,:height =>resource.image_height %>
+                                            <%clase=""
+                                                if resource.type=='video' 
+                                                    clase="video"%>
+                                                    <img src="/assets/play_03.png" class="play_image" width="45px" height="45px"/>
+                                                <% end %>
+                                                    <div class="zoomOverlay <%=clase%>" >
+                                                        
+                                                    </div>
                                         </div>
-                            </div>
-                        </div>
+                                    </div>
 
-                        <div class="entry-desc">
-                            <h1><a href="#" title="Titulo"><%=resource.titulo%></a></h1>
-                            <div class="entry-meta group">
-                             <a class="comments-no" href="#"><%=resource.comments.count%></a> 
-                             <a data-post-id="213" class="heart-this loved" href="#" title="Me gusta">
-                             <span class="heart-no" data-total="<%=resource.rates_count %>"><%=resource.promedio %> / <%=pluralize resource.rates_count , "Voto"%></span></a>
-                            </div>
-                        </div>
-                    </article>
-                    <% end %>
-                </div><!-- #entry-listing -->
-                
-           </div><!-- #box-container-->
-        </div><!-- group -->
-    </section><!--  #main -->
-</div><!-- #page -->
+                                    <div class="entry-desc">
+                                        <h1><a href="#" title="Titulo"><%=resource.titulo%></a></h1>
+                                        <div class="entry-meta group">
+                                         <a class="comments-no" href="#"><%=resource.comments.count%></a> 
+                                         <a data-post-id="213" class="heart-this loved" href="#" title="Me gusta">
+                                         <span class="heart-no" data-total="<%=resource.rates_count %>"><%=resource.promedio %> / <%=pluralize resource.rates_count , "Voto"%></span></a>
+                                        </div>
+                                    </div>
+                                </article>
+                                <% end %><!--cache-->
+                        <% end %>
+                    </div><!-- #entry-listing -->
+               </div><!-- #box-container-->
+            </div><!-- group -->
+        </section><!--  #main -->
+        <div style="width:140px;position:absolute;bottom:40px;left:43%" id="ver_mas_container">
+            <div class="button small" id="ver_mas" data-seccion="/recursos/<%=@seccion%>/1">
+                Ver más
+            </div>
+        </div>
+    </div><!-- #page -->
+    
+    
+
+
+<% end %>

@@ -48,7 +48,8 @@ gem 'bitly'
 gem 'mongoid-rating',:git => 'git://github.com/lukaszsliwa/mongoid-rating.git'
 gem 'dalli'
 gem 'libxml-ruby'
-gem 'requirejs-rails'
+#gem 'requirejs-rails'
+
 
 group :development do
   gem 'rb-fsevent'
@@ -57,6 +58,11 @@ group :development do
   gem 'terminal-notifier-guard'
   gem 'yajl-ruby'
   gem 'bullet'
+end
+
+group :production do 
+  gem 'newrelic_rpm'
+  gem 'memcachier'
 end
 
 group :test do

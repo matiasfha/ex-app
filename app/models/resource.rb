@@ -72,7 +72,7 @@ class Resource
 	#Retorna las mas votadas respecto al rating de votos
 	def self.mas_votadas(pagina=nil)
 	    avg = Resource.avg(:promedio)
-	    resources = Resource.where(:promedio.gte => avg).order_by([[:promedio,:desc],[:created_at,:desc]])
+	    resources = Resource.where(:promedio.gte => avg).order_by([[:promedio,:desc],[:created_at,:desc]]).page(pagina)
 	end
 
 	def self.mas_comentados(pagina=nil)

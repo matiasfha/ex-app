@@ -1,16 +1,20 @@
 #=require jquery
-#=require jquery.isotope
+#=require jquery.numeric
 #=require File/FileAPI.min
+#=require jquery.serializeObject
+#=require jquery-ui-1.9.2.custom.min
 #=require underscore-min
 #=require backbone-min
 #=require namespace.min
-#=require postman.min
+#=require jquery.isotope
 
 #Modulos
 #=require helpers/setup
-#=require modulos/recursos/subir
+#=require modulos/user/register
+
+
 
 $(document).ready () ->
 	app = (namespace 'Dandoo')
 	new app.Setup()
-	new (namespace 'Dandoo.Recursos').Subir()
+	new (namespace 'Dandoo.User').Register()

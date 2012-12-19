@@ -30,7 +30,7 @@ DandooDev::Application.routes.draw do
 
   
   resources :resources, :only => [:create,:show,:index,:destroy]
-  match 'recursos/mas_votados(/:page)' => 'resources#mas_votados',:via => :get
+  match 'recursos/mas_votadas(/:page)' => 'resources#mas_votados',:via => :get
   match 'recursos/mas_comentados(/:page)' => 'resources#mas_comentados',:via => :get
   match 'recursos/nuevos(/:page)' => 'resources#nuevos',:via => :get
   match 'recursos/mis_contenidos(/:page)' => 'resources#nuevos',:via => :get
@@ -44,6 +44,7 @@ DandooDev::Application.routes.draw do
   match '/auth/test' => 'authentications#test'
   match '/auth/bienvenido' => 'authentications#bienvenido'
   match 'auth/:provider/callback'  => 'authentications#new'
+  match 'auth/failure' => 'authentications#failure'
   resources :authentications, :only => [:index,:create,:destroy]
   match '/feedback' => 'metadata#feedback', :via => :post
 end

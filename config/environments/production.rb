@@ -1,8 +1,9 @@
 DandooDev::Application.configure do
+  ::ActiveSupport::Deprecation.silenced = true
   # Settings specified here will take precedence over those in config/application.rb
 
   # Code is not reloaded between requests
-  config.cache_classes = true #Remove?
+  config.cache_classes = true 
 
   # Full error reports are disabled and caching is turned on
   config.consider_all_requests_local       = false
@@ -43,7 +44,9 @@ DandooDev::Application.configure do
 
   # Use a different cache store in production
   # config.cache_store = :mem_cache_store
-   config.cache_store = :dalli_store
+   config.cache_store = :dalli_store, ENV["MEMCACHIER_SERVERS"],
+                    {:username => ENV["MEMCACHIER_USERNAME"],
+                     :password => ENV["MEMCACHIER_PASSWORD"]}
 
   # Enable serving of images, stylesheets, and JavaScripts from an asset server
   # config.action_controller.asset_host = "http://assets.example.com"
@@ -75,9 +78,9 @@ DandooDev::Application.configure do
   config.action_mailer.raise_delivery_errors = false
   config.action_mailer.default :charset => "utf-8"
 
-  config.action_dispatch.rack_cache = {
-    :metastore    => Dalli::Client.new,
-    :entitystore  => 'file:/tmp/cache/rack/body',
-    :allow_reload => false
-  }
+  # config.action_dispatch.rack_cache = {
+  #   :metastore    => Dalli::Client.new,
+  #   :entitystore  => 'file:/tmp/cache/rack/body',
+  #   :allow_reload => false
+  # }
 end
