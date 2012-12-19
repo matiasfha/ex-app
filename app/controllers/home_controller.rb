@@ -8,11 +8,11 @@ class HomeController < ApplicationController
       @seccion   = 'mas_votadas'
       get_menu_counter()
       if request.headers['X-PJAX']
-        if stale?(:etag => [@resources])
+        #if stale?(:etag => [@resources])
           render :partial => 'listado', :layout => nil
-        end
-      else
-        return unless stale? :etag => [@resources]
+        #end
+      # else
+      #   return unless stale? :etag => [@resources]
       end
   end
 
@@ -26,11 +26,11 @@ class HomeController < ApplicationController
       @seccion = 'nuevos'
       get_menu_counter()
       if request.headers['X-PJAX']
-        if stale?(:etag => [@resources])
+       # if stale?(:etag => [@resources])
           render :partial => 'listado', :layout => nil
-        end
-      else
-        return unless stale?(:etag => [@resources])
+      #   end
+      # else
+      #   return unless stale?(:etag => [@resources])
       end
   end
 
@@ -39,11 +39,11 @@ class HomeController < ApplicationController
       @seccion = 'mas_comentados'
       get_menu_counter()
       if request.headers['X-PJAX']
-        if stale?(:etag => [@resources])
+        #if stale?(:etag => [@resources])
           render :partial => 'listado', :layout => nil
-        end
-      else
-        return unless stale? :etag => [@resources]
+      #   end
+      # else
+      #   return unless stale? :etag => [@resources]
       end
   end
 
@@ -53,11 +53,11 @@ class HomeController < ApplicationController
       @seccion = "mis_contenidos"
       get_menu_counter()
       if request.headers['X-PJAX']
-        if stale?(:etag => [@resources])
+        #if stale?(:etag => [@resources])
           render :partial => 'listado', :layout => nil
-        end
-      else
-        return unless stale? :etag => [@resources]
+      #   end
+      # else
+      #   return unless stale? :etag => [@resources]
       end
     else 
       redirect_to root_path
@@ -69,11 +69,11 @@ class HomeController < ApplicationController
     @seccion = 'todos'
     get_menu_counter()
     if request.headers['X-PJAX']
-      if stale?(:etag => [@resources])
+      # if stale?(:etag => [@resources])
         render :partial => 'listado', :layout => nil
-      end
-    else
-      return unless stale? :etag => [@resources]
+    #   end
+    # else
+    #   return unless stale? :etag => [@resources]
     end
   end
 
