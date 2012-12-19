@@ -1,1 +1,0 @@
-(function(){(function(e){return e.fn.rutValidate=function(t){var n,r,i,s,o,u,a,f,l,c;l=e(this).val()+"-"+t,l.length<9&&!1,a=l.indexOf("-"),t=l.substr(a+1).toUpperCase(),f=l.substr(0,a),n=0,c=0,u=f.length-1;while(u>=0)r=f.substr(u,1),o=n+2,c+=parseInt(r)*o,n=(n+1)%6,u--;return i=11-c%11,i===11&&(s=0),i==="0"&&(s="K"),i!==11&&i!==10&&(s=""+i),s===t?!0:!1}})(jQuery)}).call(this);

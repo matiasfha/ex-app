@@ -1,1 +1,0 @@
-(function(){(function(e){return e.fn.numeric=function(){return e(this).keydown(function(e){if(!(e.keyCode===46||e.keyCode===8||e.keyCode===9||e.keyCode===27||e.keyCode===13||e.keyCode===65&&e.ctrlKey===!0||e.keyCode>=35&&e.keyCode<=39))if(e.shiftKey||(e.keyCode<48||e.keyCode>57)&&(e.keyCode<96||e.keyCode>105))return e.preventDefault()})}})(jQuery)}).call(this);

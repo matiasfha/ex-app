@@ -13,6 +13,13 @@ GIT
     mongoid-paperclip (0.0.8)
       paperclip (>= 2.3.6)
 
+GIT
+  remote: git://github.com/rails/pjax_rails.git
+  revision: 6d9d6c27caaae78017ac3a3a10d946c5ec9735b4
+  specs:
+    pjax_rails (0.3.4)
+      jquery-rails
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -338,6 +345,7 @@ DEPENDENCIES
   omniauth
   omniauth-facebook
   omniauth-twitter
+  pjax_rails!
   rails (= 3.2.8)
   rails-i18n
   rb-fsevent
